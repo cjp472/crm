@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.pap.PapTemGotoRule"
+        table="PAP_TEM_GOTO_RULE"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="temGotoRuleId"
+            column="TEM_GOTO_RULE_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_PAP_TEM_GOTO_RULE_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="queId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="QUE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="optVal"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPT_VAL"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to PapQue -->
+		<many-to-one
+			name="papQue"
+			class="com.ulane.running.model.pap.PapQue"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TAR_QUE_ID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to PapTemplate -->
+		<many-to-one
+			name="papTemplate"
+			class="com.ulane.running.model.pap.PapTemplate"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TMP_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

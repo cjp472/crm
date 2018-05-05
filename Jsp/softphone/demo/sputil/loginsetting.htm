@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>登录参数设置</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta   HTTP-EQUIV="Pragma"   CONTENT="no-cache">   
+<meta   HTTP-EQUIV="Cache-Control"   CONTENT="no-cache">   
+<meta   HTTP-EQUIV="Expires"   CONTENT="0">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<style type="text/css">
+.nondis {display:none;color:#FF0000}
+BODY {
+	FONT-SIZE:10px; MARGIN: 0px; COLOR: #945f29; FONT-FAMILY: Arial;
+}
+</style>
+</head>
+
+<body bgcolor="#F6F5F5" onload="initPara();">
+<center>
+	<table width="375" border="1" cellspacing="0">
+	  <tr>
+	    <th colspan="2" align="center">软电话参数设置</th>
+	  </tr>
+	  <tr>
+	    <td>工号:      </td><td><input style="width:300px" type="text" id="LoginID"></input><span id="LoginIDMsg" class="nondis">*请输入Login ID</span></td>
+	  </tr>
+	  <tr>
+	    <td>密码:      </td><td><input style="width:300px" type="text" id="Password"></input><span id="PasswordMsg" class="nondis">*请输入Password</span></td>
+	  </tr>
+	  <tr>
+	    <td>分机号:    </td><td><input style="width:300px" type="text" id="StationID"></input><span id="StationIDMsg" class="nondis">*请输入Station ID</span></td>
+	  </tr>
+	  <tr>
+	    <td>IC地址:</td><td><input style="width:300px" type="text" id="SDKServerURL" value="http://135.27.134.135:9700/icsdk"></input><span id="SDKServerURLMsg"  class="nondis">*请输入SDK Server URL</span></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2" align="center"><button id="btnSave">保存设置</button>&nbsp;&nbsp;<button id="btnCancel">取消设置</button></td>
+	  </tr>
+	</table>
+</center>
+<script>
+	function $(id){return document.getElementById(id);}
+	function $value(id){return $(id).value;}
+	function $display(id, displayVal){return $(id).style.display=displayVal;}
+
+	function initPara(){
+		var parentPage = window.opener;
+		$("LoginID").value=parentPage.getInitData("agentLoginID");
+		$("Password").value=parentPage.getInitData("agentPassword");
+		$("StationID").value=parentPage.getInitData("extensionNumber");
+		$("SDKServerURL").value=parentPage.getInitData("sdkAddress");
+	}
+	
+	function checkInput(){
+		var ret = true;
+		$display("LoginIDMsg", "none");
+		$display("PasswordMsg", "none");
+		$display("StationIDMsg", "none");
+		$display("SDKServerURLMsg", "none");
+		if(!$value("LoginID")){
+			$display("LoginIDMsg", "block");ret = false;
+		}
+		if(!$value("Password")){
+			$display("PasswordMsg", "block");ret = false;
+		}
+		if(!$value("StationID")){
+			$display("StationIDMsg", "block");ret = false;
+		}
+		if(!$value("SDKServerURL")){
+			$display("SDKServerURLMsg", "block");ret = false;
+		}
+		return ret;
+	}
+	$("btnSave").onclick = function(){
+		if(checkInput()){
+			var parentPage = window.opener;
+			parentPage.softphone_init_agentLoginID   =$("LoginID").value;
+			parentPage.softphone_init_agentPassword  =$("Password").value;
+			parentPage.softphone_init_extensionNumber=$("StationID").value;
+			parentPage.softphone_init_sdkAddress     =$("SDKServerURL").value;
+			parentPage.setInitDataAllFromLocal();
+			alert("设置成功,请登录!");			
+			window.close();
+		}
+	}
+	$("btnCancel").onclick = function(){
+		window.close();
+	}
+</script>
+</body>	
+</HTML>

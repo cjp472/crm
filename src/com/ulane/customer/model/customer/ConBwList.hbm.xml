@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ConBwList" table="CON_BW_LIST"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="bwId" column="BW_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_BW_LIST_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="bwTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BW_TYP_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="objTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="OBJ_TYP_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="dirId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DIR_ID" length="5" not-null="false"
+			unique="false" />
+		<property name="contactTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CONTACT_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="preContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRE_CONTACT_NUM"
+			length="256" not-null="false" unique="false" />
+		<property name="mainContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MAIN_CONTACT_NUM"
+			length="256" not-null="true" unique="false" />
+		<property name="lastContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="LAST_CONTACT_NUM"
+			length="256" not-null="false" unique="false" />
+		<property name="dealTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DEAL_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="bwTime" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BW_TIME" length="5" not-null="false"
+			unique="false" />
+		<property name="bwBusi" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BW_BUSI" length="5" not-null="false"
+			unique="false" />
+		<property name="applyReaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="APPLY_REA_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="applyTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="APPLY_TIME" length="7"
+			not-null="true" unique="false" />
+		<property name="applyRemark" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPLY_REMARK" length="256"
+			not-null="true" unique="false" />
+		<property name="checkStateId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CHECK_STATE_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="statusId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS_ID" length="5"
+			not-null="true" unique="false" />
+		<many-to-one name="apply" class="com.htsoft.oa.model.system.AppUser" not-null="false" fetch="select"> 
+	      <column name="APPLY_ID"/> 
+	    </many-to-one> 
+	    
+	    <!-- 新增审批信息   by wangzj -->
+		<many-to-one name="approveUser" class="com.htsoft.oa.model.system.AppUser" not-null="false" fetch="select"> 
+	      <column name="APPROVE_USER_ID"/> 
+	    </many-to-one> 
+	    <property name="approveTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="APPROVE_TIME" length="7"
+			not-null="false" unique="false" />
+	    <property name="approveReason" type="java.lang.Short" update="true"
+			insert="true" access="property" column="APPROVE_REASON" length="5"
+			not-null="false" unique="false" />
+	    <property name="approveDesc" type="java.lang.String"
+			update="true" insert="true" access="property" column="APPROVE_DESC"
+			length="200" not-null="false" unique="false" />
+	    
+		<many-to-one name="customer" class="com.htsoft.oa.model.customer.Customer" not-null="false" fetch="select" not-found="ignore"> 
+	      <column name="CUS_ID"/> 
+	    </many-to-one> 
+<!-- 		<many-to-one name="cusPersonal" class="com.ulane.customer.model.customer.CusPersonal" not-null="false" fetch="select"> 
+	      <column name="CUS_ID"/> 
+	    </many-to-one>  -->
+		<!--
+			imported bi-directional many-to-one association to conBwlistApprove
+		-->
+ 		<many-to-one name="conBwlistApprove"
+			class="com.ulane.customer.model.customer.ConBwlistApprove" not-null="false"
+			fetch="select">
+			<column name="BWLIST_APPROVE_ID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to ConBwListBusRul -->
+		<set name="conBwListBusRuls" table="con_bw_list_bus_rul" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="BW_ID" />
+			</key>
+			<one-to-many class="com.ulane.customer.model.customer.ConBwListBusRul" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ConBwListReason
+		-->
+		<set name="conHiss" table="con_bw_list_reason" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="BW_ID" />
+			</key>
+			<many-to-many fetch="join" class="com.ulane.customer.model.customer.ConHis" column="CON_HIS_ID"/>
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ConBwListTimeRul
+		-->
+		<set name="conBwListTimeRuls" table="con_bw_list_time_rul" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="BW_ID" />
+			</key>
+			<one-to-many class="com.ulane.customer.model.customer.ConBwListTimeRul" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,149 @@
+/**
+ * @author
+ * @createtime
+ * @class EquipmentForm
+ * @extends Ext.Window
+ * @description EquipmentForm表单
+ * @company 优创融联科技
+ */
+EquipmentForm = Ext.extend(Ext.Window, {
+	// 内嵌FormPanel
+	formPanel : null,
+	// 构造函数
+	constructor : function(_cfg) {
+		Ext.applyIf(this, _cfg);
+		// 必须先初始化组件
+		this.initUIComponents();
+		EquipmentForm.superclass.constructor.call(this, {
+					layout : 'fit',
+					items : this.formPanel,
+					modal : true,
+					id : 'EquipmentFormWin',
+					title : '添加设备信息',
+					iconCls : 'menu-Equipment',
+					width : 370,
+					height : 220,
+					buttonAlign : 'center',
+					buttons : this.buttons
+				});
+	},// end of the constructor
+	// 初始化组件
+	initUIComponents : function() {
+		this.formPanel = new Ext.FormPanel({
+				 //url : __ctxPath + '/system/saveEquipment.do?isCopy='+ this.isCopy,
+			      // url : __ctxPath + '/xitong/save3UlEmployee.do',
+			      // alert(url);
+					layout : 'form',
+					id : 'EquipmentForm',
+					border:false,
+					bodyStyle : 'padding:5px;',
+					labelAlign : "right",
+					labelWidth : 60,
+					defaults : {
+						anchor : '98%,98%'
+					},
+					formId : 'EquipmentFormId',
+					defaultType : 'textfield',
+					items : [{
+								name : 'Equipment.EId',
+								xtype : 'hidden',
+								value : this.EId == null ? '' : this.EId
+							}, {
+								fieldLabel : '机具号',
+								name : 'Equipment.equipmentId',
+								id : 'equipment_num',
+								allowBlank : false,
+								blankText: '温馨提示：机具号不允许为空',
+								maxLength : 50
+							}, {
+								fieldLabel : '网点名称',
+								//xtype : 'textarea',
+								allowBlank : false,
+								blankText: '温馨提示：网点名称不允许为空',
+								id : 'equipment_name',
+								name : 'Equipment.equipmentName',
+								maxLength : 50
+							}
+							]
+				});
+
+		if (this.EId != null && this.EId != 'undefined') {
+			this.formPanel.loadData({
+				//url:__ctxPath + '/system/getEquipment.do?EId=' + this.EId,
+			  url : __ctxPath + '/xitong/get3UlEmployee.do?EId=' + this.EId,
+				preName:'Equipment',
+				root:'data',
+				success : function(response, options) {
+                    var thisObj = Ext.util.JSON.decode(response.responseText).data;
+                   Ext.getCmp('Equipment.equipmentId').setValue(thisObj.equipmentId);
+                   Ext.getCmp('Equipment.equipmentName').setValue(thisObj.equipmentName);
+                   // Ext.getCmp('Equipment_status_id').setValue(thisObj.status);
+				}
+			});
+		}
+
+		this.buttons = [{
+			text : '保存',
+			iconCls : 'btn-save',
+			scope:this,
+			handler : this.save.createCallback(this)
+		}, {
+			text : '取消',
+			iconCls : 'btn-cancel',
+			scope:this,
+			handler : function() {
+					this.close();
+			}
+		}]
+	},
+	save:function(){
+		var grid = Ext.getCmp("EquipmentGrid");
+		var fp = Ext.getCmp('EquipmentFormWin');
+			var equipmentId = Ext.getCmp('equipment_num').getValue();
+			var equipmentName = Ext.getCmp('equipment_name').getValue();
+//			alert(equipmentName+"---"+equipmentId);
+			Ext.Ajax.request({
+				url : __ctxPath + '/xitong/save3UlEmployee.do',
+				params : {
+					name : equipmentName,
+					id:equipmentId
+				},
+				method : 'post',
+				waitMsg : '正在提交数据...',
+				success : function(result, request) {
+                    var res = Ext.util.JSON.decode(result.responseText);
+                    if (res.success == true) {
+                      // Ext.ux.Toast.msg('操作信息', '员工'+res.data+'存在关联，删除失败。\n其余用户成功删除');
+                      
+                    Ext.ux.Toast.msg('温馨提示', '亲!恭喜您，添加成功！');
+                    Ext.getCmp('EquipmentFormWin').close();
+                    } else if(res.success==false){
+                    	Ext.Msg.alert("温馨提示","亲！\n网点名称或机具号不能为空  ,或机具号重复请修改！");
+                    	//var flag=0;
+                    	//var flag=1;
+                      // Ext.ux.Toast.msg('操作信息', '亲！\n网点名称或机具号重复，请您重新添加！!');
+//                    	if(flag==){
+//                    		Ext.Msg.alert("信息提示","该机具号或网点名称重复，请修改！");
+//                    	}else if(flag==1){
+//                    		Ext.Msg.alert("信息提示","该网点名称重复，请修改！");
+//                    	}
+                    	
+                    	
+                    }
+                    Ext.getCmp('EquipmentGrid').getStore().reload();
+                }
+//				success : function(fp,action) {
+//					Ext.ux.Toast.msg('操作信息', '成功保存信息！');
+//					Ext.getCmp('EquipmentGrid').getStore().reload();
+//					
+//				},
+//				failure : function(fp,action) {
+//					Ext.ux.Toast.msg('操作信息','网点名称或机具号重复，请重新添加！');
+//					Ext.getCmp('EquipmentFormWin').getForm().reset();
+//				}
+//				
+			});
+//		
+
+	}//end of save
+});

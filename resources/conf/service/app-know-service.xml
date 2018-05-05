@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+
+<!-- start:  Generated for UkKnowApply From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowApplyService" class="com.ulane.know.service.know.impl.UkKnowApplyServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowApplyDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowApply From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowApprove From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowApproveService" class="com.ulane.know.service.know.impl.UkKnowApproveServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowApproveDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowApprove From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDianping From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowDianpingService" class="com.ulane.know.service.know.impl.UkKnowDianpingServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowDianpingDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowDianping From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDingyue From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowDingyueService" class="com.ulane.know.service.know.impl.UkKnowDingyueServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowDingyueDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowDingyue From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowFankui From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowFankuiService" class="com.ulane.know.service.know.impl.UkKnowFankuiServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowFankuiDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowFankui From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowKeyword From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowKeywordService" class="com.ulane.know.service.know.impl.UkKnowKeywordServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowKeywordDao"/>
+   	 </bean>
+   	 <bean id="ukKnowKeywordTypeService" class="com.ulane.know.service.know.impl.UkKnowKeywordTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowKeywordTypeDao"/>
+   	 </bean>
+<!-- <bean id="ukKnowRecommendService" class="com.ulane.know.service.know.impl.UkKnowRecommendServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowRecommendDao"/>
+   	 </bean> -->
+<!-- end:  Generated for UkKnowKeyword From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowTemplate From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowTemplateService" class="com.ulane.know.service.know.impl.UkKnowTemplateServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowTemplateDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowTemplate From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowType From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowTypeService" class="com.ulane.know.service.know.impl.UkKnowTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowTypeDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowType From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkPerKnow From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukPerKnowService" class="com.ulane.know.service.know.impl.UkPerKnowServiceImpl">
+   	 	<constructor-arg index="0" ref="ukPerKnowDao"/>
+   	 </bean>
+<!-- end:  Generated for UkPerKnow From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkSysKnow From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukSysKnowService" class="com.ulane.know.service.know.impl.UkSysKnowServiceImpl">
+   	 	<constructor-arg index="0" ref="ukSysKnowDao"/>
+   	 </bean>
+<!-- end:  Generated for UkSysKnow From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkRelativeKnow From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukRelativeKnowService" class="com.ulane.know.service.know.impl.UkRelativeKnowServiceImpl">
+   	 	<constructor-arg index="0" ref="ukRelativeKnowDao"/>
+   	 </bean>
+<!-- end:  Generated for UkRelativeKnow From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDimensionality From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowDimensionalityService" class="com.ulane.know.service.know.impl.UkKnowDimensionalityServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowDimensionalityDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowDimensionality From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkQiusuo From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukQiusuoService" class="com.ulane.know.service.know.impl.UkQiusuoServiceImpl">
+   	 	<constructor-arg index="0" ref="ukQiusuoDao"/>
+   	 </bean>
+<!-- end:  Generated for UkQiusuo From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkQiusuoHuifu From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukQiusuoHuifuService" class="com.ulane.know.service.know.impl.UkQiusuoHuifuServiceImpl">
+   	 	<constructor-arg index="0" ref="ukQiusuoHuifuDao"/>
+   	 </bean>
+<!-- end:  Generated for UkQiusuoHuifu From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkDimensionalityKnowService From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukDimensionalityKnowService" class="com.ulane.know.service.know.impl.UkDimensionalityKnowServiceImpl">
+   	 	<constructor-arg index="0" ref="ukDimensionalityKnowDao"/>
+   	 </bean>
+<!-- end:  Generated for UkDimensionalityKnowService From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkKnowCollectType From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukKnowCollectTypeService" class="com.ulane.know.service.know.impl.UkKnowCollectTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="ukKnowCollectTypeDao"/>
+   	 </bean>
+<!-- end:  Generated for UkKnowCollectType From Template: app-know-service.xml.beansvm  -->
+<!-- start:  Generated for UkPersonKnowType From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ukPersonKnowTypeService" class="com.ulane.know.service.know.impl.UkPersonKnowTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="ukPersonKnowTypeDao"/>
+   	 </bean>
+<!-- end:  Generated for UkPersonKnowType From Template: app-know-service.xml.beansvm  -->
+</beans>

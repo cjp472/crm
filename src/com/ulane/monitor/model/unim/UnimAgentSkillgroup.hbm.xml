@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<class 
+    name="com.ulane.monitor.model.unim.UnimAgentSkillgroup" 
+    table="UNIM_AGENT_SKILLGROUP"
+>
+  <composite-id name="comp_id" class="com.ulane.monitor.model.unim.UnimAgentSkillgroupPK">
+        <key-property name="agentId"  column="AGENT_ID" type="java.lang.Long" length="18"></key-property>
+    	<key-property  name="skillgroupId"  column="SKILLGROUP_ID"  type="java.lang.Long" length="18"></key-property>
+  </composite-id>
+	<property 
+		name="agentId" 
+		type="java.lang.Long" 
+	 	update="false"
+		insert="false" 
+		access="property" 
+		column="AGENT_ID" 
+		length="18"
+		not-null="false" 
+		unique="false" />
+	<property 
+		name="skillgroupId" 
+		type="java.lang.Long" 
+	 	update="false"
+		insert="false" 
+		access="property" 
+		column="SKILLGROUP_ID" 
+		length="18"
+		not-null="false" 
+		unique="false" />
+</class>
+</hibernate-mapping>

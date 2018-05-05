@@ -1,0 +1,746 @@
+package com.ulane.base.dao.xitong.impl;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeSet;
+
+
+
+import net.fckeditor.response.GetResponse;
+import net.fckeditor.tool.Utils;
+import oracle.net.aso.q;
+
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.jbpm.api.Configuration;
+import org.springframework.orm.hibernate3.HibernateCallback;
+
+import com.htsoft.core.Constants;
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.dao.impl.BaseDaoImpl;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.model.system.AppFunction;
+import com.htsoft.oa.model.system.AppRole;
+import com.htsoft.oa.model.system.AppUser;
+import com.htsoft.oa.model.system.FunUrl;
+import com.htsoft.oa.model.system.Region;
+import com.htsoft.oa.util.SqlBuilder;
+import com.ulane.base.dao.xitong.UlEmployeeDao;
+
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.core.util.JdbcHelper;
+import com.ulane.core.util.JdbcWork;
+import com.ulane.customer.model.customer.ConHis;
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+
+@SuppressWarnings({ "unchecked", "unused" })
+public class UlEmployeeDaoImpl extends BaseDaoImpl<UlEmployee> implements UlEmployeeDao{
+
+	protected static final String EId = null;
+
+	public UlEmployeeDaoImpl() {
+		super(UlEmployee.class);
+		System.out.println("=========UlEmployeeDaoImpl==========="+UlEmployee.class);
+	}
+
+	/**
+	 * 根据组织机构去查找员工
+	 */
+	@Override
+	public List<UlEmployee> findByDepartment(String path, PagingBean pb) {
+		List list = new ArrayList();
+		String hql = new String();
+		if ("0.".equals(path)) {
+			hql = "from UlEmployee vo2 order by vo2.userNo asc"; // where vo2.delFlag = ?
+//			list.add(Constants.FLAG_UNDELETED);
+		} else {
+			//TODO
+			hql="select distinct au from UlEmployee au where au.ulDepartment.path like ? order by au.userNo asc";  // and au.delFlag=? 
+			list.add(path + "%");
+//			list.add(Constants.FLAG_UNDELETED);
+		}
+		return findByHql(hql, list.toArray(), pb);
+	}
+	
+	public UlEmployee getEmployeeByUserNo(String userNo) {
+		String hql="select vo from UlEmployee vo where vo.userNo=?";
+		List<UlEmployee> employees=findByHql(hql,new Object[]{userNo});
+		if(employees!=null&&employees.size()>0) {
+			return employees.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public Integer getEmployeeCount() {
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("count(*)");
+		SqlBuilder.FROM("ul_employee");
+		String sql_getCount = SqlBuilder.SQL();
+
+		JdbcWork getCount = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				int result = 0;
+				try {
+					rs.next();
+					result = rs.getInt(1);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+		};
+		JdbcHelper help = new JdbcHelper();
+		help.setJdbcWork(getCount);
+		help.setSql(sql_getCount);
+
+		return (Integer) getHibernateTemplate().execute(help);
+	}
+
+	//查询员工信息
+	public List<UlEmployee> getShowList() {
+		String hql = "from UlEmployee vo2 order by vo2.userNo asc";
+		List<UlEmployee> ue= this.getHibernateTemplate().find(hql);
+		System.out.println("select - -  SUCCESS");
+		return ue ;
+	}
+
+	// 查看用户信息
+	
+	
+	
+	public AppUser selectSomeOne(){
+		String hql = "from AppUser au where order by au.status=1 desc";
+		List<AppUser> au= this.getHibernateTemplate().find(hql);
+		System.out.println("select - -  SUCCESS");
+		for(int i=0;i<au.size();i++){
+		   System.out.println("排序："+au.get(i));
+		}
+		return null;
+		
+		//return (AppUser) au;
+		//this.getHibernateTemplate().u
+	}
+	//03/14
+	public void update(AppUser au){
+		//String hql="update AppUser au";
+		String hql="update AppUser au set au.delFlag=1 where au.status=3 or au.status=5 order by au.status=1 desc";
+		System.out.println("===hql"+hql);
+		System.out.println("状态以正常排序："+au.getStatus().toString());
+		Query query=getSession().createQuery(hql);
+		query.executeUpdate();
+	
+		//this.getHibernateTemplate().update(au);
+		System.out.println("update  - - SUCCESS----");
+	}
+	
+	//03/14
+	public AppUser selectSomeOne(Long id){
+		String hql = "from AppUser au where au.ulEmployee.useid="+id;
+		List<AppUser> au= this.getHibernateTemplate().find(hql);
+		System.out.println("select - -  SUCCESS");
+		//System.out.println("状态以正常排序："+au.get(0));
+		return au.get(0);
+		//return (AppUser) au;
+		//this.getHibernateTemplate().u
+	}
+	
+	/** 2014/4/2 设备管理的增删改查 */
+	@Override
+	// 1 显示设备的信息
+	public List<Equipment> getShowEquipment(String equipmentId,
+			String equipmentName) {
+		
+	     String hql = "from Equipment e where e.equipmentId=? or e.equipmentName=?";
+		  Query query = getSession().createQuery(hql);
+		  System.out.println("=============query" + query);
+		  query.setString(0, equipmentId);
+		 System.out.println("======0000000000======equipment" + equipmentId);
+		 query.setString(1, equipmentName);
+		 System.out.println("=====111111111========equipment" + equipmentName);
+//	
+		 return query.list();
+		
+	}
+
+	// 修改和添加时的查询和查询显示全部的列表
+	public List<Equipment> getShowEquipment() {
+		// if(equipmentId==null && equipmentName==null){
+		String hql = "from  Equipment";
+		List<Equipment> equipments = this.getHibernateTemplate().find(hql);
+		System.out.println("=================equipments=" + equipments);
+		System.out.println("===========equipments" + equipments.size());
+		return equipments;
+		// }
+
+	}
+/*
+ * 2014/6/3 添加分页 修改
+ * 
+ * */
+	
+	public List<Equipment> getShowEquipment(Integer start, Integer limit) {
+
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("*");
+		SqlBuilder.FROM("equipment");
+		String sql = SqlBuilder.SQL();
+
+		JdbcWork getdata = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				List<Equipment> result = new ArrayList<Equipment>();
+				try {
+					while (rs.next()) {
+						Equipment e = new Equipment();
+						e.setEId(rs.getLong("EId"));
+						e.setEquipmentId(rs.getString("EQUIPMENTID"));
+						e.setEquipmentName(rs.getString("EQUIPMENTNAME"));
+						result.add(e);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+		};
+		JdbcHelper help = new JdbcHelper();
+		help.setJdbcWork(getdata);
+		help.setSql(JdbcHelper.getPagingSql(sql, start, limit));
+		return (List<Equipment>) getHibernateTemplate().execute(help);
+	}
+
+	
+	// 删除
+	public void getDelEquipment(Equipment eq) {
+		this.getHibernateTemplate().delete(eq);
+		// Query query=session.createQuery("delete from Equipment where EId=?");
+		String hql = "delete from Equipment";
+		System.out.println("===========eq" + eq);
+		// eq.setEId(1,new Long(EId);
+		System.out.println("========eid" + EId);
+
+		// //this.getHibernateTemplate().update(hql, new Object[]{EId});
+		// this.update(hql, new Object[]{EId});
+		;
+		// this.getHibernateTemplate().delete(eq);
+		this.getHibernateTemplate().delete(hql, eq);
+		// this.getHibernateTemplate().update(hql, eq);
+		System.out.println("=====成功");
+
+	}
+
+	// @Override 单个删除设备2014/4/3
+	public void getDelEquipment(Long EId) {
+		System.out.println("===========EId" + EId);
+
+		// Session session=(Session) this.getSessionFactory();
+		// session.beginTransaction().begin();
+		Query query = getSession().createQuery(
+				"delete from Equipment e where e.EId=?");
+		System.out.println("====================query" + query);
+		query.setLong(0, EId);
+		System.out.println("============ query.setLong(0, EId)"
+				+ query.setLong(0, EId));
+		query.executeUpdate();
+		// session.beginTransaction().commit();
+		System.out.println("==============dao删除====成功");
+
+	}
+
+	// 添加设备管理(注解：hibernate当中如果是添加，修改操作，一定要开启事务，关闭事务)
+
+	public void addEquipment(String newname, String newId) {
+		System.out.println("==============add    dao");
+		Transaction tx = getSession().beginTransaction();
+		Equipment eq = new Equipment();
+		eq.setEquipmentId(newId);
+		eq.setEquipmentName(newname);
+		//this.getHibernateTemplate().saveOrUpdate(eq);
+		//getSession().saveOrUpdate(eq);
+		getSession().save(eq);
+	   tx.commit();
+	}
+
+	// 修改 huyang3868@163.com
+
+	public void updateEquipment(Long EId, String equipmentId,
+			String equipmentName) {
+		Transaction tx = getSession().beginTransaction();
+		Equipment equipment = new Equipment();
+		
+		Query query = getSession()
+				.createSQLQuery(
+						"update Equipment e set e.equipmentId=?,e.equipmentName=? where EId=?");
+		System.out.println("====query" + query);
+		System.out.println("=======update=====query" + query);
+		query.setString(0, equipmentId);
+		query.setString(1, equipmentName);
+		// query.setString(1,equipment.getEquipmentName());
+		// query.setString(2, equipment.getEquipmentName());
+		query.setLong(2, EId);
+		System.out.println("e.equipmentId=?,e.equipmentName=? where EId=?"
+				+ EId);
+		// query.setLong(3, equipment.getEId());
+		query.executeUpdate();
+
+		tx.commit();
+
+		System.out.println("==============dao修改====成功");
+
+	}
+
+	@Override
+	// 查询用户和员工是否有关联
+	public List<AppUser> selectOnly(Long id) {
+		 String hql = "from AppUser au where au.ulEmployee.useid="+id;
+		List<AppUser> au= this.getHibernateTemplate().find(hql);
+		System.out.println("select - -  SUCCESS");
+		//System.out.println("状态以正常排序："+au.get(0).getStatus());
+		return au;
+		
+	}
+
+	@Override
+	public List<AppUser> updateOnly(AppUser au) {
+		
+		//String hql="update AppUser au set au.delFlag=1 where au.useid=?";
+		String hql="update AppUser au set au.delFlag=1 where au.status=3 or au.status=5 order by au.status=1 desc";
+		System.out.println("===hql"+hql);
+		System.out.println("状态以正常排序："+au.getStatus().toString());
+		Query query=getSession().createQuery(hql);
+		query.setLong(0, au.getUserId());
+		query.executeUpdate();
+	
+		//this.getHibernateTemplate().update(au);
+		System.out.println("update  - - SUCCESS----");
+		return query.list();
+	}
+
+	@Override
+	public void getUpdateDelAppUser(Long useid) {
+		 String hql = "update AppUser au set au.delFlag=1 where au.status=3 or au.status=5";
+		//String hql="update AppUser au set au.delFlag=1 where au.status=3 or au.status=5";
+		//String hql="update AppUser au set au.delFlag=1 where au.status=3 or au.status=5 order by au.status=1 desc";
+		System.out.println("===hql"+hql);
+		Query query=getSession().createQuery(hql);
+		//query.setLong(0, useid);
+		query.executeUpdate();
+	
+		//this.getHibernateTemplate().update(au);
+		System.out.println("update  - - SUCCESS----");
+
+	}
+
+	
+	
+	
+ /*设备管理与业务资料之间的查询
+  * */
+	@Override
+	public String getEqName(Integer start, Integer limit) {
+//		String hql="select e.equipmentName from con_his ch inner join  Equipment " +
+//		" e  on  e.equipmentId=ch.main_contact_num  where  e.equipmentId='"+Id+"'";
+		
+		JdbcHelper helper = new JdbcHelper();
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("ch.CON_HIS_ID,ch.CONTACT_TYPE_ID,ch.DIR_ID,ch.SRC_TYPE_ID,ch.BUS_TYP_ID" +
+				",ch.STA_TIME,ch.END_TIME,ch.AGENT_NAME,ch.CON_RES_ID,ch.CUS_NAME,ch.SERIAL_NUM,e.equipmentName,ch.DEAL_STA_ID");
+		SqlBuilder.FROM("con_his ch inner join  Equipment e on  e.equipmentId=ch.main_contact_num");
+		String sql = SqlBuilder.SQL();
+		helper.setSql(sql);
+		logger.debug("sql : " + sql);
+
+		JdbcWork sqlWork = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				StringBuffer buff = new StringBuffer("[");
+				try {
+					while (rs.next()) {
+						buff.append("["+rs.getLong("CON_HIS_ID")+","+rs.getShort("CONTACT_TYPE_ID")+","
+								+rs.getShort("DIR_ID")+","+rs.getShort("SRC_TYPE_ID")+","+rs.getShort("BUS_TYP_ID")+",'"
+								+rs.getDate("STA_TIME")+"','"+rs.getDate("END_TIME")+"','"+rs.getString("AGENT_NAME")+"',"+rs.getShort("CON_RES_ID")+",'"
+								+rs.getString("CUS_NAME")+"','"+rs.getString("SERIAL_NUM")+"','"+rs.getString("equipmentName")+"',"+rs.getShort("DEAL_STA_ID")+"],");
+					}
+					if (buff.length() != 1) {
+						buff.deleteCharAt(buff.length() - 1);
+					}
+					buff.append("]");
+					//buff.append(pb.getPageSize());
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return buff.toString();
+			}
+		};
+		//JdbcHelper help = new JdbcHelper();
+		helper.setJdbcWork(sqlWork);
+		helper.setSql(JdbcHelper.getPagingSql(sql, start, limit));
+		return (String) getHibernateTemplate().execute(helper);
+	}
+		
+		
+		
+
+     /*
+      * 设备管理与业务资料分页
+      * */
+	@Override
+	public Integer getEquipConPagecount() {
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("count(*)");
+		SqlBuilder.FROM("con_his ch inner join  Equipment e on  e.equipmentId=ch.main_contact_num");
+		String sql_getCount = SqlBuilder.SQL();
+
+		JdbcWork getCount = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				int result = 0;
+				try {
+					rs.next();
+					result = rs.getInt(1);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+		};
+		JdbcHelper help = new JdbcHelper();
+		help.setJdbcWork(getCount);
+		help.setSql(sql_getCount);
+
+		return (Integer) getHibernateTemplate().execute(help);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	// 2014/5/27   带条件的查询业务资料
+	public String getIFEqName(Integer start, Integer limit,String dealStaId1,String dealStaId2, String agentName,
+			String mainContactNum, String cusName,String credNum, String serialNum,
+			String staTime, String endTime) {
+		
+		JdbcHelper helper = new JdbcHelper();
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("ch.CON_HIS_ID,ch.CONTACT_TYPE_ID,ch.DIR_ID,ch.SRC_TYPE_ID,ch.BUS_TYP_ID" +
+				",ch.STA_TIME,ch.END_TIME,ch.AGENT_NAME,ch.CON_RES_ID,ch.CUS_NAME,ch.SERIAL_NUM,e.equipmentName,ch.DEAL_STA_ID");
+		SqlBuilder.FROM("con_his ch inner join  Equipment e " +
+				"on e.equipmentId=ch.main_contact_num");
+		
+		if(StringUtils.isEmpty(dealStaId2) || StringUtils.isNotEmpty(staTime) || StringUtils.isEmpty(dealStaId1)
+				|| StringUtils.isNotEmpty(serialNum) || StringUtils.isNotEmpty(credNum) || StringUtils.isNotEmpty(cusName)
+				|| StringUtils.isNotEmpty(mainContactNum) || StringUtils.isNotEmpty(agentName)){
+			
+			 SqlBuilder.WHERE("ch.AGENT_NAME like"+"'%"+agentName+"%'");
+			 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+			// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId2+"%'");
+			 SqlBuilder.WHERE("ch.main_contact_num like"+"'%"+mainContactNum+"%'");
+			 //SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId1+"%'");
+			 SqlBuilder.WHERE("ch.END_TIME like"+"'%"+endTime+"%'");
+//             SqlBuilder.WHERE("to_char(ch.END_TIME,'yyyy-MM-dd')="+"'"+endTime+"'");
+//             SqlBuilder.WHERE("to_char(ch.STA_TIME,'yyyy-MM-dd')="+"'"+staTime+"'");
+			// SqlBuilder.WHERE("ch.STA_TIME like"+"'%"+staTime+"%'");
+			 SqlBuilder.WHERE("ch.SERIAL_NUM like"+"'%"+serialNum+"%'");
+
+			 SqlBuilder.WHERE("ch.CRED_NUM like"+"'%"+credNum+"%'");
+			 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+			 
+		}else {
+			
+			if(StringUtils.isNotEmpty(dealStaId1)|| StringUtils.isEmpty(dealStaId1)||StringUtils.isNotEmpty(serialNum) || StringUtils.isNotEmpty(credNum) || StringUtils.isNotEmpty(cusName)
+					|| StringUtils.isNotEmpty(mainContactNum) || StringUtils.isNotEmpty(agentName)){
+				// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId1+"%'");
+				 SqlBuilder.WHERE("ch.AGENT_NAME like"+"'%"+agentName+"%'");
+				 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+				// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId2+"%'");
+				 SqlBuilder.WHERE("ch.main_contact_num like"+"'%"+mainContactNum+"%'");
+				// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId1+"%'");
+				  SqlBuilder.WHERE("to_char(ch.END_TIME,'yyyy-MM-dd')="+"'"+endTime+"'");
+		             SqlBuilder.WHERE("to_char(ch.STA_TIME,'yyyy-MM-dd')="+"'"+staTime+"'");
+				 SqlBuilder.WHERE("ch.SERIAL_NUM like"+"'%"+serialNum+"%'");
+
+				 SqlBuilder.WHERE("ch.CRED_NUM like"+"'%"+credNum+"%'");
+				 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+			
+			 }else if(StringUtils.isNotEmpty(dealStaId2)|| StringUtils.isEmpty(dealStaId1)|| StringUtils.isNotEmpty(serialNum) || StringUtils.isNotEmpty(credNum) || StringUtils.isNotEmpty(cusName)
+						|| StringUtils.isNotEmpty(mainContactNum) || StringUtils.isNotEmpty(agentName)){
+					 //SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId1+"%'"); 
+					 SqlBuilder.WHERE("ch.AGENT_NAME like"+"'%"+agentName+"%'");
+					 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+					// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId2+"%'");
+					 SqlBuilder.WHERE("ch.main_contact_num like"+"'%"+mainContactNum+"%'");
+					// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId1+"%'");
+					  SqlBuilder.WHERE("to_char(ch.END_TIME,'yyyy-MM-dd')="+"'"+endTime+"'");
+			         SqlBuilder.WHERE("to_char(ch.STA_TIME,'yyyy-MM-dd')="+"'"+staTime+"'");
+					 SqlBuilder.WHERE("ch.SERIAL_NUM like"+"'%"+serialNum+"%'");
+					 SqlBuilder.WHERE("ch.CRED_NUM like"+"'%"+credNum+"%'");
+					 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+			 }
+			
+			
+			
+			
+		}
+			
+		String sql = SqlBuilder.SQL();
+		helper.setSql(sql);
+		logger.debug("sql : " + sql);
+
+		JdbcWork sqlWork = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				StringBuffer buff = new StringBuffer("[");
+				try {
+					while (rs.next()) {
+						buff.append("["+rs.getLong("CON_HIS_ID")+","+rs.getShort("CONTACT_TYPE_ID")+","
+								+rs.getShort("DIR_ID")+","+rs.getShort("SRC_TYPE_ID")+","+rs.getShort("BUS_TYP_ID")+",'"
+								+rs.getDate("STA_TIME")+"','"+rs.getDate("END_TIME")+"','"+rs.getString("AGENT_NAME")+"',"+rs.getShort("CON_RES_ID")+",'"
+								+rs.getString("CUS_NAME")+"','"+rs.getString("SERIAL_NUM")+"','"+rs.getString("equipmentName")+"',"+rs.getShort("DEAL_STA_ID")+"],");
+					}
+					if (buff.length() != 1) {
+						buff.deleteCharAt(buff.length() - 1);
+					}
+					buff.append("]");
+					//buff.append(pb.getPageSize());
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return buff.toString();
+			}
+		};
+		//JdbcHelper help = new JdbcHelper();
+		helper.setJdbcWork(sqlWork);
+		helper.setSql(JdbcHelper.getPagingSql(sql, start, limit));
+		return (String) getHibernateTemplate().execute(helper);
+	}
+
+	@Override
+	public String getIFEqNameDel(Integer start, Integer limit, String dealStaId1) {
+		JdbcHelper helper = new JdbcHelper();
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("ch.CON_HIS_ID,ch.CONTACT_TYPE_ID,ch.DIR_ID,ch.SRC_TYPE_ID,ch.BUS_TYP_ID" +
+				",ch.STA_TIME,ch.END_TIME,ch.AGENT_NAME,ch.CON_RES_ID,ch.CUS_NAME,ch.SERIAL_NUM,e.equipmentName,ch.DEAL_STA_ID");
+		SqlBuilder.FROM("con_his ch inner join  Equipment e on  " +
+				"e.equipmentId=ch.main_contact_num  where ch.DEAL_STA_ID="+dealStaId1);
+		String sql = SqlBuilder.SQL();
+		helper.setSql(sql);
+		logger.debug("sql : " + sql);
+
+		JdbcWork sqlWork = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				StringBuffer buff = new StringBuffer("[");
+				try {
+					while (rs.next()) {
+						buff.append("["+rs.getLong("CON_HIS_ID")+","+rs.getShort("CONTACT_TYPE_ID")+","
+								+rs.getShort("DIR_ID")+","+rs.getShort("SRC_TYPE_ID")+","+rs.getShort("BUS_TYP_ID")+",'"
+								+rs.getDate("STA_TIME")+"','"+rs.getDate("END_TIME")+"','"+rs.getString("AGENT_NAME")+"',"+rs.getShort("CON_RES_ID")+",'"
+								+rs.getString("CUS_NAME")+"','"+rs.getString("SERIAL_NUM")+"','"+rs.getString("equipmentName")+"',"+rs.getShort("DEAL_STA_ID")+"],");
+					}
+					if (buff.length() != 1) {
+						buff.deleteCharAt(buff.length() - 1);
+					}
+					buff.append("]");
+					//buff.append(pb.getPageSize());
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return buff.toString();
+			}
+		};
+		//JdbcHelper help = new JdbcHelper();
+		helper.setJdbcWork(sqlWork);
+		helper.setSql(JdbcHelper.getPagingSql(sql, start, limit));
+		return (String) getHibernateTemplate().execute(helper);
+	}
+     /*
+      * 查询设备管理中
+      * 网点名称  2014/06/06
+      * */
+	@Override
+	public List<Equipment> getEqName(String id) {
+	
+	   String hql="from Equipment e where  e.equipmentId='"+id+"'";
+	   System.out.println("====dao==="+hql);
+	   return this.getHibernateTemplate().find(hql);
+		
+		
+	}
+
+	@Override
+	
+	/*
+	 * 2014/6/5/ 条件查询得总数量业务资料
+	 * */
+	public Integer getEquipConPagecount(String dealStaId1, String dealStaId2,
+			String agentName, String mainContactNum, String cusName,
+			String credNum, String serialNum, String startTime, String endTime) {
+		 SqlBuilder.BEGIN();
+		 SqlBuilder.SELECT("count(*)");
+		 SqlBuilder.FROM("con_his ch inner join  Equipment e on  e.equipmentId=ch.main_contact_num");
+		 if(StringUtils.isEmpty(dealStaId2) || StringUtils.isNotEmpty(startTime) || StringUtils.isEmpty(dealStaId1)
+					|| StringUtils.isNotEmpty(serialNum) || StringUtils.isNotEmpty(credNum) || StringUtils.isNotEmpty(cusName)
+					|| StringUtils.isNotEmpty(mainContactNum) || StringUtils.isNotEmpty(agentName)){
+				
+				 SqlBuilder.WHERE("ch.AGENT_NAME like"+"'%"+agentName+"%'");
+				 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+				// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId2+"%'");
+				 SqlBuilder.WHERE("ch.main_contact_num like"+"'%"+mainContactNum+"%'");
+				// SqlBuilder.WHERE("ch.DEAL_STA_ID like"+"'%"+dealStaId1+"%'");
+				 SqlBuilder.WHERE("ch.END_TIME like"+"'%"+endTime+"%'");
+//	             SqlBuilder.WHERE("to_char(ch.END_TIME,'yyyy-MM-dd')="+"'"+endTime+"'");
+//	             SqlBuilder.WHERE("to_char(ch.STA_TIME,'yyyy-MM-dd')="+"'"+staTime+"'");
+				// SqlBuilder.WHERE("ch.STA_TIME like"+"'%"+staTime+"%'");
+				 SqlBuilder.WHERE("ch.SERIAL_NUM like"+"'%"+serialNum+"%'");
+
+				 SqlBuilder.WHERE("ch.CRED_NUM like"+"'%"+credNum+"%'");
+				 SqlBuilder.WHERE("ch.CUS_NAME like"+"'%"+cusName+"%'");
+		 }
+		 String sql_getCount = SqlBuilder.SQL();
+
+		 JdbcWork getCount = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				int result = 0;
+				try {
+					rs.next();
+					result = rs.getInt(1);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+		};
+		JdbcHelper help = new JdbcHelper();
+		help.setJdbcWork(getCount);
+		help.setSql(sql_getCount);
+
+		return (Integer) getHibernateTemplate().execute(help);
+		
+	}
+
+	@Override
+	/*
+	 * 2014/06/06   设备管理查询的分页
+	 * 
+	 * 
+	 * */
+	public String getShowEquipment(Integer start, Integer limit,
+			String equipmentId, String equipmentName) {
+		JdbcHelper helper = new JdbcHelper();
+		
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("EQUIPMENTID,EQUIPMENTNAME");
+		SqlBuilder.FROM("equipment");
+		if(StringUtils.isNotEmpty(equipmentName)||StringUtils.isNotEmpty(equipmentId))
+		  SqlBuilder.WHERE("equipmentId like"+"'%"+equipmentId+"%'");
+		  SqlBuilder.WHERE("equipmentName like"+"'%"+equipmentName+"%'");
+		String sql = SqlBuilder.SQL();
+
+		JdbcWork getdata = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				//List<Equipment> result = new ArrayList<Equipment>();
+				StringBuffer buff=new StringBuffer("[");
+				try {
+					while (rs.next()) {
+						
+						    buff.append("["+rs.getString("EQUIPMENTID")+"','"+rs.getString("EQUIPMENTNAME")+"',]'");
+						
+						buff.deleteCharAt(buff.length() - 1);
+					}
+					buff.append("]");
+					//buff.append(pb.getPageSize());
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return buff.toString();
+			}
+		};
+		//JdbcHelper help = new JdbcHelper();
+		helper.setJdbcWork(getdata);
+		helper.setSql(JdbcHelper.getPagingSql(sql, start, limit));
+		return (String) getHibernateTemplate().execute(helper);
+	}
+
+	@Override
+	/*
+	 * 2014/06/09  设备管理与业务资料的查询的网点名称
+	 * */
+	public Equipment getselectEqName(String id)throws Exception {
+		 String hql="from Equipment e where  e.equipmentId='"+id+"'";
+		   System.out.println("====dao==="+hql);
+		   List<Equipment> eqName=this.getHibernateTemplate().find(hql);
+		// return (Equipment) this.getHibernateTemplate().find(hql);
+		   if(eqName.size() == 0){
+			   return null;
+		   }else{
+			   return eqName.get(0);
+		   }
+		   
+	}
+
+	@Override
+	public List<ConHis> selectCoHis() {
+		String hql="from ConHis ch";
+		List<ConHis> conhis = this.getHibernateTemplate().find(hql);
+		System.out.println("=================equipments=" + conhis);
+		System.out.println("===========equipments" + conhis.size());
+		return conhis;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+
+
+	
+
+
+
+

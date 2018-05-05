@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcCheckDetail"
+        table="QC_CHECK_DETAIL"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="checkDetailId"
+            column="CHECK_DETAIL_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHECK_DETAIL_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="score"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            access="property"
+            column="SCORE"
+            precision="5"
+            scale="2"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcCheck -->
+		<many-to-one name="qcCheck"
+			class="com.ulane.running.model.qucon.QcCheck"
+            not-null="false"
+			fetch="select">	
+			<column name="CHK_ID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to QcScoreOpt -->
+		<!-- 
+		<many-to-one
+			name="qcScoreOpt"
+			class="com.ulane.running.model.qucon.QcScoreOpt"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="SCORE_OPT_ID" />
+		</many-to-one>
+		 -->
+    <!-- imported bi-directional many-to-one association to QcTempTar -->
+		<many-to-one
+			name="qcTempTar"
+			class="com.ulane.running.model.qucon.QcTempTar"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TMP_TAR_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

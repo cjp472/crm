@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ulane.base.model.info.QJAddCard" table="QJ_ADD_CARD"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="addcardID" column="ADD_CARD_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_AddCard_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="addcardDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="ADD_CARD_DATE" length="19"
+			not-null="false" unique="false" />
+			<property name="addcardTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="ADD_CARD_TIME" length="19"
+			not-null="false" unique="false" />
+			<property name="printDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="PRINT_DATE" length="19"
+			not-null="false" unique="false" />
+			<property name="printTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="PRINT_TIME" length="19"
+			not-null="false" unique="false" />
+        <property
+            name="addUkNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ADD_UK_NUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="thiscardnum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="THIS_CARD_NUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="thisukeynum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="THIS_UKEY_NUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="bankIccardNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="BANCK_ICCARDNUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="spareIccardNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="SPARE_ICCARDNUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="bankUkeyNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="BANCK_UKEYNUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="issuecardNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ISSUE_ICCARDNUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        
+         <property
+            name="issueUkeynum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ISSUE_UKEYNUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="spareUkeyNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="SPARE_UKEYNUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="falg"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="FLAG"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="equipmentName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTNAME"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="operatorId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPERATOR_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="branchId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BRANCH_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="addcardNum"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ADD_CARD_NUM"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        
+         <property
+            name="operator"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPERATOR"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="checkMember"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHECK_MEMBER"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+       
+     </class>
+</hibernate-mapping>

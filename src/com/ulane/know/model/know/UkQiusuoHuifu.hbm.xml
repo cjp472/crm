@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkQiusuoHuifu" table="UK_QIUSUO_HUIFU"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="qiusuoHuifuId" column="QIUSUO_HUIFU_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_QIUSUO_HUIFU_ID
+				</param>
+			</generator>
+		</id>
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="1000"
+			not-null="false" unique="false" />
+		<many-to-one name="reply" class="com.htsoft.oa.model.system.AppUser">
+			<column name="reply" />
+		</many-to-one>
+		<property name="replytime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="REPLYTIME" length="11"
+			not-null="false" unique="false" />
+		<property name="isdelete" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ISDELETE" length="22"
+			not-null="false" unique="false" />
+		<property name="updatetime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATETIME" length="11"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UkQiusuo -->
+		<many-to-one name="ukQiusuo" class="com.ulane.know.model.know.UkQiusuo"
+			not-null="false" fetch="select">
+			<column name="QIUSUO_ID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to UkQiusuoHuifuFile -->
+		<set name="ukQiusuoHuifuFiles" table="uk_qiusuo_huifu_file" lazy="true"
+			inverse="false" cascade="all-delete-orphan">
+			<key>
+				<column name="QIUSUO_HUIFU_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.FileAttach"
+				column="fileid" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UkQiusuoHuifuKnow -->
+		<set name="ukQiusuoHuifuKnows" table="uk_qiusuo_huifu_know" lazy="true"
+			inverse="false" cascade="all-delete-orphan">
+			<key>
+				<column name="QIUSUO_HUIFU_ID" />
+			</key>
+			<many-to-many class="com.ulane.know.model.know.UkSysKnow"
+				column="know_id" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	 <class name="com.ulane.base.model.info.QJContractRecordId" table="QJ_CONTRACT_RECORD"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="contractID" column="contract_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_ConRecord_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="contracttime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CONTRACT_TIME" length="19"
+			not-null="false" unique="false" />
+			<property name="printDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="PRINT_DATE" length="19"
+			not-null="false" unique="false" />
+			<property name="printTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="PRINT_TIME" length="19"
+			not-null="false" unique="false" />
+		 <!--  <property name="contracttime" type="java.lang.String">
+		    <column name="CONTRACT_TIME" length="128" />
+		  </property>
+		    <property name="printDate" type="java.lang.String">
+		    <column name="PRINT_DATE" length="128" />
+		  </property>
+		    <property name="printTime" type="java.lang.String">
+		    <column name="PRINT_TIME" length="128" />
+		 
+		    </property> --> 
+		   <property name="businessType" type="java.lang.Long">
+		    <column name="BUSINESS_TYPE" length="19" />
+		    </property>
+		   <property name="businessResults" type="java.lang.Long">
+		    <column name="BUSINESS_RESULTS" length="19" />
+		    </property>
+		   <property name="realNumber" type="java.lang.Long">
+		    <column name="REAL_NUMBER" length="128" />
+		  </property>
+		   <property name="frame" type="java.lang.Long">
+		    <column name="FRAME" length="19" />
+		    </property>
+		    <property name="customerName" type="java.lang.String">
+		    <column name="CUSTOMER_NAME" length="128" />
+		  </property>
+		   <property name="idCardNumber" type="java.lang.String">
+		    <column name="ID_CARD_NUMBER" length="19" />
+		  </property>
+		   <property name="serialNumber" type="java.lang.String">
+		    <column name="SERIAL_NUMBER" length="64" />
+	 </property>
+		   <property name="equipmentName" type="java.lang.String">
+		    <column name="EQUIPMENTNAME" length="128" />
+		   </property>
+		   <property name="operatorId" type="java.lang.String">
+		    <column name="OPERATOR_ID" length="64" />
+		   </property>
+		   <property name="branchId" type="java.lang.String">
+		    <column name="BRANCH_ID" length="64" />
+		    </property>
+		   <property name="operator" type="java.lang.String">
+		    <column name="OPERATOR" length="64" />
+		  </property> 
+		   <!-- <key-property name="averageafterworktime" type="java.lang.Long">
+		    <column name="averageafterworktime" length="19" />
+		   </key-property> -->
+		    <property name="checkMember" type="java.lang.String">  
+		    <column name="CHECK_MEMBER" length="64" />
+		  
+		    </property>
+		<property name="qjConHisId" type="java.lang.Long">
+		    <column name="QJ_CONHIS_ID" length="128" />
+		    </property>
+		</class>
+		
+</hibernate-mapping>

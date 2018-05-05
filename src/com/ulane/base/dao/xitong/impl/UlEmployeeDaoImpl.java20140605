@@ -1,0 +1,89 @@
+package com.ulane.base.dao.xitong.impl;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.htsoft.core.Constants;
+import com.htsoft.core.dao.impl.BaseDaoImpl;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.util.SqlBuilder;
+import com.ulane.base.dao.xitong.UlEmployeeDao;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.core.util.JdbcHelper;
+import com.ulane.core.util.JdbcWork;
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+
+@SuppressWarnings("unchecked")
+public class UlEmployeeDaoImpl extends BaseDaoImpl<UlEmployee> implements UlEmployeeDao{
+
+	public UlEmployeeDaoImpl() {
+		super(UlEmployee.class);
+	}
+
+	/**
+	 * 根据组织机构去查找员工
+	 */
+	@Override
+	public List<UlEmployee> findByDepartment(String path, PagingBean pb) {
+		List list = new ArrayList();
+		String hql = new String();
+		if ("0.".equals(path)) {
+			hql = "from UlEmployee vo2 order by vo2.userNo asc"; // where vo2.delFlag = ?
+//			list.add(Constants.FLAG_UNDELETED);
+		} else {
+			//TODO
+			hql="select distinct au from UlEmployee au where au.ulDepartment.path like ? order by au.userNo asc";  // and au.delFlag=? 
+			list.add(path + "%");
+//			list.add(Constants.FLAG_UNDELETED);
+		}
+		return findByHql(hql, list.toArray(), pb);
+	}
+	
+	public UlEmployee getEmployeeByUserNo(String userNo) {
+		String hql="select vo from UlEmployee vo where vo.userNo=?";
+		List<UlEmployee> employees=findByHql(hql,new Object[]{userNo});
+		if(employees!=null&&employees.size()>0) {
+			return employees.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public Integer getEmployeeCount() {
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("count(*)");
+		SqlBuilder.FROM("ul_employee");
+		String sql_getCount = SqlBuilder.SQL();
+
+		JdbcWork getCount = new JdbcWork() {
+			@Override
+			public Object fillData(ResultSet rs) {
+				int result = 0;
+				try {
+					rs.next();
+					result = rs.getInt(1);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+		};
+		JdbcHelper help = new JdbcHelper();
+		help.setJdbcWork(getCount);
+		help.setSql(sql_getCount);
+
+		return (Integer) getHibernateTemplate().execute(help);
+	}
+	
+
+}

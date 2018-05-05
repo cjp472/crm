@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkPersonKnowType" table="UK_PERSON_KNOW_TYPE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="personKnowTypeId" column="PERSON_KNOW_TYPE_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_PERSON_KNOW_TYPE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="knowTmpId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_TMP_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME" length="30" not-null="false"
+			unique="false" />
+		<property name="comMent" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_MENT" length="100"
+			not-null="false" unique="false" />
+		<property name="parentId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="knowTypeStatus" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="KNOW_TYPE_STATUS"
+			length="10" not-null="false" unique="false" />
+		<property name="knowSort" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="KNOW_SORT" length="10"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="100"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="100"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="PATH" length="100" not-null="false"
+			unique="false" />
+		<!-- imported bi-directional many-to-one association to AppUser -->
+		<many-to-one name="appUser" class="com.htsoft.oa.model.system.AppUser"
+			not-null="false" fetch="select">
+			<column name="USERID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to UkPersonKnow -->
+		<set name="ukPersonKnows" table="uk_person_know" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PERSON_KNOW_TYPE_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkSysKnow" />
+		</set>
+	</class>
+</hibernate-mapping>

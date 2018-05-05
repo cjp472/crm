@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.pap.PapAnsDetail"
+        table="PAP_ANS_DETAIL"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="ansDetailId"
+            column="ANS_DETAIL_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_PAP_ANS_DETAIL_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="ans"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS"
+            length="4000"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to PapAnsSummary -->
+		<many-to-one
+			name="papAnsSummary"
+			class="com.ulane.running.model.pap.PapAnsSummary"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="PAP_ANS_ID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to PapQueOpt -->
+		<many-to-one
+			name="papQueOpt"
+			class="com.ulane.running.model.pap.PapQueOpt"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="OPT_ID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to PapTemQue -->
+		<many-to-one
+			name="papTemQue"
+			class="com.ulane.running.model.pap.PapTemQue"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="PAP_QUE_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkSysKnow" table="UK_SYS_KNOW"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="knowId" column="KNOW_ID" type="java.lang.Long" length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_SYS_KNOW_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="tiTle" type="java.lang.String" update="true"
+			insert="true" access="property" column="TI_TLE" length="30" not-null="false"
+			unique="false" />
+		<property name="busiType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BUSI_TYPE" length="38"
+			not-null="false" unique="false" />
+		<property name="enableTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="ENABLE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="pastTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="PAST_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="sysKnowStatus" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="SYS_KNOW_STATUS"
+			length="10" not-null="false" unique="false" />
+		<property name="viewCount" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="VIEW_COUNT" length="10"
+			not-null="false" unique="false" />
+		<property name="dianpingCount" type="java.lang.Integer" update="true" 
+		    insert="true" access="property" column="DIANPING_COUNT" length="10"
+		    not-null="false" unique="false"></property>
+		<property name="sysKnowComment" type="java.lang.String"
+			update="true" insert="true" access="property" column="SYS_KNOW_COMMENT"
+			length="2000" not-null="false" unique="false" />
+		<property name="plus1" type="text" column="PLUS1"
+			/>
+		<property name="plus2" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS2" length="4000"
+			not-null="false" unique="false" />
+		<property name="plus3" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS3" length="4000"
+			not-null="false" unique="false" />
+		<property name="plus4" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS4" length="4000"
+			not-null="false" unique="false" />
+		<property name="plus5" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS5" length="4000"
+			not-null="false" unique="false" />
+		<property name="plus6" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS6" length="4000"
+			not-null="false" unique="false" />
+		<property name="plus7" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS7" length="4000"
+			not-null="false" unique="false" />
+		<property name="plus8" type="java.lang.String" update="true"
+			insert="true" access="property" column="PLUS8" length="4000"
+			not-null="false" unique="false" />
+		<property name="sysKnowVersion" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="SYS_KNOW_VERSION"
+			length="10" not-null="false" unique="false" />
+		<property name="isDel" type="java.lang.String" update="true"
+			insert="true" access="property" column="IS_DEL" length="10"
+			not-null="false" unique="false" />
+		<!-- 新增字段    @author zhangyl -->	
+		<property name="delReason" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="DEL_REASON"
+			length="5" not-null="false" unique="false" />
+		<property name="delRemark" type="java.lang.String" update="true"
+			insert="true" access="property" column="DEL_REMARK" length="200"
+			not-null="false" unique="false" />
+		<property name="filingTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="FILING_TIME" length="18"
+			not-null="false" unique="false" />
+				
+		<many-to-one name="createBy" class="com.htsoft.oa.model.system.AppUser">
+			<column name="CREATE_BY" />
+		</many-to-one>
+		<many-to-one name="updateBy" class="com.htsoft.oa.model.system.AppUser">
+			<column name="UPDATE_BY" />
+		</many-to-one>
+		<!--
+			<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" /> <property name="updateBy"
+			type="java.lang.Long" update="true" insert="true" access="property"
+			column="UPDATE_BY" length="38" not-null="false" unique="false" />
+		-->
+
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="fankuiShu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FANKUISHU" length="10" not-null="false"
+			unique="false" />
+		<!--property name="userid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USERID" length="38" not-null="false"
+			unique="false" /-->
+		<!-- 新增字段 访问管理-->	
+		<property name="accessManage" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ACCESS_MANAGE" length="10" not-null="false"
+			unique="false" />
+		<!-- 新增字段 -->	
+		<property name="contentType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CONTENT_TYPE" length="10" not-null="false"
+			unique="false" />
+		<property name="busiTypeMapName" type="java.lang.String" update="true"
+			insert="true" access="property" column="BUSI_TYPE_MAPNAME" length="200" not-null="false"
+			unique="false" />	
+		<property name="averageCount" type="java.lang.Double" update="true"
+			insert="true" access="property" column="AVG_COUNT" length="10" not-null="false"
+			unique="false" />
+		<property name="knowKeyWords" type="java.lang.String"
+			update="true" insert="true" access="property" column="KNOW_KEYWORDS"
+			length="2000" not-null="false" unique="false" />	
+		<!--
+			imported bi-directional many-to-one association to UkKnowApprove
+		-->
+		<many-to-one name="ukKnowApprove"
+			class="com.ulane.know.model.know.UkKnowApprove" not-null="false"
+			fetch="select">
+			<column name="KNOW_APPROVE_ID" />
+		</many-to-one>
+		<!--
+			imported bi-directional many-to-one association to UkKnowTemplate
+		-->
+		<many-to-one name="ukKnowTemplate"
+			class="com.ulane.know.model.know.UkKnowTemplate" not-null="false"
+			fetch="select">
+			<column name="KNOW_TMP_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to UkKnowAttach <set
+			name="ukKnowAttachs" table="uk_know_attach" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted"> <key> <column
+			name="KNOW_ID" /> </key> <one-to-many
+			class="com.ulane.know.model.know.UkKnowAttach" /> </set>
+		-->
+
+		<set name="fileAttachs" table="UK_KNOW_ATTACH" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="KNOW_ID"></key>
+			<many-to-many column="fileId" fetch="join"
+				class="com.htsoft.oa.model.system.FileAttach"></many-to-many>
+		</set>
+
+
+		<!--
+			exported bi-directional one-to-many association to UkKnowDianping
+		-->
+		<set name="ukKnowDianpings" table="uk_know_dianping" lazy="true"
+			inverse="true" cascade="all" sort="unsorted">
+			<key>
+				<column name="KNOW_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowDianping" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UkKnowFankui -->
+		<set name="ukKnowFankuis" table="uk_know_fankui" lazy="true"
+			inverse="true" cascade="all" sort="unsorted">
+			<key>
+				<column name="KNOW_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowFankui" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkKnowKeywordKnow
+
+			<set name="ukKnowKeywordKnows" table="uk_know_keyword_know"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key> <column name="KNOW_ID" /> </key> <one-to-many
+			class="com.ulane.know.model.know.UkKnowKeywordKnow" /> </set>
+		-->
+		<set name="ukKnowKeywords" table="UK_KNOW_KEYWORD_KNOW" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="KNOW_ID"></key>
+			<many-to-many column="KEYWORD_ID" fetch="join"
+				class="com.ulane.know.model.know.UkKnowKeyword"></many-to-many>
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkKnowTypeKnow
+
+			<set name="ukKnowTypeKnows" table="uk_know_type_know" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted"> <key> <column
+			name="KNOW_ID" /> </key> <one-to-many
+			class="com.ulane.know.model.know.UkKnowTypeKnow" /> </set>
+		-->
+		<set name="ukKnowTypes" table="UK_KNOW_TYPE_KNOW" inverse="false" lazy="true" cascade="save-update">
+			<key column="KNOW_ID"></key>
+			<many-to-many column="KNOW_TYPE_ID" fetch="join" class="com.ulane.know.model.know.UkKnowType"></many-to-many>
+		</set>
+		<!-- exported bi-directional one-to-many association to UkPerKnow -->
+		<set name="ukPerKnows" table="uk_per_know" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkPerKnow" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkRelativeKnow
+		-->
+		<set name="ukRelativeKnows" table="uk_relative_know" lazy="true"
+			inverse="false" cascade="save-update">
+			<key>
+				<column name="KNOW_ID" />
+			</key>
+			<many-to-many column="UK_KNOW_ID" fetch="join"
+				class="com.ulane.know.model.know.UkSysKnow"></many-to-many>
+		</set>
+		<!--
+			exported bi-directional one-to-many association to
+			UkRelativeKnowApply <set name="ukRelativeKnowApplys"
+			table="uk_relative_know_apply" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted"> <key> <column name="KNOW_ID"
+			/> </key> <one-to-many
+			class="com.ulane.know.model.know.UkRelativeKnowApply" /> </set>
+		-->
+		<set name="ukKnowApplys" table="UK_RELATIVE_KNOW_APPLY" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="KNOW_ID"></key>
+			<many-to-many column="APPLY_ID" fetch="join"
+				class="com.ulane.know.model.know.UkKnowApply"></many-to-many>
+		</set>
+
+		<set name="roleKnows" table="uk_know_role" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="KNOW_ID"></key>
+			<many-to-many column="ROLEID" fetch="join"
+				class="com.htsoft.oa.model.system.AppRole"></many-to-many>
+		</set>
+		<!-- exported bi-directional one-to-many association to UkDimensionalityKnow -->
+		<set name="ukDimensionalityKnows" table="UK_DIMENSIONALITY_KNOW" lazy="true" inverse="false"
+			cascade="all" sort="unsorted">
+			<key>
+				<column name="KNOW_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkDimensionalityKnow" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkDimensionalityKnow
+		-->
+		<set name="ukKnowCollectTypes" table="uk_collect_know" lazy="true" inverse="true" cascade="all" sort="unsorted">
+			<key column="KNOW_ID"></key>
+			<many-to-many column="KNOW_COLLECT_TYPE_ID" fetch="join" class="com.ulane.know.model.know.UkKnowCollectType"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

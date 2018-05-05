@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObCallbatchHis" table="OB_CALLBATCH_HIS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="opeHisId" column="OPE_HIS_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_CALLBATCH_HIS_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="rowDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="ROW_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="opeUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OPE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="opeTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="OPE_TYP_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="opeResDesc" type="java.lang.String" update="true"
+			insert="true" access="property" column="OPE_RES_DESC" length="2048"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObCallbatch -->
+		<many-to-one name="obCallbatch"
+			class="com.ulane.callout.model.outb.ObCallbatch" not-null="false"
+			fetch="select">
+			<column name="CALLBATCH_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ObCalllist -->
+		<many-to-one name="obCalllist"
+			class="com.ulane.callout.model.outb.ObCalllist" not-null="false"
+			fetch="select">
+			<column name="CALLLIST_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ObCom -->
+		<many-to-one name="obCom" class="com.ulane.callout.model.outb.ObCom"
+			not-null="false" fetch="select">
+			<column name="COM_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

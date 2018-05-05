@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CsOrder" table="CS_ORDER"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="orderId" column="ORDER_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CS_ORDER_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="orderType" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_TYPE" length="5"
+			not-null="false" unique="false" />
+		<property name="customerName" type="java.lang.String" update="true"
+			insert="true" access="property" column="CUSTOMER_NAME" length="30"
+			not-null="false" unique="false" />
+		<property name="customerGender" type="java.lang.Short"
+			update="true" insert="true" access="property" column="CUSTOMER_GENDER"
+			length="5" not-null="false" unique="false" />
+		<property name="customerGrade" type="java.lang.Short"
+			update="true" insert="true" access="property" column="CUSTOMER_GRADE"
+			length="5" not-null="false" unique="false" />
+		<property name="customerNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="CUSTOMER_NO" length="30"
+			not-null="false" unique="false" />
+		<property name="contacta" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTACTA" length="50"
+			not-null="false" unique="false" />
+		<property name="contactb" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTACTB" length="50"
+			not-null="false" unique="false" />
+		<property name="orderSorce" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_SORCE" length="5"
+			not-null="false" unique="false" />
+		<property name="order" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_" length="5" not-null="false"
+			unique="false" />
+		<property name="orderProject" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_PROJECT" length="5"
+			not-null="false" unique="false" />
+		<property name="level" type="java.lang.Short" update="true"
+			insert="true" access="property" column="LEVEL_" length="5" not-null="false"
+			unique="false" />
+		<property name="responseTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="RESPONSE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="completionTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="COMPLETION_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="255"
+			not-null="false" unique="false" />
+		<property name="noteAppeal" type="java.lang.String" update="true"
+			insert="true" access="property" column="NOTE_APPEAL" length="255"
+			not-null="false" unique="false" />
+		<property name="detailType" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DETAIL_TYPE" length="5"
+			not-null="false" unique="false" />
+		<property name="detailId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="DETAIL_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="runid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RUNID" length="18" not-null="false"
+			unique="false" />
+		<property name="nodeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="NODE_NAME" length="30"
+			not-null="false" unique="false" />
+		<property name="approvalStatus" type="java.lang.String"
+			update="true" insert="true" access="property" column="APPROVAL_STATUS"
+			length="30" not-null="false" unique="false" />
+		<property name="orderTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="ORDER_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="orderNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="ORDER_NUM"
+			length="30" not-null="false" unique="false" />
+				
+		<!-- imported bi-directional many-to-one association to AppUser -->
+		<many-to-one name="appUser"
+			class="com.htsoft.oa.model.system.AppUser" not-null="false" insert="true"
+			fetch="select">
+			<column name="USERID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false" insert="true"
+			fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to Region -->
+		<many-to-one name="region" class="com.htsoft.oa.model.system.Region" insert="true"
+			not-null="false" fetch="select">
+			<column name="REGIONID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to UlDepartment -->
+		<many-to-one name="ulDepartment"
+			class="com.ulane.base.model.xitong.UlDepartment" not-null="false" insert="true"
+			fetch="select">
+			<column name="DEPID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

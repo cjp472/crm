@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.MachineSelfAttach" table="MACHINE_ATTACH"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="msattachid" column="MS_ATTACH_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_MACHINE_ATTACH_ID
+            	</param>
+			</generator>
+		</id>
+		
+		<property name="filetype" type="java.lang.String" update="true"
+			insert="true" access="property" column="MS_FILE_TYPE" 
+			length="16" not-null="false" unique="false" />
+			
+		<property name="filepath" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_FILE_PATH"
+			length="128" not-null="false" unique="false" />
+			
+		<property name="createtime" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_CREATE_TIME"
+			length="64" not-null="false" unique="false" />
+			
+			<!-- 
+		<property name="dealnum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_DEN"
+			length="64" not-null="false" unique="false" />
+			 -->
+		<property name="machineSelfid" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_MACHSELF_ID"
+			length="16" not-null="false" unique="false" />
+			
+		<!-- 
+		<many-to-one name="machineSelf" class="com.ulane.customer.model.customer.MachineSelf"
+			not-null="false" fetch="select">
+			<column name="MS_MACHSELF_ID" /> 
+		</many-to-one>-->
+	</class>
+</hibernate-mapping>

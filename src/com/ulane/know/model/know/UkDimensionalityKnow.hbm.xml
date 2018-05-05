@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkDimensionalityKnow"
+		table="UK_DIMENSIONALITY_KNOW" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="dimensionalityKnowId" column="DIMENSIONALITY_KNOW_ID"
+			type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">SEQ_UK_DIMENSIONALITY_KNOW_ID</param>
+			</generator>
+		</id>
+		<property name="dimensionalityType" type="java.lang.Long"
+			update="true" insert="true" access="property" column="DIMENSIONALITY_TYPE"
+			length="5" not-null="false" unique="false" />
+			
+		<property name="dimName" type="java.lang.String"
+			update="true" insert="true" access="property" column="DIM_NAME"
+			length="50" not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UlDepartment -->
+		<many-to-one name="ukSysKnow" class="com.ulane.know.model.know.UkSysKnow"
+			not-null="false" fetch="select">
+			<column name="KNOW_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to UlEmployee -->
+		<many-to-one name="ukKnowDimensionality"
+			class="com.ulane.know.model.know.UkKnowDimensionality" not-null="false"
+			fetch="select">
+			<column name="DIMENSIONALITY_ID" />
+		</many-to-one>
+		
+		<many-to-one name="ulDepartment"
+			class="com.ulane.base.model.xitong.UlDepartment" not-null="false"
+			fetch="select">
+			<column name="DEPID" />
+		</many-to-one>
+		
+		<many-to-one name="dictionary"
+			class="com.htsoft.oa.model.system.Dictionary" not-null="false"
+			fetch="select">
+			<column name="dicId" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

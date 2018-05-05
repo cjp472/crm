@@ -1,0 +1,107 @@
+package com.ulane.base.dao.xitong;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.util.List;
+
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.dao.BaseDao;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.model.system.AppUser;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.customer.model.customer.ConHis;
+
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+public interface UlEmployeeDao extends BaseDao<UlEmployee>{
+	
+	/**
+	 * 根据组织机构去查找员工
+	 * @param path
+	 * @param pb
+	 * @return
+	 */
+	public List<UlEmployee> findByDepartment(String path, PagingBean pb);
+	
+	public UlEmployee getEmployeeByUserNo(String userNo);
+	/**
+	 * 员工选择器分页总数
+	 * @return
+	 */
+	public Integer getEmployeeCount();
+	
+// 查询员工信息
+	public List<UlEmployee> getShowList();
+/*
+ * 员工档案的删除
+ * */
+	public AppUser selectSomeOne();
+	
+	//03/14
+	public void update(AppUser au);
+	public List<AppUser>updateOnly(AppUser au);
+
+	
+	//03/14
+	public AppUser selectSomeOne(Long id);
+	//2014/5/5 select 
+	public List<AppUser> selectOnly(Long id);
+	//2014 /5/5  delete
+	public void getUpdateDelAppUser(Long useid);
+	/*
+	 *2014/4/2 
+	 * */
+	//1 查看设备的信息
+	
+	public List<Equipment> getShowEquipment(String equipmentId,String equipmentName);
+	public List<Equipment> getShowEquipment();
+	public List<Equipment> getShowEquipment(Integer start, Integer limit);
+	public String getShowEquipment(Integer start, Integer limit,String equipmentId,String equipmentName);
+	// 2 删除设备管理
+	public void getDelEquipment(Long EId);
+	public List<Equipment> getEqName(String id);
+	 public Equipment getselectEqName(String id)throws Exception;
+	  public List<ConHis> selectCoHis();
+	
+
+   // 3修改设备管理
+	public void updateEquipment(Long EId,String equipmentId,String equipmentName);
+
+  // 4 保存设备管理
+	
+	 public void addEquipment(String newname,String newId);
+
+	
+	//=============================================
+		/**
+		 * 2014/11/7
+		 * 设备管理的查询
+		 * （带分页）
+		 * nk
+		 */
+		
+		public List<Equipment>  listEquipment(Integer start, Integer limit, String bankname, String branchId,String operatorId);
+				
+		public Integer listEquipmentCount(String bankname, String branchId,String operatorId);
+		
+	
+		 public Equipment getByEquipmentId(String equipmentId);
+			
+			//设备管理的保存
+			public void addlistEquipment(String equipmentId,
+					String operatorId,String equipmentName,String branchId,
+					String curdate,String bankTypeId,String bankTypeName,String ip,String parentId,String address,String parentName);
+			
+			//设备管理的编辑
+			public void updatelistEquipment(Long EId,String equipmentId,
+					String operatorId,String equipmentName,String branchId,
+					String curdate,Long bankTypeId,String bankTypeName,String ip,Long parentId,String address,String parentName);
+			
+			
+	
+}

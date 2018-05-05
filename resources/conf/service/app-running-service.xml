@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+<!-- start:  Generated for QcCheck From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcCheckService" class="com.ulane.running.service.qucon.impl.QcCheckServiceImpl">
+   	 	<constructor-arg index="0" ref="qcCheckDao"/>
+   	 </bean>
+   	  <bean id="qcRandomExtractService" class="com.ulane.running.service.qucon.impl.QcRandomExtractServiceImpl">
+   	 	<constructor-arg index="0" ref="qcRandomExtractDao"/>
+   	 </bean>
+<!-- end:  Generated for QcCheck From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcCheckDetail From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcCheckDetailService" class="com.ulane.running.service.qucon.impl.QcCheckDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="qcCheckDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for QcCheckDetail From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcChkBasis From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcChkBasisService" class="com.ulane.running.service.qucon.impl.QcChkBasisServiceImpl">
+   	 	<constructor-arg index="0" ref="qcChkBasisDao"/>
+   	 </bean>
+<!-- end:  Generated for QcChkBasis From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcScoreOpt From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcScoreOptService" class="com.ulane.running.service.qucon.impl.QcScoreOptServiceImpl">
+   	 	<constructor-arg index="0" ref="qcScoreOptDao"/>
+   	 </bean>
+<!-- end:  Generated for QcScoreOpt From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTarCat From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTarCatService" class="com.ulane.running.service.qucon.impl.QcTarCatServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTarCatDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTarCat From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTemplate From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTemplateService" class="com.ulane.running.service.qucon.impl.QcTemplateServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTemplateDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTemplate From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTempChapcter From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTempChapcterService" class="com.ulane.running.service.qucon.impl.QcTempChapcterServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTempChapcterDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTempChapcter From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTarget From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTargetService" class="com.ulane.running.service.qucon.impl.QcTargetServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTargetDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTarget From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTempRelease From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTempReleaseService" class="com.ulane.running.service.qucon.impl.QcTempReleaseServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTempReleaseDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTempRelease From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTempReObj From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTempReObjService" class="com.ulane.running.service.qucon.impl.QcTempReObjServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTempReObjDao"/>
+   	 </bean>
+   	 <bean id="qcTempReChaService" class="com.ulane.running.service.qucon.impl.QcTempReChaServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTempReChaDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTempReObj From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcTempTar From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcTempTarService" class="com.ulane.running.service.qucon.impl.QcTempTarServiceImpl">
+   	 	<constructor-arg index="0" ref="qcTempTarDao"/>
+   	 </bean>
+<!-- end:  Generated for QcTempTar From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrAnsDetail From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrAnsDetailService" class="com.ulane.running.service.comtech.impl.CtScrAnsDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrAnsDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrAnsDetail From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrAnsSummary From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrAnsSummaryService" class="com.ulane.running.service.comtech.impl.CtScrAnsSummaryServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrAnsSummaryDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrAnsSummary From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrCat From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrCatService" class="com.ulane.running.service.comtech.impl.CtScrCatServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrCatDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrCat From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrChapcter From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrChapcterService" class="com.ulane.running.service.comtech.impl.CtScrChapcterServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrChapcterDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrChapcter From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrQue From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrQueService" class="com.ulane.running.service.comtech.impl.CtScrQueServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrQueDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrQue From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrQueOpt From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrQueOptService" class="com.ulane.running.service.comtech.impl.CtScrQueOptServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrQueOptDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrQueOpt From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrRelease From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrReleaseService" class="com.ulane.running.service.comtech.impl.CtScrReleaseServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrReleaseDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrRelease From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrReleaseObj From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrReleaseObjService" class="com.ulane.running.service.comtech.impl.CtScrReleaseObjServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrReleaseObjDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrReleaseObj From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemplate From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrTemplateService" class="com.ulane.running.service.comtech.impl.CtScrTemplateServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrTemplateDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrTemplate From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemGotoRule From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrTemGotoRuleService" class="com.ulane.running.service.comtech.impl.CtScrTemGotoRuleServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrTemGotoRuleDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrTemGotoRule From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemQue From Template: app-running-service.xml.beansvm  -->
+	 <bean id="ctScrTemQueService" class="com.ulane.running.service.comtech.impl.CtScrTemQueServiceImpl">
+   	 	<constructor-arg index="0" ref="ctScrTemQueDao"/>
+   	 </bean>
+<!-- end:  Generated for CtScrTemQue From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapAnsDetail From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papAnsDetailService" class="com.ulane.running.service.pap.impl.PapAnsDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="papAnsDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for PapAnsDetail From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapAnsSummary From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papAnsSummaryService" class="com.ulane.running.service.pap.impl.PapAnsSummaryServiceImpl">
+   	 	<constructor-arg index="0" ref="papAnsSummaryDao"/>
+   	 </bean>
+<!-- end:  Generated for PapAnsSummary From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapCat From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papCatService" class="com.ulane.running.service.pap.impl.PapCatServiceImpl">
+   	 	<constructor-arg index="0" ref="papCatDao"/>
+   	 </bean>
+<!-- end:  Generated for PapCat From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapChapcter From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papChapcterService" class="com.ulane.running.service.pap.impl.PapChapcterServiceImpl">
+   	 	<constructor-arg index="0" ref="papChapcterDao"/>
+   	 </bean>
+<!-- end:  Generated for PapChapcter From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapQue From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papQueService" class="com.ulane.running.service.pap.impl.PapQueServiceImpl">
+   	 	<constructor-arg index="0" ref="papQueDao"/>
+   	 </bean>
+<!-- end:  Generated for PapQue From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapQueOpt From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papQueOptService" class="com.ulane.running.service.pap.impl.PapQueOptServiceImpl">
+   	 	<constructor-arg index="0" ref="papQueOptDao"/>
+   	 </bean>
+<!-- end:  Generated for PapQueOpt From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapRelease From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papReleaseService" class="com.ulane.running.service.pap.impl.PapReleaseServiceImpl">
+   	 	<constructor-arg index="0" ref="papReleaseDao"/>
+   	 </bean>
+<!-- end:  Generated for PapRelease From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapReleaseObj From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papReleaseObjService" class="com.ulane.running.service.pap.impl.PapReleaseObjServiceImpl">
+   	 	<constructor-arg index="0" ref="papReleaseObjDao"/>
+   	 </bean>
+<!-- end:  Generated for PapReleaseObj From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapTemplate From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papTemplateService" class="com.ulane.running.service.pap.impl.PapTemplateServiceImpl">
+   	 	<constructor-arg index="0" ref="papTemplateDao"/>
+   	 </bean>
+<!-- end:  Generated for PapTemplate From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapTemGotoRule From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papTemGotoRuleService" class="com.ulane.running.service.pap.impl.PapTemGotoRuleServiceImpl">
+   	 	<constructor-arg index="0" ref="papTemGotoRuleDao"/>
+   	 </bean>
+<!-- end:  Generated for PapTemGotoRule From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for PapTemQue From Template: app-running-service.xml.beansvm  -->
+	 <bean id="papTemQueService" class="com.ulane.running.service.pap.impl.PapTemQueServiceImpl">
+   	 	<constructor-arg index="0" ref="papTemQueDao"/>
+   	 </bean>
+<!-- end:  Generated for PapTemQue From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcChkList From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcChkListService" class="com.ulane.running.service.qucon.impl.QcChkListServiceImpl">
+   	 	<constructor-arg index="0" ref="qcChkListDao"/>
+   	 </bean>
+<!-- end:  Generated for QcChkList From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcChkRul From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcChkRulService" class="com.ulane.running.service.qucon.impl.QcChkRulServiceImpl">
+   	 	<constructor-arg index="0" ref="qcChkRulDao"/>
+   	 </bean>
+<!-- end:  Generated for QcChkRul From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcChkRulDetail From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcChkRulDetailService" class="com.ulane.running.service.qucon.impl.QcChkRulDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="qcChkRulDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for QcChkRulDetail From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcChkGuid From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcChkGuidService" class="com.ulane.running.service.qucon.impl.QcChkGuidServiceImpl">
+   	 	<constructor-arg index="0" ref="qcChkGuidDao"/>
+   	 </bean>
+<!-- end:  Generated for QcChkGuid From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for QcChkGuidFile From Template: app-running-service.xml.beansvm  -->
+	 <bean id="qcChkGuidFileService" class="com.ulane.running.service.qucon.impl.QcChkGuidFileServiceImpl">
+   	 	<constructor-arg index="0" ref="qcChkGuidFileDao"/>
+   	 </bean>
+<!-- end:  Generated for QcChkGuidFile From Template: app-running-service.xml.beansvm  -->
+</beans>

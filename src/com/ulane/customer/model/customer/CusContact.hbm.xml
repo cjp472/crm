@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CusContact" table="CUS_CONTACT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="contactId" column="CONTACT_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CUS_CONTACT_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="contactTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CONTACT_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="contactSubTypeId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="CONTACT_SUB_TYPE_ID"
+			length="5" not-null="false" unique="false" />
+		<property name="preContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRE_CONTACT_NUM"
+			length="256" not-null="false" unique="false" />
+		<property name="mainContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MAIN_CONTACT_NUM"
+			length="256" not-null="true" unique="false" />
+		<property name="lastContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="LAST_CONTACT_NUM"
+			length="256" not-null="false" unique="false" />
+		<property name="isDefault" type="java.lang.Short" update="true"
+			insert="true" access="property" column="IS_DEFAULT" length="5"
+			not-null="false" unique="false" />
+		<property name="isChecked" type="java.lang.Short" update="true"
+			insert="true" access="property" column="IS_CHECKED" length="5"
+			not-null="false" unique="false" />
+		<property name="contactRemarks" type="java.lang.String"
+			update="true" insert="true" access="property" column="CONTACT_REMARKS"
+			length="2000" not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="lastUpdateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="LAST_UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="statusId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS_ID" length="5"
+			not-null="true" unique="false" />
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false"
+			fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

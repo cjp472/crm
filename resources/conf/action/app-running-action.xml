@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd"> 
+	
+<!-- start:  Generated for QcCheck From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcCheckAction" class="com.ulane.running.action.qucon.QcCheckAction" scope="prototype"/>
+<!-- end:  Generated for QcCheck From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcCheckDetail From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcCheckDetailAction" class="com.ulane.running.action.qucon.QcCheckDetailAction" scope="prototype"/>
+<!-- end:  Generated for QcCheckDetail From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcChkBasis From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcChkBasisAction" class="com.ulane.running.action.qucon.QcChkBasisAction" scope="prototype"/>
+<!-- end:  Generated for QcChkBasis From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcScoreOpt From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcScoreOptAction" class="com.ulane.running.action.qucon.QcScoreOptAction" scope="prototype"/>
+<!-- end:  Generated for QcScoreOpt From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTarCat From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTarCatAction" class="com.ulane.running.action.qucon.QcTarCatAction" scope="prototype"/>
+<!-- end:  Generated for QcTarCat From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTemplate From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTemplateAction" class="com.ulane.running.action.qucon.QcTemplateAction" scope="prototype"/>
+<!-- end:  Generated for QcTemplate From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTempChapcter From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTempChapcterAction" class="com.ulane.running.action.qucon.QcTempChapcterAction" scope="prototype"/>
+<!-- end:  Generated for QcTempChapcter From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTarget From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTargetAction" class="com.ulane.running.action.qucon.QcTargetAction" scope="prototype"/>
+<!-- end:  Generated for QcTarget From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTempRelease From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTempReleaseAction" class="com.ulane.running.action.qucon.QcTempReleaseAction" scope="prototype"/>
+<!-- end:  Generated for QcTempRelease From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTempReObj From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTempReObjAction" class="com.ulane.running.action.qucon.QcTempReObjAction" scope="prototype"/>
+<!-- end:  Generated for QcTempReObj From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcTempTar From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcTempTarAction" class="com.ulane.running.action.qucon.QcTempTarAction" scope="prototype"/>
+<!-- end:  Generated for QcTempTar From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrAnsDetail From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrAnsDetailAction" class="com.ulane.running.action.comtech.CtScrAnsDetailAction" scope="prototype"/>
+<!-- end:  Generated for CtScrAnsDetail From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrAnsSummary From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrAnsSummaryAction" class="com.ulane.running.action.comtech.CtScrAnsSummaryAction" scope="prototype"/>
+<!-- end:  Generated for CtScrAnsSummary From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrCat From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrCatAction" class="com.ulane.running.action.comtech.CtScrCatAction" scope="prototype"/>
+<!-- end:  Generated for CtScrCat From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrChapcter From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrChapcterAction" class="com.ulane.running.action.comtech.CtScrChapcterAction" scope="prototype"/>
+<!-- end:  Generated for CtScrChapcter From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrQue From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrQueAction" class="com.ulane.running.action.comtech.CtScrQueAction" scope="prototype"/>
+<!-- end:  Generated for CtScrQue From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrQueOpt From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrQueOptAction" class="com.ulane.running.action.comtech.CtScrQueOptAction" scope="prototype"/>
+<!-- end:  Generated for CtScrQueOpt From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrRelease From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrReleaseAction" class="com.ulane.running.action.comtech.CtScrReleaseAction" scope="prototype"/>
+<!-- end:  Generated for CtScrRelease From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrReleaseObj From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrReleaseObjAction" class="com.ulane.running.action.comtech.CtScrReleaseObjAction" scope="prototype"/>
+<!-- end:  Generated for CtScrReleaseObj From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemplate From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrTemplateAction" class="com.ulane.running.action.comtech.CtScrTemplateAction" scope="prototype"/>
+<!-- end:  Generated for CtScrTemplate From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemGotoRule From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrTemGotoRuleAction" class="com.ulane.running.action.comtech.CtScrTemGotoRuleAction" scope="prototype"/>
+<!-- end:  Generated for CtScrTemGotoRule From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemQue From Template: app-running-action.xml.beansvm  -->
+ <bean id="CtScrTemQueAction" class="com.ulane.running.action.comtech.CtScrTemQueAction" scope="prototype"/>
+<!-- end:  Generated for CtScrTemQue From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapAnsDetail From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapAnsDetailAction" class="com.ulane.running.action.pap.PapAnsDetailAction" scope="prototype"/>
+<!-- end:  Generated for PapAnsDetail From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapAnsSummary From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapAnsSummaryAction" class="com.ulane.running.action.pap.PapAnsSummaryAction" scope="prototype"/>
+<!-- end:  Generated for PapAnsSummary From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapCat From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapCatAction" class="com.ulane.running.action.pap.PapCatAction" scope="prototype"/>
+<!-- end:  Generated for PapCat From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapChapcter From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapChapcterAction" class="com.ulane.running.action.pap.PapChapcterAction" scope="prototype"/>
+<!-- end:  Generated for PapChapcter From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapQue From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapQueAction" class="com.ulane.running.action.pap.PapQueAction" scope="prototype"/>
+<!-- end:  Generated for PapQue From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapQueOpt From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapQueOptAction" class="com.ulane.running.action.pap.PapQueOptAction" scope="prototype"/>
+<!-- end:  Generated for PapQueOpt From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapRelease From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapReleaseAction" class="com.ulane.running.action.pap.PapReleaseAction" scope="prototype"/>
+<!-- end:  Generated for PapRelease From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapReleaseObj From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapReleaseObjAction" class="com.ulane.running.action.pap.PapReleaseObjAction" scope="prototype"/>
+<!-- end:  Generated for PapReleaseObj From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapTemplate From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapTemplateAction" class="com.ulane.running.action.pap.PapTemplateAction" scope="prototype"/>
+<!-- end:  Generated for PapTemplate From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapTemGotoRule From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapTemGotoRuleAction" class="com.ulane.running.action.pap.PapTemGotoRuleAction" scope="prototype"/>
+<!-- end:  Generated for PapTemGotoRule From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for PapTemQue From Template: app-running-action.xml.beansvm  -->
+ <bean id="PapTemQueAction" class="com.ulane.running.action.pap.PapTemQueAction" scope="prototype"/>
+<!-- end:  Generated for PapTemQue From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcChkList From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcChkListAction" class="com.ulane.running.action.qucon.QcChkListAction" scope="prototype"/>
+<!-- end:  Generated for QcChkList From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcChkRul From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcChkRulAction" class="com.ulane.running.action.qucon.QcChkRulAction" scope="prototype"/>
+<!-- end:  Generated for QcChkRul From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcChkRulDetail From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcChkRulDetailAction" class="com.ulane.running.action.qucon.QcChkRulDetailAction" scope="prototype"/>
+<!-- end:  Generated for QcChkRulDetail From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcChkGuid From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcChkGuidAction" class="com.ulane.running.action.qucon.QcChkGuidAction" scope="prototype"/>
+<!-- end:  Generated for QcChkGuid From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for QcChkGuidFile From Template: app-running-action.xml.beansvm  -->
+ <bean id="QcChkGuidFileAction" class="com.ulane.running.action.qucon.QcChkGuidFileAction" scope="prototype"/>
+<!-- end:  Generated for QcChkGuidFile From Template: app-running-action.xml.beansvm  -->
+</beans>

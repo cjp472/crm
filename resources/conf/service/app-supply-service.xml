@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+
+
+<!-- start:  Generated for ScBizOrderFee From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizOrderFeeService" class="com.ulane.supply.service.supply.impl.ScBizOrderFeeServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizOrderFeeDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizOrderFee From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderPurchase From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizOrderPurchaseService" class="com.ulane.supply.service.purchase.impl.ScBizOrderPurchaseServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizOrderPurchaseDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizOrderPurchase From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderRelated From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizOrderRelatedService" class="com.ulane.supply.service.supply.impl.ScBizOrderRelatedServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizOrderRelatedDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizOrderRelated From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderSales From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizOrderSalesService" class="com.ulane.supply.service.sales.impl.ScBizOrderSalesServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizOrderSalesDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizOrderSales From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderStock From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizOrderStockService" class="com.ulane.supply.service.stock.impl.ScBizOrderStockServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizOrderStockDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizOrderStock From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizRelationType From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizRelationTypeService" class="com.ulane.supply.service.supply.impl.ScBizRelationTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizRelationTypeDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizRelationType From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizSalesClassify From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizSalesClassifyService" class="com.ulane.supply.service.sales.impl.ScBizSalesClassifyServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizSalesClassifyDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizSalesClassify From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBizSalesDetail From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBizSalesDetailService" class="com.ulane.supply.service.sales.impl.ScBizSalesDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="scBizSalesDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBizSalesDetail From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBoPurchaseClassify From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBoPurchaseClassifyService" class="com.ulane.supply.service.purchase.impl.ScBoPurchaseClassifyServiceImpl">
+   	 	<constructor-arg index="0" ref="scBoPurchaseClassifyDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBoPurchaseClassify From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBoPurchaseDetail From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBoPurchaseDetailService" class="com.ulane.supply.service.purchase.impl.ScBoPurchaseDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="scBoPurchaseDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBoPurchaseDetail From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBoStockClassify From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBoStockClassifyService" class="com.ulane.supply.service.stock.impl.ScBoStockClassifyServiceImpl">
+   	 	<constructor-arg index="0" ref="scBoStockClassifyDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBoStockClassify From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScBoStockDetail From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scBoStockDetailService" class="com.ulane.supply.service.stock.impl.ScBoStockDetailServiceImpl">
+   	 	<constructor-arg index="0" ref="scBoStockDetailDao"/>
+   	 </bean>
+<!-- end:  Generated for ScBoStockDetail From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScGoods From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scGoodsService" class="com.ulane.supply.service.goods.impl.ScGoodsServiceImpl">
+   	 	<constructor-arg index="0" ref="scGoodsDao"/>
+   	 </bean>
+<!-- end:  Generated for ScGoods From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPrice From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scGoodsPriceService" class="com.ulane.supply.service.goods.impl.ScGoodsPriceServiceImpl">
+   	 	<constructor-arg index="0" ref="scGoodsPriceDao"/>
+   	 </bean>
+<!-- end:  Generated for ScGoodsPrice From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceHis From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scGoodsPriceHisService" class="com.ulane.supply.service.goods.impl.ScGoodsPriceHisServiceImpl">
+   	 	<constructor-arg index="0" ref="scGoodsPriceHisDao"/>
+   	 </bean>
+<!-- end:  Generated for ScGoodsPriceHis From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceRule From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scGoodsPriceRuleService" class="com.ulane.supply.service.goods.impl.ScGoodsPriceRuleServiceImpl">
+   	 	<constructor-arg index="0" ref="scGoodsPriceRuleDao"/>
+   	 </bean>
+<!-- end:  Generated for ScGoodsPriceRule From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceVersion From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scGoodsPriceVersionService" class="com.ulane.supply.service.goods.impl.ScGoodsPriceVersionServiceImpl">
+   	 	<constructor-arg index="0" ref="scGoodsPriceVersionDao"/>
+   	 </bean>
+<!-- end:  Generated for ScGoodsPriceVersion From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsStock From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scGoodsStockService" class="com.ulane.supply.service.stock.impl.ScGoodsStockServiceImpl">
+   	 	<constructor-arg index="0" ref="scGoodsStockDao"/>
+   	 </bean>
+<!-- end:  Generated for ScGoodsStock From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScPriceVersion From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scPriceVersionService" class="com.ulane.supply.service.goods.impl.ScPriceVersionServiceImpl">
+   	 	<constructor-arg index="0" ref="scPriceVersionDao"/>
+   	 </bean>
+<!-- end:  Generated for ScPriceVersion From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScProductAttr From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scProductAttrService" class="com.ulane.supply.service.goods.impl.ScProductAttrServiceImpl">
+   	 	<constructor-arg index="0" ref="scProductAttrDao"/>
+   	 </bean>
+<!-- end:  Generated for ScProductAttr From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScProductAttrVal From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scProductAttrValService" class="com.ulane.supply.service.goods.impl.ScProductAttrValServiceImpl">
+   	 	<constructor-arg index="0" ref="scProductAttrValDao"/>
+   	 </bean>
+<!-- end:  Generated for ScProductAttrVal From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScProductClassify From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scProductClassifyService" class="com.ulane.supply.service.goods.impl.ScProductClassifyServiceImpl">
+   	 	<constructor-arg index="0" ref="scProductClassifyDao"/>
+   	 </bean>
+<!-- end:  Generated for ScProductClassify From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScProductInst From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scProductInstService" class="com.ulane.supply.service.goods.impl.ScProductInstServiceImpl">
+   	 	<constructor-arg index="0" ref="scProductInstDao"/>
+   	 </bean>
+<!-- end:  Generated for ScProductInst From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScProductInstNote From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scProductInstNoteService" class="com.ulane.supply.service.goods.impl.ScProductInstNoteServiceImpl">
+   	 	<constructor-arg index="0" ref="scProductInstNoteDao"/>
+   	 </bean>
+<!-- end:  Generated for ScProductInstNote From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScPurchasePrice From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scPurchasePriceService" class="com.ulane.supply.service.goods.impl.ScPurchasePriceServiceImpl">
+   	 	<constructor-arg index="0" ref="scPurchasePriceDao"/>
+   	 </bean>
+<!-- end:  Generated for ScPurchasePrice From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScPurpriceVersion From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scPurpriceVersionService" class="com.ulane.supply.service.goods.impl.ScPurpriceVersionServiceImpl">
+   	 	<constructor-arg index="0" ref="scPurpriceVersionDao"/>
+   	 </bean>
+<!-- end:  Generated for ScPurpriceVersion From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScThresholdLevel From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scThresholdLevelService" class="com.ulane.supply.service.stock.impl.ScThresholdLevelServiceImpl">
+   	 	<constructor-arg index="0" ref="scThresholdLevelDao"/>
+   	 </bean>
+<!-- end:  Generated for ScThresholdLevel From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ScWarehouse From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="scWarehouseService" class="com.ulane.supply.service.stock.impl.ScWarehouseServiceImpl">
+   	 	<constructor-arg index="0" ref="scWarehouseDao"/>
+   	 </bean>
+<!-- end:  Generated for ScWarehouse From Template: app-supply-service.xml.beansvm  -->
+<bean id="scProductComService" class="com.ulane.supply.service.goods.impl.ScProductComServiceImpl">
+   	 	<constructor-arg index="0" ref="scProductComDao"/>
+   	 </bean>
+</beans>

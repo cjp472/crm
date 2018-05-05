@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowApply" table="UK_KNOW_APPLY"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="applyId" column="APPLY_ID" type="java.lang.Long" length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_KNOW_APPLY_ID
+            	</param>
+			</generator>
+		</id>
+		<!-- <property name="applyUserid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="APPLY_USERID" length="38"
+			not-null="false" unique="false" /> -->
+		
+		<many-to-one name="applyUser" class="com.htsoft.oa.model.system.AppUser">
+			<column name="APPLY_USERID" />
+		</many-to-one>	
+		<property name="applyTime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="APPLY_TIME" length="11"
+			not-null="false" unique="false" />
+		<property name="applyTitle" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPLY_TITLE" length="255"
+			not-null="false" unique="false" />
+		<property name="applyDescribe" type="java.lang.String"
+			update="true" insert="true" access="property" column="APPLY_DESCRIBE"
+			length="300" not-null="false" unique="false" />
+		<property name="applyContent" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPLY_CONTENT" length="300"
+			not-null="false" unique="false" />
+		<property name="applyComment" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPLY_COMMENT" length="300"
+			not-null="false" unique="false" />
+		<property name="requireTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="REQUIRE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="holdTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="HOLD_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="busiType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BUSI_TYPE" length="22"
+			not-null="false" unique="false" />
+		<property name="applyType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="APPLY_TYPE" length="22"
+			not-null="false" unique="false" />
+		<property name="konwType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_TYPE" length="22"
+			not-null="false" unique="false" />
+		<property name="applyStatus" type="java.lang.Long" update="true"
+			insert="true" access="property" column="APPLY_STATUS" length="22"
+			not-null="false" unique="false" />
+		<property name="runid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RUNID" length="38" not-null="false"
+			unique="false" />
+		<!-- <property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" /> -->
+			
+		<many-to-one name="createBy" class="com.htsoft.oa.model.system.AppUser">
+			<column name="CREATE_BY" />
+		</many-to-one>	
+		<many-to-one name="updateBy" class="com.htsoft.oa.model.system.AppUser">
+			<column name="UPDATE_BY" />
+		</many-to-one>		
+		<property name="createDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<!-- 工作流字段 -->
+		<property name="nodeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="NODE_NAME" length="30"
+			not-null="false" unique="false" />	
+		<property name="approvalStatus" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPROVAL_STATUS" length="30"
+			not-null="false" unique="false" />		
+		<!-- 相关知识 -->	
+		<set name="ukRelativeKnows" table="UK_RELATIVE_KNOW_APPLY" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="APPLY_ID"></key>
+			<many-to-many column="KNOW_ID" fetch="join"
+				class="com.ulane.know.model.know.UkSysKnow"></many-to-many>
+		</set>
+		<!-- 相关附件 -->	
+		<set name="ukRelativeFiles" table="UK_KNOW_APPLY_FILE" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="APPLY_ID"></key>
+			<many-to-many column="FILEID" fetch="join"
+				class="com.htsoft.oa.model.system.FileAttach"></many-to-many>
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkKnowApprove
+		-->
+		<!-- <set name="ukKnowApproves" table="uk_know_approve" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="APPLY_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowApprove" />
+		</set> -->
+		<!--
+			exported bi-directional one-to-many association to
+			UkRelativeKnowApply
+		<set name="ukRelativeKnowApplys" table="uk_relative_know_apply"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="APPLY_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkRelativeKnowApply" />
+		</set>-->
+		<!-- <set name="ukSysKnows" table="UK_RELATIVE_KNOW_APPLY" inverse="false" lazy="true" cascade="all">
+			<key column="APPLY_ID"></key>
+			<many-to-many column="knowId" fetch="join" class="com.ulane.know.model.know.UkSysKnow"></many-to-many>
+		</set> -->
+	</class>
+</hibernate-mapping>

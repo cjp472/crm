@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.SysWorkattendance" table="SYS_WORKATTENDANCE" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="id" column="ID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							SEQ_WORKATTENDANCE
+		            	</param>
+					</generator>
+				</id>
+				<property name="agentId" type="java.lang.String" column="AGENTID" length="64" />
+				<property name="loginTime" type="java.lang.String" column="LOGIN_SYS_TIME" length="64" />
+				<property name="loginCtiTime" type="java.lang.String" column="LOGIN_CTI_TIME" length="64" />
+				<property name="logoutTime" type="java.lang.String" column="LOGOUT_SYS_TIME" length="64" />
+				<property name="status" type="java.lang.String" column="STATUS" length="64" />
+				<property name="reason" type="java.lang.String" column="REASON" length="64" />
+				<property name="bsNum" type="java.lang.Long" column="BS_NUM" length="64" />
+				<property name="remarks" type="java.lang.String" column="REMARKS" length="64" />
+	</class>
+</hibernate-mapping>

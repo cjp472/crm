@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+	<HEAD>
+		<TITLE>weboffice演示页面</TITLE>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<SCRIPT src="main.js" type=text/javascript></SCRIPT>
+		<!-- --------------------=== 调用Weboffice初始化方法 ===--------------------- -->
+		<SCRIPT language=javascript event=NotifyCtrlReady for=WebOffice1>
+			/****************************************************
+			*
+			*	在装载完Weboffice(执行<object>...</object>)
+			*	控件后执行 "WebOffice1_NotifyCtrlReady"方法
+			*
+			****************************************************/
+			WebOffice1_NotifyCtrlReady()
+		</SCRIPT>
+
+		<SCRIPT language=javascript event=NotifyWordEvent(eventname) for=WebOffice1>
+			<!--
+			 WebOffice1_NotifyWordEvent(eventname)
+			//-->
+		</SCRIPT>
+
+		<SCRIPT language=javascript>
+			/****************************************************
+			*
+			*		控件初始化WebOffice方法
+			*
+			****************************************************/
+			function WebOffice1_NotifyCtrlReady() {
+				document.all.WebOffice1.OptionFlag |= 128;
+					// 新建文档
+						
+					var url = window.location.href;
+					url = url.split('?')[1].split('&');
+					//alert(url[0].split('=')[1]+'&&/attachFiles/know/ukKnowFankui/201206/2a26baeab8384a7cb30c0ca2cb331800.doc');
+					//alert(url[1].split('=')[1])
+					document.all.WebOffice1.LoadOriginalFile(url[0].split('=')[1], url[1].split('=')[1]);
+					return bToolBar_onclick();
+			}
+			function openFile(name,type){//alert(name);alert(type)
+				document.all.WebOffice1.LoadOriginalFile(name, type);
+				//return bToolBar_onclick();
+				
+			}
+			var flag=false;
+			function menuOnClick(id){
+				var id=document.getElementById(id);
+				var dis=id.style.display;
+				if(dis!="none"){
+					id.style.display="none";
+					
+				}else{
+					id.style.display="block";
+				}
+			}
+			// lock the WordText 
+			// param pas : for lock word's password.  
+			// if password is null then unlock dont use the password 
+			function lockWord(pas){
+				obj=new Object(document.all.WebOffice1.GetDocumentObject());
+				obj.Protect(2,0,pas);
+			}
+			
+			// unlock the WordText
+			// param pas : for unlock word's password
+			// if password is null then unlock dont use the password
+			function unlockWord(pas){
+				obj=new Object(document.all.WebOffice1.GetDocumentObject());	
+				obj.Unprotect(pas);
+			}
+			
+			//lock or unlock the tools
+			//exmple: when the page begin,use this function for lock the tools
+			function lockTools(){
+				return bToolBar_onclick();
+			}
+			/****************************************************
+			*
+			*		接收office事件处理方法
+			*
+			****************************************************/
+			var vNoCopy = 1;
+			var vNoPrint = 1;
+			var vNoSave = 1;
+			var vClose=1;
+			function no_copy(){
+				vNoCopy = 1;
+			}
+			function yes_copy(){
+				vNoCopy = 0;
+			}
+			
+			
+			function no_print(){
+				vNoPrint = 1;
+			}
+			function yes_print(){
+				vNoPrint = 0;
+			}
+			
+			
+			function no_save(){
+				vNoSave = 1;
+			}
+			function yes_save(){
+				vNoSave = 0;
+			}
+			function EnableClose(flag){
+			 vClose=flag;
+			}
+			function CloseWord(){
+				
+			  document.all.WebOffice1.CloseDoc(0); 
+			}
+			
+			function WebOffice1_NotifyWordEvent(eventname) {
+				if(eventname=="DocumentBeforeSave"){
+					if(vNoSave){
+						document.all.WebOffice1.lContinue = 0;
+						//alert("此文档已经禁止保存");
+					}else{
+						document.all.WebOffice1.lContinue = 1;
+					}
+				}else if(eventname=="DocumentBeforePrint"){
+					if(vNoPrint){
+						document.all.WebOffice1.lContinue = 0;
+						//alert("此文档已经禁止打印");
+					}else{
+						document.all.WebOffice1.lContinue = 1;
+					}
+				}else if(eventname=="WindowSelectionChange"){
+					if(vNoCopy){
+						document.all.WebOffice1.lContinue = 0;
+						//alert("此文档已经禁止复制");
+					}else{
+						document.all.WebOffice1.lContinue = 1;
+					}
+				}else   if(eventname =="DocumentBeforeClose"){
+				    if(vClose==0){
+				    	document.all.WebOffice1.lContinue=0;
+				    } else{
+				    	//alert("word");
+					    document.all.WebOffice1.lContinue = 1;
+					  }
+			 }
+				//alert(eventname); 
+			}
+		</SCRIPT>
+		<META content="MSHTML 6.00.2900.5921" name=GENERATOR>
+	</HEAD>
+	<BODY onunload="return window_onunload()">
+		<SCRIPT src="LoadWebOffice.js"></SCRIPT>
+	</BODY>
+</HTML>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObComBizTypeTree" table="OB_BIZ_TYPE_TREE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="nodeId" column="NODE_ID" type="java.lang.Long" length="18">
+		</id>
+		<property name="nodeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="NODE_NAME" length="60"
+			not-null="true" unique="false" />
+		<property name="parentNodeId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_NODE_ID" length="18"
+			not-null="false" unique="false" />
+	
+	</class>
+</hibernate-mapping>

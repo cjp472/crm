@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+	targetNamespace="http://10.3.63.121:9080/axis/services/EBusinessService"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap"
+	xmlns:impl="http://10.3.63.121:9080/axis/services/EBusinessService"
+	xmlns:intf="http://10.3.63.121:9080/axis/services/EBusinessService"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:message name="saveVoucherResponse">
+		<wsdl:part name="saveVoucherReturn" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="getBarCodeNumRequest" />
+	
+	<wsdl:message name="getBarCodeNumResponse">
+		<wsdl:part name="getBarCodeNumReturn" type="xsd:string" />
+	</wsdl:message>
+	
+	<wsdl:portType name="EBusinessServiceImpl">
+		<wsdl:operation name="getBarCodeNum">
+			<wsdl:input message="intf:getBarCodeNumRequest" name="getBarCodeNumRequest" />
+			<wsdl:output message="intf:getBarCodeNumResponse" name="getBarCodeNumResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="EBusinessServiceSoapBinding" type="intf:EBusinessServiceImpl">
+		<wsdlsoap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getBarCodeNum">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="getBarCodeNumRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://ebusiness.ws.bs.nc" use="encoded" />
+			</wsdl:input>
+			<wsdl:output name="getBarCodeNumResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://10.3.63.121:9080/axis/services/EBusinessService"
+					use="encoded" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="EBusinessServiceImplService">
+		<wsdl:port binding="intf:EBusinessServiceSoapBinding" name="EBusinessService">
+			<wsdlsoap:address
+				location="http://10.3.63.121:9080/axis/services/EBusinessService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

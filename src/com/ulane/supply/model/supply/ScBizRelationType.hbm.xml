@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.supply.model.supply.ScBizRelationType"
+        table="SC_BIZ_RELATION_TYPE"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="bizOrderRelationType"
+            column="BIZ_ORDER_RELATION_TYPE"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SC_BIZ_RELATION_TYPE_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="bizOrderRelationTypeName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BIZ_ORDER_RELATION_TYPE_NAME"
+            length="60"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="bizOrderRelationTypeDesc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BIZ_ORDER_RELATION_TYPE_DESC"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to ScBizOrderRelated -->
+	<set name="scBizOrderRelateds"
+	     table="sc_biz_order_related"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="BIZ_ORDER_RELATION_TYPE"/>
+		</key>
+		<one-to-many
+			class="com.ulane.supply.model.supply.ScBizOrderRelated"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

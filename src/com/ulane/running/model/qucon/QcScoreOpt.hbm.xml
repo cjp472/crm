@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.running.model.qucon.QcScoreOpt" table="QC_SCORE_OPT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="scoreOptId" column="SCORE_OPT_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_QC_SCORE_OPT_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="optName" type="java.lang.String" update="true"
+			insert="true" access="property" column="OPT_NAME" length="32"
+			not-null="true" unique="false" />
+		<property name="optScore" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="OPT_SCORE" precision="5"
+			scale="2" not-null="true" unique="false" />
+		<property name="disorder" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DISORDER" length="5"
+			not-null="true" unique="false" />
+		<!-- imported bi-directional many-to-one association to QcTemplate -->
+		<many-to-one name="qcTemplate"
+			class="com.ulane.running.model.qucon.QcTemplate" not-null="false"
+			fetch="select">
+			<column name="TMP_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to QcCheckDetail
+		-->
+		<set name="qcCheckDetails" table="qc_check_detail" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="SCORE_OPT_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.qucon.QcCheckDetail" />
+		</set>
+		<!-- exported bi-directional one-to-many association to QcTempTarOpt -->
+		<set name="qcTempTars" table="qc_temp_tar_opt" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="SCORE_OPT_ID" />
+			</key>
+			<many-to-many fetch="join" class="com.ulane.running.model.qucon.QcTempTar" column="TMP_TAR_ID"/>
+		</set>
+	</class>
+</hibernate-mapping>

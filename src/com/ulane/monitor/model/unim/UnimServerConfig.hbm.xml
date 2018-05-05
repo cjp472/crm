@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.monitor.model.unim.UnimServerConfig"
+        table="UNIM_SERVER_CONFIG"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="serverId"
+            column="SERVER_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			S_UNIM_SERVER_CONFIG
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="serverCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERVER_CODE"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="serverName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERVER_NAME"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="serverType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERVER_TYPE"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="ipAddress"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="IP_ADDRESS"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="ipPort"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="IP_PORT"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="256"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to UnimAgent -->
+	<set name="unimAgents"
+	     table="unim_agent"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="SERVER_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.monitor.model.unim.UnimAgent"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcChkGuidFile"
+        table="QC_CHK_GUID_FILE"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="fileId"
+            column="FILE_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHK_GUID_FILE_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="url"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="URL"
+            length="1024"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="uploadFileName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPLOAD_FILE_NAME"
+            length="256"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="systemFileName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SYSTEM_FILE_NAME"
+            length="256"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="fileSuffix"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FILE_SUFFIX"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="fileSize"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FILE_SIZE"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_TIME"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="staId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcChkGuid -->
+		<many-to-one
+			name="qcChkGuid"
+			class="com.ulane.running.model.qucon.QcChkGuid"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="CHK_GUID_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

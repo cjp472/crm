@@ -1,0 +1,136 @@
+/**
+ * @author zhangyl
+ * @createtime
+ * @class UkKnowCollectForm
+ * @extends Ext.Window
+ * @description UkSysKnow表单
+ * @company 优创融联科技
+ */
+UkKnowCollectForm = Ext.extend(Ext.Panel, {
+	// 构造函数
+	constructor : function(_cfg) {
+		Ext.applyIf(this, _cfg);
+		// 必须先初始化组件
+		this.initUIComponents();
+		UkKnowCollectForm.superclass.constructor.call(this, {
+					id : 'UkKnowCollectFormWin',
+					layout : 'fit',
+					items : this.formPanel,
+					modal : true,
+					height : 400,
+					width : 500,
+					maximizable : true,
+					title : '知识采集详细信息',
+					buttonAlign : 'center'
+					
+				});
+	},// end of the constructor
+	// 初始化组件
+	initUIComponents : function() {
+		this.formPanel = new Ext.FormPanel({
+			layout : 'form',
+			bodyStyle : 'padding:10px',
+			border : false,
+			autoScroll : true,
+			// id : 'UkKnowCollectForm',
+			defaults : {
+				anchor : '96%,96%'
+			},
+			defaultType : 'textfield',
+			items : [ {
+						fieldLabel : '附加字段1',
+						name : 'ukSysKnow.plus1',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段2',
+						name : 'ukSysKnow.plus2',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段3',
+						name : 'ukSysKnow.plus3',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段4',
+						name : 'ukSysKnow.plus4',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段5',
+						name : 'ukSysKnow.plus5',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段6',
+						name : 'ukSysKnow.plus6',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段7',
+						name : 'ukSysKnow.plus7',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+					, {
+						fieldLabel : '附加字段8',
+						name : 'ukSysKnow.plus8',
+						xtype : 'textarea',
+						maxLength : 4000
+					}
+
+			]
+		});
+		// 加载表单对应的数据
+		if (this.knowId != null && this.knowId != 'undefined') {
+			this.formPanel.loadData({
+				url : __ctxPath + '/know/getUkSysKnow.do?knowId=' + this.knowId,
+				root : 'data',
+				preName : 'ukSysKnow'
+			});
+		}
+
+	},// end of the initcomponents
+
+	/**
+	 * 重置
+	 * 
+	 * @param {}
+	 *            formPanel
+	 */
+	reset : function() {
+		this.formPanel.getForm().reset();
+	},
+	/**
+	 * 取消
+	 * 
+	 * @param {}
+	 *            window
+	 */
+	cancel : function() {
+		var tabs = Ext.getCmp('centerTabPanel');
+		tabs.remove('UkKnowCollectForm');
+		this.destroy();
+	},
+	/**
+	 * 保存记录
+	 */
+	validate : function() {
+		return true;
+	}// end of save
+
+});

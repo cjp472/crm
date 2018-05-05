@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_Knowledge" text="知识库" iconCls="mod-knowledge" isPublic="false">
+<Items id="zhishiku" iconCls="mod-know"  text="知识库" isPublic="false">
+	<Items id="jichuguanli" text="基本配置">
+		<!-- Item id ="UkKnowTemplateView" text="知识模板" /> -->
+		<Item id ="UkKnowKeywordView" text="关键字"/>
+		<Item id ="UkKnowTypeView" text="知识分类"/>
+	  	<!-- <Item id="UkKnowDingyueManageView" text="订阅管理"/> -->
+<!-- start:  Generated for UkKnowDimensionality From Template: menu-know.xml.vm  -->
+<Item id="UkKnowDimensionalityView" text="知识维度"/> 
+<!-- end:  Generated for UkKnowDimensionality From Template: menu-know.xml.vm  -->
+	</Items>
+	
+	<Items id="zhishicaiji" text="知识采集">
+		<Item id="UkKnowApplyView"  text="采集申请"/>
+		<!--<Items id="UkKnowApplyFlowView" text="知识申请(注销)"> 
+		<Item id="UkKnowApplyView" text="知识申请  " params="{defId:10160}" />-->
+		 	<!-- <Item id="UkKnowApplyFlowView01" text="知识助理" params="10160"
+				flowNode="true" />
+			<Item id="UkKnowApplyFlowView02" text="知识主管" params="10160"
+				flowNode="true" />-->
+				<!-- 采集任务 --><!--  
+			<Item id="UkKnowApplyFlowView03" text="知识采集" params="10160"
+				flowNode="true" />
+			<Item id="UkKnowApplyFlowView04" text="流程结束" params="10160"
+				flowNode="true" />
+		</Items> -->
+		<Item id="UkKnowCollectView"  text="知识采集"/>
+		<Item id="UkKnowApproveView" text="知识审核" params="{defId:10181}"/>
+		<!-- 
+		<Items id="UkKnowApproveFlowView" text="知识审批发布(注销)">
+	     
+	      <Item id="UkKnowApproveFlowView01" text="知识审批员" params="10181" flowNode="true"/>
+	      <Item id="UkKnowApproveFlowView02" text="知识发布员" params="10181" flowNode="true"/>
+	    </Items> -->
+		<!-- Item id="UkKnowApproveView"  text="知识审核"/-->
+	    <Item id="zhishifabu"  text="知识发布"/>
+	</Items>
+	<Items id="zhishiguanli" text="知识管理">
+		<Item id="zhishichaxun"  text="知识管理"/>
+		<Item id="UkPastSysKnowView"  text="过期知识"/>
+		<Item id="UkGuiDangView"  text="归档知识"/>
+		<Item id="UkRubbishSysKnowView"  text="垃圾箱"/>
+	</Items>
+	
+	<Items id="zhishiliulan" text="知识浏览">
+	  <Item id="UkSysKnowMap" text="知识地图"/>
+	  <Item id="UkSysKnowView" text="知识搜索"/>
+	  <Item id="UkTopSysKnowView" text="点击排行榜"/>
+	  <Item id="UkDianPingSysKnowView" text="点评排行榜"/>
+	  <Item id="UkNewSysKnowView" text="最新知识"/>
+	</Items>
+	<!-- 在线交流 -->
+	<Items id="zhishihudong" text="知识互动">
+	  <!-- Item id="UlBbsHuatiView" text="知识互动" />  -->
+	  <Item id="UkKnowZhiShiQiuSuoView" text="知识求索"/>
+	  <Item id="UkKnowFankuiView" text="知识反馈"/>
+	  <Item id="UkKnowDianpingView" text="知识评价"/>
+	   <Item id="UkKnowRecommendView" text="知识推荐"/>
+	</Items>
+	
+	
+	<Items id="gerenzhishi" text="个人知识">
+	  <Item id="UkKnowSiYouView" text="私有知识"/>
+	  <Item id="UkKnowMineView" text="我的知识"/>
+	  <!-- <Item id="UkKnowRecommendView" text="推荐知识"/> -->
+	  <!-- <Item id="UkKnowDingyueView" text="我的订阅"/> -->
+	  <Item id="UkKnowwodeshoucangView" text="我的收藏"/>
+	  <Item id="UkKnowQiuSuoView" text="我的求索"/>
+	  <!-- Item id="UkKnowDianpingView" text="点评的知识"/>
+	  <Item id="UkKnowFankuiView" text="反馈的知识"/> -->
+	  <!--  <Item id="UkKnowRecommendMyView" text="我推荐的"/>-->
+	</Items>
+	
+<!-- start:  Generated for UkQiusuo From Template: menu-know.xml.vm  -->
+<!--<Item id="UkQiusuoView" text="UkQiusuo"/>--> 
+<!-- end:  Generated for UkQiusuo From Template: menu-know.xml.vm  -->
+<!-- start:  Generated for UkQiusuoHuifu From Template: menu-know.xml.vm  -->
+<!--<Item id="UkQiusuoHuifuView" text="UkQiusuoHuifu"/>--> 
+<!-- end:  Generated for UkQiusuoHuifu From Template: menu-know.xml.vm  -->
+<!-- start:  Generated for UkKnowCollectType From Template: menu-know.xml.vm  -->
+<!--<Item id="UkKnowCollectTypeView" text="UkKnowCollectType"/>--> 
+<!-- end:  Generated for UkKnowCollectType From Template: menu-know.xml.vm  -->
+<!-- start:  Generated for UkPersonKnowType From Template: menu-know.xml.vm  -->
+<!--<Item id="UkPersonKnowTypeView" text="UkPersonKnowType"/>--> 
+<!-- end:  Generated for UkPersonKnowType From Template: menu-know.xml.vm  -->
+
+</Items>	
+</Menus>

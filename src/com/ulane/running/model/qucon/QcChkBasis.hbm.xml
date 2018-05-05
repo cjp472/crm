@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcChkBasis"
+        table="QC_CHK_BASIS"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="chkBasId"
+            column="CHK_BAS_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHK_BASIS_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="chkBasisType"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_BASIS_TYPE"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="chkBasisObj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_BASIS_OBJ"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="chkBasisRemark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_BASIS_REMARK"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcCheck -->
+		<many-to-one
+			name="qcCheck"
+			class="com.ulane.running.model.qucon.QcCheck"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="CHK_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

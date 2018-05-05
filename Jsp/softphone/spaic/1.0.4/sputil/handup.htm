@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>坐席举手</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta   HTTP-EQUIV="Pragma"   CONTENT="no-cache">   
+<meta   HTTP-EQUIV="Cache-Control"   CONTENT="no-cache">   
+<meta   HTTP-EQUIV="Expires"   CONTENT="0">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<style type="text/css">
+.nondis {display:none;color:#FF0000}
+BODY {
+	FONT-SIZE:10px; MARGIN: 0px; COLOR: #945f29; FONT-FAMILY: Arial;
+}
+</style>
+</head>
+
+<body bgcolor="#F6F5F5" onload=";">
+<center>
+	<table width="375" border="1" cellspacing="0">
+	  <!--tr>
+	    <th colspan="2" align="center">请填写举手信息</th>
+	  </tr-->
+	  <tr>
+	    <td width="30%">举手原因: </td>
+	    <td width="70%">
+	    	<select id='handupCode' style="width:290px">
+					<option value='100'>举手原因0</option>
+					<option value='101'>举手原因1</option>
+					<option value='102'>举手原因2</option>
+					<option value='103'>举手原因3</option>
+				</select>
+			</td>
+	  </tr>
+	  <tr>
+	    <td>描述:      </td>
+	    <td>
+	    	<textarea id='handupDesc' style="width:290px" rows=2></textarea>
+	    	<!--input type='text' id='handupDesc' style="width:290px"-->
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="2" align="center"><button id="btnSave">发送</button>&nbsp;&nbsp;<button id="btnCancel">取消</button></td>
+	  </tr>
+	</table>
+</center>
+<script>
+	function $(id){return document.getElementById(id);}
+	function $value(id){return $(id).value;}
+	function $display(id, displayVal){return $(id).style.display=displayVal;}
+
+	$("btnSave").onclick = function(){
+			var parentPage = window.opener;
+			parentPage.sendHandup2($value("handupCode"),$value("handupDesc"));
+			alert("已发送!");
+			window.close();
+	}
+	$("btnCancel").onclick = function(){
+		window.close();
+	}
+</script>
+</body>	
+</HTML>

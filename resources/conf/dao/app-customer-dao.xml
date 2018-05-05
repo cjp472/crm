@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/> 
+
+
+<!-- start:  Generated for CusPersonal From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusPersonalDao" class="com.ulane.customer.dao.customer.impl.CusPersonalDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusPersonal From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusCompany From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusCompanyDao" class="com.ulane.customer.dao.customer.impl.CusCompanyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusCompany From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusPurchaseCompany From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="cusPurchaseCompanyDao" class="com.ulane.customer.dao.customer.impl.CusPurchaseCompanyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusPurchaseCompany From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for CusContact From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusContactDao" class="com.ulane.customer.dao.customer.impl.CusContactDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusContact From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusHis From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusHisDao" class="com.ulane.customer.dao.customer.impl.CusHisDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusHis From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConHis From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="conHisDao" class="com.ulane.customer.dao.customer.impl.ConHisDaoImpl" parent="baseDao"/>
+	
+	<!-- <bean id="cusReportDao" class="com.ulane.customer.dao.customer.impl.CusReportDaoImpl"/> -->
+	
+<!-- end:  Generated for ConHis From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConHis From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="conAttachDao" class="com.ulane.customer.dao.customer.impl.ConAttachDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConHis From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConHushou From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="conHushouDao" class="com.ulane.customer.dao.customer.impl.ConHushouDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConHushou From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConWeichuli From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="conWeichuliDao" class="com.ulane.customer.dao.customer.impl.ConWeichuliDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConWeichuli From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConLanjie From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="conLanjieDao" class="com.ulane.customer.dao.customer.impl.ConLanjieDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConLanjie From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusBusiInvoke From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusBusiInvokeDao" class="com.ulane.customer.dao.customer.impl.CusBusiInvokeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusBusiInvoke From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusSpeEve From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusSpeEveDao" class="com.ulane.customer.dao.customer.impl.CusSpeEveDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusSpeEve From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConBwListTimeRul From Template: app-running-dao.xml.beansvm  -->
+	<bean id="conBwListTimeRulDao" class="com.ulane.customer.dao.customer.impl.ConBwListTimeRulDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConBwListTimeRul From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for ConBwListBusRul From Template: app-running-dao.xml.beansvm  -->
+	<bean id="conBwListBusRulDao" class="com.ulane.customer.dao.customer.impl.ConBwListBusRulDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConBwListBusRul From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for ConBwList From Template: app-running-dao.xml.beansvm  -->
+	<bean id="conBwListDao" class="com.ulane.customer.dao.customer.impl.ConBwListDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConBwList From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for ConServiceRequest From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="conServiceRequestDao" class="com.ulane.customer.dao.customer.impl.ConServiceRequestDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConServiceRequest From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ObFee From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="obFeeDao" class="com.ulane.customer.dao.fee.impl.ObFeeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObFee From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndex From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="obFeeIndexDao" class="com.ulane.customer.dao.fee.impl.ObFeeIndexDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObFeeIndex From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndexLevel From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="obFeeIndexLevelDao" class="com.ulane.customer.dao.fee.impl.ObFeeIndexLevelDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObFeeIndexLevel From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndexProject From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="obFeeIndexProjectDao" class="com.ulane.customer.dao.fee.impl.ObFeeIndexProjectDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObFeeIndexProject From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ObFeeRule From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="obFeeRuleDao" class="com.ulane.customer.dao.fee.impl.ObFeeRuleDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObFeeRule From Template: app-customer-dao.xml.beansvm  -->
+
+<!-- start:  Generated for SysEmpPerformance From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="sysEmpPerformanceDao" class="com.ulane.customer.dao.fee.impl.SysEmpPerformanceDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SysEmpPerformance From Template: app-customer-dao.xml.beansvm  -->
+
+<!-- start:  Generated for ObFeeRuleValue From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="obFeeRuleValueDao" class="com.ulane.customer.dao.fee.impl.ObFeeRuleValueDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObFeeRuleValue From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for ConBwlistApprove From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="conBwlistApproveDao" class="com.ulane.customer.dao.customer.impl.ConBwlistApproveDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ConBwlistApprove From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusRelationship From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusRelationshipDao" class="com.ulane.customer.dao.customer.impl.CusRelationshipDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusRelationship From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CsOrder From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="csOrderDao" class="com.ulane.customer.dao.customer.impl.CsOrderDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CsOrder From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CusDelivery From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="cusDeliveryDao" class="com.ulane.customer.dao.customer.impl.CusDeliveryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CusDelivery From Template: app-customer-dao.xml.beansvm  -->
+<!-- start:  Generated for CsOrderTime From Template: app-customer-dao.xml.beansvm  -->
+	<bean id="csOrderTimeDao" class="com.ulane.customer.dao.customer.impl.CsOrderTimeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CsOrderTime From Template: app-customer-dao.xml.beansvm  -->
+</beans>

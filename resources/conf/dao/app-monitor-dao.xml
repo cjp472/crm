@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+
+<!-- start:  Generated for UnimAgent From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAgentDao" class="com.ulane.monitor.dao.unim.impl.UnimAgentDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAgent From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAgentloginlog From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAgentloginlogDao" class="com.ulane.monitor.dao.unim.impl.UnimAgentloginlogDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAgentloginlog From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAgentMap From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAgentMapDao" class="com.ulane.monitor.dao.unim.impl.UnimAgentMapDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAgentMap From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimMapAgent From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimMapAgentDao" class="com.ulane.monitor.dao.unim.impl.UnimMapAgentDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimMapAgent From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimCategory From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimCategoryDao" class="com.ulane.monitor.dao.unim.impl.UnimCategoryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimCategory From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimExtension From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimExtensionDao" class="com.ulane.monitor.dao.unim.impl.UnimExtensionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimExtension From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimMapNavigation From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimMapNavigationDao" class="com.ulane.monitor.dao.unim.impl.UnimMapNavigationDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimMapNavigation From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimServerConfig From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimServerConfigDao" class="com.ulane.monitor.dao.unim.impl.UnimServerConfigDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimServerConfig From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimSkillgroup From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimSkillgroupDao" class="com.ulane.monitor.dao.unim.impl.UnimSkillgroupDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimSkillgroup From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimThrlevl From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimThrlevlDao" class="com.ulane.monitor.dao.unim.impl.UnimThrlevlDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimThrlevl From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimMonitorAgent From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimMonitorAgentDao" class="com.ulane.monitor.dao.unim.impl.UnimMonitorAgentDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimMonitorAgent From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelMap From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimChannelMapDao" class="com.ulane.monitor.dao.unim.impl.UnimChannelMapDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimChannelMap From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelNavigation From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimChannelNavigationDao" class="com.ulane.monitor.dao.unim.impl.UnimChannelNavigationDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimChannelNavigation From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimChannel From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimChannelDao" class="com.ulane.monitor.dao.unim.impl.UnimChannelDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimChannel From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelTarget From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimChannelTargetDao" class="com.ulane.monitor.dao.unim.impl.UnimChannelTargetDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimChannelTarget From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimChaTarPar From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimChaTarParDao" class="com.ulane.monitor.dao.unim.impl.UnimChaTarParDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimChaTarPar From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimChaTarThrlevl From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimChaTarThrlevlDao" class="com.ulane.monitor.dao.unim.impl.UnimChaTarThrlevlDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimChaTarThrlevl From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsMap From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssetsMapDao" class="com.ulane.monitor.dao.unim.impl.UnimAssetsMapDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssetsMap From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsNavigation From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssetsNavigationDao" class="com.ulane.monitor.dao.unim.impl.UnimAssetsNavigationDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssetsNavigation From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssCategory From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssCategoryDao" class="com.ulane.monitor.dao.unim.impl.UnimAssCategoryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssCategory From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssets From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssetsDao" class="com.ulane.monitor.dao.unim.impl.UnimAssetsDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssets From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssType From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssTypeDao" class="com.ulane.monitor.dao.unim.impl.UnimAssTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssType From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssStatus From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssStatusDao" class="com.ulane.monitor.dao.unim.impl.UnimAssStatusDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssStatus From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsTarget From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssetsTargetDao" class="com.ulane.monitor.dao.unim.impl.UnimAssetsTargetDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssetsTarget From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssTarPar From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssTarParDao" class="com.ulane.monitor.dao.unim.impl.UnimAssTarParDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssTarPar From Template: app-monitor-dao.xml.beansvm  -->
+<!-- start:  Generated for UnimAssTarThrlevl From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="unimAssTarThrlevlDao" class="com.ulane.monitor.dao.unim.impl.UnimAssTarThrlevlDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UnimAssTarThrlevl From Template: app-monitor-dao.xml.beansvm  -->
+</beans>

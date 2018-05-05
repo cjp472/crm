@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowType" table="UK_KNOW_TYPE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="knowTypeId" column="KNOW_TYPE_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_KNOW_TYPE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME" length="30" not-null="false"
+			unique="false" />
+		<property name="comMent" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_MENT" length="100"
+			not-null="false" unique="false" />
+		<property name="parentId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_ID" length="38"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="path" length="100" not-null="false"
+			unique="false" />
+		<!--  
+		<property name="knowTmpId" type="java.lang.String" update="true"
+			insert="true" access="property" column="know_tmp_id" length="100" not-null="false"
+			unique="false" />	-->
+		<property name="knowTypeStatus" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="KNOW_TYPE_STATUS"
+			length="10" not-null="false" unique="false" />
+		<property name="knowSort" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="KNOW_SORT" length="10"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+
+		<property name="grantAccess" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GRANT_ACCESS" length="38"
+			not-null="false" unique="false" />
+			
+		<property name="accessPurview" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ACCESS_PURVIEW" length="38"
+			not-null="false" unique="false" />	
+		<!--
+			imported bi-directional many-to-one association to UkKnowTemplate
+		-->
+		<many-to-one name="ukKnowTemplate"
+			class="com.ulane.know.model.know.UkKnowTemplate" not-null="false"
+			fetch="select">
+			<column name="KNOW_TMP_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to UkKnowDingyue
+		-->
+		<set name="ukKnowDingyues" table="uk_know_dingyue" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_TYPE_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowDingyue" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkKnowKeyword
+		-->
+		<set name="ukKnowKeywords" table="uk_know_keyword" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_TYPE_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowKeyword" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UkKnowTypeKnow
+		
+		<set name="ukKnowTypeKnows" table="uk_know_type_know" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_TYPE_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowTypeKnow" />
+		</set>-->
+		<set name="ukSysKnows" table="UK_KNOW_TYPE_KNOW" inverse="false" lazy="true" cascade="save-update">
+			<key column="KNOW_TYPE_ID"></key>
+			<many-to-many column="KNOW_ID" fetch="join" class="com.ulane.know.model.know.UkSysKnow"></many-to-many>
+		</set>
+		
+		<set name="ukKnowTypeRoles" table="uk_know_type_role" inverse="false" lazy="true" cascade="all">
+			<key column="KNOW_TYPE_ID"></key>
+			<many-to-many column="ROLEID" fetch="join"
+				class="com.htsoft.oa.model.system.AppRole"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

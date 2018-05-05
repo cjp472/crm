@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObProject" table="OB_PROJECT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="projId" column="PROJ_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_PROJECT_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="projNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="PROJ_NAM" length="128"
+			not-null="true" unique="false" />
+		<property name="projAliNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="PROJ_ALI_NAM" length="128"
+			not-null="false" unique="false" />
+		<property name="projCod" type="java.lang.String" update="true"
+			insert="true" access="property" column="PROJ_COD" length="36"
+			not-null="false" unique="false" />
+		<property name="projTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="PROJ_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="ownerTeam" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OWNER_TEAM" length="18"
+			not-null="false" unique="false" />
+		<property name="perIncharge" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PER_INCHARGE" length="18"
+			not-null="false" unique="false" />
+		<property name="srouceId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="SROUCE_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="staDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="endDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="execTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="EXEC_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="projJianjie" type="java.lang.String" update="true"
+			insert="true" access="property" column="PROJ_JIANJIE" length="4000"
+			not-null="false" unique="false" />
+		<property name="projConFile" type="java.lang.String" update="true"
+			insert="true" access="property" column="PROJ_CON_FILE" length="512"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="1024"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="creTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="projStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="PROJ_STA_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="runid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RUNID" length="18" not-null="false"
+			unique="false" />
+		
+		<property name="busiTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUSI_TYP_ID" length="5"
+			not-null="false" unique="false" />	
+		
+		<!-- 工作流字段 -->
+		<property name="nodeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="NODE_NAME" length="30"
+			not-null="false" unique="false" />
+		<property name="aprovalStatus" type="java.lang.String" update="true"
+			insert="true" access="property" column="APROVAL_STATUS" length="30"
+			not-null="false" unique="false" />
+		<!-- exported bi-directional one-to-many association to ObCalllist -->
+		<set name="obCalllists" table="ob_calllist" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCalllist" />
+		</set>
+		
+		<!-- 新增表：ob_proj_exec_type -->
+		<!-- exported bi-directional one-to-many association to ObProjExecType -->
+		<set name="obProjExecTypes" table="ob_proj_exec_type" lazy="true" inverse="false"
+			cascade="all" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObProjExecType" />
+		</set>
+		
+		<!-- exported bi-directional one-to-many association to ObCom -->
+		<set name="obComs" table="ob_com" lazy="true" inverse="true"
+			cascade="all" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCom" />
+		</set>
+		<!-- exported bi-directional one-to-many association to ObProjFile -->
+		<!-- exported bi-directional one-to-many association to ObProjFile -->
+		<set name="fileAttachs" table="ob_proj_file" lazy="true" inverse="false"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.FileAttach" fetch="select" column="fileId"/>
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObProjProduct
+		
+		<set name="obProjProducts" table="ob_proj_product" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObProjProduct" />
+		</set>-->
+		<!-- exported bi-directional one-to-many association to ObProPap -->
+		<set name="papReleases" table="ob_pro_pap" lazy="true" inverse="false"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<many-to-many class="com.ulane.running.model.pap.PapRelease" fetch="join" column="PAP_ID"/>
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObProUsergroup
+		-->
+		<set name="ulUsergroups" table="ob_pro_usergroup" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PROJ_ID" />
+			</key>
+			<many-to-many class="com.ulane.base.model.xitong.UlUsergroup" fetch="join" column="USERGRP_ID"/>
+		</set>
+	</class>
+</hibernate-mapping>

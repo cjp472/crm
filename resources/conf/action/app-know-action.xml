@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+
+<!-- start:  Generated for UkKnowApply From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowApplyAction" class="com.ulane.know.action.know.UkKnowApplyAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowApply From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowApprove From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowApproveAction" class="com.ulane.know.action.know.UkKnowApproveAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowApprove From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDianping From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowDianpingAction" class="com.ulane.know.action.know.UkKnowDianpingAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowDianping From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDingyue From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowDingyueAction" class="com.ulane.know.action.know.UkKnowDingyueAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowDingyue From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowFankui From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowFankuiAction" class="com.ulane.know.action.know.UkKnowFankuiAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowFankui From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowKeyword From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowKeywordAction" class="com.ulane.know.action.know.UkKnowKeywordAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowKeyword From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowTemplate From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowTemplateAction" class="com.ulane.know.action.know.UkKnowTemplateAction" scope="prototype"/>
+ <!--<bean id="UkKnowRecommendAction" class="com.ulane.know.action.know.UkKnowRecommendAction" scope="prototype"/>-->
+<!-- end:  Generated for UkKnowTemplate From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowType From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowTypeAction" class="com.ulane.know.action.know.UkKnowTypeAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowType From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkPerKnow From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkPerKnowAction" class="com.ulane.know.action.know.UkPerKnowAction" scope="prototype"/>
+<!-- end:  Generated for UkPerKnow From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkSysKnow From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkSysKnowAction" class="com.ulane.know.action.know.UkSysKnowAction" scope="prototype"/>
+<!-- end:  Generated for UkSysKnow From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkRelativeKnow From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkRelativeKnowAction" class="com.ulane.know.action.know.UkRelativeKnowAction" scope="prototype"/>
+<!-- end:  Generated for UkRelativeKnow From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDimensionality From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowDimensionalityAction" class="com.ulane.know.action.know.UkKnowDimensionalityAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowDimensionality From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkQiusuo From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkQiusuoAction" class="com.ulane.know.action.know.UkQiusuoAction" scope="prototype"/>
+<!-- end:  Generated for UkQiusuo From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkQiusuoHuifu From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkQiusuoHuifuAction" class="com.ulane.know.action.know.UkQiusuoHuifuAction" scope="prototype"/>
+<!-- end:  Generated for UkQiusuoHuifu From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkKnowCollectType From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkKnowCollectTypeAction" class="com.ulane.know.action.know.UkKnowCollectTypeAction" scope="prototype"/>
+<!-- end:  Generated for UkKnowCollectType From Template: app-know-action.xml.beansvm  -->
+<!-- start:  Generated for UkPersonKnowType From Template: app-know-action.xml.beansvm  -->
+ <bean id="UkPersonKnowTypeAction" class="com.ulane.know.action.know.UkPersonKnowTypeAction" scope="prototype"/>
+<!-- end:  Generated for UkPersonKnowType From Template: app-know-action.xml.beansvm  -->
+</beans>

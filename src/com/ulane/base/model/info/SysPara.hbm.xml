@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.ulane.base.model.info.SysPara" table="SYS_PARA">
+  <id column="SYS_PARA_ID" length="18" name="sysParaId" type="java.lang.Long">
+   <generator class="sequence">
+    <param name="sequence">SEQ_SYS_PARA_ID</param>
+   </generator>
+  </id>
+  <property column="SYS_PARA_NAME" generated="never" insert="true"
+   lazy="false" length="512" name="sysParaName" type="java.lang.String" update="true"/>
+  <property column="SYS_PARA_KEY" generated="never" insert="true"
+   lazy="false" length="512" name="sysParaKey" type="java.lang.String" update="true"/>
+  <property column="SYS_PARA_VALUE" generated="never" insert="true"
+   lazy="false" length="512" name="sysParaValue" type="java.lang.String" update="true"/>
+  <!-- exported bi-directional one-to-many association to SysParaOpt -->
+  <set cascade="all-delete-orphan" inverse="true" lazy="true"
+   name="sysParaOpts" sort="unsorted" table="sys_para_opt">
+   <key>
+    <column name="SYS_PARA_ID"/>
+   </key>
+   <one-to-many class="com.ulane.base.model.info.SysParaOpt"/>
+  </set>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.supply.model.goods.ScPurpriceVersion"
+		table="SC_PURPRICE_VERSION" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="purPriceId" column="PUR_PRICE_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_PURPRICE_VERSION_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="purGuidPrice" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="PUR_GUID_PRICE"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="createUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updateUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS" length="5" not-null="false"
+			unique="false" />
+		<property name="desc" type="java.lang.String" update="true"
+			insert="true" access="property" column="DESC" length="500" not-null="false"
+			unique="false" />
+		<!--
+			imported bi-directional many-to-one association to ScPriceVersion
+		-->
+		<many-to-one name="scPriceVersion"
+			class="com.ulane.supply.model.goods.ScPriceVersion" not-null="false"
+			fetch="select">
+			<column name="VERSION_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to
+			ScPurchasePriceGoods
+		-->
+		<set name="scPurchasePriceGoodss" table="sc_purchase_price_goods"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PUR_PRICE_ID" />
+			</key>
+			<many-to-many class="com.ulane.supply.model.goods.ScGoods" 
+			column="GOODS_ID" fetch="join"/>
+		</set>
+	</class>
+</hibernate-mapping>

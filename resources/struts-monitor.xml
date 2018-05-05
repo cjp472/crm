@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="unim" extends="struts-default" namespace="/unim">
+	
+
+
+<!-- start:  Generated for UnimAgent From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAgent" class="UnimAgentAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAgent From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimAgentloginlog From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAgentloginlog" class="UnimAgentloginlogAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAgentloginlog From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimAgentMap From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAgentMap" class="UnimAgentMapAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAgentMap From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimCategory From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimCategory" class="UnimCategoryAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimCategory From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimExtension From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimExtension" class="UnimExtensionAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimExtension From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimMapNavigation" class="UnimMapNavigationAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+
+
+<!-- start:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimChannelNavigation" class="UnimChannelNavigationAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+
+<!-- start:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimChannelMap" class="UnimChannelMapAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+
+
+<!-- start:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimChaTarThrlevl" class="UnimChaTarThrlevlAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimMapNavigation From Template: struts-monitor.xml.vm  -->
+
+<!-- start:  Generated for UnimAssCategoryAction From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssCategory" class="UnimAssCategoryAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAssCategoryAction From Template: struts-monitor.xml.vm  -->
+
+<!-- start:  Generated for UnimAssetsNavigationAction From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssetsNavigation" class="UnimAssetsNavigationAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAssetsNavigationAction From Template: struts-monitor.xml.vm  -->
+
+<!-- start:  Generated for UnimAssetsNavigationAction From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssetsMap" class="UnimAssetsMapAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAssetsNavigationAction From Template: struts-monitor.xml.vm  -->
+
+
+<!-- start:  Generated for UnimAssStatusAction From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssStatus" class="UnimAssStatusAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAssStatusAction From Template: struts-monitor.xml.vm  -->
+
+
+<!-- start:  Generated for UnimAssStatusAction From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssTarThrlevl" class="UnimAssTarThrlevlAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimAssStatusAction From Template: struts-monitor.xml.vm  -->
+
+
+
+
+
+
+
+
+<!-- start:  Generated for UnimServerConfig From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimServerConfig" class="UnimServerConfigAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimServerConfig From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimSkillgroup From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimSkillgroup" class="UnimSkillgroupAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimSkillgroup From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimThrlevl" class="UnimThrlevlAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimChannel" class="UnimChannelAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimChannelTarget" class="UnimChannelTargetAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimChaTarPar" class="UnimChaTarParAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssets" class="UnimAssetsAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssCategory" class="UnimAssCategoryAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssetsTarget" class="UnimAssetsTargetAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssType" class="UnimAssTypeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+<!-- start:  Generated for UnimChannel From Template: struts-monitor.xml.vm  -->
+	<action name="*UnimAssTarPar" class="UnimAssTarParAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UnimThrlevl From Template: struts-monitor.xml.vm  -->
+
+</package>
+</struts>

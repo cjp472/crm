@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CTI_AfterWork_Info" table="Z_CTI_AFTERWORK" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="aid" column="AID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							SEQ_CTI_AFTERWORK
+		            	</param>
+					</generator>
+				</id>
+				<property name="aStartTime" type="java.lang.String" column="ASTARTTIME" length="128" />
+				<property name="aEndTime" type="java.lang.String" column="AENDTIME" length="128" />
+				<property name="aDate" type="java.lang.String" column="ADATE" length="128" />
+				<property name="aMachineID" type="java.lang.String" column="AMACHINEID" length="128" />
+				<property name="aAgentID" type="java.lang.String" column="AAGENTID" length="128" />
+	</class>
+</hibernate-mapping>

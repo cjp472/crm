@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.UlDepartment" table="UL_DEPARTMENT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="depid" column="DEPID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UL_DEPARTMENT_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="depname" type="java.lang.String" update="true"
+			insert="true" access="property" column="DEPNAME" length="128"
+			not-null="true" unique="false" />
+		<property name="type" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TYPE" length="22" not-null="false"
+			unique="false" />
+		<property name="parentid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENTID" length="18"
+			not-null="false" unique="false" />
+		<property name="depdesc" type="java.lang.String" update="true"
+			insert="true" access="property" column="DEPDESC" length="256"
+			not-null="false" unique="false" />
+		<property name="jingyingyewu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="JINGYINGYEWU" length="22"
+			not-null="false" unique="false" />
+		<property name="yewushuoming" type="java.lang.String" update="true"
+			insert="true" access="property" column="YEWUSHUOMING" length="255"
+			not-null="false" unique="false" />
+		<property name="guojia" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GUOJIA" length="22" not-null="false"
+			unique="false" />
+		<property name="sheng" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SHENG" length="22" not-null="false"
+			unique="false" />
+		<property name="shi" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SHI" length="22" not-null="false"
+			unique="false" />
+		<property name="qu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="QU" length="22" not-null="false"
+			unique="false" />
+		<property name="xiangxidizhi" type="java.lang.String" update="true"
+			insert="true" access="property" column="XIANGXIDIZHI" length="100"
+			not-null="false" unique="false" />
+		<property name="lianxifangshi" type="java.lang.String"
+			update="true" insert="true" access="property" column="LIANXIFANGSHI"
+			length="100" not-null="false" unique="false" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="path" length="100" not-null="false"
+			unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="22" not-null="false"
+			unique="false" />
+		<property name="delFlag" type="java.lang.Short" update="true"
+			insert="true" access="property" column="delFlag" length="5" not-null="false"
+			unique="false" />
+		<property name="depNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="DEPNO" length="50"
+			not-null="false" unique="false" />
+			
+		<set name="contacts" table="UL_CONTACT_DEP" lazy="true" inverse="false"
+			cascade="all-delete-orphan">
+			<key>
+				<column name="depid" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.UlContactDep" />
+		</set>
+		
+		<!-- exported bi-directional one-to-many association to UkDimensionalityKnow -->
+		<set name="ukDimensionalityKnows"
+		     table="uk_dimensionality_know"
+		     lazy="true"
+		     inverse="true"
+		     cascade="save-update"
+		     sort="unsorted"
+		>
+			<key>
+				<column name="DIMENSIONALITY_ID"/>
+			</key>
+			<one-to-many
+				class="com.ulane.know.model.know.UkKnowDimensionality"
+			/>
+		</set>     
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.Examine" table="EXAMINE_BULU" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="id" column="ID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							seq_Examine_BULU_ID
+		            	</param>
+					</generator>
+				</id>
+				<property name="dealNum" type="java.lang.String" column="DEAL_NUM" length="128" />
+				<property name="cusName" type="java.lang.String" column="CUS_NAME" length="128" />
+				<property name="transactP" type="java.lang.String" column="TRANSACT_PERSONAL" length="128" />
+				<property name="examineP" type="java.lang.String" column="EXAMINE_PERSONAL" length="128" />
+				<property name="examineD" type="java.lang.String" column="EXAMINE_DATE" length="128" />
+				<property name="examineR" type="java.lang.String" column="EXAMINE_RESULT" length="128" />
+	</class>
+</hibernate-mapping>

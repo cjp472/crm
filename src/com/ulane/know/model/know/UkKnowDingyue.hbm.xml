@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.know.model.know.UkKnowDingyue"
+        table="UK_KNOW_DINGYUE"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="dingyueId"
+            column="DINGYUE_ID"
+            type="java.lang.Long"
+            length="38"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_UK_KNOW_DINGYUE_ID
+            	</param>
+            </generator>
+        </id>
+        <property
+            name="busiType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUSI_TYPE"
+            length="300"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="desCribe"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="DES_CRIBE"
+            length="300"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="userid"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="USERID"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="knowTypeDingyue"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="KNOW_TYPE_DINGYUE"
+            length="1000"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="knowKeyword"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="KNOW_KEYWORD"
+            length="1000"
+            not-null="false"
+            unique="false"
+        />
+		
+     <!-- imported bi-directional many-to-one association to UkKnowType -->
+     <!-- 
+		<many-to-one
+			name="ukKnowType"
+			class="com.ulane.know.model.know.UkKnowType"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="KNOW_TYPE_ID" />
+		</many-to-one>
+      -->
+    </class>
+</hibernate-mapping>

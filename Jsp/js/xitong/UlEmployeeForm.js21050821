@@ -1,0 +1,845 @@
+UlEmployeeForm = Ext.extend(Ext.Panel, {
+	// 构造函数
+	constructor : function(_cfg) {
+		Ext.applyIf(this, _cfg);
+		// 必须先初始化组件
+		this.initUIComponents();
+		UlEmployeeForm.superclass.constructor.call(this, {
+			id : 'UlEmployeeFormWin',
+			layout : 'fit',
+			items : this.formPanel,
+			modal : true,
+			height : 400,
+			width : 500,
+			anchor : '100%',
+			title : '员工详细信息',
+			buttonAlign : 'center',
+			buttons :  [ {
+							iconCls : 'btn-save',
+							text : '保存',
+							xtype : 'button',
+							scope : this,
+							handler : this.save
+						}, {
+							iconCls : 'btn-reset',
+							text : '清空',
+							xtype : 'button',
+							scope : this,
+							handler : this.reset
+						}, {
+							iconCls : 'btn-cancel',
+							text : '取消',
+							xtype : 'button',
+							scope : this,
+							handler : this.cancel
+						}]
+			});
+	},// end of the constructor
+	// 初始化组件
+	initUIComponents : function() {
+		var dep_url = __ctxPath + '/xitong/listUlDepartment.do?opt=UlDep';
+//		var depSelector = new TreeSelector('depTreeSelector', dep_url, '部门',
+//				'ulEmployee.depid_form', true, '');
+         
+		 var depSelector = new TreeSelector('depTreeSelector', dep_url, '<font style="color:red">*</font>部门',
+		                'ulEmployee.depid_form', true, false, false, '','100%');
+		var empid = this.empid ? this.empid : -1; // 主表Id
+//		var hujiGuojia = this.hujiGuojia ? this.hujiGuojia : -1; // 主表Id
+//		var hujiSheng = this.hujiSheng ? this.hujiSheng : -1; // 主表Id
+//		var hujiShi = this.hujiShi ? this.hujiShi : -1; // 主表Id
+//		var hujiDiqu = this.hujiDiqu ? this.hujiDiqu : -1; // 主表Id
+		
+		var topbar_contact = new Ext.Toolbar({
+					items : ['->', {
+								iconCls : 'btn-del',
+								text : '删除',
+								xtype : 'button',
+								scope : this,
+								handler : this.removeSelRs_contact
+							}, '->', {
+								iconCls : 'btn-add',
+								text : '添加',
+								xtype : 'button',
+								scope : this,
+								handler : this.createRs_contact
+							}]
+				});
+		this.gridPanel_contact = new HT.EditorGridPanel({
+			region : 'center',
+			tbar : topbar_contact,
+			autoHeight : true,
+			clicksToEdit : 1,
+            showPaging : false,
+			id : 'UlContactGrid_empl',
+			url : __ctxPath + "/xitong/getContactUlEmployee.do?useid="
+					+ this.useid,
+			fields : [{
+						name : 'contactEmplId',
+						type : 'int'
+					}, 'contactType', 'contactValue'],
+			columns : [{
+				header : '类型',
+				dataIndex : 'contactType',
+				editor : new Ext.form.ComboBox({
+//					name : 'ulContactEmp.contactType',
+					allowBlank : false,
+					id : 'ulContactEmp.contactType_id',
+					displayField : 'itemName',
+					valueField : 'itemId',
+					mode : 'local',
+					triggerAction : 'all',
+					forceSelection : false,
+                    editable : false,
+					hiddenName : 'ulContactEmp.contactType',
+					store : new Ext.data.SimpleStore({
+						url : __ctxPath + '/system/loadItemByTypeDictionary.do',
+						baseParams : {
+							proTypeId  : '10360'
+						},
+						fields : ['itemId', 'itemName'],
+						autoLoad : true,
+						method : "post",
+						listeners : {
+							load : function() {
+								var combo = Ext.getCmp('ulContactEmp.contactType_id');
+								var store = combo.getStore();
+								var rows = [];// 定义数组
+								// store.getCount()为store的长度
+								for (var i = 0; i < store.getCount(); i++) { 
+									if (store.getAt(i).data['itemId'] == combo.getValue()) {
+										combo.setValue(store.getAt(i).data['itemName']);
+										break;
+									}
+								}
+
+							}
+						}
+					})
+				}),
+				renderer : function(value) {
+					if (value != null) {
+						return LXFS001.get(value);
+					} else {
+						return ' ';
+					}
+				}
+			}, {
+				header : '地址/号码',
+				dataIndex : 'contactValue',
+				editor : new Ext.form.TextField({
+							allowBlank : false,
+							id : 'contactValue',
+							maxLength : 20
+						})
+			}]
+				// end of columns
+		});
+
+		this.formPanel = new Ext.FormPanel({
+			layout : 'form',
+			bodyStyle : 'padding:10px',
+			border : false,
+			autoScroll : true,
+			id : 'UlEmployeeForm',
+			labelAlign:'right',
+			labelWidth:70,
+			defaults : {
+				anchor : '96%,96%',
+				border : false
+			},
+			// defaultType : 'textfield',
+			items : [{
+						name : 'ulEmployee.useid',
+						xtype : 'hidden',
+						id : 'useid',
+						value : this.useid == null ? '' : this.useid
+					}, {
+						layout : "column",
+						xtype : 'container',
+						defaults : {
+							border : false
+						},
+						items : [{
+									columnWidth : .333,// 第一列
+									layout : "form",
+									items : [{
+//												fieldLabel : '姓名<font style="color:red">*</font>',
+										        fieldLabel : '姓名',
+												id : 'ulEmployee.fullname_form',
+												name : 'ulEmployee.fullname',
+												allowBlank : false,
+												maxLength : 10,
+												anchor:'100%',
+												xtype : 'textfield'
+											}]
+								}, {
+									columnWidth : .333,
+									layout : "form",
+									border : false,
+									items : [{
+												fieldLabel : '别名',
+												id : 'ulEmployee.alias_form',
+												name : 'ulEmployee.alias',
+												maxLength : 50,
+												anchor:'100%',
+												xtype : 'textfield'
+											}]
+								}, {
+									columnWidth : .334,
+									layout : "form",
+									border : false,
+									items : [{
+//										fieldLabel : '工号<font style="color:red">*</font>',
+										fieldLabel : '工号',
+										anchor:'100%',
+										id : 'ulEmployee.userNo_form',
+										name : 'ulEmployee.userNo',
+										maxLength : 50,
+										allowBlank : false,
+										xtype : 'textfield'
+									}]
+								}]
+					}, {
+						xtype : 'hidden',
+						name : 'ulEmployee.sex',
+						id : 'ulEmployee.sex_hid'
+					},{
+						xtype : 'hidden',
+						name : 'ulEmployee.type',
+						id : 'ulEmployee.type_hid'
+					},{
+                        xtype : 'hidden',
+                        name : 'ulEmployee.status',
+                        id : 'ulEmployee.status_hid'
+                    },{
+						layout : "column",
+						xtype : 'container',
+						defaults : {
+							border : false
+						},
+						items : [{
+									columnWidth : .333,
+									layout : "form",
+									items : [{
+//												 fieldLabel : '性别<font style="color:red">*</font>',
+												 fieldLabel : '性别',
+												 allowBlank : false,
+												 id : 'ulEmployee.sex_form',
+//                                                 name : 'ulEmployee.sex',
+												 displayField : 'itemName',
+												 valueField : 'itemId',
+												 xtype : 'mtdiccombolocal',
+												 anchor:'100%',
+												 mode : 'local',
+												 triggerAction : 'all',
+												 width : '100px',
+												 forceSelection : false,
+//												 hiddenName : 'ulEmployee.sex',可以让选择框自动加载，但是name重复了
+												 listeners : UlEmployeeForm.getDicListeners(null,null,'ulEmployee.sex_hid'),
+												 editable : false,
+												 lazyInit : true,
+												 itemKey : 'XB001'
+											}]
+								}, {
+									columnWidth : .333,
+									layout : "form",
+									items : [{
+												fieldLabel : '生日',
+												id : 'ulEmployee.birthday_form',
+												name : 'ulEmployee.birthday',
+												xtype : 'datefield',
+												anchor:'100%',
+												format : 'Y-m-d'
+											}]
+								}, {
+									columnWidth : .334,
+									layout : "form",
+									items : [{
+										 fieldLabel : '类型',
+										 id : 'ulEmployee.type_form',
+										 displayField : 'itemName',
+										 valueField : 'itemId',
+										 xtype : 'mtdiccombolocal',
+										 mode : 'local',
+										 triggerAction : 'all',
+										 anchor:'100%',
+                                         editable : false,
+                                         lazyInit : true,
+										 forceSelection : false,
+                                         itemKey : 'YGLX0001',
+                                         listeners : UlEmployeeForm.getDicListeners(null,null,'ulEmployee.type_hid')
+								    }]
+								}]
+					}, {
+                        name : 'ulEmployee.hujiSheng', // 省隐藏域
+                        id : 'ulEmployee.hujisheng',
+                        xtype : 'hidden'
+                    }, {
+                        name : 'ulEmployee.hujiShi', // 市隐藏域
+                        id : 'ulEmployee.hujishi',
+                        xtype : 'hidden'
+                    }, {
+                        name : 'ulEmployee.hujiDiqu', // 地区隐藏域
+                        id : 'ulEmployee.hujiqu',
+                        xtype : 'hidden'
+                    }, {
+                        layout : 'column',
+                        xtype : 'container',
+                        fieldLabel : '户籍所在地', // 国家
+                        defaults : {
+                            border : false
+                        },
+                        items : [{
+                            columnWidth : .25,
+                            layout : "form",
+                            items : [{
+                                // name :
+                                // 'ulEmployee.hujiSheng',
+                                // // 省
+                                id : 'ulEmployee.hujisheng_combo',
+                                // hiddenName :
+                                // 'ulEmployee.hujiSheng',
+                                xtype : 'combo',
+                                hideLabel:true,
+                                lazyInit : false,
+                                //emptyText : '请选择',
+                                mode : 'local',
+                                editable : false,
+                                triggerAction : 'all',
+                                anchor:'100%',
+                                store : AppUtil.address2.getStore_region(0,'ulEmployee.huji', this.huji),
+                                displayField : 'regionName',
+                                valueField : 'regionId',
+                                listeners : AppUtil.address2.getListeners_region(0,'ulEmployee.huji')
+                            }]
+                        }, {
+                            columnWidth : .25,
+                            layout : "form",
+                            items : [{
+                                // name :
+                                // 'ulEmployee.hujiShi', //
+                                // 市
+                                id : 'ulEmployee.hujishi_combo',
+                                // hiddenName :
+                                // 'ulEmployee.hujiShi',
+                                xtype : 'combo',
+                                lazyInit : false,
+                                mode : 'local',
+                                anchor:'100%',
+                                hideLabel:true,
+                                //emptyText : '请选择',
+                                editable : false,
+                                triggerAction : 'all',
+                                store :AppUtil.address2.getStore_region(1,'ulEmployee.huji', this.huji),
+                                displayField : 'regionName',
+                                valueField : 'regionId',
+                                listeners : AppUtil.address2.getListeners_region(1,'ulEmployee.huji')
+
+                            }]
+                        }, {
+                            columnWidth : .25,
+                            layout : "form",
+                            items : [{
+                                // name :
+                                // 'ulEmployee.hujiDiqu',
+                                id : 'ulEmployee.hujiqu_combo',
+                                // hiddenName :
+                                // 'ulEmployee.hujiDiqu',
+                                xtype : 'combo',
+                                mode : 'local',
+                                anchor:'100%',
+                                hideLabel:true,
+                                editable : false,
+                                //emptyText : '请选择',
+                                triggerAction : 'all',
+                                store :AppUtil.address2.getStore_region(2,'ulEmployee.huji', this.huji),
+                                displayField : 'regionName',
+                                valueField : 'regionId',
+                                listeners : AppUtil.address2.getListeners_region(2,'ulEmployee.huji')
+                            }]
+                        }]
+                    }, {	
+						xtype : 'hidden',
+						name : 'ulEmployee.education',
+						id : 'ulEmployee.education_hid'
+					},{	
+						xtype : 'hidden',
+						name : 'ulEmployee.ruzhifangshi',
+						id : 'ulEmployee.ruzhifangshi_hid'
+					},{
+						layout : 'column',
+						xtype : 'container',
+						defaults : {
+							border : false
+						},
+						items : [{
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+										 fieldLabel : '学历',
+										 id : 'ulEmployee.education_form',
+										 displayField : 'itemName',
+										 valueField : 'itemId',
+										 xtype : 'mtdiccombolocal',
+										 mode : 'local',
+										 triggerAction : 'all',
+										 anchor:'100%',
+                                         editable : false,
+										 forceSelection : false,
+                                         itemKey : 'YGXL0001',
+                                         listeners : UlEmployeeForm.getDicListeners(null,null,'ulEmployee.education_hid')
+									}]
+								}, {
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+												fieldLabel : '毕业院校',
+												name : 'ulEmployee.biyeyuanxiao',
+												xtype : 'textfield',
+												 anchor:'100%',
+												id : 'ulEmployee.biyeyuanxiao',
+												maxLength : 30
+											}]
+								}]
+					}, {
+						layout : 'column',
+						xtype : 'container',
+						defaults : {
+							border : false
+						},
+						items : [{
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+										 fieldLabel : '入职方式',
+										 id : 'ulEmployee.ruzhifangshi_form',
+										 displayField : 'itemName',
+										 valueField : 'itemId',
+										 xtype : 'mtdiccombolocal',
+										 mode : 'local',
+										 triggerAction : 'all',
+										 anchor:'100%',
+                                         editable : false,
+										 forceSelection : false,
+                                         itemKey : 'RZFS001',
+                                         listeners : UlEmployeeForm.getDicListeners(null,null,'ulEmployee.ruzhifangshi_hid')
+									}]
+								}, {
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+										fieldLabel : '入职时间',
+										name : 'ulEmployee.ruzhishijian',
+										xtype : 'datefield',
+										 anchor:'100%',
+										id : 'ulEmployee.ruzhishijian_form',
+										format : 'Y-m-d'
+									}]
+								},{
+									layout : 'form',
+									columnWidth : .334,
+									items : [{
+										layout : 'column',
+										xtype : 'container',
+										fieldLabel : '上级',
+										items : [{
+													name : 'ulEmployee.parent',
+													id : 'ulEmployee.parent_form_hid',
+													xtype : 'hidden'
+												}, {
+													columnWidth : .95,
+													xtype : 'textfield',
+													 anchor:'100%',
+													// width : '100px',
+													id : 'ulEmployee.parentName_form',
+                                                    editable : false
+												}, {
+													xtype : 'button',
+													border : false,
+													iconCls : 'btn-user-sel',
+													text : '选择',
+													handler : UlEmployeeForm.selectParent
+												}]
+									}]
+								}]
+					}, {	
+						xtype : 'hidden',
+						name : 'ulEmployee.zhiwei',
+						id : 'ulEmployee.zhiwei_hid'
+					}, {	
+						xtype : 'hidden',
+						name : 'ulEmployee.zhiji',
+						id : 'ulEmployee.zhiji_hid'
+					}, {
+						layout : 'column',
+						xtype : 'container',
+						defaults : {
+							border : false
+						},
+						items : [{
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+//										 fieldLabel : '职务<font style="color:red">*</font>',
+										fieldLabel : '职务',
+										id : 'ulEmployee.zhiwei_form',
+										 displayField : 'itemName',
+										 valueField : 'itemId',
+										 xtype : 'mtdiccombolocal',
+										 mode : 'local',
+										 triggerAction : 'all',
+										 anchor:'100%',
+										 forceSelection : false,
+                                         editable : false,
+                                         allowBlank : false,
+                                         itemKey : 'ZW001',
+										 listeners : UlEmployeeForm.getDicListeners('ZW001','ulEmployee.zhiji_form', 'ulEmployee.zhiwei_hid')
+											}]
+								}, {
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+										 fieldLabel : '职级',
+										 id : 'ulEmployee.zhiji_form',
+//										 displayField : 'itemName',
+//										 valueField : 'itemId',
+                                         editable : false,
+                                         lazyInit : false,
+										 xtype : 'mtdiccombolocal',
+										 mode : 'local',
+										 triggerAction : 'all',
+										 anchor:'100%',
+                                         strore : [[]],
+										 forceSelection : false,
+                                         listeners : UlEmployeeForm.getDicListeners(null, null, 'ulEmployee.zhiji_hid')
+									}]
+								}, {
+									layout : 'form',
+									columnWidth : .334,
+									fieldLabel:'部门',
+									items : [depSelector]
+								}, {
+                                                name : 'ulEmployee.ulDepartment.depid',
+                                                id : 'ulEmployee.depid_form',
+                                                xtype : 'hidden'
+                                            }]
+					}, {
+						layout : 'column',
+						defaults : {
+							border : false
+						},
+						items : [{
+									layout : 'form',
+									columnWidth : .333,
+									items : [{
+										fieldLabel : '转正时间',
+										name : 'ulEmployee.zhuanzhengshijian',
+										xtype : 'datefield',
+										anchor:'100%',
+										id : 'ulEmployee.zhuanzhengshijian_form',
+										format : 'Y-m-d'
+									}]
+								}, {
+									layout : 'form',
+									columnWidth : .334,
+									items : [{
+										fieldLabel : '合同到期时间',
+										name : 'ulEmployee.hetongdaoqishijian',
+										xtype : 'datefield',
+										format : 'Y-m-d',
+										 anchor:'100%',
+										id : 'ulEmployee.hetongdaoqishijian_form'
+									}]
+								}, {
+                                    columnWidth : .334,
+                                    layout : "form",
+                                    items : [{
+//                                      fieldLabel : '状态<font style="color:red">*</font>',
+                                    	 fieldLabel : '状态',
+                                         allowBlank : false,
+                                         id : 'ulEmployee.status_form',
+                                         xtype : 'mtdiccombolocal',
+                                         mode : 'local',
+                                         triggerAction : 'all',
+                                         anchor:'100%',
+                                         editable : false,
+                                         lazyInit : true,
+                                         forceSelection : false,
+                                         itemKey : 'ZT001',
+                                         listeners : UlEmployeeForm.getDicListeners(null,null,'ulEmployee.status_hid')
+                                    }]
+                                }]
+					}, {
+                        name : 'ulEmployee.gongzuodiSheng', // 省隐藏域
+                        id : 'ulEmployee.gongzuodisheng',
+                        xtype : 'hidden'
+                    }, {
+                        name : 'ulEmployee.gongzuodiShi', // 市隐藏域
+                        id : 'ulEmployee.gongzuodishi',
+                        xtype : 'hidden'
+                    }, {
+                        name : 'ulEmployee.gongzuodiDiqu', // 地区隐藏域
+                        id : 'ulEmployee.gongzuodiqu',
+                        xtype : 'hidden'
+                    }, {
+                        layout : 'column',
+                        xtype : 'container',
+                        fieldLabel : '工作所在地', // 国家
+                        defaults : {
+                            border : false
+                        },
+                        items : [{
+                            columnWidth : .25,
+                            layout : "form",
+                            items : [{
+                                // name :
+                                // 'ulEmployee.gongzuodiSheng',
+                                // // 省
+                                id : 'ulEmployee.gongzuodisheng_combo',
+                                // hiddenName :
+                                // 'ulEmployee.gongzuodiSheng',
+                                xtype : 'combo',
+                                lazyInit : false,
+                                hideLabel:true,
+                                //emptyText : '请选择',
+                                mode : 'local',
+                                anchor:'100%',
+                                editable : false,
+                                triggerAction : 'all',
+                                store : AppUtil.address2.getStore_region(0,'ulEmployee.gongzuodi', this.gongzuodi),
+                                displayField : 'regionName',
+                                valueField : 'regionId',
+                                listeners : AppUtil.address2.getListeners_region(0,'ulEmployee.gongzuodi')
+                            }]
+                        }, {
+                            columnWidth : .25,
+                            layout : "form",
+                            items : [{
+                                // name :
+                                // 'ulEmployee.gongzuodiShi', //
+                                // 市
+                                id : 'ulEmployee.gongzuodishi_combo',
+                                // hiddenName :
+                                // 'ulEmployee.gongzuodiShi',
+                                xtype : 'combo',
+                                lazyInit : false,
+                                mode : 'local',
+                               // emptyText : '请选择',
+                                hideLabel:true,
+                                anchor:'100%',
+                                editable : false,
+                                triggerAction : 'all',
+                                store :AppUtil.address2.getStore_region(1,'ulEmployee.gongzuodi', this.gongzuodi),
+                                displayField : 'regionName',
+                                valueField : 'regionId',
+                                listeners : AppUtil.address2.getListeners_region(1,'ulEmployee.gongzuodi')
+
+                            }]
+                        }, {
+                            columnWidth : .25,
+                            layout : "form",
+                            items : [{
+                                // name :
+                                // 'ulEmployee.gongzuodiDiqu',
+                                id : 'ulEmployee.gongzuodiqu_combo',
+                                // hiddenName :
+                                // 'ulEmployee.gongzuodiDiqu',
+                                xtype : 'combo',
+                                mode : 'local',
+                                anchor:'100%',
+                                hideLabel:true,
+                                //emptyText : '请选择',
+                                editable : false,
+                                triggerAction : 'all',
+                                store :AppUtil.address2.getStore_region(2,'ulEmployee.gongzuodi', this.gongzuodi),
+                                displayField : 'regionName',
+                                valueField : 'regionId',
+                                listeners : AppUtil.address2.getListeners_region(2,'ulEmployee.gongzuodi')
+                            }]
+                        }]
+                    }, {
+						fieldLabel : '备注',
+						name : 'ulEmployee.note',
+						xtype : 'textarea',
+//						anchor:'100%',
+						id : 'ulEmployee.note_form',
+						maxLength : 500
+					}, {
+						xtype : 'fieldset',
+						title : '联系方式<font style="color:red">*</font>',
+						border : true,
+						collapsed : false,
+						collapsible : true,
+						autoHeight : true,
+						defaults : {
+							anchor : '100%,100%'
+						},
+						items : [this.gridPanel_contact]
+					}]
+		});
+		// 加载表单对应的数据
+		if (this.useid != null && this.useid != 'undefined') {
+
+			this.formPanel.loadData({
+				// TODO 加载数据
+				url : __ctxPath + '/xitong/getUlEmployee.do?useid='
+						+ this.useid,
+				root : 'data',
+				preName : 'ulEmployee',
+				success : function(response, options) {
+
+					var thisObj = Ext.util.JSON.decode(response.responseText).data;
+//					Ext.getCmp('ulEmployee.gonghao').setText('工号：'
+//							+ thisObj.useid);
+					Ext.getCmp('ulEmployee.sex_form').setValue(thisObj.sex);
+					Ext.getCmp('ulEmployee.type_form').setValue(thisObj.type);
+                    Ext.getCmp('ulEmployee.status_form').setValue(thisObj.status);
+					Ext.getCmp('ulEmployee.education_form')
+							.setValue(thisObj.education);
+					Ext.getCmp('ulEmployee.ruzhifangshi_form')
+							.setValue(thisObj.ruzhifangshi);
+					Ext.getCmp('ulEmployee.zhiwei_form')
+							.setValue(thisObj.zhiwei);
+                            
+					var combo_zhiji = Ext.getCmp('ulEmployee.zhiji_form');
+                    AppUtil.getSubStore('ZW001', thisObj.zhiwei,
+                        'ulEmployee.zhiji_form', function(value){
+                            Ext.getCmp('ulEmployee.zhiji_form').setValue(value);
+                        },thisObj.zhiji
+                    );
+                    
+                    
+					Ext.getCmp('ulEmployee.parentName_form')
+							.setValue(thisObj.parentName);
+                            
+					var dep = thisObj.ulDepartment;
+					if (dep != null) {
+						Ext.getCmp('depTreeSelector').setValue(dep.depname);
+					}else{
+						Ext.ux.Toast.msg('操作信息', '该员工&nbsp;&nbsp;'
+								+ thisObj.fullname
+								+ '&nbsp;&nbsp;暂时没有部门,请尽快指定！');
+					}
+
+				},
+				failure : function(response, options) {
+					Ext.ux.Toast.msg('操作信息', '操作出错，请联系管理员！');
+				}
+			});
+		}
+
+	},// end of the initcomponents
+
+	createRs_contact : function() {
+		var store = this.gridPanel_contact.getStore();
+		var recordType = store.recordType;
+		store.add(new recordType({})); // 添加一行空store
+	},
+
+	removeSelRs_contact : function() {
+		var store = this.gridPanel_contact.getStore();
+		var sm = this.gridPanel_contact.getSelectionModel();
+		var cell = sm.getSelections();
+		if(cell.length<1){
+			Ext.ux.Toast.msg('提示信息', '请至少选择一条记录!');
+		} else {
+			store.remove(cell);
+		}
+	},
+
+	/**
+	 * 重置
+	 * 
+	 * @param {}
+	 *            formPanel
+	 */
+	reset : function() {
+		this.formPanel.getForm().reset();
+	},
+	/**
+	 * 取消
+	 * 
+	 * @param {}
+	 *            window
+	 */
+	cancel : function() {
+		var tabs = Ext.getCmp('centerTabPanel');
+		tabs.remove('UlEmployeeFormWin');
+		this.destroy();
+		// tabs.doLayout();
+	},
+	/**
+	 * 保存记录
+	 */
+	save : function() {
+		// 获得gridPanel_contact的store
+		if (this.formPanel.getForm().isValid()) {//会验证表单
+			var store = this.gridPanel_contact.getStore();
+			// 定义数组 row
+			var rows = [];
+
+			// store.getCount()为store的长度
+			for (var i = 0; i < store.getCount(); i++) {
+				// 将每一行store的值放入row数组里
+                if(Ext.isEmpty(store.getAt(i).data.contactType) || Ext.isEmpty(store.getAt(i).data.contactValue)){
+                    Ext.ux.Toast.msg('操作信息', '联系信息输入不完整!');
+                    return;
+                }
+				rows.push(store.getAt(i).data);
+			}
+            if(Ext.getCmp('ulEmployee.depid_form').getValue() == ''){
+		        Ext.ux.Toast.msg('操作信息', '请指定员工的部门！');
+		        return;
+		    }
+			// 判断grid提交的值是否为空
+			if (store.getCount() > 0) {
+				$postForm({
+							formPanel : this.formPanel,
+							scope : this,
+							url : __ctxPath + '/xitong/saveUlEmployee.do',
+							params : {
+								// 将数组提交至后台 details
+								details : Ext.encode(rows)
+							},
+							callback : function(fp, action) {
+								var tabs = Ext.getCmp('centerTabPanel');
+								tabs.remove('UlEmployeeFormWin');
+								Ext.getCmp('UlEmployeeGrid').getStore().reload();
+								this.destroy();
+							}
+						});
+			} else {
+				Ext.ux.Toast.msg('操作信息', '请至少添加一种联系方式！');
+			}
+		}
+	}// end of save
+
+});
+
+
+
+UlEmployeeForm.getDicListeners = function (mapName, subId, hidName){
+	return {
+		select : function(cbo, record, index) {
+//			eval('debugger');
+            var value =record.data.itemId;
+            if(subId != undefined){
+                AppUtil.getSubStore(mapName, value,subId);
+            } 
+            Ext.getCmp(hidName).setValue(value);
+		}
+	}
+};
+
+UlEmployeeForm.selectParent = function(){
+    UlEmployeeSelector.getView( function(userId, fullname, sex, useid, zhiwei) {
+            var select_useid = Ext.getCmp('useid').getValue();
+            // alert('工号'+select_useid);
+            if (select_useid == useid) {
+                Ext.ux.Toast.msg('操作信息', '员工的上级不能为自己');
+            } else {
+                Ext.getCmp("ulEmployee.parent_form_hid").setValue(useid);
+                Ext.getCmp("ulEmployee.parentName_form").setValue(fullname);
+            }
+        }).show();
+}

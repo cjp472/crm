@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ulane.base.model.xitong.Equipment" table="EQUIPMENT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="EId" column="EID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_EQUIPMENT_ID
+            	</param>
+			</generator>
+		</id>
+         <property
+            name="equipmentId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTID"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="equipmentName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTNAME"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="operatorId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPERATOR_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="branchId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BRANCH_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="bankTypeId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="BANK_TYPE_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="curdate"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CUR_DATE"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="ipAddress"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="IP_ADDRESS"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="address"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ADDRESS"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property name="bankname" type="java.lang.String" update="true"
+			insert="true" access="property" column="BANK_NAME" length="30" not-null="false"
+			unique="false" />
+			<property name="parentName" type="java.lang.String" update="true"
+			insert="true" access="property" column="PARENT_NAME" length="128" not-null="false"
+			unique="false" />
+			 <property name="JCNum" type="java.lang.String" update="true"
+			insert="true" access="property" column="JC_NUM" length="30" not-null="false"
+			unique="false" />
+			 <property name="JCName" type="java.lang.String" update="true"
+			insert="true" access="property" column="JC_NAME" length="64" not-null="false"
+			unique="false" />
+		<property name="parentId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_ID" length="38"
+			not-null="false" unique="false" />
+			<property name="delFlag" type="java.lang.Long" update="true"
+			insert="true" access="property" column="DELFLAG" length="38"
+			not-null="false" unique="false" />
+     </class>
+</hibernate-mapping>

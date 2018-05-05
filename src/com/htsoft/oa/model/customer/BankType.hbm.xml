@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.htsoft.oa.model.customer.BankType" table="jg_mechanis"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="bankTypeId" column="MECHANIS_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					JG_MECHANIS_ID 
+            	</param>
+			</generator>
+		</id>   
+		<property name="bankname" type="java.lang.String" update="true"
+			insert="true" access="property" column="BANK_NAME" length="30" not-null="false"
+			unique="false" />
+		<property name="parentId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_ID" length="38"
+			not-null="false" unique="false" />
+			<property name="rootid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ROOT_ID" length="38"
+			not-null="false" unique="false" />
+			<property name="childrenid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CHILDREN_ID" length="38"
+			not-null="false" unique="false" />
+		<property
+            name="branchId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BRANCH_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="path" length="100" not-null="false"
+			unique="false" />
+		<property name="bankTypeStatus" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="BANK_TYPE_STATUS"
+			length="10" not-null="false" unique="false" />
+		
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+			<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+	</class>
+</hibernate-mapping>

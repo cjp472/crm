@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.customer.model.fee.ObFeeIndexProject"
+        table="OB_FEE_INDEX_PROJECT"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="feeIndexProjectId"
+            column="FEE_INDEX_PROJECT_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_OB_FEE_INDEX_PROJECT_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="feeIndexProjectName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FEE_INDEX_PROJECT_NAME"
+            length="120"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="formula"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FORMULA"
+            length="120"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to ObFee -->
+	<set name="obFees"
+	     table="ob_fee"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="FEE_INDEX_PROJECT_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.customer.model.fee.ObFee"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObFeeIndexLevel -->
+	<set name="obFeeIndexLevels"
+	     table="ob_fee_index_level"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="FEE_INDEX_PROJECT_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.customer.model.fee.ObFeeIndexLevel"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObFeeRule -->
+	<set name="obFeeRules"
+	     table="ob_fee_rule"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="FEE_INDEX_PROJECT_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.customer.model.fee.ObFeeRule"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

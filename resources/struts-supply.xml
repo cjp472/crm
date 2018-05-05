@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="supply" extends="struts-default" namespace="/supply">
+	
+
+<!-- start:  Generated for ScBizOrderFee From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizOrderFee" class="ScBizOrderFeeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizOrderFee From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizOrderPurchase From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizOrderPurchase" class="ScBizOrderPurchaseAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizOrderPurchase From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizOrderRelated From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizOrderRelated" class="ScBizOrderRelatedAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizOrderRelated From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizOrderSales From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizOrderSales" class="ScBizOrderSalesAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizOrderSales From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizOrderStock From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizOrderStock" class="ScBizOrderStockAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizOrderStock From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizRelationType From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizRelationType" class="ScBizRelationTypeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizRelationType From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizSalesClassify From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizSalesClassify" class="ScBizSalesClassifyAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizSalesClassify From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBizSalesDetail From Template: struts-supply.xml.vm  -->
+	<action name="*ScBizSalesDetail" class="ScBizSalesDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBizSalesDetail From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBoPurchaseClassify From Template: struts-supply.xml.vm  -->
+	<action name="*ScBoPurchaseClassify" class="ScBoPurchaseClassifyAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBoPurchaseClassify From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBoPurchaseDetail From Template: struts-supply.xml.vm  -->
+	<action name="*ScBoPurchaseDetail" class="ScBoPurchaseDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBoPurchaseDetail From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBoStockClassify From Template: struts-supply.xml.vm  -->
+	<action name="*ScBoStockClassify" class="ScBoStockClassifyAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBoStockClassify From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScBoStockDetail From Template: struts-supply.xml.vm  -->
+	<action name="*ScBoStockDetail" class="ScBoStockDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScBoStockDetail From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScGoods From Template: struts-supply.xml.vm  -->
+	<action name="*ScGoods" class="ScGoodsAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScGoods From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScGoodsPrice From Template: struts-supply.xml.vm  -->
+	<action name="*ScGoodsPrice" class="ScGoodsPriceAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScGoodsPrice From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScGoodsPriceHis From Template: struts-supply.xml.vm  -->
+	<action name="*ScGoodsPriceHis" class="ScGoodsPriceHisAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScGoodsPriceHis From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScGoodsPriceRule From Template: struts-supply.xml.vm  -->
+	<action name="*ScGoodsPriceRule" class="ScGoodsPriceRuleAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScGoodsPriceRule From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScGoodsPriceVersion From Template: struts-supply.xml.vm  -->
+	<action name="*ScGoodsPriceVersion" class="ScGoodsPriceVersionAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScGoodsPriceVersion From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScGoodsStock From Template: struts-supply.xml.vm  -->
+	<action name="*ScGoodsStock" class="ScGoodsStockAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScGoodsStock From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScPriceVersion From Template: struts-supply.xml.vm  -->
+	<action name="*ScPriceVersion" class="ScPriceVersionAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScPriceVersion From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScProductAttr From Template: struts-supply.xml.vm  -->
+	<action name="*ScProductAttr" class="ScProductAttrAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScProductAttr From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScProductAttrVal From Template: struts-supply.xml.vm  -->
+	<action name="*ScProductAttrVal" class="ScProductAttrValAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScProductAttrVal From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScProductClassify From Template: struts-supply.xml.vm  -->
+	<action name="*ScProductClassify" class="ScProductClassifyAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScProductClassify From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScProductInst From Template: struts-supply.xml.vm  -->
+	<action name="*ScProductInst" class="ScProductInstAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScProductInst From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScProductInstNote From Template: struts-supply.xml.vm  -->
+	<action name="*ScProductInstNote" class="ScProductInstNoteAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScProductInstNote From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScPurchasePrice From Template: struts-supply.xml.vm  -->
+	<action name="*ScPurchasePrice" class="ScPurchasePriceAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScPurchasePrice From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScPurpriceVersion From Template: struts-supply.xml.vm  -->
+	<action name="*ScPurpriceVersion" class="ScPurpriceVersionAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScPurpriceVersion From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScThresholdLevel From Template: struts-supply.xml.vm  -->
+	<action name="*ScThresholdLevel" class="ScThresholdLevelAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScThresholdLevel From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for ScWarehouse From Template: struts-supply.xml.vm  -->
+	<action name="*ScWarehouse" class="ScWarehouseAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ScWarehouse From Template: struts-supply.xml.vm  -->
+	<action name="*ScProductCom" class="ScProductComAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+</package>
+</struts>

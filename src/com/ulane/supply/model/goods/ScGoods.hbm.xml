@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.supply.model.goods.ScGoods" table="SC_GOODS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="goodsId" column="GOODS_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_GOODS_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="productClassifyId" type="java.lang.Long" update="false"
+			insert="false" access="property" column="PRODUCT_CLASSIFY_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="goodsName" type="java.lang.String" update="true"
+			insert="true" access="property" column="GOODS_NAME" length="60"
+			not-null="false" unique="false" />
+		<property name="isLocked" type="java.lang.Short" update="true"
+			insert="true" access="property" column="IS_LOCKED" length="5"
+			not-null="true" unique="false" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="PATH" length="200" not-null="false"
+			unique="false" />
+		<property name="goodsCount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GOODS_COUNT" length="15"
+			not-null="false" unique="false" />
+		<property name="productModelFlag" type="java.lang.Short"
+			update="true" insert="true" access="property" column="PRODUCT_MODEL_FLAG"
+			length="5" not-null="true" unique="false" />
+		<property name="createUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updateUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="goodsDesc" type="java.lang.String" update="true"
+			insert="true" access="property" column="GOODS_DESC" length="500" not-null="false"
+			unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="5" not-null="false"
+			unique="false" />
+			
+		<property name="goodsModel" type="java.lang.String" update="true"
+			insert="true" access="property" column="GOODS_MODEL" length="60" not-null="false"
+			unique="false" />
+		<property name="numbers" type="java.lang.String" update="true"
+			insert="true" access="property" column="NUMBERS" length="60" not-null="false"
+			unique="false" />
+		<property name="goodsType" type="java.lang.Short"
+			update="true" insert="true" access="property" column="GOODS_TYPE"
+			length="5" not-null="true" unique="false" />
+		<property name="salesWay" type="java.lang.Short"
+			update="true" insert="true" access="property" column="SALES_WAY"
+			length="5" not-null="true" unique="false" />
+		<property name="distribution" type="java.lang.Short"
+			update="true" insert="true" access="property" column="DISTRIBUTION"
+			length="5" not-null="true" unique="false" />
+		<property name="integral" type="java.lang.Short"
+			update="true" insert="true" access="property" column="INTEGRAL"
+			length="8" not-null="true" unique="false" />
+		<property name="integralType" type="java.lang.Short"
+			update="true" insert="true" access="property" column="INTEGRAL_TYPE"
+			length="2" not-null="true" unique="false" />
+		<property name="introduction" type="java.lang.String" update="true"
+				insert="true" access="property" column="INTRODUCTION" length="1000" not-null="false"
+				unique="false" />
+		<property name="useMeans" type="java.lang.String" update="true"
+			insert="true" access="property" column="USE_MEANS" length="1000" not-null="false"
+			unique="false" />
+		<property name="goodsNote" type="java.lang.String" update="true"
+			insert="true" access="property" column="GOODS_NOTE" length="1000" not-null="false"
+			unique="false" />
+		<property name="afterSales" type="java.lang.String" update="true"
+			insert="true" access="property" column="AFTER_SALES" length="1000" not-null="false"
+			unique="false" />
+		<property name="characteristics" type="java.lang.String" update="true"
+			insert="true" access="property" column="CHARACTERISTICS" length="1000" not-null="false"
+			unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_1" length="60" not-null="false"
+				unique="false" />
+			<property name="ext2" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_2" length="60" not-null="false"
+				unique="false" />
+			<property name="ext3" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_3" length="60" not-null="false"
+				unique="false" />
+			<property name="ext4" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_4" length="60" not-null="false"
+				unique="false" />
+			<property name="ext5" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_5" length="60" not-null="false"
+				unique="false" />
+			<property name="ext6" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_6" length="60" not-null="false"
+				unique="false" />
+			<property name="ext7" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_7" length="60" not-null="false"
+				unique="false" />
+			<property name="ext8" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_8" length="60" not-null="false"
+				unique="false" />
+			<property name="ext9" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_9" length="60" not-null="false"
+				unique="false" />
+			<property name="ext10" type="java.lang.String" update="true"
+				insert="true" access="property" column="EXT_10" length="60" not-null="false"
+				unique="false" />
+			<property name="ext11" type="java.math.BigDecimal" update="true"
+				insert="true" access="property" column="EXT_11" precision="15" scale="5"
+				not-null="false" unique="false" />
+			<property name="ext12" type="java.math.BigDecimal" update="true"
+				insert="true" access="property" column="EXT_12" precision="15" scale="5"
+				not-null="false" unique="false" />
+			<property name="ext13" type="java.math.BigDecimal" update="true"
+				insert="true" access="property" column="EXT_13" precision="15" scale="5"
+				not-null="false" unique="false" />
+			<property name="ext14" type="java.math.BigDecimal" update="true"
+				insert="true" access="property" column="EXT_14" precision="15" scale="5"
+				not-null="false" unique="false" />
+			<property name="ext15" type="java.math.BigDecimal" update="true"
+				insert="true" access="property" column="EXT_15" precision="15" scale="5"
+				not-null="false" unique="false" />
+			<property name="ext16" type="java.util.Date" update="true"
+				insert="true" access="property" column="EXT_16" length="7" not-null="false"
+				unique="false" />
+			<property name="ext17" type="java.util.Date" update="true"
+				insert="true" access="property" column="EXT_17" length="7" not-null="false"
+				unique="false" />
+			<property name="ext18" type="java.util.Date" update="true"
+				insert="true" access="property" column="EXT_18" length="7" not-null="false"
+				unique="false" />
+			<property name="ext19" type="java.util.Date" update="true"
+				insert="true" access="property" column="EXT_19" length="7" not-null="false"
+				unique="false" />
+			<property name="ext20" type="java.util.Date" update="true"
+				insert="true" access="property" column="EXT_20" length="7" not-null="false"
+				unique="false" />
+			<property name="style" type="java.lang.String" update="true"
+				insert="true" access="property" column="STYLE" length="60" not-null="false"
+				unique="false" />		
+		<!-- imported bi-directional many-to-one association to ScGoodsPrice -->
+		<many-to-one name="scGoodsPrice"
+			class="com.ulane.supply.model.goods.ScGoodsPrice" not-null="false"
+			fetch="select" not-found="ignore">
+			<column name="GOODS_PRICE_ID" />
+		</many-to-one>
+		<!--
+			imported bi-directional many-to-one association to ScProductClassify
+		-->
+		<many-to-one name="scProductClassify"
+			class="com.ulane.supply.model.goods.ScProductClassify" not-null="false"
+			fetch="select" not-found="ignore">
+			<column name="PRODUCT_CLASSIFY_ID" />
+		</many-to-one>
+		 
+		<!--
+			imported bi-directional many-to-one association to ScPurchasePrice
+		-->
+		<many-to-one name="scPurchasePrice"
+			class="com.ulane.supply.model.goods.ScPurchasePrice" not-null="false"
+			fetch="select">
+			<column name="PUR_PRICE_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to ScBizSalesDetail
+		-->
+		<!--<set name="scBizSalesDetails" table="sc_biz_sales_detail" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.sales.ScBizSalesDetail" />
+		</set>
+		
+			exported bi-directional one-to-many association to ScBoPurchaseDetail
+		-->
+		<!--<set name="scBoPurchaseDetails" table="sc_bo_purchase_detail"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.purchase.ScBoPurchaseDetail" />
+		</set>
+		
+			exported bi-directional one-to-many association to ScBoStockDetail
+		-->
+			<!--<set name="scBoStockDetails" table="sc_bo_stock_detail" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.stock.ScBoStockDetail" />
+		</set>
+	
+			exported bi-directional many-to-one association to ScComboProduct
+		-->
+	<!--	<many-to-one name="scComboProduct"
+			class="com.ulane.supply.model.goods.ScComboProduct" not-null="false"
+			fetch="select">
+			<column name="COMBO_GOODS_ID" />
+		</many-to-one>
+		
+			exported bi-directional one-to-many association to ScGoodsPriceGoods
+		-->
+	<!--	<set name="scGoodsPriceGoodss" table="sc_goods_price_goods" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<many-to-many class="com.ulane.supply.model.goods.ScGoodsPriceVersion"  column="GOODS_PRICE_ID" fetch="join" />
+		</set>
+		
+			exported bi-directional one-to-many association to ScGoodsPriceHis
+		-->
+		<!--<set name="scGoodsPriceHiss" table="sc_goods_price_his" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.goods.ScGoodsPriceHis" />
+		</set>
+		
+			exported bi-directional one-to-many association to
+			ScGoodsPriceRuleGoods
+		-->
+		<!--<set name="scGoodsPriceRuleGoodss" table="sc_goods_price_rule_goods"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<many-to-many class="com.ulane.supply.model.goods.ScGoodsPriceRule" 
+			column="PRICE_RULE_ID" fetch="join"/>
+		</set>
+		 exported bi-directional one-to-many association to ScGoodsStock -->
+		<!-- <set name="scGoodsStocks" table="sc_goods_stock" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.stock.ScGoodsStock" />
+		</set>
+		
+			exported bi-directional one-to-many association to ScProductInst
+		-->
+		<!--<set name="scProductInsts" table="sc_product_inst" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.goods.ScProductInst" />
+		</set>
+		
+			exported bi-directional one-to-many association to
+			ScPurchasePriceGoods
+		-->
+		<!--
+		<set name="scPurchasePriceGoodss" table="sc_purchase_price_goods"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<many-to-many class="com.ulane.supply.model.goods.ScPriceVersion" 
+			column="PUR_PRICE_ID" fetch="join"/>
+		</set>
+		
+			exported bi-directional one-to-many association to ScPurchaseProduct
+		-->
+		<!--  		<set name="scPurchaseProducts" table="sc_purchase_product" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PRODUCT_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.customer.Customer" 
+			column="CUSTOMERID" fetch="join"/>
+		</set>
+		-->
+		
+		<!--
+			exported bi-directional one-to-many association to ScThresholdLevel
+		
+		<set name="scThresholdLevels" table="sc_threshold_level" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.stock.ScThresholdLevel" />
+			  
+		</set>
+		-->
+		<set name="obComProduct" table="ob_com_product" lazy="true" inverse="true"
+			cascade="save-update">
+			<key>
+				<column name="GOODS_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComProduct" />
+		</set>
+		
+		<set name="fileAttachs" table="sc_goods_file" lazy="false"
+				inverse="true" cascade="save-update" sort="unsorted">
+				<key>
+					<column name="GOODS_ID" />
+				</key>
+				<many-to-many class="com.htsoft.oa.model.system.FileAttach" 
+				column="FILEID" fetch="join"/>
+			</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+   <import resource="app-resources.xml"/>
+   <import resource="app-dao.xml"/>
+   <import resource="app-service.xml"/>
+   <import resource="app-action.xml"/>
+   <import resource="app-security.xml"/>
+   <import resource="app-jbpm.xml"/>
+   <import resource="app-scheduling.xml"/>
+   <import resource="app-jms.xml"/>
+   <import resource="app-cxf.xml"/>
+   
+   <!-- add by yongan.liu 接口配置文件  2011-8-10-->
+   <import resource="app-soap.xml"/>
+   <import resource="soap/cxf-beans.xml"/> 
+   <!-- 接口定时任务配置文件
+   <import resource="../quartz-config.xml"/> -->
+    <!-- add by yongan.liu 接口配置文件  2011-8-10 -->
+    
+    
+   <!--
+   <import resource="app-compass.xml"/>
+   -->
+   
+   <!-- dao层 -->
+   <import resource="dao/app-base-dao.xml"/>
+   <import resource="dao/app-know-dao.xml"/>
+   <import resource="dao/app-customer-dao.xml"/>
+   <import resource="dao/app-running-dao.xml"/>
+   <import resource="dao/app-callout-dao.xml"/>
+    <import resource="dao/app-supply-dao.xml"/>
+    <import resource="dao/app-monitor-dao.xml"/>
+   <!-- service层 -->
+   <import resource="service/app-base-service.xml"/>
+   <import resource="service/app-know-service.xml"/>
+   <import resource="service/app-customer-service.xml"/>
+   <import resource="service/app-running-service.xml"/>
+   <import resource="service/app-callout-service.xml"/>
+   <import resource="service/app-supply-service.xml"/>
+   <import resource="service/app-monitor-service.xml"/>
+   <!-- action层 -->
+   <import resource="action/app-base-action.xml"/>
+   <import resource="action/app-know-action.xml"/>
+   <import resource="action/app-customer-action.xml"/>
+   <import resource="action/app-running-action.xml"/>
+   <import resource="action/app-serve-action.xml"/>
+   <import resource="action/app-callout-action.xml"/>
+   <import resource="action/app-supply-action.xml"/>
+   <import resource="action/app-monitor-action.xml"/>
+</beans>

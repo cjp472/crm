@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.fee.ObFeeIndex" table="OB_FEE_INDEX"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="feeIndexId" column="FEE_INDEX_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_FEE_INDEX_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="feeIndexName" type="java.lang.String" update="true"
+			insert="true" access="property" column="FEE_INDEX_NAME" length="120"
+			not-null="false" unique="false" />
+		<property name="annual" type="java.lang.String" update="true"
+			insert="true" access="property" column="ANNUAL" length="4" not-null="false"
+			unique="false" />
+		<property name="cycle" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CY_CLE" length="5" not-null="false"
+			unique="false" />
+		<property name="comments" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMMENTS" length="255"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<!--  <property name="depId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="DEP_ID" length="18"
+			not-null="false" unique="false" />
+			-->
+		<!--
+			exported bi-directional one-to-many association to ObFeeIndexLevel
+		-->
+		<set name="obFeeIndexLevels" table="ob_fee_index_level" lazy="true" cascade="save-update" sort="unsorted" inverse="false">
+			<key>
+				<column name="FEE_INDEX_ID" />
+			</key>
+			<one-to-many class="com.ulane.customer.model.fee.ObFeeIndexLevel" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObFeeIndexUser
+		-->
+		<set name="ulEmployees" table="ob_fee_index_user" lazy="true" cascade="save-update" inverse="false" sort="unsorted">
+			<key>
+				<column name="FEE_INDEX_ID" />
+			</key>
+			<many-to-many class="com.ulane.base.model.xitong.UlEmployee"  column="USEID"  fetch="select" />
+		</set>
+	</class>
+</hibernate-mapping>

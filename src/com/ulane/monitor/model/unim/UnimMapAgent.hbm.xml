@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<class 
+    name="com.ulane.monitor.model.unim.UnimMapAgent" 
+    table="UNIM_MAP_AGENT"
+>
+  <composite-id name="comp_id" class="com.ulane.monitor.model.unim.UnimMapAgentPK">
+        <key-property name="agentId"  column="AGENT_ID" type="java.lang.Long" length="18"></key-property>
+    	<key-property  name="mapId"  column="MAP_ID"  type="java.lang.Long" length="18"></key-property>
+  </composite-id>
+</class>
+</hibernate-mapping>

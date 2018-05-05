@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.base.model.xitong.BeanExtSet"
+        table="BEAN_EXT_SET"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="extSetId"
+            column="EXT_SET_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_BEAN_EXT_SET_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="extName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EXT_SET_NAME"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="extParam"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EXT_SET_PARAM"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="extType"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="EXT_SET_TYPE"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="isStart"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="IS_STR"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        
+        <!-- imported bi-directional many-to-one association to BeanObject -->
+        <many-to-one
+			name="beanObjectColumns"
+			class="com.ulane.base.model.xitong.BeanObjectColumns"
+            not-null="true"
+			fetch="select"
+		>	
+			<column name="BEAN_OBJECT_COLUMNS_ID" />
+		</many-to-one>
+     </class>
+</hibernate-mapping>

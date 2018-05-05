@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+	targetNamespace="http://127.0.0.1:8080/ws/ncService"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap"
+	xmlns:impl="http://127.0.0.1:8080/ws/ncService"
+	xmlns:intf="http://127.0.0.1:8080/ws/ncService"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:message name="hasChargeBillResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="hasChargeBill">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+	
+	<wsdl:message name="rMBCunKuanResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="rMBCunKuan">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="rMBDaiKuanResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="rMBDaiKuan">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="wBCunKuanResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="wBCunKuan">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="wHPaiJiaResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="wHPaiJia">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="yeWuFeiLvResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="yeWuFeiLv">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="hangMingHangHaoResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="hangMingHangHao">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="jiGouResponse">
+		<wsdl:part name="return" type="xsd:string" />
+	</wsdl:message>
+	<wsdl:message name="jiGou">
+		<wsdl:part name="arg0" type="xsd:string" />
+	</wsdl:message>
+	
+	<wsdl:portType name="NcSoapServerImpl">
+		<wsdl:operation name="hasChargeBill" parameterOrder="arg0">
+			<wsdl:input message="intf:hasChargeBill" name="hasChargeBill" />
+			<wsdl:output message="intf:hasChargeBillResponse" name="hasChargeBillResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="rMBCunKuan" parameterOrder="arg0">
+			<wsdl:input message="intf:rMBCunKuan" name="rMBCunKuan" />
+			<wsdl:output message="intf:rMBCunKuanResponse" name="rMBCunKuanResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="rMBDaiKuan" parameterOrder="arg0">
+			<wsdl:input message="intf:rMBDaiKuan" name="rMBDaiKuan" />
+			<wsdl:output message="intf:rMBDaiKuanResponse" name="rMBDaiKuanResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="wBCunKuan" parameterOrder="arg0">
+			<wsdl:input message="intf:wBCunKuan" name="wBCunKuan" />
+			<wsdl:output message="intf:wBCunKuanResponse" name="wBCunKuanResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="wHPaiJia" parameterOrder="arg0">
+			<wsdl:input message="intf:wHPaiJia" name="wHPaiJia" />
+			<wsdl:output message="intf:wHPaiJiaResponse" name="wHPaiJiaResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="yeWuFeiLv" parameterOrder="arg0">
+			<wsdl:input message="intf:yeWuFeiLv" name="yeWuFeiLv" />
+			<wsdl:output message="intf:yeWuFeiLvResponse" name="yeWuFeiLvResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="hangMingHangHao" parameterOrder="arg0">
+			<wsdl:input message="intf:hangMingHangHao" name="hangMingHangHao" />
+			<wsdl:output message="intf:hangMingHangHaoResponse" name="hangMingHangHaoResponse" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="jiGou" parameterOrder="arg0">
+			<wsdl:input message="intf:jiGou" name="jiGou" />
+			<wsdl:output message="intf:jiGouResponse" name="jiGouResponse" />
+		</wsdl:operation>
+
+
+	</wsdl:portType>
+	<wsdl:binding name="NcSoapServerSoapBinding" type="intf:NcSoapServerImpl">
+		<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="hasChargeBill">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="hasChargeBill">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="hasChargeBillResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="rMBCunKuan">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="rMBCunKuan">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="rMBCunKuanResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="rMBDaiKuan">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="rMBDaiKuan">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="rMBDaiKuanResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="wBCunKuan">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="wBCunKuan">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="wBCunKuanResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="wHPaiJia">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="wHPaiJia">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="wHPaiJiaResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="yeWuFeiLv">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="yeWuFeiLv">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="yeWuFeiLvResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="hangMingHangHao">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="hangMingHangHao">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="hangMingHangHaoResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="jiGou">
+			<wsdlsoap:operation soapAction="" style="rpc"/>
+			<wsdl:input name="jiGou">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="jiGouResponse">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://127.0.0.1:8080/ws/ncService"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+	<wsdl:service name="NcSoapServerImplService">
+		<wsdl:port binding="intf:NcSoapServerSoapBinding" name="NcSoapServerImplPort">
+			<wsdlsoap:address location="http://127.0.0.1:8080/ws/ncService" />
+		</wsdl:port>
+	</wsdl:service>
+
+	
+</wsdl:definitions>

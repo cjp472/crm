@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="qucon" extends="struts-default" namespace="/qucon">
+	<!-- start:  Generated for QcCheck From Template: struts-running.xml.vm  -->
+	<action name="*QcCheck" class="QcCheckAction" method="{1}">
+		<result>${successResultValue}</result>
+		<result name="show">/js/qucon/showTemplate.jsp</result>
+	</action>
+<!-- end:  Generated for QcCheck From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcCheckDetail From Template: struts-running.xml.vm  -->
+	<action name="*QcCheckDetail" class="QcCheckDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcCheckDetail From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcChkBasis From Template: struts-running.xml.vm  -->
+	<action name="*QcChkBasis" class="QcChkBasisAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcChkBasis From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcScoreOpt From Template: struts-running.xml.vm  -->
+	<action name="*QcScoreOpt" class="QcScoreOptAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcScoreOpt From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTarCat From Template: struts-running.xml.vm  -->
+	<action name="*QcTarCat" class="QcTarCatAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcTarCat From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTemplate From Template: struts-running.xml.vm  -->
+	<action name="*QcTemplate" class="QcTemplateAction" method="{1}">
+		<result>${successResultValue}</result>
+		<result name="show">/js/qucon/showTemplate.jsp</result>
+	</action>
+<!-- end:  Generated for QcTemplate From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTempChapcter From Template: struts-running.xml.vm  -->
+	<action name="*QcTempChapcter" class="QcTempChapcterAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcTempChapcter From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTarget From Template: struts-running.xml.vm  -->
+	<action name="*QcTarget" class="QcTargetAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcTarget From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTempRelease From Template: struts-running.xml.vm  -->
+	<action name="*QcTempRelease" class="QcTempReleaseAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcTempRelease From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTempReObj From Template: struts-running.xml.vm  -->
+	<action name="*QcTempReObj" class="QcTempReObjAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcTempReObj From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcTempTar From Template: struts-running.xml.vm  -->
+	<action name="*QcTempTar" class="QcTempTarAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcTempTar From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcChkList From Template: struts-running.xml.vm  -->
+	<action name="*QcChkList" class="QcChkListAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcChkList From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcChkRul From Template: struts-running.xml.vm  -->
+	<action name="*QcChkRul" class="QcChkRulAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcChkRul From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcChkRulDetail From Template: struts-running.xml.vm  -->
+	<action name="*QcChkRulDetail" class="QcChkRulDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcChkRulDetail From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcChkGuid From Template: struts-running.xml.vm  -->
+	<action name="*QcChkGuid" class="QcChkGuidAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcChkGuid From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for QcChkGuidFile From Template: struts-running.xml.vm  -->
+	<action name="*QcChkGuidFile" class="QcChkGuidFileAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for QcChkGuidFile From Template: struts-running.xml.vm  -->
+</package>
+<package name="comtech" extends="struts-default" namespace="/comtech">
+<!-- start:  Generated for CtScrAnsDetail From Template: struts-running.xml.vm  -->
+	<action name="*CtScrAnsDetail" class="CtScrAnsDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrAnsDetail From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrAnsSummary From Template: struts-running.xml.vm  -->
+	<action name="*CtScrAnsSummary" class="CtScrAnsSummaryAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrAnsSummary From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrCat From Template: struts-running.xml.vm  -->
+	<action name="*CtScrCat" class="CtScrCatAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrCat From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrChapcter From Template: struts-running.xml.vm  -->
+	<action name="*CtScrChapcter" class="CtScrChapcterAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrChapcter From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrQue From Template: struts-running.xml.vm  -->
+	<action name="*CtScrQue" class="CtScrQueAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrQue From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrQueOpt From Template: struts-running.xml.vm  -->
+	<action name="*CtScrQueOpt" class="CtScrQueOptAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrQueOpt From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrRelease From Template: struts-running.xml.vm  -->
+	<action name="*CtScrRelease" class="CtScrReleaseAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrRelease From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrReleaseObj From Template: struts-running.xml.vm  -->
+	<action name="*CtScrReleaseObj" class="CtScrReleaseObjAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrReleaseObj From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrTemplate From Template: struts-running.xml.vm  -->
+	<action name="*CtScrTemplate" class="CtScrTemplateAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrTemplate From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrTemGotoRule From Template: struts-running.xml.vm  -->
+	<action name="*CtScrTemGotoRule" class="CtScrTemGotoRuleAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrTemGotoRule From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for CtScrTemQue From Template: struts-running.xml.vm  -->
+	<action name="*CtScrTemQue" class="CtScrTemQueAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for CtScrTemQue From Template: struts-running.xml.vm  -->
+
+</package>
+
+<package name="pap" extends="struts-default" namespace="/pap">
+<!-- start:  Generated for PapAnsDetail From Template: struts-running.xml.vm  -->
+	<action name="*PapAnsDetail" class="PapAnsDetailAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapAnsDetail From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapAnsSummary From Template: struts-running.xml.vm  -->
+	<action name="*PapAnsSummary" class="PapAnsSummaryAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapAnsSummary From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapCat From Template: struts-running.xml.vm  -->
+	<action name="*PapCat" class="PapCatAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapCat From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapChapcter From Template: struts-running.xml.vm  -->
+	<action name="*PapChapcter" class="PapChapcterAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapChapcter From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapQue From Template: struts-running.xml.vm  -->
+	<action name="*PapQue" class="PapQueAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapQue From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapQueOpt From Template: struts-running.xml.vm  -->
+	<action name="*PapQueOpt" class="PapQueOptAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapQueOpt From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapRelease From Template: struts-running.xml.vm  -->
+	<action name="*PapRelease" class="PapReleaseAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapRelease From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapReleaseObj From Template: struts-running.xml.vm  -->
+	<action name="*PapReleaseObj" class="PapReleaseObjAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapReleaseObj From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapTemplate From Template: struts-running.xml.vm  -->
+	<action name="*PapTemplate" class="PapTemplateAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapTemplate From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapTemGotoRule From Template: struts-running.xml.vm  -->
+	<action name="*PapTemGotoRule" class="PapTemGotoRuleAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapTemGotoRule From Template: struts-running.xml.vm  -->
+<!-- start:  Generated for PapTemQue From Template: struts-running.xml.vm  -->
+	<action name="*PapTemQue" class="PapTemQueAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for PapTemQue From Template: struts-running.xml.vm  -->
+
+</package>
+</struts>

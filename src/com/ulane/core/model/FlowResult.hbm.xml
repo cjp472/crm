@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.core.model.FlowResult"
+        table="FLOW_RESULT"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="flowResultId"
+            column="FLOW_RESULT_ID"
+            type="java.lang.Long"
+            length="38"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_FLOW_RESULT_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="flowType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FLOW_TYPE"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="flowPk"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="FLOW_PK"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="flowNode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FLOW_NODE"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="flowStatus"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FLOW_STATUS"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="runId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUNID"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+    </class>
+</hibernate-mapping>

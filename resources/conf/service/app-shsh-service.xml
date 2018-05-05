@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+
+<!-- start:  Generated for ShBugRepaire From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBugRepaireService" class="com.ulane.shsh.service.shhq.impl.ShBugRepaireServiceImpl">
+   	 	<constructor-arg index="0" ref="shBugRepaireDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBugRepaire From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBugReport From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBugReportService" class="com.ulane.shsh.service.shhq.impl.ShBugReportServiceImpl">
+   	 	<constructor-arg index="0" ref="shBugReportDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBugReport From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBugRepStuff From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBugRepStuffService" class="com.ulane.shsh.service.shhq.impl.ShBugRepStuffServiceImpl">
+   	 	<constructor-arg index="0" ref="shBugRepStuffDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBugRepStuff From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderAccept From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBuilderAcceptService" class="com.ulane.shsh.service.shhq.impl.ShBuilderAcceptServiceImpl">
+   	 	<constructor-arg index="0" ref="shBuilderAcceptDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBuilderAccept From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderApply From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBuilderApplyService" class="com.ulane.shsh.service.shhq.impl.ShBuilderApplyServiceImpl">
+   	 	<constructor-arg index="0" ref="shBuilderApplyDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBuilderApply From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderControl From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBuilderControlService" class="com.ulane.shsh.service.shhq.impl.ShBuilderControlServiceImpl">
+   	 	<constructor-arg index="0" ref="shBuilderControlDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBuilderControl From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderMethod From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBuilderMethodService" class="com.ulane.shsh.service.shhq.impl.ShBuilderMethodServiceImpl">
+   	 	<constructor-arg index="0" ref="shBuilderMethodDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBuilderMethod From Template: app-shsh-service.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderTime From Template: app-shsh-service.xml.beansvm  -->
+	 <bean id="shBuilderTimeService" class="com.ulane.shsh.service.shhq.impl.ShBuilderTimeServiceImpl">
+   	 	<constructor-arg index="0" ref="shBuilderTimeDao"/>
+   	 </bean>
+<!-- end:  Generated for ShBuilderTime From Template: app-shsh-service.xml.beansvm  -->
+</beans>

@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>登录参数设置</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta   HTTP-EQUIV="Pragma"   CONTENT="no-cache">   
+<meta   HTTP-EQUIV="Cache-Control"   CONTENT="no-cache">   
+<meta   HTTP-EQUIV="Expires"   CONTENT="0">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<style type="text/css">
+.nondis {display:none;color:#FF0000}
+BODY {
+	FONT-SIZE:10px; MARGIN: 0px; COLOR: #945f29; FONT-FAMILY: Arial;
+}
+</style>
+</head>
+
+<body bgcolor="#F6F5F5" onload="initPara();">
+<center>
+	
+	<table width="375" border="1" cellspacing="0">
+	  <tr>
+	    <th colspan="2" align="center">软电话参数设置</th>
+	  </tr>
+	  <tr>
+	    <td>工号:      </td><td><input style="width:240px" type="text" id="LoginID"></input><span id="LoginIDMsg" class="nondis">*请输入工号</span></td>
+	  </tr>
+	  <tr>
+	    <td>密码:      </td><td><input style="width:240px" type="password" id="Password"></input><span id="PasswordMsg" class="nondis">*请输入密码</span></td>
+	  </tr>
+	  <tr>
+	    <td>分机:    </td><td><input style="width:240px" type="text" id="StationID"></input><span id="StationIDMsg" class="nondis">*请输入分机</span></td>
+	  </tr>
+	  <tr>
+	    <td>SDK Server URL:</td><td><input style="width:240px" type="text" id="SDKServerURL" value=""></input><span id="SDKServerURLMsg"  class="nondis">*请输入SDK Server URL</span></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2" align="center"><button id="btnSave">保存</button>&nbsp;&nbsp;<button id="btnCancel">取消</button></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2" align="right" style="FONT-SIZE:12px; MARGIN: 0px; COLOR: #945f29; FONT-FAMILY: Arial;"><a href="../../doc/help.txt" target="_blank"><span>帮助</span></a>&nbsp;&nbsp;<a href="../../doc/aicenv.properties" target="_blank"><span>模版下载</span></a>(保存路径:C:\ulinksoftphone\)</td>
+	  </tr>
+	</table>
+</center>
+
+</body>	
+
+<script type="text/javascript">   
+String.prototype.replaceAll=function(s1,s2)
+{var demo=this;
+ while(demo.indexOf(s1)!=-1)
+ 	demo=demo.replace(s1,s2);
+ return demo;
+}
+</script>  
+<script>
+	function $(id){return document.getElementById(id);}
+	function $value(id){return $(id).value;}
+	function $display(id, displayVal){return $(id).style.display=displayVal;}
+
+	function GetHeader(src) { 
+			 var ForReading=1; 
+			 var fso=new ActiveXObject("Scripting.FileSystemObject"); 
+			 var f=fso.OpenTextFile(src,ForReading); 
+			 return(f.ReadAll()); 
+	}
+</script>
+
+<script>
+		
+	var parentPage = window.opener;
+	var filePath = parentPage.spEnvFilePath;
+//读文件 
+function readFile(){
+	try{
+		var fso = new ActiveXObject("Scripting.FileSystemObject"); 
+
+		var f = fso.OpenTextFile(filePath,1);//只读
+		var line; 
+		while (!f.AtEndOfStream){
+			line = f.ReadLine();
+			if(line.indexOf('avaya.ic.sdk.user.name=')==0) {
+				val = line.substring('avaya.ic.sdk.user.name='.length,line.length);
+				$("LoginID").value = val;
+			}if(line.indexOf('avaya.ic.sdk.user.password=')==0) {
+				val = line.substring('avaya.ic.sdk.user.password='.length,line.length);
+				$("Password").value = val;						
+			}if(line.indexOf('avaya.ic.sdk.user.stationid=')==0) {
+				val = line.substring('avaya.ic.sdk.user.stationid='.length,line.length);
+				$("StationID").value = val;						
+			}if(line.indexOf('avaya.ic.sdk.appserver.uri=')==0) {
+				val = line.substring('avaya.ic.sdk.appserver.uri='.length,line.length);
+				val = val.replaceAll("\\","");
+				$("SDKServerURL").value = val;						
+			}
+		}
+		f.Close(); 
+	}catch(ex){
+			alert("读取配置文件"+filePath+"失败!请下载模版覆盖后打开该页面进行设置.");
+			$("btnSave").disabled = true;
+			//window.close();
+	}
+}
+	
+	//写文件 
+	function writeFile(){
+	    var fso, f, s ; 
+	    fso = new ActiveXObject("Scripting.FileSystemObject");
+			
+	    f = fso.OpenTextFile(filePath,2,true);//可写,没有则自动创建
+	    var filecontent = "#SDK Agent Properties Path:C:\\ulinksoftphone\\"+"\r\n" 
+	                    + "#"+new Date()+"\r\n";
+	    filecontent += "avaya.ic.sdk.appserver.uri=" +$("SDKServerURL").value.replaceAll("\\","")+"\r\n";
+	    filecontent += "avaya.ic.sdk.user.name="     +$("LoginID").value+"\r\n";
+	    filecontent += "avaya.ic.sdk.user.password=" +$("Password").value+"\r\n";
+	    filecontent += "avaya.ic.sdk.user.stationid="+$("StationID").value+"\r\n";			
+	    f.WriteLine(filecontent);
+	    f.Close(); 
+	}
+	
+	function initPara(){
+		checkFolderAndFile();
+		readFile();
+		
+		//如果登录传递了工号,则取登录传入的工号。密码与工号一致
+		var inputAgentLoginID = window.opener.inputAgentLoginID;
+		if(inputAgentLoginID){
+			$("LoginID").value = inputAgentLoginID;
+			$("Password").value = inputAgentLoginID;
+		}
+	}
+	
+	function checkFolderAndFile(){
+		// 检查文件夹是否存在
+		var strFolder = filePath;
+		//strFolder = strFolder.toLowerCase();      //把路径名称转换成小写
+		myPosition = strFolder.lastIndexOf("/");  // linux获取文件路径中的最后一个"/"
+		if(myPosition<0) myPosition = strFolder.lastIndexOf("\\");  // windows获取文件路径中的最后一个"/"
+		strFolder = strFolder.substring(0,parseInt(myPosition)+1); // 使用substring函数 截取"/"之前的字符串，就得到当前目录的路径 
+		strFolder = strFolder.replace("file:///","");   //这里要把file:///替换为空，否则会报错
+		strFolder = strFolder.replace(new RegExp("%20","gm")," ");   // 如果文件名中含有空格，则要还原空格，替换所有的 %20 为 " "
+		//alert(strFolder);
+		var fso = new ActiveXObject("Scripting.FileSystemObject"); 
+		
+		// 文件夹是否存在
+		if (!fso.FolderExists(strFolder)){
+			// 创建文件夹
+			var strFolderName = fso.CreateFolder(strFolder);
+		}
+		/*
+		// 文件是否存在
+		if (!fso.FileExists(filePath)){
+				// 创建新文件  
+				tf = fso.CreateTextFile(filePath, true);
+				// 关闭文件  
+				tf.Close();
+		}
+		*/
+	}
+	
+	function checkInput(){
+		var ret = true;
+		$display("LoginIDMsg", "none");
+		$display("PasswordMsg", "none");
+		$display("StationIDMsg", "none");
+		$display("SDKServerURLMsg", "none");
+		if(!$value("LoginID")){
+			$display("LoginIDMsg", "block");ret = false;
+		}
+		if(!$value("Password")){
+			$display("PasswordMsg", "block");ret = false;
+		}
+		if(!$value("StationID")){
+			$display("StationIDMsg", "block");ret = false;
+		}
+		if(!$value("SDKServerURL")){
+			$display("SDKServerURLMsg", "block");ret = false;
+		}
+		return ret;
+	}
+	
+	$("btnSave").onclick = function(){
+		if(checkInput()){
+			writeFile();//将新的设置写入配置文件
+			
+			parentPage.softphone_init_agentLoginID   =$("LoginID").value;
+			parentPage.softphone_init_agentPassword  =$("Password").value;
+			parentPage.softphone_init_extensionNumber=$("StationID").value;
+			parentPage.softphone_init_sdkAddress     =$("SDKServerURL").value.replaceAll("\\","");
+			parentPage.softphone_init_sdkAddress2    =$("SDKServerURL").value.replaceAll("\\","");
+			parentPage.setInitDataAllFromLocal();
+			//alert("设置成功,请登录!");			
+			window.close();
+		}
+	}
+	$("btnCancel").onclick = function(){
+		window.close();
+	}
+
+</script>
+</HTML>

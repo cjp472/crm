@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_12" text="销售管理" iconCls="mod-dingdan">
+	<Items id="Ent1" text="机会管理" iconCls="menu-ent">
+		<Item id="JHGenZongView" text="机会跟踪" />
+		<Item id="JHGuanLiView" text="机会管理" />
+		<Item id="JHChaXunView" text="机会查询" />
+	</Items>
+	<Items id="Ent2" text="报价管理" iconCls="menu-ent">
+		<Item id="BJGenZongView" text="报价跟踪" />
+		<Item id="BJChaXunView" text="报价查询" />
+	</Items>
+	<Items id="Ent3" text="合同管理" iconCls="menu-ent">
+		<Item id="HTGenZongView" text="合同跟踪" />
+		<Item id="HTGuiDangView" text="合同归档" />
+		<Item id="HTChaXunView" text="合同查询" />
+	</Items>
+	<Items id="Ent4" text="订单管理" iconCls="menu-ent">
+		<!--  <Item id="DDallView" text="所有订单" />
+		<Item id="DDgenzongView" text="待跟踪订单" />
+		<Item id="DDjieanView" text="已结案订单" />
+		<Items id="DDmyView" text="我的订单">
+			<Item id="DDmygenzongView" text="我的待跟踪订单" />
+			<Item id="DDmyjieanView" text="我的已结案订单" />
+			<Item id="ScBizOrderSalesView" text="销售业务单" />
+		</Items>-->
+		<Item id="DDgenzongNewView" text="订单跟踪" />
+		<Item id="DDShenHeView" text="订单审核" />
+		<Item id="DDHuiFangView" text="订单回访" />
+		<Item id="DDChaXunView" text="订单查询" />
+	</Items>
+	<Items id="Ent5" text="发货管理" iconCls="menu-ent">
+		<Item id="FHPeiSongGongSiView" text="配送公司管理" />
+		<Item id="FHPeiSongGenZongView" text="配送跟踪" />
+		<Item id="FHPeiSongChaXunView" text="配送查询" />
+	</Items>
+</Menus>

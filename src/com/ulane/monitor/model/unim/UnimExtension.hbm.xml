@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.monitor.model.unim.UnimExtension"
+        table="UNIM_EXTENSION"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="extId"
+            column="EXT_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			S_UNIM_EXTENSION
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="extCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EXT_CODE"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="ipaddress"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="IPADDRESS"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="ipport"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="IPPORT"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="username"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="USERNAME"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="password"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PASSWORD"
+            length="20"
+            not-null="false"
+            unique="false"
+        />
+     </class>
+</hibernate-mapping>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- start:  Generated for ObBizTypeTree From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obBizTypeTreeService" class="com.ulane.callout.service.outb.impl.ObBizTypeTreeServiceImpl">
+   	 	<constructor-arg index="0" ref="obBiztypeTreeDao"/>
+   	 </bean>
+<!-- end:  Generated for ObBizTypeTree From Template: app-callout-service.xml.beansvm  -->	
+<!-- start:  Generated for ObComPap From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obComPapService" class="com.ulane.callout.service.outb.impl.ObComPapServiceImpl">
+   	 	<constructor-arg index="0" ref="obComPapDao"/>
+   	 </bean>
+<!-- end:  Generated for ObComPap From Template: app-callout-service.xml.beansvm  -->	
+<!-- start:  Generated for ObComPap From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obComScrService" class="com.ulane.callout.service.outb.impl.ObComScrServiceImpl">
+   	 	<constructor-arg index="0" ref="obComScrDao"/>
+   	 </bean>
+<!-- end:  Generated for ObComPap From Template: app-callout-service.xml.beansvm  -->	
+<!-- start:  Generated for ObComPap From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obComProductService" class="com.ulane.callout.service.outb.impl.ObComProductServiceImpl">
+   	 	<constructor-arg index="0" ref="obComProductDao"/>
+   	 </bean>
+<!-- end:  Generated for ObComPap From Template: app-callout-service.xml.beansvm  -->	
+
+
+
+<!-- start:  Generated for ObCallbatch From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCallbatchService" class="com.ulane.callout.service.outb.impl.ObCallbatchServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatch From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchAss From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCallbatchAssService" class="com.ulane.callout.service.outb.impl.ObCallbatchAssServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchAssDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatchAss From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchHis From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCallbatchHisService" class="com.ulane.callout.service.outb.impl.ObCallbatchHisServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchHisDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatchHis From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchImpTmp From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCallbatchImpTmpService" class="com.ulane.callout.service.outb.impl.ObCallbatchImpTmpServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchImpTmpDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatchImpTmp From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCalllist From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCalllistService" class="com.ulane.callout.service.outb.impl.ObCalllistServiceImpl">
+   	 	<constructor-arg index="0" ref="obCalllistDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCalllist From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCom From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obComService" class="com.ulane.callout.service.outb.impl.ObComServiceImpl">
+   	 	<constructor-arg index="0" ref="obComDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCom From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObComSalerul From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obComSalerulService" class="com.ulane.callout.service.outb.impl.ObComSalerulServiceImpl">
+   	 	<constructor-arg index="0" ref="obComSalerulDao"/>
+   	 </bean>
+<!-- end:  Generated for ObComSalerul From Template: app-callout-service.xml.beansvm  -->
+
+<!-- start:  Generated for ObConCalllist From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obConCalllistService" class="com.ulane.callout.service.outb.impl.ObConCalllistServiceImpl">
+   	 	<constructor-arg index="0" ref="obConCalllistDao"/>
+   	 </bean>
+<!-- end:  Generated for ObConCalllist From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObProject From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obProjectService" class="com.ulane.callout.service.outb.impl.ObProjectServiceImpl">
+   	 	<constructor-arg index="0" ref="obProjectDao"/>
+   	 </bean>
+<!-- end:  Generated for ObProject From Template: app-callout-service.xml.beansvm  -->
+
+<!-- 新增表：ObProjExecTypeService -->
+	 <bean id="obProjExecTypeService" class="com.ulane.callout.service.outb.impl.ObProjExecTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="obProjExecTypeDao"/>
+   	 </bean>
+	 <bean id="ObWashHisService" class="com.ulane.callout.service.outb.impl.ObWashHisServiceImpl">
+   	 	<constructor-arg index="0" ref="obWashHisDao"/>
+   	 </bean>
+   	 
+<!-- start:  Generated for ObSaletask From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obSaletaskService" class="com.ulane.callout.service.outb.impl.ObSaletaskServiceImpl">
+   	 	<constructor-arg index="0" ref="obSaletaskDao"/>
+   	 </bean>
+<!-- end:  Generated for ObSaletask From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObSaletaskBo From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obSaletaskBoService" class="com.ulane.callout.service.outb.impl.ObSaletaskBoServiceImpl">
+   	 	<constructor-arg index="0" ref="obSaletaskBoDao"/>
+   	 </bean>
+<!-- end:  Generated for ObSaletaskBo From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchCus From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCallbatchCusService" class="com.ulane.callout.service.outb.impl.ObCallbatchCusServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchCusDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatchCus From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchImpWash From Template: app-callout-service.xml.beansvm  -->
+	 <bean id="obCallbatchImpWashService" class="com.ulane.callout.service.outb.impl.ObCallbatchImpWashServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchImpWashDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatchImpWash From Template: app-callout-service.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchExtract From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="obCallbatchExtractService" class="com.ulane.callout.service.outb.impl.ObCallbatchExtractServiceImpl">
+   	 	<constructor-arg index="0" ref="obCallbatchExtractDao"/>
+   	 </bean>
+<!-- end:  Generated for ObCallbatchExtract From Template: app-monitor-service.xml.beansvm  -->
+</beans>

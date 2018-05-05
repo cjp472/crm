@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CsOrderTime"
+		table="CS_ORDER_TIME" select-before-update="false" dynamic-update="false"
+		dynamic-insert="false" optimistic-lock="version">
+		<id name="orderTimeId" column="ORDER_TIME_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CS_ORDER_TIME_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="orderSorce" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_SORCE" length="5"
+			not-null="false" unique="false" />
+		<property name="order" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_" length="5" not-null="false"
+			unique="false" />
+		<property name="orderProject" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_PROJECT" length="5"
+			not-null="false" unique="false" />
+		<property name="orderLevel" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ORDER_LEVEL" length="5"
+			not-null="false" unique="false" />
+		<property name="cusLevel" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_LEVEL" length="5"
+			not-null="false" unique="false" />
+		<property name="responseTime" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="RESPONSE_TIME"
+			precision="5" scale="2" not-null="false" unique="false" />
+		<property name="completionTime" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="COMPLETION_TIME"
+			precision="5" scale="2" not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<!--
+			imported bi-directional many-to-one association to ProUserAssign
+		-->
+		<many-to-one name="createUser"
+			class="com.htsoft.oa.model.system.AppUser" not-null="false"
+			fetch="select">
+			<column name="CREATE_USER_ID" />
+		</many-to-one>
+		<many-to-one name="updateUser"
+			class="com.htsoft.oa.model.system.AppUser" not-null="false"
+			fetch="select">
+			<column name="UPDATE_USER_ID" />
+		</many-to-one>
+		<many-to-one name="proUserAssign"
+			class="com.htsoft.oa.model.flow.ProUserAssign" not-null="false"
+			fetch="select">
+			<column name="ASSIGNID" />
+		</many-to-one>
+		
+		<many-to-one name="idDictionary"
+			class="com.htsoft.oa.model.system.Dictionary" not-null="false"
+			fetch="select">
+			<column name="DIC_ID" />
+		</many-to-one>
+		<many-to-one name="globalType"
+			class="com.htsoft.oa.model.system.GlobalType" not-null="false"
+			fetch="select">
+			<column name="GLOBAL_ID" />
+		</many-to-one>
+		
+		<property name="responseTimeType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RESPONSE_TIME_TYPE" length="5"
+			not-null="false" unique="false" />
+		<property name="completionTimeType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="COMPLETION_TIME_TYPE" length="5"
+			not-null="false" unique="false" />	
+		
+	</class>
+</hibernate-mapping>

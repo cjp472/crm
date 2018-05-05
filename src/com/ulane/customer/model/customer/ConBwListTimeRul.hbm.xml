@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ConBwListTimeRul"
+		table="CON_BW_LIST_TIME_RUL" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="bwListTimeRulId" column="BW_LIST_TIME_RUL_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_BW_LIST_TIME_RUL_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="staTime" type="java.lang.String" update="true"
+			insert="true" access="property" column="STA_TIME" length="18"
+			not-null="false" unique="false" />
+		<property name="endTime" type="java.lang.String" update="true"
+			insert="true" access="property" column="END_TIME" length="18"
+			not-null="false" unique="false" />
+		<property name="staDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="endDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_DATE" length="7"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ConBwList -->
+		<many-to-one name="conBwList"
+			class="com.ulane.customer.model.customer.ConBwList" not-null="false"
+			fetch="select" >
+			<column name="BW_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

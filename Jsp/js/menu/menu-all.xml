@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Modules>
+ 
+	<module name="oa" file="menu-oa.xml"/>
+	<module name="kehu" file="menu-kehu.xml"/>
+	<module name="fuwu" file="menu-fuwu.xml"/>
+	<module name="gongdan" file="menu-gongdan.xml"/>
+	<module name="waihu" file="menu-waihu.xml"/>
+     <module name="dingdan" file="menu-dingdan.xml"/> 
+	 <module name="chanpin" file="menu-chanpin.xml"/>
+	<module name="knowledge" file="menu-know.xml"/>
+	<module name="renwu" file="menu-renwu.xml"/>
+	<module name="lianluo" file="menu-lianluo.xml"/>
+	<!-- <module name="report" file="menu-report.xml"/> -->
+	<module name="yunying" file="menu-yunying.xml"/>
+<!-- 	<module name="hr" file="menu-hr.xml"/>
+	<module name="shangji" file="menu-shangji.xml"/>
+	<module name="peixun" file="menu-peixun.xml"/> -->
+	<!-- <module name="yonghu" file="menu-yonghu.xml"/> -->
+		
+	
+	<!--<module name="myflow" file="menu-myflow.xml"/>
+	<module name="arch" file="menu-arch.xml"/>
+	<module name="archives" file="menu-archives.xml"/>
+	<module name="xitong" file="menu-xitong.xml"/>
+	<module name="ent" file="menu-ent.xml"/>
+ 
+    <module name="tab1" file="menu-1.xml"/>
+	<module name="tab6" file="menu-6.xml"/>
+	<module name="tab9" file="menu-9.xml"/>
+	<module name="tab16" file="menu-16.xml"/>-->
+	<module name="setting" file="menu-setting.xml"/>
+</Modules>

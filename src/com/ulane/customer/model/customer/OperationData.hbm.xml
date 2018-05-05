@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.OperationData" table="SYS_OPERATION" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="id" column="ID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							SEQ_OPERATION
+		            	</param>
+					</generator>
+				</id>
+				<property name="BS_Num" type="java.lang.Long" column="BS_NUM"
+					length="19" />
+				<property name="agentId" type="java.lang.String" column="AGENTID"
+					length="128" />
+				<property name="insertTime" type="java.lang.String" column="INSERTTIME"
+					length="128" />
+				<property name="Stype" type="java.lang.String" column="TYPE"
+					length="128" />
+	</class>
+</hibernate-mapping>

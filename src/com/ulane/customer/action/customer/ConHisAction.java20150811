@@ -1,0 +1,2100 @@
+package com.ulane.customer.action.customer;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import javax.annotation.Resource;
+import javax.mail.Address;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import oracle.net.aso.a;
+import oracle.net.aso.e;
+import oracle.net.aso.r;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.kahadb.util.DiskBenchmark.Report;
+import org.apache.struts2.ServletActionContext;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import sun.awt.AppContext;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+
+
+import com.google.common.base.Function;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.htsoft.core.service.GenericService;
+import com.htsoft.core.util.BeanUtil;
+import com.htsoft.core.util.ContextUtil;
+import com.htsoft.core.util.DateUtil;
+import com.htsoft.core.util.JsonUtil;
+
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.jbpm.pv.TaskInfo;
+import com.htsoft.core.model.TaskLink;
+import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.model.system.AgentReport;
+import com.htsoft.oa.model.system.AppRole;
+import com.htsoft.oa.model.system.AppUser;
+import com.htsoft.oa.model.system.Region;
+
+
+import com.opensymphony.xwork2.ActionContext;
+import com.raq.dataserver.jdbc.Request;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.core.plugin.soap.impl.ConHisSoapServerImpl;
+import com.ulane.customer.model.customer.CallIdOrAgentInfo;
+import com.ulane.customer.model.customer.ConAttach;
+import com.ulane.customer.model.customer.ConHis;
+import com.ulane.customer.model.customer.Count;
+import com.ulane.customer.model.customer.EveryDayReport;
+import com.ulane.customer.model.customer.Examine;
+import com.ulane.customer.model.customer.MachineSelf;
+import com.ulane.customer.model.customer.MachineSelfAttach;
+import com.ulane.customer.model.customer.OperationData;
+import com.ulane.customer.model.customer.ReportView;
+import com.ulane.customer.model.customer.SysWorkattendance;
+import com.ulane.customer.service.customer.ConAttachService;
+import com.ulane.customer.service.customer.ConHisService;
+import com.ulane.know.model.know.UkKnowTemplate;
+import com.ulane.know.model.know.UkKnowType;
+
+import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
+
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+public class ConHisAction extends BaseAction{
+	@Resource
+	private ConHisService conHisService;
+	@Resource
+	private ConAttachService conAttachService;
+	
+	//------------
+	private GenericService genericService ;
+	//------------
+	
+	private ConHis conHis;
+	
+	private AgentReport agentReport;
+	
+	public AgentReport getAgentReport() {
+		return agentReport;
+	}
+
+	public void setAgentReport(AgentReport agentReport) {
+		this.agentReport = agentReport;
+	}
+
+
+	private Long conHisId;
+
+	public Long getConHisId() {
+		return conHisId;
+	}
+
+	public void setConHisId(Long conHisId) {
+		this.conHisId = conHisId;
+	}
+
+	public ConHis getConHis() {
+		return conHis;
+	}
+
+	public void setConHis(ConHis conHis) {
+		this.conHis = conHis;
+	}
+
+	
+	private Long bankTypeId;
+	
+	
+	public Long getBankTypeId() {
+		return bankTypeId;
+	}
+
+	public void setBankTypeId(Long bankTypeId) {
+		this.bankTypeId = bankTypeId;
+	}
+
+
+	/**
+	 * 显示列表
+	 */
+	public String list(){
+		System.out.println("首先进入list");
+		QueryFilter filter=new QueryFilter(getRequest());   //---------->com.htsoft.core.command.QueryFilter@6ea3721e
+		filter.addSorted("conHisId", "DESC");//System.out.pritln();
+		List<ConHis> list= conHisService.getAll(filter);
+		//System.out.println("list---------->"+list);
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':").append(filter.getPagingBean().getTotalItems()).append(",result:[");
+        JSONSerializer serializer = JsonUtil.getJSONSerializer();
+        serializer.transform(new DateTransformer("yyyy-MM-dd HH:mm:ss"),new String[] { "staTime","endTime","createDate"});
+        //System.out.println("sersssss"+serializer);
+        for(ConHis conHis:list){
+            buff.append(serializer.include("conAttachs.cusName","conAttachs.credNum","conAttachs.terminalId","conAttachs.createBy","conAttachs.fileType","conAttachs.createDate").exclude("conAttachs.conHis").serialize(conHis)); 
+            buff.deleteCharAt(buff.length() - 1);  //去掉最后的大括号
+            buff.append(",\"contactNusm\":\"").append(conHis.getPreContactNum()).append("-").append(conHis.getMainContactNum()).append("-").append(conHis.getLastContactNum()).append("\"");
+            buff.append("},");
+            //System.out.println("-->"+buff.toString());
+        }
+        if(list.size()>0){
+            buff.deleteCharAt(buff.length()-1);		//去掉最后的,号
+        }
+       // ExtHelper.getJsonFromList(list);
+		buff.append("]}");
+		
+		jsonString=buff.toString();
+		//System.out.println("AllList-->"+buff.toString());
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * HY
+	 * 2013/12/25
+	 * 报表内容  <展现所有的表数据，getAll>
+	 * @return String：SUCCESS
+	 */
+	public String getAllReport(){
+		List<ReportView> reportsList = new ArrayList<ReportView>();
+		StringBuffer buff = new StringBuffer("[");
+		try {
+			String reportInfo = getRequest().getParameter("ReportInfo");
+			System.out.println("agentId --> "+reportInfo);
+			if(reportInfo.equals("all")){  //如果参数ID传0  查询出所有表数据
+				reportsList = conHisService.getReportAll("All");
+				for(int i = 0 ; i<reportsList.size(); i ++){
+					if(reportsList.get(i).getId().getLiyonglv().equals("1") || reportsList.get(i).getId().getLiyonglv().equals("0")){
+						if(reportsList.get(i).getId().getLiyonglv().equals("1")){reportsList.get(i).getId().setLiyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getLiyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setLiyonglv("100%");}
+						else{reportsList.get(i).getId().setLiyonglv(returnMasString(reportsList.get(i).getId().getLiyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getZongliyonglv().equals("1") || reportsList.get(i).getId().getZongliyonglv().equals("0")){
+						if(reportsList.get(i).getId().getZongliyonglv().equals("1")){reportsList.get(i).getId().setZongliyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getZongliyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setZongliyonglv("100%");}
+						else{reportsList.get(i).getId().setZongliyonglv(returnMasString(reportsList.get(i).getId().getZongliyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getKeyonglv().equals("1") || reportsList.get(i).getId().getKeyonglv().equals("0")){
+						if(reportsList.get(i).getId().getKeyonglv().equals("1")){reportsList.get(i).getId().setKeyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getKeyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setKeyonglv("100%");}
+						else{reportsList.get(i).getId().setKeyonglv(returnMasString(reportsList.get(i).getId().getKeyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getEndinboundcountlv().equals("1") || reportsList.get(i).getId().getEndinboundcountlv().equals("0")){
+						if(reportsList.get(i).getId().getEndinboundcountlv().equals("1")){reportsList.get(i).getId().setEndinboundcountlv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getEndinboundcountlv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setEndinboundcountlv("100%");}
+						else{reportsList.get(i).getId().setEndinboundcountlv(returnMasString(reportsList.get(i).getId().getEndinboundcountlv().toString().split("[.]")[1]));}
+					}
+					/*
+					 * "loginname","endinboundcount","inboundtime","avagecalltime","afterworktime","avageafterworktime","kongxiantime",
+						 	 "dates","leavetime","lsworktime","meetingtime",
+						 	 "managertime","traintime","liyonglv","zongliyonglv","keyonglv","unansweredcount","endinboundcountlv"
+					 */
+					buff.append("['"+reportsList.get(i).getId().getLoginname())
+					.append("','"+reportsList.get(i).getId().getEndinboundcount())
+					.append("','"+reportsList.get(i).getId().getAvaqueuecalltime())
+					.append("','"+reportsList.get(i).getId().getXmiaosucccount())
+					.append("','"+reportsList.get(i).getId().getQueuecount())
+					.append("','"+reportsList.get(i).getId().getInboundtime())
+					.append("','"+reportsList.get(i).getId().getAvagecalltime())
+					.append("','"+reportsList.get(i).getId().getAfterworktime())
+					.append("','"+reportsList.get(i).getId().getAvageafterworktime())
+					.append("','"+reportsList.get(i).getId().getKongxiantime())
+					.append("','"+reportsList.get(i).getId().getLeavetime())
+					.append("','"+reportsList.get(i).getId().getLsworktime())
+					.append("','"+reportsList.get(i).getId().getMeetingtime())
+					.append("','"+reportsList.get(i).getId().getManagertime())
+					.append("','"+reportsList.get(i).getId().getTraintime())
+					.append("','"+reportsList.get(i).getId().getLiyonglv())
+					.append("','"+reportsList.get(i).getId().getZongliyonglv())
+					.append("','"+reportsList.get(i).getId().getKeyonglv())
+					.append("','"+reportsList.get(i).getId().getUnansweredcount())
+					.append("','"+reportsList.get(i).getId().getEndinboundcountlv()).append("'],");
+				}
+			}else{ //否则查询该有的条件数据
+				//String str = new String(reportInfo);
+				//2014-04-14 00#2014-04-14 18
+				//String a[] = str.split("#");
+				//System.out.println(a[0]+"< OR >"+a[1]);
+				//reportsList = conHisService.getSomeOneReport(a[0],a[1],a[2]);
+				reportsList = conHisService.getSomeOneReport(reportInfo);
+				System.out.println("查询后台成功回到action层"+reportsList.size());
+				for(int i = 0 ; i<reportsList.size(); i ++){
+					if(reportsList.get(i).getId().getLiyonglv().equals("1") || reportsList.get(i).getId().getLiyonglv().equals("0")){
+						if(reportsList.get(i).getId().getLiyonglv().equals("1")){reportsList.get(i).getId().setLiyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getLiyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setLiyonglv("100%");}
+						else{reportsList.get(i).getId().setLiyonglv(returnMasString(reportsList.get(i).getId().getLiyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getZongliyonglv().equals("1") || reportsList.get(i).getId().getZongliyonglv().equals("0")){
+						if(reportsList.get(i).getId().getZongliyonglv().equals("1")){reportsList.get(i).getId().setZongliyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getZongliyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setZongliyonglv("100%");}
+						else{reportsList.get(i).getId().setZongliyonglv(returnMasString(reportsList.get(i).getId().getZongliyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getKeyonglv().equals("1") || reportsList.get(i).getId().getKeyonglv().equals("0")){
+						if(reportsList.get(i).getId().getKeyonglv().equals("1")){reportsList.get(i).getId().setKeyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getKeyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setKeyonglv("100%");}
+						else{reportsList.get(i).getId().setKeyonglv(returnMasString(reportsList.get(i).getId().getKeyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getEndinboundcountlv().equals("1") || reportsList.get(i).getId().getEndinboundcountlv().equals("0")){
+						if(reportsList.get(i).getId().getEndinboundcountlv().equals("1")){reportsList.get(i).getId().setEndinboundcountlv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getEndinboundcountlv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setEndinboundcountlv("100%");}
+						else{reportsList.get(i).getId().setEndinboundcountlv(returnMasString(reportsList.get(i).getId().getEndinboundcountlv().toString().split("[.]")[1]));}
+					}
+					buff.append("['"+reportsList.get(i).getId().getLoginname())
+					.append("','"+reportsList.get(i).getId().getEndinboundcount())
+					.append("','"+reportsList.get(i).getId().getAvaqueuecalltime())
+					.append("','"+reportsList.get(i).getId().getXmiaosucccount())
+					.append("','"+reportsList.get(i).getId().getQueuecount())
+					.append("','"+reportsList.get(i).getId().getInboundtime())
+					.append("','"+reportsList.get(i).getId().getAvagecalltime())
+					.append("','"+reportsList.get(i).getId().getAfterworktime())
+					.append("','"+reportsList.get(i).getId().getAvageafterworktime())
+					.append("','"+reportsList.get(i).getId().getKongxiantime())
+					.append("','"+reportsList.get(i).getId().getLeavetime())
+					.append("','"+reportsList.get(i).getId().getLsworktime())
+					.append("','"+reportsList.get(i).getId().getMeetingtime())
+					.append("','"+reportsList.get(i).getId().getManagertime())
+					.append("','"+reportsList.get(i).getId().getTraintime())
+					.append("','"+reportsList.get(i).getId().getLiyonglv())
+					.append("','"+reportsList.get(i).getId().getZongliyonglv())
+					.append("','"+reportsList.get(i).getId().getKeyonglv())
+					.append("','"+reportsList.get(i).getId().getUnansweredcount())
+					.append("','"+reportsList.get(i).getId().getEndinboundcountlv()).append("'],");
+				}
+			}
+			System.out.println("try");
+		} catch (Exception e) {
+			reportsList = conHisService.getReportAll("100");
+			System.out.println("try3333");
+			if(reportsList != null){
+				for(int i = 0 ; i<reportsList.size(); i ++){
+					if(reportsList.get(i).getId().getLiyonglv().equals("1") || reportsList.get(i).getId().getLiyonglv().equals("0")){
+						if(reportsList.get(i).getId().getLiyonglv().equals("1")){reportsList.get(i).getId().setLiyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getLiyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setLiyonglv("100%");}
+						else{reportsList.get(i).getId().setLiyonglv(returnMasString(reportsList.get(i).getId().getLiyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getZongliyonglv().equals("1") || reportsList.get(i).getId().getZongliyonglv().equals("0")){
+						if(reportsList.get(i).getId().getZongliyonglv().equals("1")){reportsList.get(i).getId().setZongliyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getZongliyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setZongliyonglv("100%");}
+						else{reportsList.get(i).getId().setZongliyonglv(returnMasString(reportsList.get(i).getId().getZongliyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getKeyonglv().equals("1") || reportsList.get(i).getId().getKeyonglv().equals("0")){
+						if(reportsList.get(i).getId().getKeyonglv().equals("1")){reportsList.get(i).getId().setKeyonglv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getKeyonglv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setKeyonglv("100%");}
+						else{reportsList.get(i).getId().setKeyonglv(returnMasString(reportsList.get(i).getId().getKeyonglv().toString().split("[.]")[1]));}
+					}
+					if(reportsList.get(i).getId().getEndinboundcountlv().equals("1") || reportsList.get(i).getId().getEndinboundcountlv().equals("0")){
+						if(reportsList.get(i).getId().getEndinboundcountlv().equals("1")){reportsList.get(i).getId().setEndinboundcountlv("100%");}
+					}else{
+						if(reportsList.get(i).getId().getEndinboundcountlv().toString().split("[.]")[0].length() >= 1){reportsList.get(i).getId().setEndinboundcountlv("100%");}
+						else{reportsList.get(i).getId().setEndinboundcountlv(returnMasString(reportsList.get(i).getId().getEndinboundcountlv().toString().split("[.]")[1]));}
+					}
+					buff.append("['"+reportsList.get(i).getId().getLoginname())
+					.append("','"+reportsList.get(i).getId().getEndinboundcount())
+					.append("','"+reportsList.get(i).getId().getAvaqueuecalltime())
+					.append("','"+reportsList.get(i).getId().getXmiaosucccount())
+					.append("','"+reportsList.get(i).getId().getQueuecount())
+					.append("','"+reportsList.get(i).getId().getInboundtime())
+					.append("','"+reportsList.get(i).getId().getAvagecalltime())
+					.append("','"+reportsList.get(i).getId().getAfterworktime())
+					.append("','"+reportsList.get(i).getId().getAvageafterworktime())
+					.append("','"+reportsList.get(i).getId().getKongxiantime())
+					.append("','"+reportsList.get(i).getId().getLeavetime())
+					.append("','"+reportsList.get(i).getId().getLsworktime())
+					.append("','"+reportsList.get(i).getId().getMeetingtime())
+					.append("','"+reportsList.get(i).getId().getManagertime())
+					.append("','"+reportsList.get(i).getId().getTraintime())
+					.append("','"+reportsList.get(i).getId().getLiyonglv())
+					.append("','"+reportsList.get(i).getId().getZongliyonglv())
+					.append("','"+reportsList.get(i).getId().getKeyonglv())
+					.append("','"+reportsList.get(i).getId().getUnansweredcount())
+					.append("','"+reportsList.get(i).getId().getEndinboundcountlv()).append("'],");
+				}
+			}
+			System.out.println("catch");
+			// TODO: handle exception
+		}
+		if(reportsList != null){
+			if(reportsList.size() > 0){
+				buff.deleteCharAt(buff.length()-1);//去掉最后的,号
+			}
+		}
+		
+		buff.append("]");
+		System.out.println("setJsonString.buff.toStr.length>>>>>>>>"+buff.length());
+		setJsonString(buff.toString());
+		return SUCCESS;
+	}
+	
+	/**
+	 * HY
+	 * 2014/3/3
+	 * 专用返回函数
+	 * @return String 
+	 */
+	public String returnMasString(String info) {
+		String str = "";
+		if(info.length() == 4){
+			str = info.substring(0, 2).toString()+"."+info.substring(2).toString();  
+			//01.79%
+			if(info.split("[.]")[0].equals("00")){
+				str = "0."+info.substring(2).toString();
+			}else if(info.split("[.]")[0].indexOf("0")==0){
+				str = info.substring(1, 2).toString()+"."+info.substring(2).toString();
+			}
+		}else if(info.length() == 3){
+			str = info.substring(0, 2).toString()+"."+info.substring(2).toString()+"0";
+			if(info.split("[.]")[0].indexOf("0")==0){
+				str = info.substring(1, 2).toString()+"."+info.substring(2).toString()+"0";
+			}
+		}else if(info.length() == 2){
+			str = info + ".00";
+		}else if(info.length() == 1){
+			str = info + "0.00";
+		}
+		//System.out.println("string info-----"+info+"%");
+		return str+"%";
+	}
+	
+	/**
+	 * HY
+	 * 2013/1/20
+	 * 系统日报表内容   <按条件查询相应的数据>
+	 * @return String：SUCCESS
+	 */
+	public String getEveryDayReport(){
+		System.out.println("getEveryDayReport Method");
+		List<EveryDayReport> eveReports = new ArrayList<EveryDayReport>();
+		StringBuffer buff = new StringBuffer("[");
+		try {
+			String eveRep = getRequest().getParameter("eveReport");
+			System.out.println("request : "+eveRep);
+			if(eveRep.equals("all")){
+				//查询所有的数据
+				eveReports = conHisService.getEveryDayReport("All");
+				for(int i = 0 ; i<eveReports.size(); i ++){
+					if(eveReports.get(i).getId().getSuccendinbountcall().equals("1") || eveReports.get(i).getId().getSuccendinbountcall().equals("0")){
+						if(eveReports.get(i).getId().getSuccendinbountcall().equals("1")){eveReports.get(i).getId().setSuccendinbountcall("100%");}
+					}else{
+						//调用字符串解析函数returnmasString(string info);
+						eveReports.get(i).getId().setSuccendinbountcall(returnMasString(eveReports.get(i).getId().getSuccendinbountcall().substring(1).toString()));
+					}
+					//格式化服务水平
+					if(eveReports.get(i).getId().getFwshuiping().equals("1") || eveReports.get(i).getId().getFwshuiping().equals("0")){
+						if(eveReports.get(i).getId().getFwshuiping().equals("1")){eveReports.get(i).getId().setFwshuiping("100%");}
+					}else {
+						//调用字符串解析函数returnmasString(string info);
+						if(eveReports.get(i).getId().getFwshuiping().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setFwshuiping("100%");}
+						else{eveReports.get(i).getId().setFwshuiping(returnMasString(eveReports.get(i).getId().getFwshuiping().toString().split("[.]")[1]));}
+					}
+					if(eveReports.get(i).getId().getLiyonglv().equals("1") || eveReports.get(i).getId().getLiyonglv().equals("0")){
+						if(eveReports.get(i).getId().getLiyonglv().equals("1")){eveReports.get(i).getId().setLiyonglv("100%");}
+					}else {
+						//调用字符串解析函数returnmasString(string info);
+						if(eveReports.get(i).getId().getLiyonglv().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setLiyonglv("100%");}
+						else{eveReports.get(i).getId().setLiyonglv(returnMasString(eveReports.get(i).getId().getLiyonglv().toString().split("[.]")[1]));}
+					}
+					if(eveReports.get(i).getId().getKeyonglv().equals("1") || eveReports.get(i).getId().getKeyonglv().equals("0")){
+						if(eveReports.get(i).getId().getKeyonglv().equals("1")){eveReports.get(i).getId().setKeyonglv("100%");}
+					}else {
+						//调用字符串解析函数returnmasString(string info);
+						if(eveReports.get(i).getId().getKeyonglv().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setKeyonglv("100%");}
+						else{eveReports.get(i).getId().setKeyonglv(returnMasString(eveReports.get(i).getId().getKeyonglv().toString().split("[.]")[1]));}
+					}
+					buff.append("['"+eveReports.get(i).getId().getBothtime())
+					.append("','"+eveReports.get(i).getId().getLogincount())
+					.append("','"+eveReports.get(i).getId().getFwshuiping()).append("','"+eveReports.get(i).getId().getEndinboundcount())
+					.append("','"+eveReports.get(i).getId().getQueueendcallcount())
+					.append("','"+eveReports.get(i).getId().getSuccendinbountcall()) 
+					.append("','"+eveReports.get(i).getId().getAveragecalltime())
+					.append("','"+eveReports.get(i).getId().getAvaafterworktime())
+					.append("秒','"+eveReports.get(i).getId().getLiyonglv())
+					.append("','"+eveReports.get(i).getId().getKeyonglv())
+					.append("','"+eveReports.get(i).getId().getAvaqueuetime())
+					.append("秒','"+eveReports.get(i).getId().getMaxqueuetime())
+					.append("秒','"+eveReports.get(i).getId().getSixtyreturn()).append("'],");
+				}
+			}else{
+				//按条件查询数据
+				eveReports = conHisService.getEveryDayReportByDay(eveRep);
+				for(int i = 0 ; i<eveReports.size(); i ++){
+					if(eveReports.get(i).getId().getSuccendinbountcall().equals("1") || eveReports.get(i).getId().getSuccendinbountcall().equals("0")){
+						if(eveReports.get(i).getId().getSuccendinbountcall().equals("1")){eveReports.get(i).getId().setSuccendinbountcall("100%");}
+					}else{
+						//调用字符串解析函数returnmasString(string info);
+						eveReports.get(i).getId().setSuccendinbountcall(returnMasString(eveReports.get(i).getId().getSuccendinbountcall().substring(1).toString()));
+					}
+					//格式化服务水平
+					if(eveReports.get(i).getId().getFwshuiping().equals("1") || eveReports.get(i).getId().getFwshuiping().equals("0")){
+						if(eveReports.get(i).getId().getFwshuiping().equals("1")){eveReports.get(i).getId().setFwshuiping("100%");}
+					}else {
+						//调用字符串解析函数returnmasString(string info);
+						if(eveReports.get(i).getId().getFwshuiping().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setFwshuiping("100%");}
+						else{eveReports.get(i).getId().setFwshuiping(returnMasString(eveReports.get(i).getId().getFwshuiping().toString().split("[.]")[1]));}
+					}
+					if(eveReports.get(i).getId().getLiyonglv().equals("1") || eveReports.get(i).getId().getLiyonglv().equals("0")){
+						if(eveReports.get(i).getId().getLiyonglv().equals("1")){eveReports.get(i).getId().setLiyonglv("100%");}
+					}else {
+						//调用字符串解析函数returnmasString(string info);
+						if(eveReports.get(i).getId().getLiyonglv().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setLiyonglv("100%");}
+						else{eveReports.get(i).getId().setLiyonglv(returnMasString(eveReports.get(i).getId().getLiyonglv().toString().split("[.]")[1]));}
+					}
+					if(eveReports.get(i).getId().getKeyonglv().equals("1") || eveReports.get(i).getId().getKeyonglv().equals("0")){
+						if(eveReports.get(i).getId().getKeyonglv().equals("1")){eveReports.get(i).getId().setKeyonglv("100%");}
+					}else {
+						//调用字符串解析函数returnmasString(string info);
+						if(eveReports.get(i).getId().getKeyonglv().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setKeyonglv("100%");}
+						else{eveReports.get(i).getId().setKeyonglv(returnMasString(eveReports.get(i).getId().getKeyonglv().toString().split("[.]")[1]));}
+					}
+					buff.append("['"+eveReports.get(i).getId().getBothtime())
+					.append("','"+eveReports.get(i).getId().getLogincount())
+					.append("','"+eveReports.get(i).getId().getFwshuiping()).append("','"+eveReports.get(i).getId().getEndinboundcount())
+					.append("','"+eveReports.get(i).getId().getQueueendcallcount())
+					.append("','"+eveReports.get(i).getId().getSuccendinbountcall()) 
+					.append("','"+eveReports.get(i).getId().getAveragecalltime())
+					.append("','"+eveReports.get(i).getId().getAvaafterworktime())
+					.append("秒','"+eveReports.get(i).getId().getLiyonglv())
+					.append("','"+eveReports.get(i).getId().getKeyonglv())
+					.append("','"+eveReports.get(i).getId().getAvaqueuetime())
+					.append("秒','"+eveReports.get(i).getId().getMaxqueuetime())
+					.append("秒','"+eveReports.get(i).getId().getSixtyreturn()).append("'],");
+				}
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			eveReports = conHisService.getEveryDayReport("100");
+			for(int i = 0 ; i<eveReports.size(); i ++){
+				if(eveReports.get(i).getId().getSuccendinbountcall().equals("1") || eveReports.get(i).getId().getSuccendinbountcall().equals("0")){
+					if(eveReports.get(i).getId().getSuccendinbountcall().equals("1")){eveReports.get(i).getId().setSuccendinbountcall("100%");}
+				}else{
+					//调用字符串解析函数returnmasString(string info);
+					eveReports.get(i).getId().setSuccendinbountcall(returnMasString(eveReports.get(i).getId().getSuccendinbountcall().substring(1).toString()));
+				}
+				//格式化服务水平
+				if(eveReports.get(i).getId().getFwshuiping().equals("1") || eveReports.get(i).getId().getFwshuiping().equals("0")){
+					if(eveReports.get(i).getId().getFwshuiping().equals("1")){eveReports.get(i).getId().setFwshuiping("100%");}
+				}else {
+					//调用字符串解析函数returnmasString(string info);
+					if(eveReports.get(i).getId().getFwshuiping().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setFwshuiping("100%");}
+					else{eveReports.get(i).getId().setFwshuiping(returnMasString(eveReports.get(i).getId().getFwshuiping().toString().split("[.]")[1]));}
+				}
+				if(eveReports.get(i).getId().getLiyonglv().equals("1") || eveReports.get(i).getId().getLiyonglv().equals("0")){
+					if(eveReports.get(i).getId().getLiyonglv().equals("1")){eveReports.get(i).getId().setLiyonglv("100%");}
+				}else {
+					//调用字符串解析函数returnmasString(string info);
+					if(eveReports.get(i).getId().getLiyonglv().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setLiyonglv("100%");}
+					else{eveReports.get(i).getId().setLiyonglv(returnMasString(eveReports.get(i).getId().getLiyonglv().toString().split("[.]")[1]));}
+				}
+				if(eveReports.get(i).getId().getKeyonglv().equals("1") || eveReports.get(i).getId().getKeyonglv().equals("0")){
+					if(eveReports.get(i).getId().getKeyonglv().equals("1")){eveReports.get(i).getId().setKeyonglv("100%");}
+				}else {
+					//调用字符串解析函数returnmasString(string info);
+					if(eveReports.get(i).getId().getKeyonglv().toString().split("[.]")[0].length() >= 1){eveReports.get(i).getId().setKeyonglv("100%");}
+					else{eveReports.get(i).getId().setKeyonglv(returnMasString(eveReports.get(i).getId().getKeyonglv().toString().split("[.]")[1]));}
+				}
+				buff.append("['"+eveReports.get(i).getId().getBothtime())
+				.append("','"+eveReports.get(i).getId().getLogincount())
+				.append("','"+eveReports.get(i).getId().getFwshuiping()).append("','"+eveReports.get(i).getId().getEndinboundcount())
+				.append("','"+eveReports.get(i).getId().getQueueendcallcount())
+				.append("','"+eveReports.get(i).getId().getSuccendinbountcall()) 
+				.append("','"+eveReports.get(i).getId().getAveragecalltime())
+				.append("','"+eveReports.get(i).getId().getAvaafterworktime())
+				.append("秒','"+eveReports.get(i).getId().getLiyonglv())
+				.append("','"+eveReports.get(i).getId().getKeyonglv())
+				.append("','"+eveReports.get(i).getId().getAvaqueuetime())
+				.append("秒','"+eveReports.get(i).getId().getMaxqueuetime())
+				.append("秒','"+eveReports.get(i).getId().getSixtyreturn()).append("'],");
+			}
+		}
+		if(eveReports.size() > 0){
+			buff.deleteCharAt(buff.length()-1);//去掉最后的,号
+		}
+		buff.append("]");
+		System.out.println("setJsonString(buff.toStr.length>>>>>>>>"+buff);
+		setJsonString(buff.toString());
+		return SUCCESS;
+	}
+	
+	/**
+	 * HY
+	 * 2014/01/20
+	 * stringbuffer 拼接
+	 */
+	public String everyDayBuffer(int i) {
+		System.out.println("count = 0  ->  OK");
+		return SUCCESS;
+	}
+	/**
+	 * 打印Excel 表格
+	 */
+	public String print(){
+		System.out.println("print----------------");
+		return SUCCESS;
+	}
+	
+	/**
+	 * 存储相应的Callid以及对应座席编号
+	 * 2014/04/22
+	 * @author Mr.Hu
+	 */
+	public String saveCallIDorAgentID(){
+		System.out.println("[ConHisAction.java] - invoke(调用): saveCallIDorAgentID()");
+		try {
+			String callid = getRequest().getParameter("callID");
+			String agentid = getRequest().getParameter("agentID");
+			String machineid = getRequest().getParameter("machineID");
+			System.out.println("[ConHisAction.java] - "+callid+"---------"+agentid+"---------"+machineid);
+			conHisService.saveCallIdOrAgentId(callid,agentid,machineid);
+		} catch (Exception e) {
+			System.out.println("catch");
+		}
+		return SUCCESS;
+	}
+	
+	
+	/**
+	 * 存储Operation表数据  进入系统、登录Cti、退出系统
+	 * 2014/12/18
+	 * @author Hyman
+	 */
+	public String insertOperation(){
+		try {
+			Long BS_Num = Long.parseLong(getRequest().getParameter("bsnum"));
+			String agentId = getRequest().getParameter("agentID");
+			String insertTime = getRequest().getParameter("insertTime");
+			String Stype = getRequest().getParameter("Stype");
+			System.out.println("[ConHisAction.java] - BS_Num = "+BS_Num+" agentId = "+agentId+" insertTime = "+insertTime+" Stype = "+Stype);
+			conHisService.insertOperationData(BS_Num, agentId, insertTime, Stype);
+			System.out.println("[ConHisAction.java] - insertOperationData SUCCESS!!!!");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 获取Operation表中的最大的BS_Num值
+	 * 2014/12/18
+	 * @author Hyman
+	 */
+	public String selectMaxOpera(){
+		try {
+			System.out.println("[ConHisAction.java] - invoke(调用):selectMaxOpera()");
+			OperationData oData = conHisService.selectMaxOpera();
+			Gson gson = new Gson();
+			StringBuffer sb = new StringBuffer("{success:true,data:");
+			
+			sb.append(gson.toJson(oData));
+			sb.append("}");
+			setJsonString(sb.toString());
+			System.out.println("[ConHisAction.java] - selectMaxOpera() - 输出:StringBuffer sb = " + sb.toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 插入Attendance数据值  考勤记录
+	 * 2014/12/18
+	 * @author Hyman
+	 */
+	public String insertWorkAttendance(){
+		try {
+			System.out.println("[ConHisAction.java] - invoke(调用):insertWorkAttendance()");
+			Long BS_Num = Long.parseLong(getRequest().getParameter("bsnum"));
+			String agentId = getRequest().getParameter("agentID");
+			String loginSysTime = getRequest().getParameter("loginSysTime");
+			String loginCtiTime = getRequest().getParameter("loginCtiTime");
+			String logoutSysTime = getRequest().getParameter("logoutSysTime");
+			String Status = getRequest().getParameter("Status");
+			String Reason = getRequest().getParameter("Reason");
+			String remarks = getRequest().getParameter("Remarks");
+			System.out.println("[ConHisAction.java] - 输出getRequest值:");
+			System.out.println("BS_Num = "+BS_Num+"\nagentId = "+agentId+"\nloginSysTime = "+loginSysTime+
+							   "\nloginCtiTime = "+loginCtiTime+"\nlogoutSysTime = "+logoutSysTime+
+							   "\nStatus = "+Status+"\nReason = "+Reason+"\nremarks = "+remarks);
+			conHisService.insertWorkAttendance(BS_Num, agentId, loginSysTime, loginCtiTime, logoutSysTime, Status, Reason, remarks);
+			System.out.println("[ConHisAction.java] - insertWorkAttendance  SUCCESS!!!");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("[ConHisAction.java] - insertWorkAttendance() catch Exception e " + e);
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 自助终端业务资料查询展示
+	 * 2015/02/06 
+	 * Fernando ..
+	 */
+	public String machineList(){
+		System.out.println("[ConHisAction.java] - invoke(调用):machineList >>>> 自助终端业务资料查询展示");
+		String wdNum = getRequest().getParameter("wdNum"); // 流水号
+		String cusName = getRequest().getParameter("cusName"); // 客户姓名
+		String tellernum = getRequest().getParameter("tellernum"); // 授权人
+		String tradedateStart = getRequest().getParameter("tradedateStart"); //交易时间
+		String tradedateEnd = getRequest().getParameter("tradedateEnd"); 	 //交易时间
+		//System.out.println(getRequest().getParameter("traderesult"));
+		String traderesult = getRequest().getParameter("traderesult"); 		 //结果
+		System.out.println("wdNum = "+wdNum+"\ncusName = "+cusName+
+						   "\ntellernum = "+tellernum+"\ntradedateStart = "+
+						   tradedateStart+"\ntradedateEnd = "+tradedateEnd+
+						   "\ntraderesult="+traderesult);
+		Integer start = 0;
+		Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+		String s_start = getRequest().getParameter("start");
+		String s_limit = getRequest().getParameter("limit");
+		if (StringUtils.isNotEmpty(s_start)) {
+			start = new Integer(s_start);
+		}
+		if (StringUtils.isNotEmpty(s_limit)) {
+			limit = new Integer(s_limit);
+		}
+		System.out.println("[ConHisAction.java] - start=" + start + "limit=" + limit);
+		int  count=0;//查询记录的总数
+		List<MachineSelf> list= new ArrayList<MachineSelf>();
+		
+		//System.out.println("==---if  ----- 查询所有====");
+		list =conHisService.machineSelfList(start, limit, wdNum, cusName, tellernum, tradedateStart,tradedateEnd,traderesult);
+		System.out.println("list : " + list.size());
+		count=conHisService.machineSelfCount(wdNum, cusName, tellernum, tradedateStart,tradedateEnd,traderesult);
+		
+
+			System.out.println("[ConHisAction.java] - count"+count);
+			StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+			.append(count).append(",result:[");
+	         for (int i = 0; i < list.size(); i++) {
+		     buff.append("[").append(
+		    		 "" + list.get(i).getMsid() + ",'"
+		    		 	+ list.get(i).getWdNum() + "','"
+		    		 	+ list.get(i).getWdName() + "','"
+						+ list.get(i).getTellernum() + "','"
+						+ list.get(i).getBustype() + "','"
+						+ list.get(i).getTradedate() + "','"
+						+ list.get(i).getDealnum() + "','"
+						+ list.get(i).getTraderesult() + "','"
+						+ list.get(i).getCusName() + "','"
+						+ list.get(i).getCertigier() + "','"
+						+ list.get(i).getCardnum() + "','"
+						+ list.get(i).getIdcardnum() + "','"
+						+ list.get(i).getPresentID() + "','"
+						+ list.get(i).getParentID() + "','"
+						+ list.get(i).getBusDealNum() + "','"
+						+ list.get(i).getAmount() + "'],");
+	           }
+
+	          if (list.size() > 0) {
+		        buff.deleteCharAt(buff.length() - 1);
+	          }
+	            buff.append("]}");
+				System.out.println("[ConHisAction.java] - buff : " + buff);
+				setJsonString(buff.toString());
+				System.out.println("[ConHisAction.java] - list.size()=" + list.size());
+		       //this.pagingBean = new PagingBean(start, limit);
+		
+		return SUCCESS;
+	
+	}
+	
+	/**
+	 * 查询自助设备的文件路径
+	 * @return
+	 */
+	public String getMachineSelfAttach(){
+		System.out.println("[ConHisAction.java] - invoke(调用):getMachineSelfAttach()〉〉>>");
+
+		String machselfid = getRequest().getParameter("machSelfId"); // 自助资料ID
+		System.out.println("[ConHisAction.java] - getParameter'machSelfId' = " + machselfid);
+		List<MachineSelfAttach> machineSelfAttachs = new ArrayList<MachineSelfAttach>();
+		machineSelfAttachs = conHisService.machSelfAttachList(machselfid);
+		System.out.println("[ConHisAction.java] - List<MachineSelfAttach>  machineSelfAttachs.size = " + machineSelfAttachs.size());
+		StringBuffer buff = new StringBuffer("[");
+		for(int i = 0 ; i < machineSelfAttachs.size(); i++ ){
+			buff.append("['"+machineSelfAttachs.get(i).getMachineSelfid())
+			.append("','"+machineSelfAttachs.get(i).getFiletype())
+			.append("','"+machineSelfAttachs.get(i).getFilepath())
+			.append("','"+machineSelfAttachs.get(i).getCreatetime()).append("'],");
+		}
+		
+		if(machineSelfAttachs.size() > 0){
+			buff.deleteCharAt(buff.length()-1);//去掉最后的,号
+		}
+		buff.append("]");
+		System.out.println("[ConHisAction.java] - machineSelfAttachs - buff = "+buff);
+		setJsonString(buff.toString());
+		return SUCCESS;
+	}
+	
+	
+	/**
+	 * 批量删除
+	 * @return
+	 */
+	public String multiDel(){
+		
+		String[]ids=getRequest().getParameterValues("ids");
+		if(ids!=null){
+			for(String id:ids){
+				conHisService.remove(new Long(id));
+			}
+		}
+		
+		jsonString="{success:true}";
+		
+		return SUCCESS;
+	}
+	
+	/**此动作会在每次访问此目录时执行。存在影响响应时间的风险，此风险依据文件多少，一般不超过1个，忽略风险。同时需保证多线程的同步机制，防止误删。
+	 * */
+	synchronized static boolean delete_when_begin(){
+		System.out.println("#now:" + new SimpleDateFormat("hh:mm:ss").format(new Date()));
+		try{
+			String tFilePath = Thread.currentThread().getContextClassLoader().getResource("").toString().substring(5).split("WEB-INF")[0];
+			/**先删除此目录中的pdf文件。*/
+			File pdf_dir = new File(tFilePath + "attachFiles/temp/");
+			FileFilter ff = new FileNameExtensionFilter(null,"pdf");//doc未扩展
+			for(File pdf_file : pdf_dir.listFiles()){
+				if(ff.accept(pdf_file)) {
+					
+					pdf_file.delete();
+					System.out.println( "#delete:" + pdf_file.getName());
+				}
+			}
+//			java.util.Date date = new java.util.Date();
+//			date.setMinutes(new java.util.Date().getSeconds() + 10);
+//			while(true){
+//				System.out.println( "#now in while...");
+//				if(!new java.util.Date().before(date))
+//				break;
+//			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 显示详细信息
+	 * @return
+	 */
+	public String get(){
+		ConHis conHis=conHisService.get(conHisId);
+		String bobShare = getRequest().getParameter("bobShare");
+		logger.debug("share:" + bobShare);
+		//tmpFP:缓存截取的文件名+后缀PT001201212201220.pdf;tmpdir缓存映射后的目录;wav缓存此conhis的唯一录音路径; allvideo存放所有视频文件路径（绝对），已“，”分隔。
+		String tFilePath = "", tmpFP = "", tmpdir = "", wav = "", allVideo = "";
+		/**此补丁用于： 
+		 * 1、修复保存联络历史时，子表con_attach中的cus_name和cred_num、terminalid字段未保存，保存在了
+		 * 主表con_his中，导致在获取明细时这两个字段为空。
+		 * 2、修复文件路径。【针对北京银行的业务需求而添加，建议添加一个字段标示来区分是否需要此操作】
+		 * 由于文件需要每天按照交易号进行跑批分类，导致原来的文件物理被修改。此时获取
+		 * 的联络历史文件路径不是真实的物理路径，需要按照北京银行的交易号进行物理路径映射。
+		 * 从/D:/XXXX/XXXXX/PT001201212201220.pdf到result: $(share)/2012/12/20/T001201212201220/PT001201212201220.pdf
+		 * $(share)为网络共享目录。采用在前端取读agent.config方式，便于配置。
+		 * Begin：
+		 * */
+		try{
+			for(ConAttach cona : conHis.getConAttachs()){
+				cona.setCusName(conHis.getCusName());
+				cona.setCredNum(conHis.getCredNum());
+				/**针对每一个附件记录进行路径映射。除了音频文件格式外，其他都类似PT001201212201220.pdf。17位名字加后缀，总长为21位，
+				 * 兼容后缀不统一的情况，最多为22位。截取前5位，进行路径映射
+				 * 注意：
+				 * 1、存放联络历史时，转换了路径分隔符。\ --> /
+				 * 2、格式校验依次精准：
+				 * Pattern.matches("\\d{12}","201212201220")
+				 * Pattern.matches("[1-9][0-9]{3}\\d{4}\\d{4}","201212201220")
+				 * Pattern.matches("[1-9][0-9]{3}([0][1-9]|(10|11|12))([0][1-9]|[1-2][0-9]|3[0-1])\\d{4}","201212201220")
+				 * Pattern.matches("[1-9][0-9]{3}([0][1-9]|(10|11|12))([0][1-9]|[1-2][0-9]|3[0-1])(0[0-9]|1[0-9]|2[0-4])([0-5][0-9]|60])","201212201220") 
+				 * */
+				tFilePath = cona.getFilePath();
+				
+				logger.debug("第一个："+tFilePath);
+				try{
+					if(tFilePath != "" && tFilePath !=  "/" && !"/".equals(tFilePath)){
+						//音频文件dealno + "," + http://120.2.1.10:8080/ss/aaa/PT001201212201220w303020a30201012312adasd.mp3
+						boolean mp3 = false;
+						if(tFilePath.indexOf(",") >= 0){
+							tmpdir = tFilePath.split(",")[1];
+							wav = tFilePath.split(",")[1];
+							tmpFP = tFilePath.split(",")[0] + tmpdir.split("/")[tmpdir.split("/").length - 1];
+							tmpFP = tmpFP.replaceAll("[/|//|\\|\\\\]", "");
+							logger.debug("indexOf:,==>"+tmpFP);
+							tFilePath = tmpFP.substring(5,17);//PT001201212201220.pdf --> 201212201220
+							System.out.println("mp3:" + tFilePath);
+							logger.debug("mp3:" + tFilePath);
+							tmpdir = "";
+							mp3 = true;
+							
+							
+						} else {
+							tmpFP = tFilePath.split("/")[tFilePath.split("/").length - 1];
+							System.out.println(tmpFP);
+							logger.debug(tmpFP);
+							tFilePath = tmpFP.substring(5,17);//PT001201212201220.pdf --> 201212201220
+							logger.debug("第2个："+tFilePath);
+						}
+						
+						if(Pattern.matches("[1-9][0-9]{3}([0][1-9]|(10|11|12))([0][1-9]|[1-2][0-9]|3[0-1])\\d{4}", tFilePath)){
+							tmpdir = "/" + tFilePath.substring(0, 4) + "/" + tFilePath.substring(4, 6) + "/" + tFilePath.substring(6, 8) + "/" +
+							tmpFP.substring(1, 17) + "/";
+							if(!mp3){//发现预览pdf文件时，pdf必须在服务器上，否则访问拒绝。
+								if("pdf".equalsIgnoreCase(tmpFP.substring(18, 21))){//如果是pdf，请求copy至服务器目录下
+									/**假设获得了${share}*/
+									tFilePath = bobShare + tmpdir + tmpFP;//获得文件的真是路径
+									try {
+										String str = new String();
+										StringBuffer sb = new StringBuffer();
+										byte[] tbyte = new byte[1024];
+										FileInputStream fis = new FileInputStream(tFilePath);
+										BufferedInputStream bis = new BufferedInputStream(fis);
+										tFilePath = Thread.currentThread().getContextClassLoader().getResource("").toString().substring(5).split("WEB-INF")[0];
+										/**先删除此目录中的pdf文件**/
+										delete_when_begin();
+										
+										//tFilePath + "attachFiles/temp/" + tmpFP 存放在应用中 。前端conhisform访问时，依据相对路径即可。[././attachFiles/temp/] + filename;
+										FileOutputStream outSTr = new FileOutputStream(new File(tFilePath + "attachFiles/temp/" + tmpFP));
+										
+										BufferedOutputStream buff = new BufferedOutputStream(outSTr);
+										while(bis.read(tbyte) != -1){
+											buff.write(tbyte);
+											str = new String(tbyte);
+											sb.append(str);
+										}
+										buff.close();
+										outSTr.close();
+										bis.close();
+										fis.close();
+										
+										tFilePath = "/" + "././attachFiles/temp/" + tmpFP;
+									} catch (FileNotFoundException e) {
+										e.printStackTrace();
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								} else {
+									tFilePath = tmpdir + tmpFP;// result: [$(share)]/2012/12/20/T001201212201220/ST001201212201220.bmp
+									//保存所有视频文件路径
+									if(tmpFP.contains("avi")){
+										allVideo += "," + tFilePath;//  ,VT0012123123.avi,VT13123123.avi 第一位多了逗号
+									}
+								}
+							} else {//音频文件或者非北京银行的数据【恰巧匹配了正则的非北京银行数据】。MT001201212201220softphonefile.mp3
+								/**为确保这里准确区分音频文件，在客户端保存时，
+								 * 对软电话抛出的音频路径前面加上S+dealno，
+								 * 同时把dealno后面一位占用（.除外），这里就能保证第18位不是.了。
+								 * 下周来继续开发>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+								 * 1、音频路径映射
+								 * 2、前端在获取路径后，添加$(share)头，即可
+								 * 已完成！
+								 * */
+//								tFilePath = tmpdir + tmpFP.substring(17);// /2012/12/14/T001201212141551/ + queue-1355500269-9000-bjbank-2001.wav
+								tFilePath = tmpdir + tmpFP;//  /2012/12/14/T001201212141551/ + MT001201212141551queue-1355500269-9000-bjbank-2001.wav
+								wav += "," + tFilePath;
+							}
+							logger.debug(tmpdir);
+							logger.debug(tFilePath);
+							cona.setFilePath(tFilePath);
+						} else {
+							throw new Exception("Warn:System is not used in bob Env!");
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					logger.error("#con_attach_id:" + cona.getConAttachId() + "#Array outofbound error. Continue next con_attach...");
+				}
+				
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+			//如果不是北京银行的业务，那么此处的映射过程会出现异常。那么重新获取一次联络历史，恢复即可！
+			conHis = null;
+			conHis=conHisService.get(conHisId);
+		}
+		if( ! "".equals(allVideo))
+		allVideo = allVideo.substring(0);
+		
+		/**End*/
+		//将数据转成JSON格式
+		StringBuffer sb = new StringBuffer("{success:true,wav : '" + wav + "',allVideo : '" + allVideo + "',data:");
+		
+        JSONSerializer serializer = new JSONSerializer();
+        serializer.transform(new DateTransformer("yyyy-MM-dd HH:mm:ss"),new String[] { "staTime","endTime","conAttachs.createDate" });
+        
+        sb.append(serializer.include("conAttachs.cusName","conAttachs.credNum","conAttachs.createBy","conAttachs.fileType","conAttachs.terminalId").exclude("conAttachs.conHis").serialize(conHis));
+		sb.append("}");
+		
+		setJsonString(sb.toString());
+		
+		logger.debug("#####" + conHisId + "########\n" + jsonString + "\n#########");
+		return SUCCESS;
+	}
+	
+	/**
+	 * 获取txt文件内容
+	 */
+	public String getContent(){
+		String path = getRequest().getParameter("content");
+//		try {
+//			java.net.URLDecoder.decode(path,"UTF-8");
+//		} catch (UnsupportedEncodingException e1) {
+//			e1.printStackTrace();
+//		}
+		StringBuffer sb = new StringBuffer("{success:true,content:[");
+		int line = 0;
+//		StringBuffer sb = new StringBuffer("{success:true,content:'测试txt文件'");//测试数据
+		if(path != null && path != ""){
+			String contextPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+			String cp=getRequest().getSession().getServletContext().getRealPath("/");
+			File attachFile = new File(cp + path);
+			
+			if(attachFile.exists()){
+				try {
+//					FileReader fis = new FileReader(attachFile, "");
+//					new InputStreamReader(new FileInputStream(file),"UTF-16")
+//					System.out.print("########\n" +fis.getEncoding() + "\n #######");
+					BufferedReader bd = new BufferedReader(new InputStreamReader(new FileInputStream(attachFile),"utf-8"));
+					String tmp = null;
+					
+					while((tmp = bd.readLine()) != null){
+						sb.append("{line:'" + tmp + "'},");
+						line++;
+					}
+					bd.close();
+					sb.deleteCharAt(sb.length() -1);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			} else {
+				sb.append(contextPath + path + "文件不存在!");
+			}
+		}
+		sb.append("],lines:" + line);
+		sb.append("}");
+		setJsonString(sb.toString());
+		return SUCCESS;
+	}
+	/**
+	 * 获取eml文件内容
+	 */
+	public String getEmlContent(){
+		String path = getRequest().getParameter("content");
+		StringBuffer sb = new StringBuffer("{success:true,content:[");
+		int line = 0;
+		if(path != null && path != ""){
+			String contextPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+			String cp=getRequest().getSession().getServletContext().getRealPath("/");
+			File attachFile = new File(cp + path);
+			
+			if(attachFile.exists()){
+				try {
+					 Properties props = System.getProperties();
+				        Session mailSession = Session.getDefaultInstance(props, null);
+				        InputStream source = new FileInputStream(attachFile);
+				        MimeMessage message = new MimeMessage(mailSession, source);
+
+
+				        Address address = message.getFrom()[0];
+				        InternetAddress addr = (InternetAddress)address;
+				        String eml = "";
+				        DateFormat df = new SimpleDateFormat("yyyy年MM月dd日  hh:mm (E)");
+				        eml = 
+				        "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> " +
+				        "<html xmlns=\"http://www.w3.org/1999/xhtml\"> " +	
+				        "<head></head><body><table align=\"center\"><tr><td>"+
+				        	
+				        "<strong>[主&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp题]:</strong> " + message.getSubject() + "<br>\n" +
+						"<strong>[发&nbsp&nbsp件&nbsp人]:</strong> " + addr.getAddress() + "<br>\n" +
+						"<strong>[发件人名]:</strong> " + addr.getPersonal() + "<br>\n" +
+						"<strong>[日&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp期]:</strong> " + df.format(message.getSentDate()) + "<br>\n" +
+						"<hr><br>\n" +
+						"</tr></td><tr><td>"
+						+  message.getContent() + //body 
+						"</td></tr></table></body>	</html>";
+				        System.out.println(java.net.URLDecoder.decode(addr.getPersonal(),"UTF-8"));
+				        System.out.println(eml);
+				        eml = eml.replaceAll("'", "\"");
+					
+//				        String name = addr.getPersonal();
+//				        name = new String(name.getBytes("utf-8"), "gb2312");
+//				        System.out.println(name);
+//				        name = new String(name.getBytes("ISO8859_1"), "gb2312");
+//				        System.out.println(name);
+//				        name = new String(name.getBytes("GBK"), "utf-8");
+//				        System.out.println(name);
+					StringReader fr = new StringReader(eml);
+					BufferedReader bd = new BufferedReader(fr);
+					String tmp = null;
+					while((tmp = bd.readLine()) != null){
+						sb.append("{line:'" + tmp + "'},");
+						line++;
+					}
+					bd.close();
+					sb.deleteCharAt(sb.length() -1);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+				sb.append(contextPath + path + "文件不存在!");
+			}
+		}
+		sb.append("],lines:" + line);
+		sb.append("}");
+		setJsonString(sb.toString());
+		return SUCCESS;
+	}
+    /**
+     * 显示详细信息for加入黑名单
+     * @return
+     */
+    public String getForHMD(){
+        ConHis conHis=conHisService.get(conHisId);
+        
+        //将数据转成JSON格式
+        StringBuffer sb = new StringBuffer("{success:true,data:");
+        
+        JSONSerializer serializer = new JSONSerializer();
+        serializer.transform(new DateTransformer("yyyy-MM-dd HH:mm:ss"),new String[] { "staTime","endTime" });
+        
+        sb.append(serializer.exclude(new String[] {"class","cusLinkman.customer","customer.class","cusLinkman.class","owner"}).serialize(conHis));
+        
+        sb.deleteCharAt(sb.length()-1);
+        sb.append(",\"objTypId\":2}");
+        sb.append("}");
+        setJsonString(sb.toString());
+        
+        return SUCCESS;
+    }
+	
+	/**
+	 * 添加及保存操作
+	 */
+	public String save(){
+		System.err.println("save_ConHis.class");
+		
+		if(conHis.getConHisId()==null){
+			conHisService.save(conHis);
+		}else{
+			
+			ConHis orgConHis=conHisService.get(conHis.getConHisId());
+			try{
+				BeanUtil.copyNotNullProperties(orgConHis, conHis);
+				conHisService.save(orgConHis);
+			}catch(Exception ex){
+				logger.error(ex.getMessage());
+			}
+		}
+		setJsonString("{success:true}");
+		return SUCCESS;
+		
+	}
+	/**
+	 * 根据 客户id显示列表
+	 */
+	public String listByCusId(){
+		
+		QueryFilter filter=new QueryFilter(getRequest());
+		List<ConHis> list= conHisService.getAll(filter);
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':").append(filter.getPagingBean().getTotalItems()).append(",result:[");
+        JSONSerializer serializer = JsonUtil.getJSONSerializer();
+        serializer.transform(new DateTransformer("yyyy-MM-dd HH:mm:ss"),new String[] { "staTime","endTime" });
+        for(ConHis conHis:list){
+            buff.append(serializer.serialize(conHis)); 
+            buff.deleteCharAt(buff.length() - 1);  //去掉最后的大括号
+            buff.append(",\"contactNum\":\"").append(conHis.getPreContactNum()).append("-").append(conHis.getMainContactNum()).append("-").append(conHis.getLastContactNum()).append("\"");
+            buff.append("},");
+        }
+        if(list.size()>0){
+            buff.deleteCharAt(buff.length()-1);//去掉最后的,号
+        }
+		buff.append("]}");
+		
+		jsonString=buff.toString();
+		
+		return SUCCESS;
+	}
+	/**
+	 * 根据接口创建联络历史
+	 */
+	public String createHis()
+	{
+		logger.debug("ConHisAction is CreateHis class come in");
+		String customerId = getRequest().getParameter("customerId");
+		String serviceId = getRequest().getParameter("serviceRequestId");
+		String planId = getRequest().getParameter("planId");
+		
+		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+		String phoneNo = getRequest().getParameter("callinno");
+		//String termno = getRequest().getParameter("termno");//保存设备号（设备号和电话号映射为头部不同，2001-->T001）；
+		//phoneNo.toString();
+		/**修改为2001--> T001*/
+		phoneNo = "T" + phoneNo.substring(1);
+		StringBuffer str = new StringBuffer("{'statusId':1,'dirId': 1,'class':'com.ulane.customer.model.customer.ConHis','contactTypeId':1,'mainContactNum':'" + phoneNo + "'");
+		str.append(",'ownerId':" + ContextUtil.getCurrentUserId());
+		str.append(",'agentName':'" + ContextUtil.getCurrentUser().getUsername() + "'");
+		System.out.println("当前座席工号："+ContextUtil.getCurrentUser().getUsername());
+		//添加来源类别 手机网络：4,
+		str.append(",'srcTypeId':1,'dealStaId':11");
+		
+		if (customerId != null && !customerId.equals("")){
+			str.append(",'customer':{'customerId':" + new Long(customerId) + "}");
+		}
+		if (serviceId != null && !serviceId.equals("")){
+			str.append(",'serviceId':" + Long.parseLong(serviceId));
+		}
+		if (planId != null && !planId.equals("")){
+			str.append(",'planId':" + planId);
+		}
+		str.append("}");
+		logger.debug(str.toString());
+		String msg = chssi.createConHis(str.toString());
+		jsonString=msg;
+		return SUCCESS;
+	}
+
+	/**
+	 * 创建外呼联络历史
+	 */
+	public String createOutHis() {
+		String phoneNo = getRequest().getParameter("calloutno");
+		String customerId = getRequest().getParameter("customerId");
+		String planId = getRequest().getParameter("planId");
+		String sourceId = getRequest().getParameter("saletaskId");
+		
+		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+		Long ownerId = ContextUtil.getCurrentUserId();
+		StringBuilder sb = new StringBuilder();
+		sb.append("{'statusId':"+ConHis.STA_EXECUTING)//状态
+		.append(",'dirId': "+ConHis.DIR_OUT)//方向
+		.append(",'class':'com.ulane.customer.model.customer.ConHis'")
+		.append(",'contactTypeId':1")//联系方式：1——电话
+		.append(",'planId':"+planId)//任务内码（CalendarPlan）
+		.append(",'ownerId':"+ownerId)
+		.append(",'mainContactNum':" + phoneNo)
+		.append(",'srcTypeId':"+ConHis.SRC_TYPE_CUS_MARKET)
+		.append(",'serviceId':"+sourceId);
+				
+		//添加来源类别 手机网络：4,
+		sb.append(",'srcTypeId':"+ConHis.SRC_TYPE_PHONE+"");
+		
+		if (customerId != null && !customerId.equals("")){
+			sb.append(",'customer':{'customerId':" + new Long(customerId) + "}");
+		}
+		sb.append("}");
+		
+		String msg = chssi.createConHis(sb.toString());
+		jsonString=msg;
+
+		return SUCCESS;
+	}
+	
+	/**
+	 * 根据接口更新联络历史
+	 */
+	public String updateHis()
+	{
+		//从弹屏页面获得交易类型（联络事项）、处理结果（对应联络记录的处理状态）、联络结果、备注（对应联络历史中的联络内容）
+ 		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+ 		String conhisId = getRequest().getParameter("conhisId");
+ 		String customerId = getRequest().getParameter("customerId");
+ 		//获得录音地址
+ 		String recordPath = getRequest().getParameter("path");
+ 		//服务类型
+		String conResId = getRequest().getParameter("conResId");
+		//处理结果(子状态与状态)
+		String dealResult = getRequest().getParameter("dealResult");
+		String statusResult = getRequest().getParameter("statusResult");
+		
+		//联络事项
+		String busiType_formx = getRequest().getParameter("busiType_form");
+		//联络内容
+		String callContent = getRequest().getParameter("callContent");
+		
+		StringBuffer str = new StringBuffer("{'class':'com.ulane.customer.model.customer.ConHis'");
+		if(conhisId != null && !conhisId.equals("")){
+			str.append(",'conHisId':" + conhisId);
+			if (busiType_formx != null && !busiType_formx.equals("")){
+				str.append(",'busTypId':" + busiType_formx);
+			}
+//			if (conResId != null && !conResId.equals("")){
+//				str.append(",'conResId':" + conResId);
+//			}
+			if (!recordPath.equals("") && recordPath != null)
+			{
+				str.append(",'content':'" + recordPath+"'");
+			}
+			
+			if (!callContent.equals("") && !callContent.equals(""))
+			{
+				str.append(",'remarks':'" + callContent+"'");
+			}
+			if (dealResult != null && !dealResult.equals("")){
+				str.append(",'dealStaId':" + dealResult);
+			}
+			if (statusResult != null && !statusResult.equals("")){
+				str.append(",'conResId':" + statusResult);
+			}
+			
+			if (customerId != null && !customerId.equals("")){
+				str.append(",'customer':{'customerId':" + Long.parseLong(customerId) + "}");
+			}
+		}
+		
+		str.append("}");
+		//更新的字符串
+//		System.out.println(str.toString() + "更新的字符串 conHisId=" + conhisId);
+		String msg = chssi.updateConHis(str.toString());
+		jsonString=msg;
+		return SUCCESS;
+	}
+	/**
+	 * 根据接口更新客户联络历史
+	 */
+	public String updateCusHis()
+	{
+		//从弹屏页面获得交易类型（联络事项）、处理结果（对应联络记录的处理状态）、联络结果、备注（对应联络历史中的联络内容）
+ 		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+ 		String conhisId = getRequest().getParameter("conhisId");
+ 		String customerId = getRequest().getParameter("customerId");
+		
+		StringBuffer str = new StringBuffer("{'class':'com.ulane.customer.model.customer.ConHis','conResRemarks':'渠道','contactTypeId':1,'cusLinkman':null");
+		str.append(",'ownerId':" + ContextUtil.getCurrentUserId());
+		if(conhisId != null && !conhisId.equals("")){
+			str.append(",'conHisId':");
+			str.append(conhisId);
+		}
+		if(customerId != null && !customerId.equals("")){
+			str.append(",'customerId':");
+			str.append(customerId);
+		}
+		str.append("}");
+		//更新的字符串
+		String msg = chssi.updateConHis(str.toString());
+		jsonString=msg;
+		return SUCCESS;
+	}
+	/**
+	 * 根据接口列出联络历史
+	 */
+	public String listHis()
+	{
+		String start = getRequest().getParameter("start");
+		String limit = getRequest().getParameter("limit");
+		String customerId = getRequest().getParameter("Q_customer.customerId_L_EQ");
+		
+		String serviceId = getRequest().getParameter("serviceId");
+		
+		//搜索框查询参数
+		String startTime = getRequest().getParameter("Q_staTime_D_GE");	//开始时间
+		String endTime = getRequest().getParameter("Q_endTime_D_LE");	//结束时间
+		String inChargeMan = getRequest().getParameter("Q_owner.employeeid_S_LK");	//负责人
+		String conResId = getRequest().getParameter("Q_conResId_SN_EQ");			//联络结果
+		String dirId = getRequest().getParameter("Q_dirId_SN_EQ");					//方向
+		StringBuffer str = new StringBuffer();
+		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+		if (start == null || start.equals("")){
+			start = "0";
+		}
+		if (limit == null || limit.equals("")){
+			limit = "25";
+		}
+		str.append("{success:true,'start':" + start + ",'limit':" + limit);
+		if (customerId != "-1" && !customerId.equals("-1") && !customerId.equals("")){
+			str.append(",'Q_customer.customerId_L_EQ':" + customerId);
+		}else if (serviceId != null && !serviceId.equals("")){
+			str.append(",'serviceId':" + serviceId);
+		}
+		
+		//搜索框查询参数拼接
+		if(StringUtils.isNotBlank(startTime)) {
+			str.append(",'startTime':"+startTime);
+		}
+		if(StringUtils.isNotBlank(endTime)) {
+			str.append(",'endTime':"+endTime);
+		}
+		if(StringUtils.isNotBlank(inChargeMan)) {
+			str.append(",'inChargeMan':"+inChargeMan);
+		}
+		if(StringUtils.isNotBlank(conResId)) {
+			str.append(",'conResId':"+conResId);
+		}
+		if(StringUtils.isNotBlank(dirId)) {
+			str.append(",'dirId':"+dirId);
+		}
+		str.append("}");
+		//{success:true,'start':0,'limit':25,'serviceId':7708,'startTime':2012-10-01,'endTime':2012-10-26,'inChargeMan':鹏,'conResId':1}
+		String msg = chssi.list(str.toString());
+		jsonString= msg;
+		return SUCCESS;
+	}
+	
+	/**
+	 * 根据 服务请求id显示列表
+	 */
+	public String listByServiceId(){
+		String serviceId = getRequest().getParameter("serviceId");
+		QueryFilter filter=new QueryFilter(getRequest());
+		filter.addFilter("Q_serviceId_L_EQ", serviceId);
+		List<ConHis> list= conHisService.getAll(filter);
+		
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':").append(filter.getPagingBean().getTotalItems()).append(",result:[");
+        JSONSerializer serializer = JsonUtil.getJSONSerializer();
+        serializer.transform(new DateTransformer("yyyy-MM-dd HH:mm:ss"),new String[] { "staTime","endTime" });
+        for(ConHis conHis:list){
+            buff.append(serializer.serialize(conHis)); 
+            buff.deleteCharAt(buff.length() - 1);  //去掉最后的大括号
+            buff.append(",\"contactNum\":\"").append(conHis.getPreContactNum()).append("-").append(conHis.getMainContactNum()).append("-").append(conHis.getLastContactNum()).append("\"");
+            buff.append("},");
+        }
+        if(list.size()>0){
+            buff.deleteCharAt(buff.length()-1);//去掉最后的,号
+        }
+		buff.append("]}");
+		
+		jsonString=buff.toString();
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * 20140606
+	 * 查看业务资料时查询对应的网点名称
+	 */
+	public String selectEquipName(){
+		//System.out.println("进入selectEquipName！");
+		try {
+			String eid = getRequest().getParameter("Eid");
+			Equipment equipment = conHisService.selectEquiName(eid);
+			Gson gson = new Gson();
+			StringBuffer sb = new StringBuffer("{success:true,data:");
+			if(equipment == null){
+				Equipment equipment2 = new Equipment();
+				equipment2.setEId(Long.parseLong("1111"));
+				equipment2.setEquipmentId("9999");
+				equipment2.setEquipmentName("无");
+				sb.append(gson.toJson(equipment2));
+			}else{
+				sb.append(gson.toJson(equipment));
+			}
+			sb.append("}");
+			setJsonString(sb.toString());
+			//System.out.println(sb);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return SUCCESS;
+	}
+	/**
+	 * 20140603 
+	 * Mr.Hu 
+	 * 无流水号问题更改， 自动生成流水号update后台conhis语句
+	 */
+	public String updateDealNum(){
+		System.out.println("--->updateDealNum<---");
+		String conHisId = getRequest().getParameter("conHisId");
+		String cusName = getRequest().getParameter("cusName");
+		String serialNum = getRequest().getParameter("serialNum");
+		System.out.println(conHisId+"|"+cusName+"|"+serialNum);
+		conHisService.updateDealNum(conHisId, cusName, serialNum);
+		return SUCCESS;
+	}
+	
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static String formate_Date(Date date)throws ParseException{
+		synchronized(sdf){
+            return sdf.format(date);
+        } 
+	}
+
+	
+	/**
+	 * 根据接口更新联络历史并保存联络文件
+	 */
+	public String updateHisAndFile()
+	{
+		//'conAttachs':[{'conHis':{'conHisId':10429},'fileType':1,'fileSource':1,'filePath':'d:/log/','cusName':'张三','credNum':'410009982818128221'}],'conHisId': 10429,
+		logger.debug("进入ConHisAction类updateHisAndFile()执行SaveSomeFile method");
+		//从页面获取联络文件需要的参数
+ 		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+ 		String conHisId = getRequest().getParameter("conHisId");
+ 		String fileType = getRequest().getParameter("fileType");
+ 		String fileSource = getRequest().getParameter("fileSource");
+		String filePath = getRequest().getParameter("filePath");
+		String createBy = getRequest().getParameter("createBy");
+		String cusName = getRequest().getParameter("cusName");
+		String credNum = getRequest().getParameter("credNum");
+		String serialNum = getRequest().getParameter("serialNum");
+		String terminalId = getRequest().getParameter("terminalId");
+		logger.debug("updateHisAndFile()执行SaveSomeFile【conHisId-->"+conHisId + "fileType-->"+fileType+"fileSource-->"+fileSource+"filePath-->"+filePath+"createBy-->"+createBy+"cusName-->"+cusName+"credNum-->"+credNum+"serialNum-->"+serialNum+"terminalId-->"+terminalId+"】");
+		
+		/**转义文件路径\ to /*/
+		filePath = filePath.replaceAll("\\\\\\\\", "/");
+		filePath = filePath.replaceAll("\\\\", "/");
+		filePath = "/" + filePath;
+		
+		StringBuffer str = new StringBuffer("{'class':'com.ulane.customer.model.customer.ConHis'");
+		if(conHisId != null && !conHisId.equals("")){
+			str.append(",'conHisId':" + Long.parseLong(conHisId));
+			if (cusName != null && !cusName.equals("")){
+				str.append(",'cusName':'" + cusName + "'");
+			}
+			if (credNum != null && !credNum.equals("")){
+				str.append(",'credNum':'" + credNum + "'");
+			}
+			if (serialNum != null && !serialNum.equals("")){
+				str.append(",'serialNum':'" + serialNum + "'");
+			}
+			str.append(",'conAttachs':[{'conHis':{'conHisId':" + Long.parseLong(conHisId) + "}");
+			if (fileType != null && !fileType.equals("")){
+				str.append(",'fileType':" + fileType);
+			}
+
+			if (!fileSource.equals("") && fileSource != null)
+			{
+				str.append(",'fileSource':" + fileSource);
+			}
+			
+			if (!filePath.equals("") && !filePath.equals(""))
+			{
+				str.append(",'filePath':'" + filePath+"'");
+			}
+			if (terminalId != null && !terminalId.equals("")){
+				str.append(",'terminalId':'" + terminalId + "'");
+			}
+			str.append(",'createBy':'" + ContextUtil.getCurrentUser().getUsername() + "'");
+//			if (createBy != null && !createBy.equals("")){
+//				str.append(",'createBy':'" + createBy + "'");
+//			}
+			
+			//str.append(",'createDate': '" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "'}]}");
+			try {
+				System.out.println("系统时间为 ：" + formate_Date(new Date()));
+				str.append(",'createDate': '" + formate_Date(new Date()) + "'}]}");
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.error("深入理解Java：SimpleDateFormat安全的时间格式化  -> 出现异常信息:"+e.toString());
+			}
+//			if (credNum != null && !credNum.equals("")){
+//				str.append(",'credNum':'" + Long.parseLong(credNum) + "'}]}");
+//			}
+		}
+		
+		str.append("}");
+		//更新的字符串
+		logger.debug(str.toString() + "更新的字符串");
+		String msg = chssi.updateConHis(str.toString());
+		jsonString=msg;
+		return SUCCESS;
+	}
+	
+	/***数据校验添加*/
+//  拼音姓名：只能大写英文字母，中间必须有且只能有1个空格字符
+//  手机号码：只能输入数字，长度需小于13位。
+//  邮编：只能输入数字，长度必须为6位
+//  固定电话：格式为xxx-xxxxxx，只能输入数字，中间包含1个"-"，总长度<18位
+//  单位名称、地址信息：总长度小于40字节
+	//"徐涛,xue tao,男,中国,身份证,1980年1月1日,2000/8~2016/8,110102198001011234,2011年1月1日,2012年12月31,1391021102,010-66066666,企业事业单位负责人,北京市东城区建外大街甲66号,北京金宇集团有限公司,本人,100005";
+	public String checkdata(){
+		String tmp = "";
+		jsonString = "SUCC";
+		try{
+/***
+ * 
+			if(!Pattern.matches("[A-Z]+\\s[A-Z]+", datas[1])){
+				System.out.println("#pinyin fail!" + datas[1]);
+				jsonString = "拼音数据格式不对！[只能大写英文字母，中间必须有且只能有1个空格字符]";
+			} else if(!Pattern.matches("\\d{1,13}", datas[10])){//10 phone
+				System.out.println("#phone fail!" + datas[10]);
+				jsonString = "手机号码数据格式不对！[只能输入数字，长度需小于13位]";
+			} else if( ! (datas[11].length() <18) || ! Pattern.matches("\\d+\\-\\d+", datas[11])){//11 call
+				System.out.println("#call fail!" + datas[11]);
+				jsonString = "固定电话数据格式不对！[格式为xxx-xxxxxx，只能输入数字，中间包含1个'-'，总长度<18位]";
+			} else if(!Pattern.matches("\\d{6}", datas[16])){//16 postcode
+				System.out.println("#postcode fail!" + datas[16]);
+				jsonString = "邮编数据格式不对！[只能输入数字，长度必须为6位]";
+			} else if(datas[13].getBytes().length >= 40){
+				System.out.println("#addr2 fail!" + datas[13]);
+				jsonString = "单位名称数据格式不对！[总长度小于40字节]";
+			} else if(datas[14].getBytes().length >= 40){
+				System.out.println("#com fail!" + datas[14]);
+				jsonString = "地址信息数据格式不对！[总长度小于40字节]";
+			} else {
+				System.out.println("#pinyin ok!" + datas[1]);
+				System.out.println("#phone ok!" + datas[10]);
+				System.out.println("#call ok!" + datas[11]);
+				System.out.println("#postcode ok!" + datas[16]);
+				System.out.println("#addr2 ok!" + datas[13]);
+				System.out.println("#com ok!" + datas[14]);
+			}
+		} catch (Exception e){
+			jsonString = "info_data_format_error";
+		}
+*/
+			System.out.println("#datas:[" + getRequest().getParameter("datas") + "]");
+			
+			String[] datas  = getRequest().getParameter("datas").split(",");
+			System.out.println("字符个数：=》"+datas.length);
+			System.out.println("手机号datas[10] :"+datas[10]);
+			System.out.println("电话号datas[11] :"+datas[11]);
+			System.out.println("职位datas[12] ："+datas[12]);
+			System.out.println("省datas[13] ："+datas[13]);
+			System.out.println("市datas[14] ："+datas[14]);
+			System.out.println("县datas[15] ："+datas[15]);
+			System.out.println("详细地址datas[16] ："+datas[16]);
+			System.out.println("拼音datas[1] ："+ datas[1]);
+			System.out.println("单位地址datas[17] ："+ datas[17]);
+			System.out.println("邮编datas[19] ："+ datas[19]);
+			System.out.println("Emaildatas[23] ："+ datas[23]);
+			logger.debug("流程进行校验字符串：" + datas);
+			if(datas.length > 25){
+				tmp += "界面填值中含有逗号，请检查并删除逗号！<br>";
+			}else{
+			
+				int a=datas[11].indexOf("-");
+				String b=datas[11].substring(0, a);
+				String c=datas[11].substring( a+1 , datas[11].length());
+			/**
+			 * 升级版：一次检查出所有不匹配的项。
+			 * 对比：升级版每次都检查所有项，效率会低，适用情况是输入项有多个错误；上一版本，效率高，适用情况是错误少。
+			 * */
+				if(!Pattern.matches("[A-Z]+\\s[A-Z]+", datas[1])){
+					System.out.println("#pinyin fail!" + datas[1]);
+					tmp += "拼音数据格式不对！[只能大写英文字母，中间必须有且只能有1个空格字符]<br>";
+					
+				} 
+				 
+				/*--------4带核心新添校验-------*/
+				if(c.length() == 0 && datas[10].length() == 0 && b.length() == 0){
+					System.out.println("进入手机号校验");
+					tmp += "手机号和固定电话必填一项！<br>";
+				}else{
+					if (datas[10].length() > 0) {
+						if(datas[10].length()!=11 || !Pattern.compile("^[0-9]*$").matcher(datas[10]).matches()){
+							System.out.println("#phone fail!" + datas[10]);
+							tmp += "手机号码数据格式不对！[只能输入数字，长度需等于11位]<br>";
+						}
+					}
+					if((!(datas[11].length()<18) || !Pattern.matches("\\d+\\-\\d+", datas[11])) && datas[10].length() == 0){//11 call
+						System.out.println("#call fail!" + datas[11]);
+						tmp += "固定电话数据格式不对！[格式为xxx-xxxxxx，只能输入数字，中间包含1个'-'，总长度<18位]<br>";
+					}
+					if(b.length() == 0 && c.length() > 0){
+						System.out.println("#call fail!" + datas[11]);
+						tmp += "固定电话区号必填！[格式为xxx-xxxxxx，只能输入数字，中间包含1个'-'，总长度<18位]<br>";
+					}
+					if(b.length() > 0 && c.length() == 0){
+						System.out.println("#call fail!" + datas[11]);
+						tmp += "固定电话数据格式不对！[格式为xxx-xxxxxx，只能输入数字，中间包含1个'-'，总长度<18位]<br>";
+					}
+					if(b.length() > 0 && !( c.length() == 8 || c.length() == 7)){
+						System.out.println("#call fail!" + datas[11]);
+						tmp += "固定号必须为7位或8位！[格式为xxx-xxxxxx，只能输入数字，中间包含1个'-'，总长度<18位]<br>";
+					}
+					if((b.length()<3 || b.length()>4) && c.length() > 0) {
+						System.out.println("#callquhao fail!" + b);
+						tmp += "固话的区号必须为3位或4位的长度,且必须为数字！<br>";
+					}
+				}
+				//校验固话区号    必须为数字且长度不能超过4位
+				if(!Pattern.compile("^[0-9]*$").matcher(b).matches()){
+					System.out.println("#callquhao fail!" + b);
+					tmp += "固话的区号必须为数字！<br>";
+				}
+				
+				//校验固话号 000-XXXX   必须为数字
+				if(!Pattern.compile("^[0-9]*$").matcher(c).matches()){
+					System.out.println("#callquhao fail!" + c);
+					tmp += "固话号必须为数字！<br>";
+				}
+				
+				if(!Pattern.matches("\\d{6}", datas[19]) || !Pattern.compile("^[0-9]*$").matcher(datas[19]).matches()){//16 postcode
+					System.out.println("#postcode fail!" + datas[19]);
+					tmp += "邮编数据格式不对！[只能输入数字，长度必须为6位]<br>";
+				}
+				
+				/*--------4带核心新添校验-------*/
+				if(datas[17].getBytes().length == 0){
+					if(!datas[12].equals("不便分类的其他从业人员")){
+						System.out.println("#vocation fail!" + datas[12]);
+						tmp += "您的职业需必填工作单位名称！[除了‘不便分类的其他从业人员’职业可不填]<br>";
+					}
+				}
+				if(datas[12].equals("")){
+					System.out.println("#postcode fail!" + datas[13]);
+					tmp += "职业内容不能为空！<br>";
+				}
+				if(datas[13].getBytes().length  == 0){
+					System.out.println("#addr2 fail!" + datas[13]);
+					tmp += "省的地址信息必填！[总长度要大于40字节]<br>";
+				} 
+				if(datas[14].getBytes().length  == 0){
+					System.out.println("#addr2 fail!" + datas[14]);
+					tmp += "市的地址信息必填！[总长度要大于40字节]<br>";
+				} 
+				if(datas[15].getBytes().length  == 0){
+					System.out.println("#addr2 fail!" + datas[15]);
+					tmp += "县的地址信息必填！[总长度要大于40字节]<br>";
+				} 
+				if(datas[16].getBytes().length  == 0){
+					System.out.println("#addr2 fail!" + datas[16]);
+					tmp += "您的详细地址信息必填！[总长度要大于40字节]<br>";
+				}
+				if(datas[16].indexOf("#")>=0){
+					tmp += "您的详细地址信息不能有特殊字符'#'！[总长度要大于40字节]<br>";
+				}
+				
+				
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+			tmp += "info_data_format_error";
+		}
+		jsonString = tmp.equals("") ? jsonString : tmp;
+		return SUCCESS;
+	}
+	
+	public String updateHisState(){
+		
+ 		String conhisId = getRequest().getParameter("conHisId");
+ 		Short dealStaId = Short.parseShort(getRequest().getParameter("dealStaId"));
+ 		if(conhisId == null || "".equals(conhisId) ){
+ 			jsonString= "fail";
+ 			return SUCCESS;
+ 		}
+ 		System.out.println("修改处理结果成功！");
+ 		logger.debug("业务办理成功后修改状态为‘成功’或二期结果显示updateHisState  --- conhisId :-->" + conhisId);
+ 		conHis = conHisService.get(Long.valueOf(conhisId));
+ 		conHis.setDealStaId(dealStaId);//北京银行默认为1001，成功开卡了。
+ 		logger.debug("业务办理成功后修改状态为‘成功’或二期结果显示updateHisState  --- dealStaId :-->" + conHis.getDealStaId().toString());
+ 		conHisService.merge(conHis);
+		jsonString= "succ";
+		return SUCCESS;
+		
+	}
+	
+	/**
+	 * 身份核查补录；
+	 * 20140521  Mr.Hu
+	 * @return
+	 */
+	public String updateCheckPersonal(){
+		System.out.println("updateCheckPersnal()");
+		String conhisId = getRequest().getParameter("conHisId");
+ 		String remarks = getRequest().getParameter("remarks");
+ 		System.out.println("----remarks----"+remarks);
+ 		if(conhisId == null || "".equals(conhisId) ){
+ 			jsonString= "fail";
+ 			return SUCCESS;
+ 		}
+ 		conHis = conHisService.get(Long.valueOf(conhisId));
+ 		conHis.setRemarks(remarks);//北京银行默认为1001，成功开卡了。
+ 		logger.debug("后台修改补录标记变量‘成功’");
+ 		conHisService.merge(conHis);
+		jsonString = "succ";
+		return SUCCESS;
+	}
+	
+	/**
+	 * 修改 是否是美国人 字段
+	 * 20140521  Mr.Hu
+	 * @return
+	 */
+//	public String updateWhetherUSA(){
+//		System.out.println("进入判断是否是美国人函数_-> updateWhetherUSA()");
+//		String conhisId = getRequest().getParameter("conHisId");
+//		String ifanswer = getRequest().getParameter("ifanswer");
+//		String ifUSA = getRequest().getParameter("ifUSA");
+//		String raternum = getRequest().getParameter("raternum");
+// 		
+// 		//System.out.println("----remarks----"+remarks);
+// 		if(conhisId == null || "".equals(conhisId) ){
+// 			jsonString= "fail";
+// 			return SUCCESS;
+// 		}
+// 		conHis = conHisService.get(Long.valueOf(conhisId));
+// 		conHis.setIfanswer(ifanswer);
+// 		conHis.setIfusa(ifUSA);
+// 		conHis.setRaterNum(raternum);
+// 		System.out.println("后台修改是否是美国人 字段  -> ‘成功’");
+// 		conHisService.merge(conHis);
+//		jsonString = "succ";
+//		return SUCCESS;
+//	}
+	
+	
+	/**
+	 * 2014/07/29  17:10  SeaBreeze
+	 * 身份核查补录时，存储操作记录，报表数据提供
+	 */
+	public String InsertExamineInfo(){
+		System.out.println("InsertExamineInfo funciton >>> ..");
+		try {
+			String dealnum = getRequest().getParameter("dealnum");
+			String cusname = getRequest().getParameter("cusname");
+			String transactP = getRequest().getParameter("transactpersonal");
+			String examineP = getRequest().getParameter("examinepersonal");
+			String examineD = getRequest().getParameter("examinedate");
+			String examineR = getRequest().getParameter("examineresult");
+			
+			System.out.println("Examine examine = new Examine() >>> ..");
+			Examine examine = new Examine();
+			examine.setCusName(cusname);
+			examine.setDealNum(dealnum);
+			examine.setExamineD(examineD);
+			examine.setExamineP(examineP);
+			examine.setExamineR(examineR);
+			examine.setTransactP(transactP);
+			
+			conHisService.insertExamineInfo(examine);
+			
+		} catch (Exception e) {
+			System.out.println("InsertExamineInfo _catch");
+		}
+		
+		return SUCCESS;
+	}
+	
+	
+	
+	/***2013/09/23  SeaBreeze *** 
+	 * 测试将联络记录的业务类型修改 (开卡：0、电子渠道：1、投资理财:2、借记卡挂失：3)
+	 * */
+	public String updateHisBusType(){
+		System.out.println("进入ConHisAction类修改业务类型updateHisBusType方法");
+		String conhisId = getRequest().getParameter("conHisId");
+	    Short busTypId = Short.parseShort(getRequest().getParameter("busTypeId"));
+	    System.out.println("updateHisBussType -- busTypId -->" + busTypId);
+	    System.out.println("updateHisBussType -- conHisId -->" + conhisId);
+ 		if(conhisId == null || "".equals(conhisId)){
+ 			jsonString= "fail";
+ 			return SUCCESS;
+ 		}
+ 		conHis = conHisService.get(Long.valueOf(conhisId));
+ 		conHis.setBusTypId(busTypId);
+ 		System.out.println("conHis.setBusTypId(busTypId) -- conHis_busTypId -->" + conHis.getBusTypId().toString());
+ 		conHisService.merge(conHis);
+ 		System.out.println("修改业务类型updateHisBussType执行成功!");
+		jsonString= "succ";
+		return SUCCESS;
+	}
+	
+	
+	/**
+	 * 为数据补丁接口。发现在北京银行中存在网络问题、控件问题、坐席操作不对，会导致数据保存时缺失。
+	 * */
+	public String updateHisBD(){
+ 		String conhisId = getRequest().getParameter("conHisId");
+ 		String cusname  = getRequest().getParameter("cusName");
+ 		String crednum  = getRequest().getParameter("credNum");
+ 		
+ 		if(conhisId == null || "".equals(conhisId) ){
+ 			jsonString= "fail";
+ 			return SUCCESS;
+ 		}
+ 		conHis = conHisService.get(Long.valueOf(conhisId));
+ 		conHis.setCusName(cusname);
+ 		conHis.setCredNum(crednum);
+ 		conHisService.merge(conHis);
+		jsonString= "succ";
+		return SUCCESS;
+	}
+	
+//	public String everyTimeGetConhisId() {
+//		System.out.println("进入查询conhisid数据");
+//		Long conhis_1 = conHisService.getMaxConHis();
+//		System.out.println("进入查询conhisid数据------------------------>>" + conHis.getConHisId());
+//		return conhis_1.toString();
+//	}
+//	
+	
+//-------------------------------------------------------------------------补录报表的查询以及分页显示
+	private PagingBean pagingBean = null;
+
+	public PagingBean getPagingBean() {
+		return pagingBean;
+	}
+
+	public void setPagingBean(PagingBean pagingBean) {
+		this.pagingBean = pagingBean;
+	}
+	public PagingBean paging() {
+		// 取得分页的信息
+		Integer start = 0;
+		Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+
+		String s_start = getRequest().getParameter("start");
+		String s_limit =getRequest().getParameter("limit");
+		if (StringUtils.isNotEmpty(s_start)) {
+			start = new Integer(s_start);
+		}
+		if (StringUtils.isNotEmpty(s_limit)) {
+			limit = new Integer(s_limit);
+		}
+
+
+		this.pagingBean = new PagingBean(start, limit);
+		return pagingBean;
+	}
+	
+	
+	/**
+	 * 2014 /11/2	 补录报表* 
+	 * 1 带条件的查询（怎么判断条件
+	 * a 条件为null或"" ,查询所有，b 条件不为null，条件查询）
+	 * 2 查询所有
+	 * 需要显示分页： 开始（） 结束
+	 * 查询总数count,(条件查询或查询所有)
+	 * */
+	public String ExamineReport(){
+		String dealNum = getRequest().getParameter("dealNum"); // 流水号
+		System.out.println("====dealNum"+dealNum);
+		String cusName = getRequest().getParameter("cusName"); // 客户姓名
+		String transactP = getRequest().getParameter("transactP"); // 办理人
+		String examineP = getRequest().getParameter("examineP"); // 补录人
+		String examineD = getRequest().getParameter("examineD"); // 补录时间
+		String examineR = getRequest().getParameter("examineR"); // 补录结果
+		System.out.println("====="+dealNum+cusName+transactP+examineP+examineD+examineR);
+		Integer start = 0;
+		Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+		String s_start = getRequest().getParameter("start");
+		String s_limit = getRequest().getParameter("limit");
+		if (StringUtils.isNotEmpty(s_start)) {
+			start = new Integer(s_start);
+		}
+		if (StringUtils.isNotEmpty(s_limit)) {
+			limit = new Integer(s_limit);
+		}
+		System.out.println("start" + start + "limit=" + limit);
+		int  count=0;//查询记录的总数
+		List<Examine> list= new ArrayList<Examine>();
+		if(dealNum==null && cusName==null && transactP==null && examineP==null && examineD==null && examineR==null){
+			//查询总数
+			System.out.println("==---if  ----- 查询所有====");
+			list =conHisService.ExamineReport(start, limit, dealNum, cusName, transactP, examineP, examineD, examineR);
+			System.out.println("list : " + list.size());
+			count=conHisService.ExamineReportCount(dealNum, cusName, transactP, examineP, examineD, examineR);
+		}else {
+			//条件查询：两种情况：1 条件查询    2 清除查询结果，查询所有
+			if(dealNum!="" || cusName!=""|| transactP!="" || examineP!="" || examineD!="" || examineR!=""){
+		    
+				//条件查询
+				list =conHisService.ExamineReport(start, limit, dealNum, cusName, transactP, examineP, examineD, examineR);
+				count=conHisService.ExamineReportCount(dealNum, cusName, transactP, examineP, examineD, examineR);
+				System.out.println("==else ---if  ----- 1带条件查询==");
+				
+		     }else{
+				//查询总数
+		    	// 2 清除查询结果，查询所有
+				list =conHisService.ExamineReport(start, limit, dealNum, cusName, transactP, examineP, examineD, examineR);
+				count=conHisService.ExamineReportCount(dealNum, cusName, transactP, examineP, examineD, examineR);
+				System.out.println("==else ===else===2 清除查询结果，查询所有数据==");
+		     }
+		}
+			System.out.println("=======count"+count);
+			StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+			.append(count).append(",result:[");
+	         for (int i = 0; i < list.size(); i++) {
+		     buff.append("[").append(
+				"" + list.get(i).getId() + ",'"
+		    		 + list.get(i).getDealNum() + "','"
+						+ list.get(i).getCusName() + "','"
+						+ list.get(i).getTransactP() + "','"
+						+ list.get(i).getExamineP() + "','"
+						+ list.get(i).getExamineD() + "','"
+						+ list.get(i).getExamineR() + "'],");
+	           }
+
+	          if (list.size() > 0) {
+		        buff.deleteCharAt(buff.length() - 1);
+	          }
+	            buff.append("]}");
+				System.out.println("buff----" + buff);
+				setJsonString(buff.toString());
+				System.out.println("list=" + list.size());
+		       //this.pagingBean = new PagingBean(start, limit);
+		return SUCCESS;
+	}
+	
+	/**
+	 * ==============================================	
+		
+		/**
+		 * 2014 /11/2	质检考核* 
+		 * 1 带条件的查询（怎么判断条件
+		 * a 条件为null或"" ,查询所有，b 条件不为null，条件查询）
+		 * 2 查询所有
+		 * 需要显示分页： 开始（） 结束
+		 * 查询总数count,(条件查询或查询所有)
+		 * @anthor nk 
+		 * */
+		public String SysWorkattendanceReport(){
+			String loginTime = getRequest().getParameter("loginTime"); // 补录时间
+			String logoutTime = getRequest().getParameter("logoutTime"); // 补录结果
+			System.out.println("====="+loginTime+logoutTime);
+			Integer start = 0;
+			Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+			String s_start = getRequest().getParameter("start");
+			String s_limit = getRequest().getParameter("limit");
+			if (StringUtils.isNotEmpty(s_start)) {
+				start = new Integer(s_start);
+			}
+			if (StringUtils.isNotEmpty(s_limit)) {
+				limit = new Integer(s_limit);
+			}
+			System.out.println("start" + start + "limit=" + limit);
+			int  count=0;//查询记录的总数
+			List<SysWorkattendance> list= new ArrayList<SysWorkattendance>();
+			//if(dealNum==null && cusName==null && transactP==null && examineP==null && examineD==null && examineR==null){
+				//查询总数
+				System.out.println("==---if  ----- 查询所有====");
+				list =conHisService.SysWorkattendance(start, limit, loginTime, logoutTime);
+				count=conHisService.SysWorkattendanceCount(loginTime,logoutTime);
+				System.out.println("=======count"+count);
+				StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+				.append(count).append(",result:[");
+		         for (int i = 0; i < list.size(); i++) {
+			       if(list.get(i).getId()!=null && !"".equals(list.get(i).getId())){
+			    	   buff.append("[").append( "" + list.get(i).getId()+",'") ;
+			       }else{
+			    	   buff.append("[").append( "" + "<null>"+ "','");//是为了防止数据库中取出来的值为null
+			       }
+			       if(list.get(i).getAgentId()!=null && !"".equals(list.get(i).getAgentId())){
+			    	   buff.append(list.get(i).getAgentId()+"','") ;
+			       }else{
+			    	   buff.append("<null>"+ "','");
+			       }
+			       if(list.get(i).getLoginTime()!=null && !"".equals(list.get(i).getLoginTime())){
+			    	   buff.append(list.get(i).getLoginTime() + "','");
+			       }else{
+			    	   buff.append("<null>"+ "','") ;
+			       }
+			       if(list.get(i).getLoginCtiTime()!=null && !"".equals(list.get(i).getLoginCtiTime())){
+			    	   buff.append(list.get(i).getLoginCtiTime() + "','");
+			       }else{
+			    	   buff.append("<null>"+ "','") ;
+			       }
+			       if(list.get(i).getLogoutTime()!=null && !"".equals(list.get(i).getLogoutTime())){
+			    	   buff.append(list.get(i).getLogoutTime() + "','");
+			       }else{
+			    	   buff.append("<null>"+ "','") ;
+			       }
+			       if(list.get(i).getStatus()!=null && !"".equals(list.get(i).getStatus())){
+			    	   buff.append(list.get(i).getStatus() + "','");
+			       }else{
+			    	   buff.append("<null>"+ "','") ;
+			       }
+			       if(list.get(i).getReason()!=null && !"".equals(list.get(i).getReason())){
+			    	   buff.append(list.get(i).getReason() + "','");
+			       }else{
+			    	   buff.append("<null>"+ "','") ;
+			       }
+			       if(list.get(i).getBsNum()!=null && !"".equals(list.get(i).getBsNum())){
+			    	   buff.append(list.get(i).getBsNum() + "','");
+			       }else{
+			    	   buff.append("<null>"+ "','") ;
+			       }
+			       if(list.get(i).getRemarks()!=null && !"".equals(list.get(i).getRemarks())){
+			    	   buff.append(list.get(i).getRemarks() + "'],");
+			       }else{
+			    	   buff.append("<null>"+ "'],") ;
+			       }
+		           }
+
+		          if (list.size() > 0) {
+			        buff.deleteCharAt(buff.length() - 1);
+		          }
+		            buff.append("]}");
+					System.out.println("buff----" + buff);
+					setJsonString(buff.toString());
+					System.out.println("list=" + list.size());
+			       this.pagingBean = new PagingBean(start, limit);
+			return SUCCESS;
+		}
+		
+//		public String saveWavAttach(){
+//			System.out.println("come in saveWavAttach method() ...");
+//			Long conHisId = Long.parseLong(getRequest().getParameter("conHisId"));
+//			String FilePath = getRequest().getParameter("filePath");
+//			String agentID = getRequest().getParameter("agentId");
+//			Long fileType = Long.parseLong("88");
+//			Long fileSource = Long.parseLong("1");
+//			SimpleDateFormat creatTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); 
+//			System.out.println("conhisid ：" + conHisId.toString());
+//			System.out.println("FilePath ：" + FilePath.toString());
+//			System.out.println("agentID ：" + agentID.toString());
+//			System.out.println("fileType ：" + fileType.toString());
+//			System.out.println("fileSource ：" + fileSource.toString());
+//			System.out.println("creatTime：" + creatTime.toString());
+//			conHisService.saveWavAttach("conhisid", FilePath, creatTime, agentID, fileType, fileSource);
+//			
+//			return SUCCESS;
+//		}
+	
+
+}

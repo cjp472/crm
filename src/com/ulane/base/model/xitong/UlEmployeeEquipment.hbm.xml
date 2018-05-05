@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ulane.base.model.xitong.UlEmployeeEquipment" table="UlEmployee_Equipment"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="ulEmpId" column="Ul_EMPID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					UE_UlEmployee_Equipment
+            	</param>
+			</generator>
+		</id>
+         <property
+            name="ulEmployeeNo"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ULEMPLOYEE_NO"
+            length="65535"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="equipOperatorId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIP_OPERATOR_ID"
+            length="65535"
+            not-null="false"
+            unique="false"
+        />
+         <property name="ulEmployeeId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ULEMPLOYEE_ID" length="22" not-null="false"
+			unique="false" />
+			<property name="eqId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="EQ_ID" length="22" not-null="false"
+			unique="false" />
+			<property name="equipmentId" type="java.lang.String" update="true"
+			insert="true" access="property" column="EQUIPMENT_ID" length="22" not-null="false"
+			unique="false" />
+     </class>
+</hibernate-mapping>

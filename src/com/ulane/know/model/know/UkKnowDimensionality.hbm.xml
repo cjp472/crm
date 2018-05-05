@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.know.model.know.UkKnowDimensionality"
+        table="UK_KNOW_DIMENSIONALITY"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="dimensionalityId"
+            column="DIMENSIONALITY_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_UK_KNOW_DIMENSIONALITY_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="classifyName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CLASSIFY_NAME"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="parentId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="PARENT_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="describe"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESCRIBE"
+            length="300"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="bussinessType"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUSSINESS_TYPE"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="visitManage"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="VISIT_MANAGE"
+            length="22"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="visitRole"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="VISIT_ROLE"
+            length="200"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="isDelete"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="IS_DELETE"
+            length="22"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_DATE"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_DATE"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <many-to-one name="createBy" class="com.htsoft.oa.model.system.AppUser" not-null="false" fetch="select"> 
+	      <column name="CREATE_BY"/> 
+	    </many-to-one> 
+        <many-to-one name="updateBy" class="com.htsoft.oa.model.system.AppUser" not-null="false" fetch="select"> 
+	      <column name="UPDATE_BY"/> 
+	    </many-to-one> 
+        <property
+            name="category"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CATEGORY"
+            length="22"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to UkDimensionalityKnow -->
+	<set name="ukDimensionalityKnows"
+	     table="uk_dimensionality_know"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="DIMENSIONALITY_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.know.model.know.UkKnowDimensionality"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

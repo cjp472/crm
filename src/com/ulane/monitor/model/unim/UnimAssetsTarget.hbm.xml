@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.monitor.model.unim.UnimAssetsTarget"
+        table="UNIM_ASSETS_TARGET"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="targetId"
+            column="TARGET_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_UNIM_ASSETS_TARGET_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="targetName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TARGET_NAME"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="targetCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="TARGET_CODE"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="srcTypeId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="SRC_TYPE_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="4000"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="orderno"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ORDERNO"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="status"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATUS"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to UnimAssets -->
+		<many-to-one
+			name="unimAssets"
+			class="com.ulane.monitor.model.unim.UnimAssets"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="ASSETS_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to UnimAssTarPar -->
+	<set name="unimAssTarPars"
+	     table="unim_ass_tar_par"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="TARGET_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.monitor.model.unim.UnimAssTarPar"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to UnimAssTarThrlevl -->
+	<set name="unimAssTarThrlevls"
+	     table="unim_ass_tar_thrlevl"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="TARGET_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.monitor.model.unim.UnimAssTarThrlevl"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

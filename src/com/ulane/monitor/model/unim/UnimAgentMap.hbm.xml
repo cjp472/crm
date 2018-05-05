@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimAgentMap" table="UNIM_AGENT_MAP"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="mapId" column="MAP_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					S_UNIM_AGENT_MAP
+            	</param>
+			</generator>
+		</id>
+		<property name="mapName" type="java.lang.String" update="true"
+			insert="true" access="property" column="MAP_NAME" length="128"
+			not-null="false" unique="false" />
+		<property name="address" type="java.lang.String" update="true"
+			insert="true" access="property" column="ADDRESS" length="256"
+			not-null="false" unique="false" />
+		<property name="bkfileUrl" type="java.lang.String" update="true"
+			insert="true" access="property" column="BKFILE_URL" length="128"
+			not-null="false" unique="false" />
+		<property name="height" type="java.lang.String" update="true"
+			insert="true" access="property" column="HEIGHT" length="32" not-null="false"
+			unique="false" />
+		<property name="width" type="java.lang.String" update="true"
+			insert="true" access="property" column="WIDTH" length="32" not-null="false"
+			unique="false" />
+		<property name="designxml" type="java.lang.String" update="true"
+			insert="true" access="property" column="DESIGNXML" length="4000"
+			not-null="false" unique="false" />
+		<property name="reamrk" type="java.lang.String" update="true"
+			insert="true" access="property" column="REAMRK" length="256"
+			not-null="false" unique="false" />
+		<property name="mapNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="MAP_NO" length="30"
+			not-null="false" unique="false" />
+		<!--
+			imported bi-directional many-to-one association to UnimMapNavigation
+		-->
+		<!--  
+		<many-to-one name="unimMapNavigation"
+			class="com.ulane.monitor.model.unim.UnimMapNavigation" not-null="false"
+			fetch="select">
+			<column name="NAVIGATION_ID" />
+		</many-to-one>
+		-->
+		<!-- exported bi-directional one-to-many association to UnimMapAgent -->
+		<set name="unimMapAgents" table="unim_map_agent" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="MAP_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimMapAgent" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ulane.base.model.info.QJContractHZRecord" table="QJ_CONTRACT_HZ"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="conId" column="CON_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					QJ_CONTRACT_HZ_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="conDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CON_DATE" length="19"
+			not-null="false" unique="false" />
+			<property name="conTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CON_TIME" length="19"
+			not-null="false" unique="false" />
+			  <property
+            name="equipmentName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTNAME"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="operatorId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPERATOR_ID"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="branchId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BRANCH_ID"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="field1"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD1"
+            length="64"    not-null="false"     unique="false"/>
+            <property
+            name="field2"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD2"
+            length="64"    not-null="false"     unique="false"/>
+            <property
+            name="field3"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD3"
+            length="64"    not-null="false"     unique="false"/>
+            <property
+            name="field4"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD4"
+            length="64"    not-null="false"     unique="false"/>
+              <property
+            name="field5"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD5"
+            length="64"    not-null="false"     unique="false"/>
+              <property
+            name="field6"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD6"
+            length="64"    not-null="false"     unique="false"/>
+             <property
+            name="field7"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD7"
+            length="64"    not-null="false"     unique="false"/>
+             <property
+            name="field8"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD8"
+            length="64"    not-null="false"     unique="false"/>
+           <property
+            name="field9"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD9"
+            length="64"    not-null="false"     unique="false"/>
+           <property
+            name="field10"  type="java.lang.Long"  update="true"
+            insert="true"  access="property"  column="FIELD10"
+            length="64"    not-null="false"     unique="false"/>
+            
+             <property
+               name="total"  type="java.lang.Long"  update="true"
+               insert="true"  access="property"  column="TOTAL"
+               length="64"    not-null="false"     unique="false"/>
+                <property
+               name="flag"  type="java.lang.Long"  update="true"
+               insert="true"  access="property"  column="FLAG"
+               length="64"    not-null="false"     unique="false"/>
+        
+         
+       
+     </class>
+</hibernate-mapping>

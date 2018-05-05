@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.supply.model.goods.ScProductAttr"
+        table="SC_PRODUCT_ATTR"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="productAttrCode"
+            column="PRODUCT_ATTR_CODE"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SC_PRODUCT_ATTR_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="productAttrVal"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRODUCT_ATTR_VAL"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="fieldName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="FIELD_NAME"
+            length="60"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="fieldType"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="FIELD_TYPE"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="formType"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="FORM_TYPE"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createUserId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_USER_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_TIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateUserId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_USER_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_TIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="desc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESC"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to ScProductClassify -->
+		<many-to-one
+			name="scProductClassify"
+			class="com.ulane.supply.model.goods.ScProductClassify"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="PRODUCT_CLASSIFY_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to ScProductAttrVal -->
+	<set name="scProductAttrVals"
+	     table="sc_product_attr_val"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="PRODUCT_ATTR_CODE"/>
+		</key>
+		<one-to-many
+			class="com.ulane.supply.model.goods.ScProductAttrVal"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.running.model.comtech.CtScrTemplate"
+		table="CT_SCR_TEMPLATE" select-before-update="false" dynamic-update="false"
+		dynamic-insert="false" optimistic-lock="version">
+		<id name="tmpId" column="TMP_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CT_SCR_TEMPLATE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="tmpName" type="java.lang.String" update="true"
+			insert="true" access="property" column="TMP_NAME" length="256"
+			not-null="true" unique="false" />
+		<property name="tmpContent" type="java.lang.String" update="true"
+			insert="true" access="property" column="TMP_CONTENT" length="2048"
+			not-null="false" unique="false" />
+		<property name="displayLayoutId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="DISPLAY_LAYOUT_ID"
+			length="5" not-null="true" unique="false" />
+		<property name="displayStyleId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="DISPLAY_STYLE_ID"
+			length="5" not-null="true" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<!--
+			exported bi-directional one-to-many association to CtScrChapcter
+		-->
+		<set name="ctScrChapcters" table="ct_scr_chapcter" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="SCR_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.comtech.CtScrChapcter" />
+		</set>
+		<!--
+			<set name="obComs" table="ob_com_product" lazy="true" inverse="false"
+			cascade="save-update" sort="unsorted"> <key> <column name="TMP_ID" />
+			</key> <many-to-many class="com.ulane.callout.model.outb.ObCom"
+			fetch="join" lazy="false" column="COM_ID" /> </set>
+		-->
+		<set name="obComScr" table="ob_com_scr" lazy="true" inverse="false"
+			 sort="unsorted">
+			<key>
+				<column name="TMP_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComScr" />
+		</set>
+		<!-- exported bi-directional one-to-many association to CtScrRelease -->
+		<set name="ctScrReleases" table="ct_scr_release" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TMP_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.comtech.CtScrRelease" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to CtScrTemGotoRule
+		-->
+		<set name="ctScrTemGotoRules" table="ct_scr_tem_goto_rule" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TMP_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.comtech.CtScrTemGotoRule" />
+		</set>
+		<!-- exported bi-directional one-to-many association to CtScrTemQue -->
+		<set name="ctScrTemQues" table="ct_scr_tem_que" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TMP_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.comtech.CtScrTemQue" />
+		</set>
+	</class>
+</hibernate-mapping>

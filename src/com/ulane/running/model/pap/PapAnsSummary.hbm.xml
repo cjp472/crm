@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.pap.PapAnsSummary"
+        table="PAP_ANS_SUMMARY"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="papAnsId"
+            column="PAP_ANS_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_PAP_ANS_SUMMARY_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="ansUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="ansTimeSta"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_TIME_STA"
+            length="7"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="ansTimeEnd"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_TIME_END"
+            length="7"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="ansRemark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_REMARK"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to PapRelease -->
+		<many-to-one
+			name="papRelease"
+			class="com.ulane.running.model.pap.PapRelease"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="PAP_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to PapAnsDetail -->
+	<set name="papAnsDetails"
+	     table="pap_ans_detail"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="PAP_ANS_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.pap.PapAnsDetail"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

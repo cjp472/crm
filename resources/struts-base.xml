@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="infoSys" extends="struts-default" namespace="/infoSys">
+
+<!-- start:  Generated for SysPara From Template: struts-supply.xml.vm  -->
+	<action name="*SysPara" class="SysParaAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for SysPara From Template: struts-supply.xml.vm  -->
+<!-- start:  Generated for SysParaOpt From Template: struts-supply.xml.vm  -->
+	<action name="*SysParaOpt" class="SysParaOptAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for SysParaOpt From Template: struts-supply.xml.vm  -->
+</package>
+
+	<package name="xitong" extends="struts-default" namespace="/xitong">
+<!-- start:  Generated for UlUgroupRole From Template: struts-xitong.xml.vm  -->
+	<!-- action name="*UlUgroupRole" class="UlUgroupRoleAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action
+-->
+<!-- end:  Generated for UlUgroupRole From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlUgroupUser From Template: struts-xitong.xml.vm  -->
+	<!--action name="*UlUgroupUser" class="UlUgroupUserAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action
+-->
+<!-- end:  Generated for UlUgroupUser From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlUsergroup From Template: struts-xitong.xml.vm  -->
+	<action name="*UlUsergroup" class="UlUsergroupAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlUsergroup From Template: struts-xitong.xml.vm  -->	
+
+	<!-- start:  Generated for UlBbsHuati From Template: struts-xitong.xml.vm  -->
+	<action name="*UlBbsHuati" class="UlBbsHuatiAction" method="{1}">
+		<result>${successResultValue}</result>
+		<result name="display">/pages/indexpages/qiuSuoKnow.jsp</result>
+	</action>
+<!-- end:  Generated for UlBbsHuati From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlBbsJieshou From Template: struts-xitong.xml.vm  -->
+	<action name="*UlBbsJieshou" class="UlBbsJieshouAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlBbsJieshou From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlBbsHuifu From Template: struts-xitong.xml.vm  -->
+	<action name="*UlBbsHuifu" class="UlBbsHuifuAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlBbsHuifu From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlDepartment From Template: struts-xitong.xml.vm  -->
+	<action name="*UlDepartment" class="UlDepartmentAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlDepartment From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlDepEmployee From Template: struts-xitong.xml.vm  -->
+	<action name="*UlDepEmployee" class="UlDepEmployeeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlDepEmployee From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlEmployee From Template: struts-xitong.xml.vm  -->
+	<action name="*UlEmployee" class="UlEmployeeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlEmployee From Template: struts-xitong.xml.vm  -->
+<!-- start:  Generated for UlNewsReceive From Template: struts-xitong.xml.vm  -->
+	<action name="*UlNewsReceive" class="UlNewsReceiveAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UlNewsReceive From Template: struts-xitong.xml.vm  -->
+
+
+
+<!-- start:  Generated for SysTemType From Template: struts-base.xml.vm  -->
+	<action name="*SysTemType" class="SysTemTypeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for SysTemType From Template: struts-base.xml.vm  -->
+<!-- start:  Generated for ServiceWsdlManager From Template: struts-base.xml.vm  -->
+	<action name="*ServiceWsdlManager" class="ServiceWsdlManagerAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ServiceWsdlManager From Template: struts-base.xml.vm  -->
+<!-- start:  Generated for ServiceWsdlMethod From Template: struts-base.xml.vm  -->
+	<action name="*ServiceWsdlMethod" class="ServiceWsdlMethodAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ServiceWsdlMethod From Template: struts-base.xml.vm  -->
+<!-- start:  Generated for BeanObject From Template: struts-base.xml.vm  -->
+	<action name="*BeanObject" class="BeanObjectAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for BeanObject From Template: struts-base.xml.vm  -->
+<!-- start:  Generated for BeanObjectColumns From Template: struts-base.xml.vm  -->
+	<action name="*BeanObjectColumns" class="BeanObjectColumnsAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for BeanObjectColumns From Template: struts-base.xml.vm  -->
+<!-- start:  Generated for BeanObject From Template: struts-base.xml.vm  -->
+	<action name="*BeanExtSet" class="BeanExtSetAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for BeanObject From Template: struts-base.xml.vm  -->
+</package>
+</struts>

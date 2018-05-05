@@ -1,0 +1,465 @@
+package com.ulane.customer.dao.customer.impl;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.jdbc.Work;
+import org.springframework.orm.hibernate3.HibernateCallback;
+
+import com.htsoft.core.dao.impl.BaseDaoImpl;
+import com.htsoft.core.model.TaskLink;
+import com.htsoft.core.util.BeanUtil;
+import com.htsoft.core.util.ContextUtil;
+import com.htsoft.oa.model.system.Region;
+import com.htsoft.oa.util.SqlBuilder;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.core.util.JdbcHelper;
+import com.ulane.core.util.JdbcWork;
+import com.ulane.customer.dao.customer.ConHisDao;
+import com.ulane.customer.model.customer.CallIdOrAgentInfo;
+import com.ulane.customer.model.customer.ConAttach;
+import com.ulane.customer.model.customer.ConHis;
+import com.ulane.customer.model.customer.EveryDayReport;
+import com.ulane.customer.model.customer.Examine;
+import com.ulane.customer.model.customer.MachineSelf;
+import com.ulane.customer.model.customer.MachineSelfAttach;
+import com.ulane.customer.model.customer.OperationData;
+import com.ulane.customer.model.customer.SysWorkattendance;
+import com.ulane.know.model.know.UkKnowType;
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+
+@SuppressWarnings({ "unchecked", "unused" })
+public class ConHisDaoImpl extends BaseDaoImpl<ConHis> implements ConHisDao{
+
+	public ConHisDaoImpl() {
+		super(ConHis.class);
+	}
+
+	public Long getMaxConHis() {
+		getHibernateTemplate().find("SELECT conHisId.currval FROM ConHis");
+		return null;
+	}
+
+	
+	public Integer JDBCCount(String sqlCount){
+		JdbcWork count =new JdbcWork(){
+			public Object fillData(ResultSet rs) {
+				int result = 0;
+				try {
+					rs.next();
+					result = rs.getInt(1);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return result;
+			}
+		};
+		
+		JdbcHelper help = new JdbcHelper();
+		help.setJdbcWork(count);
+		help.setSql(sqlCount);
+		return (Integer) getHibernateTemplate().execute(help);
+	}
+	
+	@Override
+	public void saveCallIdOrAgentId(String callid , String agentid , String machineid) {
+		//TODO Auto-generated method stub
+		Transaction ts = getSession().beginTransaction(); //创建事物并开始
+		CallIdOrAgentInfo callIdOrAgentInfo = new CallIdOrAgentInfo();
+		callIdOrAgentInfo.setCallId(callid);
+		callIdOrAgentInfo.setAgentId(agentid);
+		callIdOrAgentInfo.setMachineId(machineid);
+		this.getHibernateTemplate().saveOrUpdate(callIdOrAgentInfo);
+		System.out.println("save CALLID SUCCESS");
+		ts.commit();  //提交结束事物
+	}
+
+	@Override
+	public void updateDealNum(String conhisid, String cusName, String dealno) {
+		Transaction ts = getSession().beginTransaction(); //创建事物并开始
+		Query query = getSession().createQuery("update ConHis ch set ch.cusName='"+cusName+"' , ch.serialNum = '"+dealno+"' where ch.conHisId = "+conhisid+"");
+		query.executeUpdate();
+		System.out.println("update success");
+		ts.commit();
+		
+	}
+
+	@Override
+	public Equipment selectEquiName(String eId) {
+		// TODO Auto-generated method stub
+		String hql = "from Equipment e where e.equipmentId = '"+eId+"'";
+		//System.out.println("sql->"+hql);
+		List<Equipment> eList = this.getHibernateTemplate().find(hql);
+		if(eList.size() == 0){
+			return null;
+		}else{
+			return eList.get(0);
+		}
+		
+	}
+	
+	/***
+	 * 2014/07/29
+	 * hy   
+	 * 身份核查补录，后台记录数据，提供报表基础
+	 * @param callIdOrAgentInfo
+	 */
+	@Override
+	public void insertExamineInfo(Examine examine) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisDaoImpl.java] - insertExamineBULU() ");
+		Transaction ts = getSession().beginTransaction(); //创建事物并开始
+		System.out.println("[ConHisDaoImpl.java] - beginTransaction .... ");
+		this.getHibernateTemplate().saveOrUpdate(examine);
+		System.out.println("[ConHisDaoImpl.java] - save Examine_BULU SUCCESS");
+		ts.commit();  //提交结束事物
+	}
+	
+	
+	@Override
+	public void insertOperationData(Long BS_Num, String agentid,
+			String insertTime, String Stype) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisDaoImpl.java] - insertOperationData () ");
+		Transaction ts = getSession().beginTransaction(); //创建事物并开始
+		OperationData od = new OperationData();
+		od.setBS_Num(BS_Num);
+		od.setAgentId(agentid);
+		od.setInsertTime(insertTime);
+		od.setStype(Stype);
+		this.getHibernateTemplate().saveOrUpdate(od);
+		System.out.println("[ConHisDaoImpl.java] - save OperationData SUCCESS");
+		ts.commit();  //提交结束事物
+	}
+
+	@Override
+	public OperationData selectMaxOpera() {
+		System.out.println("[ConHisDaoImpl.java] - selectMaxOpera()");
+		String hql = "from OperationData od";
+		List<OperationData> oDataList = this.getHibernateTemplate().find(hql);
+		Long bsnum = new Long(0) ;
+		for(int i = 0; i < oDataList.size(); i++) {
+			if(oDataList.get(i).getBS_Num() > bsnum){
+				bsnum = oDataList.get(i).getBS_Num();
+			}
+		}
+		System.out.println("[ConHisDaoImpl.java] -  operation.BS_Num = " + bsnum);
+		String hql1 = "from OperationData ods where ods.BS_Num = " + bsnum;
+		System.out.println("[ConHisDaoImpl.java] - hql1 = " + hql1);
+		List<OperationData> oList = this.getHibernateTemplate().find(hql1);
+		return oList.get(0);
+	}
+
+	@Override
+	public void insertWorkAttendance(Long BS_num, String agentid,
+			String loginsystime, String loginctitime, String logoutsystime,
+			String status, String reason, String remarks) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisDaoImpl.java] - insertWorkAttendance() ");
+		Transaction ts = getSession().beginTransaction(); //创建事物并开始
+		SysWorkattendance wa = new SysWorkattendance();
+		wa.setBsNum(BS_num);
+		wa.setAgentId(agentid);
+		wa.setLoginTime(loginsystime);
+		wa.setLoginCtiTime(loginctitime);
+		wa.setLogoutTime(logoutsystime);
+		wa.setStatus(status);
+		wa.setReason(reason);
+		wa.setRemarks(remarks);
+		this.getHibernateTemplate().saveOrUpdate(wa);
+		System.out.println("[ConHisDaoImpl.java] - save insertWorkAttendance SUCCESS");
+		ts.commit();  //提交结束事物
+	}
+
+	
+	//----------------==================================================----------补录报表带分页查询信息
+	
+	/**
+	 * 2014/11/7
+	 * 补录报表的查询
+	 * （带分页）
+	 * nk
+	 */
+	@Override
+	public List<Examine> ExamineReport(Integer start, Integer limit, String dealNum,
+			String cusName, String transactP, String examineP, String examineD,
+			String examineR) {
+		System.out.println("[ConHisDaoImpl.java] - invoke(调用) : ExamineReport()");
+		Query query;
+		if(dealNum==null && cusName==null&& transactP==null && examineP==null && examineD==null && examineR==null){
+			System.out.println("[ConHisDaoImpl.java] - if(All is Null) -> 查询所有数据");
+			 String hql = "from Examine e order by e.examineD desc";
+			 query = getSession().createQuery(hql);
+			 System.out.println("[ConHisDaoImpl.java] - query : " + query);
+			 query.setFirstResult(start);
+			 query.setMaxResults(limit);
+			 System.out.println("[ConHisDaoImpl.java] - start="+start+"======limit="+limit);
+		}else{
+			//多条件的查询，用StringBuffer拼接字符串，在连接的时候 不能用or，or当查询多个条件的任意匹配时，用and(切记)
+				StringBuffer hql=new StringBuffer("from Examine e where 1=1");
+				if(!"".equals(dealNum)&& dealNum!=null){
+					hql.append(" and e.dealNum like '%" + dealNum + "%'");
+				}
+				if(!"".equals(cusName)&& cusName!=null){
+					hql.append(" and e.cusName like '%" +cusName+"%'");
+				}
+				if(!"".equals(transactP)&& transactP!=null){
+					hql.append(" and e.transactP like '%" +transactP+"%'");
+				}
+				if(!"".equals(examineP)&& examineP!=null){
+					hql.append(" and e.examineP like '%" +examineP+"%'");
+				}
+				if(!"".equals(examineD)&& examineD!=null){
+					hql.append("  and e.examineD>= '" +examineD+"'");
+				}	
+				if(!"".equals(examineR)&& examineR!=null){
+					hql.append(" and e.examineR like '%" +examineR+"%'");
+				}	
+				hql.append(" order by e.examineD desc");
+				
+				System.out.println("[ConHisDaoImpl.java] - examineR : "+examineR);
+				query = getSession().createQuery(hql.toString());
+				System.out.println("[ConHisDaoImpl.java] - query : "+ query);
+				query.setFirstResult(start);//hibernate自带的分页查询，起始页
+     		    query.setMaxResults(limit);//结束页
+				
+		}
+	  return query.list();
+	}
+
+	/**
+	 * 2014/11/7
+	 * 补录报表的查询总数
+	 * （带分页）
+	 * nk
+	 */
+	public Integer ExamineReportCount(String dealNum, String cusName,
+			String transactP, String examineP, String examineD, String examineR) {
+		System.out.println("[ConHisDaoImpl.java] - ExamineReportAllCount()");
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("count(*)");
+		SqlBuilder.FROM("EXAMINE_BULU e");
+		if(dealNum==null && cusName==null && transactP==null  && examineP==null && examineD==null && examineR==null){
+			System.out.println("[ConHisDaoImpl.java] - if(All is Null) -> 查询所有数据");
+		}else {
+			if(!"".equals(dealNum)&& dealNum!=null){
+				 SqlBuilder.WHERE("e.DEAL_NUM like"+"'%"+dealNum+"%'");
+			}
+			if(!"".equals(cusName)&& cusName!=null){
+				 SqlBuilder.WHERE("e.CUS_NAME like"+"'%"+cusName+"%'");
+			}
+			if(!"".equals(transactP)&& transactP!=null){
+				 SqlBuilder.WHERE("e.TRANSACT_PERSONAL like"+"'%"+transactP+"%'");
+			}
+			if(!"".equals(examineP)&& examineP!=null){
+				 SqlBuilder.WHERE("e.EXAMINE_PERSONAL like"+"'%"+examineP+"%'");
+			}
+			if(!"".equals(examineD)&& examineD!=null){
+				SqlBuilder.WHERE("e.EXAMINE_DATE >= '" +examineD+"'");
+			}	
+			if(!"".equals(examineR)&& examineR!=null){
+				SqlBuilder.WHERE("e.EXAMINE_RESULT like"+"'%"+examineR+"%'");
+				
+			}	
+			System.out.println("[ConHisDaoImpl.java] - else -> 按条件查询");
+	    }
+		String sql_getCount = SqlBuilder.SQL();
+		return JDBCCount(sql_getCount);
+	}
+
+	
+	
+	@Override
+	public List<MachineSelf> machineSelfList(Integer start, Integer limit,
+			String wdNum, String cusName, String tellernum, String tradedateStart,String tradedateEnd,String traderesult) {
+		System.out.println("[ConHisDaoImpl.java] - invoke(调用) : MachineSefList()");
+		Query query;
+		if(wdNum==null && cusName==null&& tellernum==null && tradedateStart==null  && tradedateEnd==null && traderesult==null){
+			 System.out.println("[ConHisDaoImpl.java] - if(All is Null) -> 查询所有数据");
+			 String hql = "from MachineSelf e order by e.tradedate desc";
+			 query = getSession().createQuery(hql);
+			 System.out.println("[ConHisDaoImpl.java] - query : " + query);
+			 query.setFirstResult(start);
+			 query.setMaxResults(limit);
+			 System.out.println("[ConHisDaoImpl.java] - start="+start+"======limit="+limit);
+		}else{
+			//多条件的查询，用StringBuffer拼接字符串，在连接的时候 不能用or，or当查询多个条件的任意匹配时，用and(切记)
+				StringBuffer hql=new StringBuffer("from MachineSelf e where 1=1");
+				if(!"".equals(wdNum)&& wdNum!=null){
+					hql.append(" and e.wdNum like '%" + wdNum + "%'");
+				}
+				if(!"".equals(cusName)&& cusName!=null){
+					hql.append(" and e.cusName like '%" +cusName+"%'");
+				}
+				if(!"".equals(tellernum)&& tellernum!=null){
+					hql.append(" and e.tellernum like '%" +tellernum+"%'");
+				}
+				if(!"".equals(tradedateStart)&& tradedateStart!=null){
+					hql.append(" and e.tradedate >= '" +tradedateStart+" 00:00:00'");
+				}
+				if(!"".equals(tradedateEnd)&& tradedateEnd!=null){
+					hql.append(" and e.tradedate <= '" +tradedateEnd+" 23:59:59'");
+				}//traderesult
+				if(!"".equals(traderesult)&& traderesult!=null){
+					hql.append(" and e.traderesult like"+"'%"+traderesult+"%'");
+				}
+				
+				hql.append(" order by e.tradedate desc");
+				System.out.println("[ConHisDaoImpl.java] - tellernum="+tellernum+ "   SQL = " + hql);
+				query = getSession().createQuery(hql.toString());
+				System.out.println("[ConHisDaoImpl.java] - query : "+ query);
+				query.setFirstResult(start);//hibernate自带的分页查询，起始页
+     		    query.setMaxResults(limit);//结束页
+				
+		}
+	  return query.list();
+	}
+
+	@Override
+	public Integer machineSelfCount(String wdNum, String cusName,
+			String tellernum, String tradedateStart,String tradedateEnd,String traderesult) {
+		System.out.println("[ConHisDaoImpl.java] - invoke(调用) : machineSelfCount()...");
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("count(*)");
+		SqlBuilder.FROM("MACHINE_SELF m");
+		if(wdNum==null && cusName==null && tellernum==null  && tradedateStart==null && tradedateEnd==null && traderesult==null){
+			System.out.println("[ConHisDaoImpl.java] - if(All is Null) -> 查询所有数据");
+		}else {
+			if(!"".equals(wdNum)&& wdNum!=null){
+				System.out.println("[ConHisDaoImpl.java] - wdNum="+wdNum);
+				 SqlBuilder.WHERE("m.MS_WDNUM like"+"'%"+wdNum+"%'");
+			}
+			if(!"".equals(cusName)&& cusName!=null){
+				 SqlBuilder.WHERE("m.MS_CUSNAME like"+"'%"+cusName+"%'");
+			}
+			if(!"".equals(tellernum)&& tellernum!=null){
+				 SqlBuilder.WHERE("m.MS_TELLERNUM like"+"'%"+tellernum+"%'");
+			}
+			if(!"".equals(tradedateStart)&& tradedateStart!=null){
+				 SqlBuilder.WHERE("m.MS_TRADEDATE >= '" +tradedateStart+" 00:00:00'");
+			}	
+			if(!"".equals(tradedateEnd)&& tradedateEnd!=null){
+				 SqlBuilder.WHERE("m.MS_TRADEDATE <= '" +tradedateEnd+" 23:59:59'");
+			}
+			if(!"".equals(traderesult)&& traderesult!=null){
+				 SqlBuilder.WHERE("m.MS_TRADERESULT like"+"'%"+traderesult+"%'");
+			}
+	    }
+		String sql_getCount = SqlBuilder.SQL();
+		return JDBCCount(sql_getCount);
+	}
+	
+	/**
+	 * 20150209
+	 * 自助终端详细文件信息
+	 * Fernando
+	 */
+	@Override
+	public List<MachineSelfAttach> machSelfAttachList(String msid) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisDaoImpl.java] - invoke(调用) : machSelfAttachList()");
+		String hql = "from MachineSelfAttach msf where msf.machineSelfid = '" + msid + "'";
+		System.out.println("[ConHisDaoImpl.java] - hql = from MachineSelfAttach msf where msf.machineSelfid = " + msid);
+		List<MachineSelfAttach> mList = (List<MachineSelfAttach>)this.getHibernateTemplate().find(hql);
+		System.out.println("[ConHisDaoImpl.java] - List size = " + mList.size());
+		return mList;
+	}
+
+	@Override
+	public List<SysWorkattendance> SysWorkattendance(
+			Integer start, Integer limit, String loginTime, String logoutTime) {
+		System.out.println("---------ExamineReport---------");
+		Query query;
+		if(loginTime==null && logoutTime==null){
+			 System.out.println("dao   查询所有");
+			 String hql = "from SysWorkattendance";
+			 query = getSession().createQuery(hql);
+			 System.out.println("=============query" + query);
+			 query.setFirstResult(start);
+			 query.setMaxResults(limit);
+			 System.out.println("===start==="+start+"======"+limit);
+		}else{
+			//多条件的查询，用StringBuffer拼接字符串，在连接的时候 不能用or，or当查询多个条件的任意匹配时，用and(切记)
+			StringBuffer hql=new StringBuffer("from SysWorkattendance e where 1=1");
+			
+			if(!"".equals(loginTime)&& loginTime!=null){
+				hql.append("  and e.loginTime>= '" +loginTime+"'");
+			}	
+			if(!"".equals(logoutTime)&& logoutTime!=null){
+				hql.append(" and e.logoutTime <='" +logoutTime+"'");
+			}	
+			System.out.println("=====examineR"+loginTime+"============"+logoutTime);
+			query = getSession().createQuery(hql.toString());
+			System.out.println("====RRRRR===query="+ query);
+			query.setFirstResult(start);//hibernate自带的分页查询，起始页
+ 		    query.setMaxResults(limit);//结束页
+				
+		}
+	  return query.list();
+	}
+
+
+	@Override
+	public Integer SysWorkattendanceCount(String loginTime, String logoutTime) {
+		System.out.println("=====ExamineReportAllCountIf  ");
+		SqlBuilder.BEGIN();
+		SqlBuilder.SELECT("count(*)");
+		SqlBuilder.FROM("SYS_WORKATTENDANCE e");
+		if(loginTime==null && logoutTime==null){
+			System.out.println("查询所有数据");
+		}else {
+			if(!"".equals(loginTime)&& loginTime!=null){
+				SqlBuilder.WHERE("e.LOGIN_SYS_TIME >= '" +loginTime+"'");
+			}	
+			if(!"".equals(logoutTime)&& logoutTime!=null){
+				SqlBuilder.WHERE("e.LOGOUT_SYS_TIME <= '"+logoutTime+"%'");
+			}	
+			    System.out.println("查询所有数据 else ");
+	        }
+		String sql_count=SqlBuilder.SQL();
+		return JDBCCount(sql_count);
+	}
+
+//	/**
+//	 * 插入高清录音文件路径
+//	 * Fernando
+//	 * 2015/3/4
+//	 */
+//	@Override
+//	public void saveWavAttach(String conhisid, String filepath,
+//			java.sql.Date creatDate, String agentId, Long fileType,
+//			Long fileSource) {
+//		// TODO Auto-generated method stub
+//		System.out.println("[ConHisDaoImpl.java] - saveWavAttach() ");
+//		Transaction ts = getSession().beginTransaction(); //创建事物并开始
+//		ConAttach ca = new ConAttach();
+//		ca.setConHis(conHis);
+//		
+//		this.getHibernateTemplate().saveOrUpdate(ca);
+//		System.out.println("[ConHisDaoImpl.java] - save insertWorkAttendance SUCCESS");
+//		ts.commit();  //提交结束事物
+//		
+//		
+//	}
+	
+
+}

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_5" text="服务请求" iconCls="mod-fuwu">
+	<Items id="8" text="服务请求" iconCls="menu-ent">
+	<!-- Item id="AllServiceView" text="所有服务请求" / -->
+		<Item id="ConServiceRequestView" text="所有请求" iconCls="server_center" /><!-- ConServiceRequestView -->
+		<Item id="WantServiceView" text="待跟踪请求" iconCls="server_go"  />
+		<Item id="HaveOverServiceView" text="已结案请求" iconCls="server_link"  />
+		<Items id="123" text="我的请求"   iconCls="server_uncompressed"  >
+			<Item id="MyWantServiceView" text="我的待跟踪请求"  iconCls="server_compressed"  />
+			<Item id="MyHaveOverServiceView" text="我的已结案请求" iconCls="server_chart"  />
+		</Items>
+	</Items>
+	<!-- <Items id="9" text="联机交易" iconCls="menu-ent">
+		<Items id="1" text="公共信息" iconCls="menu-ent">
+			<Item id="RMBCunKuanView" text="人民币存款利率查询" />
+			<Item id="RMBDaiKuanView" text="人民币贷款利率查询" />
+			<Item id="WBCunKuanView" text="外币存款利率查询" />
+			<Item id="WHPaiJiaView" text="外汇牌价查询" />
+			<Item id="YeWuFeiLvView" text="业务费率查询" />
+			<Item id="HangMingHangHaoView" text="行名行号查询" />
+			<Item id="JiGouView" text="机构查询" />
+		</Items>
+		<Items id="2" text="CIF交易" iconCls="menu-ent">
+			<Item id="ToDoFlowManagerView" text="客户信息查询" />
+			<Item id="ToDoFlowManagerView" text="客户账户查询" />
+			<Item id="ToDoFlowManagerView" text="影像信息查询" />
+			<Item id="ToDoFlowManagerView" text="签约账务查询" />
+			<Item id="ToDoFlowManagerView" text="IVR菜单查询" />
+			<Item id="ToDoFlowManagerView" text="客户资料修改" />
+		</Items>
+		<Items id="3" text="个人业务" iconCls="menu-ent">
+			<Item id="ZhangHuXinxiView" text="账户信息查询" />
+			<Item id="ZhangHuYuEView" text="账户余额查询" />
+			<Item id="GeRenKaiHuHangView" text="开户行查询" />
+			<Item id="xinjiukahaohuchaView" text="新旧卡号互查"/>
+			<Item id="huoqizhanghujiaoyiView" text="活期账户交易查询" />
+			<Item id="zhanghukoutouguashiView" text="账户口头挂失" />
+			<Item id="mimaxiugaiView" text="密码修改" />
+			<Item id="mimachongzhiView" text="密码重置" />
+			<Item id="gerendaikuanmingxiView" text="个人贷款明细查询" />
+		</Items>
+		<Items id="4" text="对公业务" iconCls="menu-ent">
+			<Item id="cunkuanzhanghuyueView" text="存款账户余额查询" />
+			<Item id="cunkuanzhanghumingxiView" text="存款账户明细查询" />
+			<Item id="baozhengjindingqicunkuanView" text="保证金定期存款查询" />
+			<Item id="xieyicunkuanzhanghuView" text="协议存款账户查询" />
+			<Item id="tongzhicunkuanzhanghuView" text="通知存款账户查询" />
+			<Item id="baozhengjinhuoqicunkuanView" text="保证金活期存款查询" />
+			<Item id="daikuanxinxiView" text="贷款信息查询" />
+			<Item id="mimaxiugaiView" text="业务密码修改" />
+			<Item id="mimachongzhiView" text="业务密码重置" />
+		</Items>
+		<Items id="5" text="信用卡业务" iconCls="menu-ent">
+			<Items id="Card1" text="账务">
+				<Item id="CompAccountingView" text="综合账务" />
+				<Item id="BillView" text="账单" />
+				<Item id="AmountAvailableView" text="可用额度" />
+				<Item id="HasChargeBillView" text="已出账单明细" />
+				<Item id="NotABillView" text="未出账单明细" />
+				<Item id="PreLicensingDealView" text="预授权交易查询" />
+				<Item id="TodaysConsumerView" text="当日消费" />
+			</Items>
+
+			<Items id="Card2" text="卡人异动">
+				<Item id="ModifyBbillAddressView" text="修改账单地址" />
+				<Item id="ModifyCustomerInformationView" text="修改客户资料" />
+			</Items>
+			<Items id="Card3" text="持卡状况">
+				<Item id="CardStatusManagementView" text="卡状态管理" />
+				<Item id="CardholderRelationshipView" text="持卡人关系户" />
+
+			</Items>
+			<Items id="Card4" text="卡片异动">
+				<Item id="LossLiftingView" text="挂失/解挂" />
+				<Item id="CancelAccountLiftingView" text="销户/撤销" />
+				<Item id="LockUnlockView" text="锁卡/解锁" />
+				<Item id="ReplacementCardView" text="补卡/换卡" />
+			</Items>
+			<Items id="Card5" text="服务">
+				<Item id="CreditLimitAdjustmentsView" text="信用额度调整" />
+				<Item id="RedeemView" text="积分兑换" />
+				<Item id="AutomaticRepaymentSetView" text="自动还款设置" />
+				<Item id="InstallmentsApplyRevocationView" text="分期付款申请/撤销" />
+				<Item id="InformationRequestView" text="资料索取" />
+				<Item id="SendBillView" text="补寄账单" />
+			</Items>
+			<Items id="Card6" text="查询">
+				<Item id="AnnualFeeWaiverView" text="年费减免" />
+				<Item id="ProgressApplicationsView" text="申请进度" />
+				<Item id="CardFlowView" text="卡流向" />
+			</Items>
+			<Items id="Card7" text="开卡及密码设定">
+				<Item id="OpenCardView" text="开卡" />
+				<Item id="SetPasswordView" text="设置密码" />
+			</Items>
+		</Items>
+		<Items id="6" text="增值服务" iconCls="menu-ent">
+			<Items id="ToDoFlowManagerView" text="贵宾高尔夫">
+				<Item id="ToDoFlowManagerView" text="高尔夫服务预约" />
+				<Item id="ToDoFlowManagerView" text="高尔夫服务查询" />
+			</Items>
+			<Items id="ToDoFlowManagerView" text="贵宾厅服务">
+				<Item id="ToDoFlowManagerView" text="贵宾厅服务预约" />
+				<Item id="ToDoFlowManagerView" text="贵宾厅服务查询" />
+			</Items>
+			<Items id="ToDoFlowManagerView" text="商旅机票">
+				<Item id="ToDoFlowManagerView" text="机票预订" />
+				<Item id="ToDoFlowManagerView" text="订单查询" />
+				<Item id="ToDoFlowManagerView" text="发送行程单" />
+			</Items>
+			<Items id="ToDoFlowManagerView" text="银证合作">
+				<Item id="ToDoFlowManagerView" text="开户申请" />
+				<Item id="ToDoFlowManagerView" text="查询行情" />
+				<Item id="ToDoFlowManagerView" text="查询资金" />
+				<Item id="ToDoFlowManagerView" text="查询股票" />
+				<Item id="ToDoFlowManagerView" text="查询委托" />
+				<Item id="ToDoFlowManagerView" text="查询成交" />
+				<Item id="ToDoFlowManagerView" text="发送对账单" />
+			</Items>
+			<Items id="ToDoFlowManagerView" text="基金业务">
+				<Item id="jijinzhanghukaihuView" text="基金账户开户" />
+				<Item id="jijinzhanghuView" text="基金账户查询" />
+				<Item id="jijinzhanghuguashiView" text="基金账户挂失" />
+				<Item id="jijinzhanghujieguaView" text="基金账户解挂" />
+				<Item id="jijinzhanghububanView" text="基金账户补办" />
+				<Item id="jijinrengouView" text="基金认购" />
+				<Item id="jijinshengouView" text="基金申购" />
+				<Item id="jijinshuhuiView" text="基金赎回" />
+				<Item id="jijinjiaoyimingxiView" text="基金交易明细查询" />
+			</Items>
+			<Items id="ToDoFlowManagerView" text="银保合作">
+				<Item id="ToDoFlowManagerView" text="保险产品查询" />
+				<Item id="ToDoFlowManagerView" text="开/关户申请/" />
+				<Item id="ToDoFlowManagerView" text="投保" />
+				<Item id="ToDoFlowManagerView" text="退保" />
+				<Item id="ToDoFlowManagerView" text="撤单" />
+				<Item id="ToDoFlowManagerView" text="账户查询" />
+				<Item id="ToDoFlowManagerView" text="资料修改" />
+			</Items>
+		</Items> 
+	</Items>-->
+
+</Menus>

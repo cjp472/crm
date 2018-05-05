@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcTempReObj"
+        table="QC_TEMP_RE_OBJ"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="tempReObjId"
+            column="TEMP_RE_OBJ_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_TEMP_RE_OBJ_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="usrId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="USR_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="usrGrpId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="USR_GRP_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcTempRelease -->
+		<many-to-one
+			name="qcTempRelease"
+			class="com.ulane.running.model.qucon.QcTempRelease"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TEMP_RELE_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

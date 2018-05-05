@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ConBwListBusRul"
+		table="CON_BW_LIST_BUS_RUL" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="bwListBusRulId" column="BW_LIST_BUS_RUL_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_BW_LIST_BUS_RUL_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="staTime" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_TIME" length="5"
+			not-null="true" unique="false" />
+		<property name="busObj" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BUS_OBJ" length="18"
+			not-null="true" unique="false" />
+		<!-- imported bi-directional many-to-one association to ConBwList -->
+		<many-to-one name="conBwList"
+			class="com.ulane.customer.model.customer.ConBwList" not-null="false"
+			fetch="select">
+			<column name="BW_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

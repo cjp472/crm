@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.fee.ObFeeIndexLevel" table="OB_FEE_INDEX_LEVEL"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="feeIndexLevelId" column="FEE_INDEX_LEVEL_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_FEE_INDEX_LEVEL_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="month" type="java.lang.String" update="true"
+			insert="true" access="property" column="MONTH" length="20" not-null="false"
+			unique="false" />
+		<property name="quarter" type="java.lang.String" update="true"
+			insert="true" access="property" column="QUARTER" length="20" not-null="false"
+			unique="false" />
+		<property name="feeIndexValue" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="FEE_INDEX_VALUE"
+			precision="10" scale="4" not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObFeeIndex -->
+		<many-to-one name="obFeeIndex"
+			class="com.ulane.customer.model.fee.ObFeeIndex" not-null="false"
+			fetch="select">
+			<column name="FEE_INDEX_ID" />
+		</many-to-one>
+		<!--
+			imported bi-directional many-to-one association to ObFeeIndexProject
+		-->
+		<many-to-one name="obFeeIndexProject"
+			class="com.ulane.customer.model.fee.ObFeeIndexProject" not-null="false"
+			fetch="select">
+			<column name="FEE_INDEX_PROJECT_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

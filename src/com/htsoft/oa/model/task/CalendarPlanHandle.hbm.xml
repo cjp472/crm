@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+  <class name="com.htsoft.oa.model.task.CalendarPlanHandle" table="CALENDAR_PLAN_HANDLE" select-before-update="false" dynamic-update="false" dynamic-insert="false" optimistic-lock="version"> 
+    <id name="handleId" column="PLAN_HANDLE_ID" type="java.lang.Long" length="18"> 
+      <generator class="sequence">
+        <param name="sequence">S_CALENDAR_PLAN_HANDLE</param>
+      </generator> 
+    </id>
+    <property name="planId" type="java.lang.Long" update="true" insert="true" access="property" column="PLAN_ID" length="18" not-null="true" unique="false"/>
+    <property name="assignerId" type="java.lang.Long" update="true" insert="true" access="property" column="ASSIGNERID" length="19" not-null="false" unique="false"/>  
+    <property name="assignerName" type="java.lang.String" update="true" insert="true" access="property" column="ASSIGNER_NAME" length="32" not-null="false" unique="false"/>  
+    <property name="assignTime" type="java.util.Date" update="true" insert="true" access="property" column="ASSIGN_TIME" length="19" not-null="false" unique="false"/>
+    
+    <property name="executor" type="java.lang.Long" update="true" insert="true" access="property" column="EXECUTOR" length="18" not-null="false" unique="false"/>
+    <property name="executeTime" type="java.util.Date" update="true" insert="true" access="property" column="EXECUTE_TIME" length="19" not-null="false" unique="false"/>
+    <property name="finishTime" type="java.util.Date" update="true" insert="true" access="property" column="FINISH_TIME" length="19" not-null="false" unique="false"/>
+    <property name="dealHandleResult" type="java.lang.Long" update="true" insert="true" access="property" column="DEAL_RESULT" length="2" not-null="false" unique="false"/>
+    
+    <property name="dealUser" type="java.lang.Long" update="true" insert="true" access="property" column="DEAL_USERID" length="18" not-null="false" unique="false"/>
+    
+    <property name="handleReason" type="java.lang.String" update="true" insert="true" access="property" column="HANDLE_REASON" length="300" not-null="false" unique="false"/>  
+    
+    <!-- imported bi-directional many-to-one association to CalendarPlan--> 
+    	<!-- many-to-one name="calendarplan"
+			class="com.htsoft.oa.model.task.CalendarPlan">
+			<column name="planId" />
+		</many-to-one -->
+	 
+  </class> 
+</hibernate-mapping>

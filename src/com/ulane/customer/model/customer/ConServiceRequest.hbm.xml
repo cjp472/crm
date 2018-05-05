@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ConServiceRequest"
+		table="CON_SERVICE_REQUEST" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="serviceRequestId" column="SERVICE_REQUEST_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_SERVICE_REQUEST_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="type" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TYPE" length="5" not-null="false"
+			unique="false" />
+		<property name="busType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BUS_TYPE" length="5"
+			not-null="false" unique="false" />
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="500"
+			not-null="false" unique="false" />
+		<property name="accept" type="java.lang.String" update="true"
+			insert="true" access="property" column="ACCEPT" length="18" not-null="false"
+			unique="false" />
+		<property name="acceptDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="ACCEPT_DATE" length="19"
+			not-null="false" unique="false" />
+		<property name="urgent" type="java.lang.Long" update="true"
+			insert="true" access="property" column="URGENT" length="5" not-null="false"
+			unique="false" />
+		<property name="starttime" type="java.util.Date" update="true"
+			insert="true" access="property" column="STARTTIME" length="19"
+			not-null="false" unique="false" />
+		<property name="endtime" type="java.util.Date" update="true"
+			insert="true" access="property" column="ENDTIME" length="19" not-null="false"
+			unique="false" />
+		<property name="source" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SOURCE" length="5" not-null="false"
+			unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="15" not-null="false"
+			unique="false" />
+		<property name="substatus" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SUBSTATUS" length="5"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="19" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="19" not-null="false"
+			unique="false" />
+		<property name="note" type="java.lang.String" update="true"
+			insert="true" access="property" column="NOTE" length="128" not-null="false"
+			unique="false" />
+		<property name="linkType" type="java.lang.Long" update="true"
+		insert="true" access="property" column="LINK_TYPE" length="12"
+		not-null="false" unique="false" />
+		<property name="callNo" type="java.lang.Long" update="true"
+		insert="true" access="property" column="CALL_NO" length="18"
+		not-null="false" unique="false" />
+		
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false"
+			fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to CusLinkman -->
+		<!-- many-to-one name="cusLinkman"
+			class="com.htsoft.oa.model.customer.CusLinkman" not-null="false"
+			fetch="select">
+			<column name="LINKMANID" />
+		</many-to-one -->
+	</class>
+</hibernate-mapping>

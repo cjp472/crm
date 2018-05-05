@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.UlUsergroup" table="UL_USERGROUP"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="pkUsergroupId" column="PK_USERGROUP_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">SEQ_UG_ID</param>
+			</generator>
+		</id>
+		<property name="usergroupName" type="java.lang.String"
+			update="true" insert="true" access="property" column="USERGROUP_NAME"
+			length="50" not-null="false" unique="false" />
+		<property name="parentId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_ID" length="38"
+			not-null="false" unique="false" />
+		<property name="comment" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_MENT" length="1000"
+			not-null="false" unique="false" />
+
+		<property name="usergroupLevel" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ugLevel" not-null="false"
+			unique="false" />
+
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="path" length="128" not-null="false"
+			unique="false" />
+		<property name="isUpdate" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_UPDATE" length="22"
+			not-null="false" unique="false" />
+		<property name="isDelete" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_DELETE" length="22"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="isHidden" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_HIDDEN" length="22"
+			not-null="false" unique="false" />
+
+		<!--
+			exported bi-directional many-to-many association to UlUgroupRole
+		-->
+		<set name="roles" table="ul_ugroup_role" lazy="false" inverse="false"
+			cascade="all">
+			<key>
+				<column name="PK_USERGROUP_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.AppRole"
+				column="roleId" />
+		</set>
+		<!--
+			exported bi-directional many-to-many association to UlUgroupUser
+		-->
+		<set name="users" table="ul_ugroup_user" lazy="true" inverse="false"
+			cascade="all">
+			<key>
+				<column name="PK_USERGROUP_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.AppUser"
+				column="userId" />
+		</set>
+		<set name="obComs" table="ob_com_usergroup" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PK_USERGROUP_ID" />
+			</key>
+			<many-to-many class="com.ulane.callout.model.outb.ObCom"
+				fetch="join" lazy="false" column="COM_ID" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.htsoft.oa.model.customer.CusLinkman" table="cus_linkman"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="linkmanId" column="linkmanId" type="java.lang.Long"
+			length="19">
+			<generator class="sequence">
+				<param name="sequence">S_cus_linkman</param>
+			</generator>
+		</id>
+		<property name="fullname" type="java.lang.String" update="true"
+			insert="true" access="property" column="fullname" length="32"
+			not-null="true" unique="false" />
+		<property name="sex" type="java.lang.Short" update="true"
+			insert="true" access="property" column="sex" length="5" not-null="true"
+			unique="false" />
+		<property name="position" type="java.lang.Short" update="true"
+			insert="true" access="property" column="position" length="5"
+			not-null="false" unique="false" />
+		<property name="phone" type="java.lang.String" update="true"
+			insert="true" access="property" column="phone" length="32" not-null="false"
+			unique="false" />
+		<property name="mobile" type="java.lang.String" update="true"
+			insert="true" access="property" column="mobile" length="32" not-null="false"
+			unique="false" />
+		<property name="email" type="java.lang.String" update="true"
+			insert="true" access="property" column="email" length="100" not-null="false"
+			unique="false" />
+		<property name="msn" type="java.lang.String" update="true"
+			insert="true" access="property" column="msn" length="100" not-null="false"
+			unique="false" />
+		<property name="qq" type="java.lang.String" update="true"
+			insert="true" access="property" column="qq" length="64" not-null="false"
+			unique="false" />
+		<property name="fax" type="java.lang.String" update="true"
+			insert="true" access="property" column="fax" length="32" not-null="false"
+			unique="false" />
+		<property name="birthday" type="java.util.Date" update="true"
+			insert="true" access="property" column="birthday" length="10"
+			not-null="false" unique="false" />
+		<property name="homeAddress" type="java.lang.String" update="true"
+			insert="true" access="property" column="homeAddress" length="128"
+			not-null="false" unique="false" />
+		<property name="homeZip" type="java.lang.String" update="true"
+			insert="true" access="property" column="homeZip" length="32"
+			not-null="false" unique="false" />
+		<property name="homePhone" type="java.lang.String" update="true"
+			insert="true" access="property" column="homePhone" length="32"
+			not-null="false" unique="false" />
+		<property name="hobby" type="java.lang.String" update="true"
+			insert="true" access="property" column="hobby" length="100" not-null="false"
+			unique="false" />
+		<property name="isPrimary" type="java.lang.Short" update="true"
+			insert="true" access="property" column="isPrimary" length="5"
+			not-null="false" unique="false" />
+		<property name="notes" type="java.lang.String" update="true"
+			insert="true" access="property" column="notes" length="500" not-null="false"
+			unique="false" />
+
+		<property name="nameEn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_EN" length="128"
+			not-null="false" unique="false" />
+		<property name="depName" type="java.lang.String" update="true"
+			insert="true" access="property" column="DEP_NAME" length="100"
+			not-null="false" unique="false" />
+		<property name="customerType" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUSTOMER_TYPE" length="5"
+			not-null="false" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="10"
+			not-null="true" unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="10"
+			not-null="false" unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT1" length="256" not-null="false"
+			unique="false" />
+		<property name="ext2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT2" length="256" not-null="false"
+			unique="false" />
+		<property name="ext3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT3" length="256" not-null="false"
+			unique="false" />
+		<property name="ext4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT4" length="256" not-null="false"
+			unique="false" />
+		<property name="ext5" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT5" length="256" not-null="false"
+			unique="false" />
+		<property name="ext6" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT6" length="256" not-null="false"
+			unique="false" />
+		<property name="ext8" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT8" length="256" not-null="false"
+			unique="false" />
+		<property name="ext7" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT7" length="256" not-null="false"
+			unique="false" />
+		<property name="ext9" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT9" length="256" not-null="false"
+			unique="false" />
+		<property name="ext10" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT10" length="256" not-null="false"
+			unique="false" />
+		<property name="ext11" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT11" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext12" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT12" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext13" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT13" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext14" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT14" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext15" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT15" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext16" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT16" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext17" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT17" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext18" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT18" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext19" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT19" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext20" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT20" length="2048"
+			not-null="false" unique="false" />
+		<property name="linkmanNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="LINKMANNO" length="30" 
+			not-null="false" unique="false" />
+
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer" class="com.htsoft.oa.model.customer.Customer"
+			not-null="false" fetch="select">
+			<column name="customerId" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

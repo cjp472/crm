@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ConAttach" table="CON_ATTACH"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="conAttachId" column="CON_ATTACH_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_ATTACH_ID
+            	</param>
+			</generator>
+		</id>
+		<!-- property name="conId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CON_HIS_ID" length="18"
+			not-null="false" unique="false" / -->
+		<property name="fileType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FILE_TYPE" length="5" not-null="true"
+			unique="false" />
+		<property name="fileSource" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FILE_SOURCE" length="5"
+			not-null="true" unique="false" />
+			
+		<property name="filePath" type="java.lang.String"
+			update="true" insert="true" access="property" column="FILE_PATH"
+			length="200" not-null="false" unique="false" />
+			
+		<property name="cusName" type="java.lang.String"
+			update="true" insert="true" access="property" column="CUS_NAME"
+			length="50" not-null="false" unique="false" />
+		<property name="credNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="CRED_NUM"
+			length="50" not-null="false" unique="false" />
+			
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="19"
+			not-null="false" unique="false" />
+		
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="50"
+			not-null="false" unique="false" />
+		
+		<many-to-one name="conHis" class="com.ulane.customer.model.customer.ConHis"
+			not-null="false" fetch="select">
+			<column name="CON_HIS_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

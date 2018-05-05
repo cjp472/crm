@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkQiusuo" table="UK_QIUSUO"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="qiusuoId" column="QIUSUO_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_QIUSUO_ID
+				</param>
+			</generator>
+		</id>
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="1000"
+			not-null="false" unique="false" />
+		<property name="createtime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATETIME" length="11"
+			not-null="false" unique="false" />
+		<property name="closetime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CLOSETIME" length="11"
+			not-null="false" unique="false" />
+		<many-to-one name="createby" class="com.htsoft.oa.model.system.AppUser">
+			<column name="createby" />
+		</many-to-one>
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="38" not-null="false"
+			unique="false" />
+		<property name="score" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SCORE" length="38" not-null="false"
+			unique="false" />
+		<property name="mark" type="java.lang.String" update="true"
+			insert="true" access="property" column="MARK" length="1000" not-null="false"
+			unique="false" />
+		<property name="huifuCount" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="HUIFU_COUNT" length="18" not-null="false"
+			unique="false" />
+		<!-- exported bi-directional one-to-many association to UkQiusuoHuifu -->
+		<set name="ukQiusuoHuifus" table="uk_qiusuo_huifu" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="QIUSUO_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkQiusuoHuifu" />
+		</set>
+		<set name="HuifusOff" table="UK_QIUSUO_HUIFU_CLOSE" lazy="true"
+			inverse="false" cascade="all-delete-orphan">
+			<key>
+				<column name="QIUSUO_ID" />
+			</key>
+			<many-to-many class="com.ulane.know.model.know.UkQiusuoHuifu" column="QIUSUO_HUIFU_ID" />
+		</set>
+	</class>
+</hibernate-mapping>

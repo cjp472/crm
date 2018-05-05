@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcCheck"
+        table="QC_CHECK"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="chkId"
+            column="CHK_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHECK_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="chkUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="toUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="TO_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="chkTimeSta"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_TIME_STA"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="chkTimeEnd"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_TIME_END"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="chkResult"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_RESULT"
+            precision="5"
+            scale="2"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="chkSummary"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_SUMMARY"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="confirmResult"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CONFIRM_RESULT"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="confirmRemark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CONFIRM_REMARK"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="staId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcTempRelease -->
+		<many-to-one
+			name="qcTempRelease"
+			class="com.ulane.running.model.qucon.QcTempRelease"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TEMP_RELE_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to QcCheckDetail -->
+	<set name="qcCheckDetails"
+	     table="qc_check_detail"
+	     lazy="false"
+	     inverse="true"
+	     cascade="all"
+	     sort="unsorted">
+		<key>
+			<column name="CHK_ID"/>
+		</key>
+		<one-to-many class="com.ulane.running.model.qucon.QcCheckDetail"/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to QcChkBasis -->
+	<set name="qcChkBasiss"
+	     table="qc_chk_basis"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CHK_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.qucon.QcChkBasis"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

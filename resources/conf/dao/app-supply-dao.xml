@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+<!-- start:  Generated for ScBizOrderFee From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizOrderFeeDao" class="com.ulane.supply.dao.supply.impl.ScBizOrderFeeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizOrderFee From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderPurchase From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizOrderPurchaseDao" class="com.ulane.supply.dao.purchase.impl.ScBizOrderPurchaseDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizOrderPurchase From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderRelated From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizOrderRelatedDao" class="com.ulane.supply.dao.supply.impl.ScBizOrderRelatedDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizOrderRelated From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderSales From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizOrderSalesDao" class="com.ulane.supply.dao.sales.impl.ScBizOrderSalesDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizOrderSales From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderStock From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizOrderStockDao" class="com.ulane.supply.dao.stock.impl.ScBizOrderStockDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizOrderStock From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizRelationType From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizRelationTypeDao" class="com.ulane.supply.dao.supply.impl.ScBizRelationTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizRelationType From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizSalesClassify From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizSalesClassifyDao" class="com.ulane.supply.dao.sales.impl.ScBizSalesClassifyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizSalesClassify From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBizSalesDetail From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBizSalesDetailDao" class="com.ulane.supply.dao.sales.impl.ScBizSalesDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBizSalesDetail From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBoPurchaseClassify From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBoPurchaseClassifyDao" class="com.ulane.supply.dao.purchase.impl.ScBoPurchaseClassifyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBoPurchaseClassify From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBoPurchaseDetail From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBoPurchaseDetailDao" class="com.ulane.supply.dao.purchase.impl.ScBoPurchaseDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBoPurchaseDetail From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBoStockClassify From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBoStockClassifyDao" class="com.ulane.supply.dao.stock.impl.ScBoStockClassifyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBoStockClassify From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScBoStockDetail From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scBoStockDetailDao" class="com.ulane.supply.dao.stock.impl.ScBoStockDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScBoStockDetail From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScGoods From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scGoodsDao" class="com.ulane.supply.dao.goods.impl.ScGoodsDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScGoods From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPrice From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scGoodsPriceDao" class="com.ulane.supply.dao.goods.impl.ScGoodsPriceDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScGoodsPrice From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceHis From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scGoodsPriceHisDao" class="com.ulane.supply.dao.goods.impl.ScGoodsPriceHisDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScGoodsPriceHis From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceRule From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scGoodsPriceRuleDao" class="com.ulane.supply.dao.goods.impl.ScGoodsPriceRuleDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScGoodsPriceRule From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceVersion From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scGoodsPriceVersionDao" class="com.ulane.supply.dao.goods.impl.ScGoodsPriceVersionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScGoodsPriceVersion From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsStock From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scGoodsStockDao" class="com.ulane.supply.dao.stock.impl.ScGoodsStockDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScGoodsStock From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScPriceVersion From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scPriceVersionDao" class="com.ulane.supply.dao.goods.impl.ScPriceVersionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScPriceVersion From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScProductAttr From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scProductAttrDao" class="com.ulane.supply.dao.goods.impl.ScProductAttrDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScProductAttr From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScProductAttrVal From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scProductAttrValDao" class="com.ulane.supply.dao.goods.impl.ScProductAttrValDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScProductAttrVal From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScProductClassify From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scProductClassifyDao" class="com.ulane.supply.dao.goods.impl.ScProductClassifyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScProductClassify From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScProductInst From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scProductInstDao" class="com.ulane.supply.dao.goods.impl.ScProductInstDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScProductInst From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScProductInstNote From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scProductInstNoteDao" class="com.ulane.supply.dao.goods.impl.ScProductInstNoteDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScProductInstNote From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScPurchasePrice From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scPurchasePriceDao" class="com.ulane.supply.dao.goods.impl.ScPurchasePriceDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScPurchasePrice From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScPurpriceVersion From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scPurpriceVersionDao" class="com.ulane.supply.dao.goods.impl.ScPurpriceVersionDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScPurpriceVersion From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScThresholdLevel From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scThresholdLevelDao" class="com.ulane.supply.dao.stock.impl.ScThresholdLevelDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScThresholdLevel From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for ScWarehouse From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="scWarehouseDao" class="com.ulane.supply.dao.stock.impl.ScWarehouseDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ScWarehouse From Template: app-supply-dao.xml.beansvm  -->
+<bean id="scProductComDao" class="com.ulane.supply.dao.goods.impl.ScProductComDaoImpl" parent="baseDao"/>
+</beans>

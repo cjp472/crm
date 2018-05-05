@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.supply.model.goods.ScProductClassify"
+		table="SC_PRODUCT_CLASSIFY" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="productClassifyId" column="PRODUCT_CLASSIFY_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_PRODUCT_CLASSIFY_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="productClassifyName" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRODUCT_CLASSIFY_NAME"
+			length="60" not-null="true" unique="false" />
+		<property name="productClassifyPinyin" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRODUCT_CLASSIFY_PINYIN"
+			length="60" not-null="false" unique="false" />
+		<property name="productClassifyDispCode" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRODUCT_CLASSIFY_DISP_CODE"
+			length="60" not-null="false" unique="false" />
+		<property name="productClassifyRemarks" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRODUCT_CLASSIFY_REMARKS"
+			length="600" not-null="false" unique="false" />
+		<property name="productModelFlag" type="java.lang.Short"
+			update="true" insert="true" access="property" column="PRODUCT_MODEL_FLAG"
+			length="5" not-null="true" unique="false" />
+		<property name="masterProductClassifyId" type="java.lang.Long"
+			update="true" insert="true" access="property" column="MASTER_PRODUCT_CLASSIFY_ID"
+			length="18" not-null="false" unique="false" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="PATH_BAK" length="200"
+			not-null="false" unique="false" />
+		<property name="createUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updateUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="desc" type="java.lang.String" update="true"
+			insert="true" access="property" column="DESC_BAK" length="500"
+			not-null="false" unique="false" />
+		<!--后手动加status  -->
+		<property name="status" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS" length="5"
+			not-null="false" unique="false" />	
+		<!-- exported bi-directional one-to-many association to ScGoods -->
+		<set name="scGoodss" table="sc_goods" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PRODUCT_CLASSIFY_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.goods.ScGoods" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ScProductAttr
+		-->
+		<set name="scProductAttrs" table="sc_product_attr" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="PRODUCT_CLASSIFY_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.goods.ScProductAttr" />
+		</set>
+	</class>
+</hibernate-mapping>

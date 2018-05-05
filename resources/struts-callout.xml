@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="outb" extends="struts-default" namespace="/outb">
+	
+	<!-- start:  Generated for ObCallbatch From Template: struts-callout.xml.vm  -->
+	<action name="*ObCallbatch" class="ObCallbatchAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatch From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchAss From Template: struts-callout.xml.vm  -->
+	<action name="*ObCallbatchAss" class="ObCallbatchAssAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchAss From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchHis From Template: struts-callout.xml.vm  -->
+	<action name="*ObCallbatchHis" class="ObCallbatchHisAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchHis From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchImpTmp From Template: struts-callout.xml.vm  -->
+	<action name="*ObCallbatchImpTmp" class="ObCallbatchImpTmpAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchImpTmp From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCalllist From Template: struts-callout.xml.vm  -->
+	<action name="*ObCalllist" class="ObCalllistAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCalllist From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCom From Template: struts-callout.xml.vm  -->
+	<action name="*ObCom" class="ObComAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCom From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObComSalerul From Template: struts-callout.xml.vm  -->
+	<action name="*ObComSalerul" class="ObComSalerulAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObComSalerul From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObConCalllist From Template: struts-callout.xml.vm  -->
+	<action name="*ObConCalllist" class="ObConCalllistAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObConCalllist From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObProject From Template: struts-callout.xml.vm  -->
+	<action name="*ObProject" class="ObProjectAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObProject From Template: struts-callout.xml.vm  -->
+<!--  -->
+	<action name="*ObWashHis" class="ObWashHisAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!--   -->
+<!-- start:  Generated for ObSaletask From Template: struts-callout.xml.vm  -->
+	<action name="*ObSaletask" class="ObSaletaskAction" method="{1}">
+		<result>${successResultValue}</result>
+		<result name="homeTask">/pages/indexpages/myObSaleTask.jsp</result>
+	</action>
+<!-- end:  Generated for ObSaletask From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObSaletaskBo From Template: struts-callout.xml.vm  -->
+	<action name="*ObSaletaskBo" class="ObSaletaskBoAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObSaletaskBo From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchCus From Template: struts-callout.xml.vm  -->
+	<action name="*ObCallbatchCus" class="ObCallbatchCusAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchCus From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchImpWash From Template: struts-callout.xml.vm  -->
+	<action name="*ObCallbatchImpWash" class="ObCallbatchImpWashAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchImpWash From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchImpWash From Template: struts-callout.xml.vm  -->
+	<action name="*ObBizTypeTreeCom" class="ObBizTypeTreeComAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchImpWash From Template: struts-callout.xml.vm  -->
+<!-- start:  Generated for ObCallbatchExtract From Template: struts-monitor.xml.vm  -->
+	<action name="*ObCallbatchExtract" class="ObCallbatchExtractAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ObCallbatchExtract From Template: struts-monitor.xml.vm  -->
+
+</package>
+</struts>

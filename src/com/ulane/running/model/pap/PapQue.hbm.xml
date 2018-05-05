@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.running.model.pap.PapQue" table="PAP_QUE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="queId" column="QUE_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_PAP_QUE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="queTopic" type="java.lang.String" update="true"
+			insert="true" access="property" column="QUE_TOPIC" length="512"
+			not-null="true" unique="false" />
+		<property name="queContent" type="java.lang.String" update="true"
+			insert="true" access="property" column="QUE_CONTENT" length="2048"
+			not-null="false" unique="false" />
+		<property name="queTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="QUE_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="displayTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DISPLAY_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="displayStyleId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="DISPLAY_STYLE_ID"
+			length="5" not-null="true" unique="false" />
+		<property name="layloutTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="LAYLOUT_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="initVal" type="java.lang.String" update="true"
+			insert="true" access="property" column="INIT_VAL" length="128"
+			not-null="false" unique="false" />
+		<property name="isNeed" type="java.lang.Short" update="true"
+			insert="true" access="property" column="IS_NEED" length="5" not-null="true"
+			unique="false" />
+		<property name="optSrcTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="OPT_SRC_TYPE_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="optSrcObj" type="java.lang.String" update="true"
+			insert="true" access="property" column="OPT_SRC_OBJ" length="128"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<!-- exported bi-directional one-to-many association to PapCatQue -->
+		<set name="papCats" table="pap_cat_que" lazy="true" inverse="false"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="QUE_ID" />
+			</key>
+			<many-to-many fetch="join" class="com.ulane.running.model.pap.PapCat" column="QUE_CAT_ID"/>
+		</set>
+		<!-- exported bi-directional one-to-many association to PapQueOpt -->
+		<set name="papQueOpts" table="pap_que_opt" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="QUE_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.pap.PapQueOpt" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to PapTemGotoRule
+		-->
+		<set name="papTemGotoRules" table="pap_tem_goto_rule" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TAR_QUE_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.pap.PapTemGotoRule" />
+		</set>
+		<!-- exported bi-directional one-to-many association to PapTemQue -->
+		<set name="papTemQues" table="pap_tem_que" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="QUE_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.pap.PapTemQue" />
+		</set>
+	</class>
+</hibernate-mapping>

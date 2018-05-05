@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.monitor.model.unim.UnimAssets"
+        table="UNIM_ASSETS"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="assetsId"
+            column="ASSETS_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_UNIM_ASSETS_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="assetsName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ASSETS_NAME"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="assetsCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ASSETS_CODE"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="depId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="DEP_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="perincharId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="PERINCHAR_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="assDesc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ASS_DESC"
+            length="4000"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="4000"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="status"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="STATUS"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to UnimAssCategory -->
+		<many-to-one
+			name="unimAssCategory"
+			class="com.ulane.monitor.model.unim.UnimAssCategory"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="CAT_ID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to UnimAssType -->
+		<many-to-one
+			name="unimAssType"
+			class="com.ulane.monitor.model.unim.UnimAssType"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TYPE_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to UnimAssetsTarget -->
+	<set name="unimAssetsTargets"
+	     table="unim_assets_target"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="ASSETS_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.monitor.model.unim.UnimAssetsTarget"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to UnimAssTarPar -->
+	<set name="unimAssTarPars"
+	     table="unim_ass_tar_par"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="ASSETS_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.monitor.model.unim.UnimAssTarPar"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to UnimAssTarThrlevl -->
+	<set name="unimAssTarThrlevls"
+	     table="unim_ass_tar_thrlevl"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="ASSETS_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.monitor.model.unim.UnimAssTarThrlevl"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<!-- start:  Generated for ObBizTypeTree From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obBiztypeTreeDao" class="com.ulane.callout.dao.outb.impl.ObBizTypeTreeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObBizTypeTree From Template: app-callout-dao.xml.beansvm  -->
+
+<!-- start:  Generated for obComPapDao From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obComPapDao" class="com.ulane.callout.dao.outb.impl.ObComPapDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for obComPapDao From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObBizTypeTree From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obComScrDao" class="com.ulane.callout.dao.outb.impl.ObComScrDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObBizTypeTree From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObBizTypeTree From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obComProductDao" class="com.ulane.callout.dao.outb.impl.ObComProductDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObBizTypeTree From Template: app-callout-dao.xml.beansvm  -->
+
+
+
+
+
+<!-- start:  Generated for ObCallbatch From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCallbatchDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatch From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchAss From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCallbatchAssDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchAssDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatchAss From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchHis From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCallbatchHisDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchHisDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatchHis From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchImpTmp From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCallbatchImpTmpDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchImpTmpDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatchImpTmp From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCalllist From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCalllistDao" class="com.ulane.callout.dao.outb.impl.ObCalllistDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCalllist From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCom From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obComDao" class="com.ulane.callout.dao.outb.impl.ObComDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCom From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObComSalerul From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obComSalerulDao" class="com.ulane.callout.dao.outb.impl.ObComSalerulDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObComSalerul From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObConCalllist From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obConCalllistDao" class="com.ulane.callout.dao.outb.impl.ObConCalllistDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObConCalllist From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObProject From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obProjectDao" class="com.ulane.callout.dao.outb.impl.ObProjectDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObProject From Template: app-callout-dao.xml.beansvm  -->
+
+<!-- 新增表：ObProjExecTypeDao -->
+	<bean id="obProjExecTypeDao" class="com.ulane.callout.dao.outb.impl.ObProjExecTypeDaoImpl" parent="baseDao"/>
+	<bean id="obWashHisDao" class="com.ulane.callout.dao.outb.impl.ObWashHisDaoImpl" parent="baseDao"/>
+	
+<!-- start:  Generated for ObSaletask From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obSaletaskDao" class="com.ulane.callout.dao.outb.impl.ObSaletaskDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObSaletask From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObSaletaskBo From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obSaletaskBoDao" class="com.ulane.callout.dao.outb.impl.ObSaletaskBoDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObSaletaskBo From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchCus From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCallbatchCusDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchCusDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatchCus From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchImpWash From Template: app-callout-dao.xml.beansvm  -->
+	<bean id="obCallbatchImpWashDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchImpWashDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatchImpWash From Template: app-callout-dao.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchExtract From Template: app-monitor-dao.xml.beansvm  -->
+	<bean id="obCallbatchExtractDao" class="com.ulane.callout.dao.outb.impl.ObCallbatchExtractDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ObCallbatchExtract From Template: app-monitor-dao.xml.beansvm  -->
+</beans>

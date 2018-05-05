@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObSaletask" table="OB_SALETASK"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="saletaskId" column="SALETASK_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_SALETASK_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="typId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="TYP_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="cusGrpId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CUS_GRP_ID" length="30"
+			not-null="false" unique="false" />
+		<property name="useId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USE_ID" length="18" not-null="false"
+			unique="false" />
+		<property name="cusId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CUS_ID" length="18" not-null="true"
+			unique="false" />
+		<property name="callbatchNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="CALLBATCH_NAM" length="512"
+			not-null="false" unique="false" />
+		<property name="calllistNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="CALLLIST_NAM" length="128"
+			not-null="false" unique="false" />
+		<property name="comNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_NAM" length="1024"
+			not-null="false" unique="false" />
+		<property name="asgDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="ASG_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="booTim" type="java.util.Date" update="true"
+			insert="true" access="property" column="BOO_TIM" length="7" not-null="false"
+			unique="false" />
+		<property name="booRemark" type="java.lang.String" update="true"
+			insert="true" access="property" column="BOO_REMARK" length="1024"
+			not-null="false" unique="false" />
+		<property name="diaCou" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DIA_COU" length="5" not-null="true"
+			unique="false" />
+		<property name="conStaId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CON_STA_ID" length="10"
+			not-null="false" unique="false" />
+		<property name="firstDiaDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="FIRST_DIA_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="lastDiaDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="LAST_DIA_DAT" length="7"
+			not-null="false" unique="false" />
+		<!-- 新增字段：最后处理时间 -->	
+		<property name="lastOpeDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="LAST_OPE_DAT" length="7"
+			not-null="false" unique="false" />
+		<!-- 新增字段：处理类型 -->
+		<property name="taskExecType" type="java.lang.String" update="true"
+			insert="true" access="property" column="TASK_EXEC_TYPE" length="255" not-null="false"
+			unique="false" />
+		<!-- 新增字段：营销阶段 -->
+		<property name="busiStagId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUSI_STAG_ID" length="5"
+			not-null="false" unique="false" />	
+		<property name="des" type="java.lang.String" update="true"
+			insert="true" access="property" column="DES" length="2048" not-null="false"
+			unique="false" />
+		<property name="busiStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUSI_STA_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="busiRelId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUSI_REL_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="servTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="SERV_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="servStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="SERV_STA_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="taskStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="TASK_STA_ID" length="5"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObCallbatch -->
+		<many-to-one name="obCallbatch"
+			class="com.ulane.callout.model.outb.ObCallbatch" not-null="false"
+			fetch="select">
+			<column name="CALLBATCH_ID" />
+		</many-to-one>
+		<!--
+			imported bi-directional many-to-one association to ObCallbatchAss
+		-->
+		<many-to-one name="obCallbatchAss"
+			class="com.ulane.callout.model.outb.ObCallbatchAss" not-null="false"
+			fetch="select">
+			<column name="CALLBATCH_ASS_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ObCalllist -->
+		<many-to-one name="obCalllist"
+			class="com.ulane.callout.model.outb.ObCalllist" not-null="false"
+			fetch="select">
+			<column name="CALLLIST_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ObCom -->
+		<many-to-one name="obCom" class="com.ulane.callout.model.outb.ObCom"
+			not-null="false" fetch="select">
+			<column name="COM_ID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to ObSaletaskBo -->
+		<set name="obSaletaskBos" table="ob_saletask_bo" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="SALETASK_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObSaletaskBo" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObSaletaskConhis
+		-->
+		<property name="toUserNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="USERNO" length="20" not-null="false"
+			unique="false" />			
+	</class>
+</hibernate-mapping>

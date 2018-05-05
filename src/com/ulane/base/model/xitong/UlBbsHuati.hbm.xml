@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.UlBbsHuati" table="UL_BBS_HUATI"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="bbsHuatiId" column="BBS_HUATI_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">SEQ_BBS_HUATI_ID</param>
+			</generator>
+		</id>
+
+
+		<many-to-one name="appUser" class="com.htsoft.oa.model.system.AppUser">
+			<column name="createby" />
+		</many-to-one>
+		<property name="liulanshu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="LIULANSHU" length="38"
+			not-null="false" unique="false" />
+
+		<property name="huifushu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="HUIFUSHU" length="38"
+			not-null="false" unique="false" />
+		<property name="title" type="java.lang.String" update="true"
+			insert="true" access="property" column="TITLE" length="60" not-null="false"
+			unique="false" />
+		<property name="businessType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BUSINESS_TYPE" length="38"
+			not-null="false" unique="false" />
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="1000"
+			not-null="false" unique="false" />
+		<property name="attachmentUrl" type="java.lang.String"
+			update="true" insert="true" access="property" column="ATTACHMENT_URL"
+			length="200" not-null="false" unique="false" />
+		<property name="joinerGroup" type="java.lang.String" update="true"
+			insert="true" access="property" column="JOINER_GROUP" length="200"
+			not-null="false" unique="false" />
+		<property name="joiner" type="java.lang.String" update="true"
+			insert="true" access="property" column="JOINER" length="200"
+			not-null="false" unique="false" />
+		<property name="updateby" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATEBY" length="50"
+			not-null="false" unique="false" />
+		<property name="updatetime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATETIME" length="11"
+			not-null="false" unique="false" />
+		<property name="createtime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATETIME" length="11"
+			not-null="false" unique="false" />
+
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="38" not-null="false"
+			unique="false" />
+		<!-- exported bi-directional one-to-many association to UlBbsHuifu -->
+		<set name="ulBbsHuifus" table="ul_bbs_huifu" lazy="true" inverse="true"
+			cascade="all" sort="unsorted">
+			<key>
+				<column name="BBS_HUATI_ID" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.UlBbsHuifu" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UlBbsJieshou -->
+		<set name="ulBbsJieshous" table="ul_bbs_jieshou" lazy="true"
+			inverse="true" cascade="all" sort="unsorted">
+			<key>
+				<column name="BBS_HUATI_ID" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.UlBbsJieshou" />
+		</set>
+
+		<set name="ulBbsHuatiFile" table="UL_BBS_HUATI_FILE" lazy="true" cascade="save-update">
+			<key>
+				<column name="HUATIID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.FileAttach"
+				column="fileId" fetch="join" />
+		</set>
+	</class>
+</hibernate-mapping>

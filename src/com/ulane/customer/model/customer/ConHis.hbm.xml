@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ConHis" table="CON_HIS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="conHisId" column="CON_HIS_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_HIS_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="srcTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="SRC_TYPE_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="dirId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DIR_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="contactTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CONTACT_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="preContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRE_CONTACT_NUM"
+			length="256" not-null="false" unique="false" />
+		<property name="mainContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MAIN_CONTACT_NUM"
+			length="256" not-null="true" unique="false" />
+		<property name="lastContactNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="LAST_CONTACT_NUM"
+			length="256" not-null="false" unique="false" />
+		<property name="staTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="endTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="busTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUS_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="conResId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CON_RES_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="conResRemarks" type="java.lang.String"
+			update="true" insert="true" access="property" column="CON_RES_REMARKS"
+			length="2000" not-null="false" unique="false" />
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="2000"
+			not-null="false" unique="false" />
+		<property name="dealStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DEAL_STA_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="remarks" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARKS" length="2000"
+			not-null="false" unique="false" />
+		<property name="ownerId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="OWNER_ID" length="10"
+			not-null="false" unique="false" />
+		
+		<property name="planId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PLAN_ID" length="18"
+			not-null="false" unique="false" />
+			
+		<property name="serviceId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SERVICE_ID" length="18"
+			not-null="false" unique="false" />
+		
+		<property name="cusName" type="java.lang.String"
+			update="true" insert="true" access="property" column="CUS_NAME"
+			length="100" not-null="false" unique="false" />
+			
+		<property name="credNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="CRED_NUM"
+			length="100" not-null="false" unique="false" />
+			
+		<property name="serialNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="SERIAL_NUM"
+			length="100" not-null="false" unique="false" />
+			
+		<property name="agentName" type="java.lang.String"
+			update="true" insert="true" access="property" column="AGENT_NAME"
+			length="128" not-null="false" unique="false" />
+		
+		<!-- *****************新增是否是美国人字段***************** 
+		<property name="ifanswer" type="java.lang.String"
+			update="true" insert="true" access="property" column="IFANSWER"
+			length="128" not-null="false" unique="false" />
+		<property name="ifusa" type="java.lang.String"
+			update="true" insert="true" access="property" column="IFUSA"
+			length="128" not-null="false" unique="false" />
+		<property name="raterNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="RATERNUM"
+			length="128" not-null="false" unique="false" />-->
+		
+		
+		<many-to-one name="owner"
+			class="com.htsoft.oa.model.system.AppUser" not-null="false" insert="false" update="false"
+			fetch="select">
+			<column name="OWNER_ID" />
+		</many-to-one>	
+		<property name="statusId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS_ID" length="5"
+			not-null="true" unique="false" />
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false"
+			fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to CusLinkman -->
+		<many-to-one name="cusLinkman"
+			class="com.htsoft.oa.model.customer.CusLinkman" not-null="false"
+			fetch="select">
+			<column name="LINKMANID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to ConChaInsCus -->
+		<!--set name="conChaInsCuss" table="con_cha_ins_cus" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CON_HIS_ID" />
+			</key>
+			<many-to-many column="userId" fetch="join" class="com.htsoft.oa.model.system.AppUser"></many-to-many>
+		</set-->
+		<!--set name="conBwLists" table="con_cha_ins_cus" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CON_HIS_ID" />
+			</key>
+			<many-to-many column="BW_ID" fetch="join" class="com.ulane.customer.model.customer.ConBwList"></many-to-many>
+		</set-->
+		<set name="conAttachs" table="CON_ATTACH" lazy="true" inverse="true" cascade="save-update" sort="unsorted"> 
+	      <key> 
+	        <column name="CON_HIS_ID"/> 
+	      </key>  
+	      <one-to-many class="com.ulane.customer.model.customer.ConAttach"/> 
+	    </set>  
+	</class>
+</hibernate-mapping>

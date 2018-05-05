@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Menus id="Mod_4" text="远程银行" iconCls="mod-lianluo">
+  <Items id="customer" text="业务资料"  iconCls="menu-customer" isPublic="false"> 
+	<Item id="ConHisView" text="业务资料"/>
+	<!-- <Item id="EveryDayReport" text="系统每日报表"/>
+	<Item id="AgentReport" text="座席运营报表"/> -->
+  </Items>
+   <!--20150317 终端自助业务资料 - -->
+    <Items id="MachineSelf" text="终端自助业务资料"  iconCls="menu-onlinedoc" isPublic="false"> 
+	<Item id="MachineSelfView" text="终端自助业务资料"/>
+  </Items>
+   
+   
+  <Items id="report" text="座席报表"  iconCls="menu-task" isPublic="false"> 
+	<Item id="EveryDayReport" text="系统每日报表"/>
+	<Item id="AgentReport" text="座席运营报表"/>
+  </Items>
+  <!-- 2014-11-5   补录报表-->
+  <Items id="report1" text="补录报表"  iconCls="menu-report" isPublic="false"> 
+	<Item id="EveryExamineReport" text="系统补录报表"/>
+	<!--<Item id="AgentReport" text="座席运营报表"/>-->
+  </Items>
+   <Items id="reports2" text="质检考核管理"  iconCls="menu-report" isPublic="false"> 
+	<Item id="EverySysWorkattendanceReport" text="质检考核信息"/>
+	<!--<Item id="AgentReport" text="座席运营报表"/>-->
+  </Items>
+  
+  <Items id="ProductManage" text="报表" iconCls="menu-product"
+		isPublic="false">
+		<Items id="ChanPin" text="报表管理" iconCls="menu-report" isPublic="false">
+			<Item id="QJAddCardView" iconCls="menu-appuser" text="重空汇总"></Item>
+			<Item id="QJContractRecord" iconCls="menu-report" text="合约汇总"></Item>
+		</Items>
+   </Items>
+</Menus>
+

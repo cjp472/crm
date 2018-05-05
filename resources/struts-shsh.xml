@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="shsh" extends="struts-default" namespace="/shsh">
+	
+
+
+
+
+<!-- start:  Generated for ShBugRepaire From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBugRepaire" class="ShBugRepaireAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBugRepaire From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBugReport From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBugReport" class="ShBugReportAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBugReport From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBugRepStuff From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBugRepStuff" class="ShBugRepStuffAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBugRepStuff From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBuilderAccept From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBuilderAccept" class="ShBuilderAcceptAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBuilderAccept From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBuilderApply From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBuilderApply" class="ShBuilderApplyAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBuilderApply From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBuilderControl From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBuilderControl" class="ShBuilderControlAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBuilderControl From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBuilderMethod From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBuilderMethod" class="ShBuilderMethodAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBuilderMethod From Template: struts-shsh.xml.vm  -->
+<!-- start:  Generated for ShBuilderTime From Template: struts-shsh.xml.vm  -->
+	<action name="*ShBuilderTime" class="ShBuilderTimeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for ShBuilderTime From Template: struts-shsh.xml.vm  -->
+</package>
+</struts>

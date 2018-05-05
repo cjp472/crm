@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ulane.base.model.info.QJTransferAccounts" table="QJ_TRANSFER_ACCOUNTS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="traAccId" column="TRA_ACC_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_transacc_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="traAccTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="TRA_ACC_TIME" length="19"
+			not-null="false" unique="false" />
+			<property name="contractDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CONTRACT_DATE" length="19"
+			not-null="false" unique="false" />
+			<property name="printDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="PRINT_DATE" length="19"
+			not-null="false" unique="false" />
+			<property name="printTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="PRINT_TIME" length="19"
+			not-null="false" unique="false" />
+        <property
+            name="businessResults"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="BUSINESS_RESULTS"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="equipmentName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTNAME"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="operatorId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPERATOR_ID"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="branchId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BRANCH_ID"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+    
+       
+         <property
+            name="customerName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CUSTOMER_NAME"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="idCardNumber"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ID_CARD_NUMBER"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="serialNumber"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERIAL_NUMBER"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="cardNumber"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CARD_NUMBER"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="money"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="MONEY"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="certigier"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CERTIGIER"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="operator"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPERATOR"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+         <property
+            name="checkMember"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHECK_MEMBER"
+            length="64"
+            not-null="false"
+            unique="false"
+        />
+       
+     </class>
+</hibernate-mapping>

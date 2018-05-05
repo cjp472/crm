@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="know" extends="struts-default" namespace="/know">
+	
+
+<!-- start:  Generated for UkKnowApply From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowApply" class="UkKnowApplyAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowApply From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowApprove From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowApprove" class="UkKnowApproveAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowApprove From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowDianping From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowDianping" class="UkKnowDianpingAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowDianping From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowDingyue From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowDingyue" class="UkKnowDingyueAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowDingyue From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowFankui From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowFankui" class="UkKnowFankuiAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowFankui From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowKeyword From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowKeyword" class="UkKnowKeywordAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowKeyword From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowTemplate From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowTemplate" class="UkKnowTemplateAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+	<!-- <action name="*UkKnowRecommend" class="UkKnowRecommendAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action> -->
+<!-- end:  Generated for UkKnowTemplate From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowType From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowType" class="UkKnowTypeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowType From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkPerKnow From Template: struts-know.xml.vm  -->
+	<action name="*UkPerKnow" class="UkPerKnowAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkPerKnow From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkSysKnow From Template: struts-know.xml.vm  -->
+	<action name="*UkSysKnow" class="UkSysKnowAction" method="{1}">
+		<result>${successResultValue}</result>
+			<result name="formExt">/pages/ukSysKnow/formExt.jsp</result>
+			<result name="knowTemplateShow">/pages/ukSysKnow/knowTemplateShow.jsp</result>
+			<result name="hot">/pages/indexpages/myHotKnow.jsp</result>
+			<result name="new">/pages/indexpages/myNewKnow.jsp</result>
+	</action>
+<!-- end:  Generated for UkSysKnow From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkRelativeKnow From Template: struts-know.xml.vm  -->
+	<action name="*UkRelativeKnow" class="UkRelativeKnowAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkRelativeKnow From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowDimensionality From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowDimensionality" class="UkKnowDimensionalityAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowDimensionality From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkQiusuo From Template: struts-know.xml.vm  -->
+	<action name="*UkQiusuo" class="UkQiusuoAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkQiusuo From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkQiusuoHuifu From Template: struts-know.xml.vm  -->
+	<action name="*UkQiusuoHuifu" class="UkQiusuoHuifuAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkQiusuoHuifu From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkKnowCollectType From Template: struts-know.xml.vm  -->
+	<action name="*UkKnowCollectType" class="UkKnowCollectTypeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkKnowCollectType From Template: struts-know.xml.vm  -->
+<!-- start:  Generated for UkPersonKnowType From Template: struts-know.xml.vm  -->
+	<action name="*UkPersonKnowType" class="UkPersonKnowTypeAction" method="{1}">
+		<result>${successResultValue}</result>
+	</action>
+<!-- end:  Generated for UkPersonKnowType From Template: struts-know.xml.vm  -->
+</package>
+</struts>

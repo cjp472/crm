@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcChkRul"
+        table="QC_CHK_RUL"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="chkRulId"
+            column="CHK_RUL_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHK_RUL_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="rulName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUL_NAME"
+            length="256"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="objTyeId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="OBJ_TYE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="objSubTyeId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="OBJ_SUB_TYE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="rulTimeSta"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUL_TIME_STA"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="rulTimeEnd"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUL_TIME_END"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="rulStaId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUL_STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"/>
+        		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CRE_DAT" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPD_DAT" length="11"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+        <set name="qcChkRulDetails" table="QC_CHK_RUL_DETAIL"
+	     lazy="true" inverse="true" cascade="all-delete-orphan"
+	     order-by="CHK_RUL_ID asc">
+		<key>
+			<column name="CHK_RUL_ID"/>
+		</key>
+		<one-to-many class="com.ulane.running.model.qucon.QcChkRulDetail"/>
+		</set>     
+     </class>
+</hibernate-mapping>

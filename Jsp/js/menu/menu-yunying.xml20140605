@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_14" text="运营管理" iconCls="mod-yunying">
+	<Items id="Info" text="沟通交流" iconCls="menu-info" isPublic="false">
+
+		<Item id="PersonalPhoneBookView" iconCls="menu-personal-phoneBook" text="员工通讯录"/>  
+		  <!-- <Items id="PhoneBook" iconCls="menu-phonebook" text="通讯簿" > 
+	      <Item id="SharedPhoneBookView" iconCls="menu-phonebook-shared" text="共享通讯录"/>  
+	      <Item id="PublicPhoneBookView" iconCls="" text="公共通讯簿"/> 
+	    </Items>   
+	     -->
+		<Item id="NewsView" iconCls="menu-news" text="新闻管理">
+			<Function id="_NewsQuery" text="查看新闻" iconCls="menu-list">
+				<url>/info/categoryNews.do</url>
+				<url>/info/treeNewsType.do</url>
+			</Function>
+			<Function id="_NewsAdd" text="添加新闻" iconCls="menu-add">
+				<url>/info/categoryNews.do</url>
+				<url>/info/treeNewsType.do</url>
+				<url>/info/saveNews.do</url>
+			</Function>
+			<Function id="_NewsEdit" text="编辑新闻" iconCls="btn-edit">
+				<url>/info/categoryNews.do</url>
+				<url>/info/treeNewsType.do</url>
+				<url>/info/saveNews.do</url>
+			</Function>
+			<Function id="_NewsDel" text="删除新闻" iconCls="menu-del">
+				<url>/info/categoryNews.do</url>
+				<url>/info/treeNewsType.do</url>
+				<url>/info/multiDelNews.do</url>
+			</Function>
+		</Item>
+		<Item id="NoticeView" iconCls="menu-notice" text="公告管理">
+			<Function id="_NoticeQuery" text="查看公告" iconCls="menu-list" />
+			<Function id="_NoticeAdd" text="添加公告" iconCls="menu-add">
+				<url>/info/saveNotice.do</url>
+			</Function>
+			<Function id="_NoticeEdit" text="编辑公告" iconCls="btn-edit">
+				<url>/info/saveNotice.do</url>
+			</Function>
+			<Function id="_NoticeDel" text="删除公告" iconCls="menu-del">
+				<url>/info/multiDelNotice.do</url>
+			</Function>
+		</Item>
+		<Item id="MessageManageView" text="消息通知">
+		</Item>
+		<!--<Item id="SuggestBoxView" iconCls="menu-suggestbox" text="意见箱" />
+	     	<Items id="MailForm" iconCls="menu-mail_send" text="新建邮件"/> -->
+		<Item id="PersonalMailBoxView" text="内部邮件"></Item>
+		<!-- 
+		<Item id="NewsCommentView" iconCls="menu-info" text="评论反馈">
+			<Function id="_NewsCommentQuery" text="查看评论" iconCls="menu-list" />
+			<Function id="_NewsCommentDel" text="删除评论" iconCls="menu-del">
+				<url>/info/multiDelNewsComment.do</url>
+			</Function>
+		</Item>
+         -->
+		<!-- 	<Item id="JforumView" iconCls="menu-document" text="论坛连接"
+			url="/jforum" />
+		 <Item id="UlBbsHuatiView" text="在线交流" /> 
+		 <Item id="UlBbsHuifuView" text="UlBbsHuifu" /> -->
+	</Items>
+	<Items id="Info2" text="现场管理" iconCls="menu-info" isPublic="false">
+		<Items id="pxks041" text="人员监控">
+			<Items id="" text="资源配置">
+				<Item id="UnimSkillgroupView" text="业务组"/>
+				<Item id="UnimAgentView" text="员工"/>
+				<Item id="UnimExtensionView" text="电脑"/>
+			</Items>
+			<Item id="UnimAgentMapView" text="监控视图"/>
+			<Items id="" text="属性管理">
+				<Item id="UnimCategoryView" text="员工分类"/>
+				<Item id="UnimextensionstateView" text="员工状态"/>
+				<Item id="UnimshowbusyView" text="小休类型"/>
+				<Item id="UnimhandupView" text="求助原因"/>
+				<Item id="UnimJianKongFaZhiView" text="状态阀值"/>
+			</Items>
+		</Items>
+		<Items id="" text="业务监控">
+			<Items id="" text="资源配置">
+				<Item id="BusiQuDaoView" text="渠道"/>
+			</Items>
+			<Item id="BusiMapView" text="监控视图"/>
+			<Items id="" text="属性管理">
+				<Item id="BusiZhiBiaoView" text="监控指标"/>
+				<Item id="BusiCanShuView" text="指标参数"/>
+				<Item id="BusiFaZhiView" text="阀值管理"/>
+			</Items>
+		</Items>
+		<Items id="" text="资产监控">
+			<Items id="" text="资源配置">
+				<Item id="AssetLeiXingView" text="资产类型"/>
+				<Item id="AssetGuanLiView" text="资产管理"/>
+			</Items>
+			<Item id="AssetMapView" text="监控视图"/>
+			<Items id="" text="属性管理">
+				<Item id="AssetLeiBieView" text="资产类别"/>
+				<Item id="AssetZhuangTaiView" text="资产状态"/>
+				<Item id="AssetZhiBiaoView" text="监控指标"/>
+				<Item id="AssetCanShuView" text="指标参数"/>
+				<Item id="AssetFaZhiView" text="阀值管理"/>
+			</Items>
+		</Items>
+		<Item id="UnimAgentManagerView" text="用户授权"/>
+		<!-- Item id="AgentMap" text="坐席监控"/>
+		<Item id="pxks049" text="交易监控"/>
+		<Item id="pxks04a" text="资源监控"/> -->
+	</Items>
+	 <Items id="Info3" text="质检绩效" iconCls="menu-info" isPublic="false">
+		<Item id="QcTargetView" text="考核指标"/>
+		<Item id="QcTemplateView" text="考核模板"/>
+		<Item id="QcRuleView" text="考核规则"/>
+		<Item id="QCReviewView" text="质检考核"/>
+		<Item id="QcHelpView" text="质检辅导"/>
+		<Item id="QcCheckView" text="质检查询"/>
+		<Items id="pxks027" text="综合绩效">
+		<Item id="AchievementsRuleView" text="绩效规则"/>
+		<Item id="AchievementsView" text="绩效查询"/>
+		</Items>
+	</Items>
+	<!--<Items id="Info4" text="培训考试" iconCls="menu-info" isPublic="false">
+		<Items id="pxks1" text="培训管理">
+			<Item id="pxks2" text="需求调查"/>
+			<Item id="pxks3" text="课件设计"/>
+			<Item id="pxks4" text="课程管理"/>
+			<Item id="pxks5" text="班级管理"/>
+		</Items>
+		<Items id="pxks6" text="考试管理">
+			<Item id="pxks7" text="题库管理"/>
+			<Item id="pxks8" text="试卷管理"/>
+		</Items>
+		<Items id="pxks16" text="培训学习">
+			<Item id="pxks9" text="在线学习"/>
+			<Item id="pxks10" text="在线交流"/>
+			<Item id="pxks11" text="培训历史"/>
+		</Items>
+		<Items id="pxks17" text="培训评估">
+			<Item id="pxks12" text="在线考试"/>
+			<Item id="pxks13" text="评分阅卷"/>
+			<Item id="pxks14" text="问卷调查"/>
+			<Item id="pxks15" text="成绩查询"/>
+		</Items>
+	</Items> 
+	<Items id="Info7" text="话术" iconCls="menu-info" isPublic="false">
+		<Item id="CtScrAnsDetailView" text="话术结果明细"/> 
+		<Item id="CtScrAnsSummaryView" text="话术查询"/> 
+		<Item id="CtScrCatView" text="话术题库"/> 
+		<Item id="CtScrChapcterView" text="话术章节"/> 
+		<Item id="CtScrQueView" text="题目管理"/> 
+		<Item id="CtScrQueOptView" text="话术题项"/> 
+		<Item id="CtScrReleaseView" text="话术"/> 
+		<Item id="CtScrReleaseObjView" text="话术发布对象"/> 
+		<Item id="CtScrTemplateView" text="模板设计"/> 
+		<Item id="CtScrTemGotoRuleView" text="话术模板-跳题规则"/> 
+		<Item id="CtScrTemQueView" text="话术模板-题目"/> 
+	</Items>	-->
+	<Items id="Personal" text="人事管理" iconCls="menu-personal"
+		isPublic="false">
+		<Item id="UlDepartmentView" text="组织机构" />
+		<Item id="UlEmployeeView" text="员工档案" />
+	</Items>
+	<!-- <Items id="Info5" text="统计报表" iconCls="menu-info" isPublic="false"></Items> -->
+</Menus>

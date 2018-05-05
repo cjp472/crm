@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+
+<!-- start:  Generated for UkKnowApply From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowApplyDao" class="com.ulane.know.dao.know.impl.UkKnowApplyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowApply From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowApprove From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowApproveDao" class="com.ulane.know.dao.know.impl.UkKnowApproveDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowApprove From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDianping From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowDianpingDao" class="com.ulane.know.dao.know.impl.UkKnowDianpingDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowDianping From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDingyue From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowDingyueDao" class="com.ulane.know.dao.know.impl.UkKnowDingyueDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowDingyue From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowFankui From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowFankuiDao" class="com.ulane.know.dao.know.impl.UkKnowFankuiDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowFankui From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowKeyword From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowKeywordDao" class="com.ulane.know.dao.know.impl.UkKnowKeywordDaoImpl" parent="baseDao"/>
+	<bean id="ukKnowKeywordTypeDao" class="com.ulane.know.dao.know.impl.UkKnowKeywordTypeDaoImpl" parent="baseDao"/>
+<!-- <bean id="ukKnowRecommendDao" class="com.ulane.know.dao.know.impl.UkKnowRecommendDaoImpl" parent="baseDao"/>-->
+<!-- end:  Generated for UkKnowKeyword From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowTemplate From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowTemplateDao" class="com.ulane.know.dao.know.impl.UkKnowTemplateDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowTemplate From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowType From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowTypeDao" class="com.ulane.know.dao.know.impl.UkKnowTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowType From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkPerKnow From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukPerKnowDao" class="com.ulane.know.dao.know.impl.UkPerKnowDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkPerKnow From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkSysKnow From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukSysKnowDao" class="com.ulane.know.dao.know.impl.UkSysKnowDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkSysKnow From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkRelativeKnow From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukRelativeKnowDao" class="com.ulane.know.dao.know.impl.UkRelativeKnowDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkRelativeKnow From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDimensionality From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowDimensionalityDao" class="com.ulane.know.dao.know.impl.UkKnowDimensionalityDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowDimensionality From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkQiusuo From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukQiusuoDao" class="com.ulane.know.dao.know.impl.UkQiusuoDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkQiusuo From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkQiusuoHuifu From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukQiusuoHuifuDao" class="com.ulane.know.dao.know.impl.UkQiusuoHuifuDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkQiusuoHuifu From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowDimensionality From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukDimensionalityKnowDao" class="com.ulane.know.dao.know.impl.UkDimensionalityKnowDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowDimensionality From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkKnowCollectType From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukKnowCollectTypeDao" class="com.ulane.know.dao.know.impl.UkKnowCollectTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkKnowCollectType From Template: app-know-dao.xml.beansvm  -->
+<!-- start:  Generated for UkPersonKnowType From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ukPersonKnowTypeDao" class="com.ulane.know.dao.know.impl.UkPersonKnowTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UkPersonKnowType From Template: app-know-dao.xml.beansvm  -->
+</beans>

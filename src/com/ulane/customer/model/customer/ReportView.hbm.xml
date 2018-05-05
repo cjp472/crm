@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.ReportView" table="v_6" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		
+		<composite-id name="id" class="com.ulane.customer.model.customer.ReportViewId">
+		   <!--<key-property name="id" type="java.lang.Long">
+		    <column name="id" length="19" />
+		   </key-property>
+		   --><key-property name="loginname" type="java.lang.String">
+		    <column name="loginname" length="128" />
+		   </key-property>
+		   <key-property name="endinboundcount" type="java.lang.Long">
+		    <column name="endinboundcount" length="19" />  
+		   </key-property>
+		   <key-property name="avaqueuecalltime" type="java.lang.Long">
+		    <column name="avagewaittime" length="19" />  
+		   </key-property>
+		   <key-property name="xmiaosucccount" type="java.lang.Long">
+		    <column name="eightsucccount" length="19" />  
+		   </key-property>
+		   <key-property name="queuecount" type="java.lang.Long">
+		    <column name="queuecount" length="19" /> 
+		   </key-property>
+		    <key-property name="inboundtime" type="java.lang.Long">
+		    <column name="inboundtime" length="19" />
+		   </key-property>
+		    <key-property name="avagecalltime" type="java.lang.Long">
+		    <column name="avagecalltime" length="19" />   
+		   </key-property>
+		   <key-property name="afterworktime" type="java.lang.String">
+		    <column name="afterworktime" length="128" />  
+		   </key-property>
+		    <key-property name="avageafterworktime" type="java.lang.Long">
+		    <column name="avageafterworktime" length="19" />   
+		   </key-property>
+		   <key-property name="kongxiantime" type="java.lang.String">
+		    <column name="kongxiantime" length="128" />    
+		   </key-property><!--
+		   <key-property name="dates" type="java.lang.String">
+		    <column name="dates" length="128" />
+		   </key-property>
+		   --><!--<key-property name="bothtime" type="java.lang.String">
+		    <column name="bothtime" length="128" />
+		   </key-property>
+		    <key-property name="bothtimetype" type="java.lang.Long">
+		    <column name="bothtimetype" length="19" />          
+		   </key-property>-->
+		   <key-property name="leavetime" type="java.lang.String">
+		    <column name="leavetime" length="128" />
+		   </key-property>
+		   <key-property name="lsworktime" type="java.lang.String">
+		    <column name="lsworktime" length="128" />
+		   </key-property>
+		   <key-property name="meetingtime" type="java.lang.String">
+		    <column name="meetingtime" length="128" />
+		   </key-property>
+		   <key-property name="managertime" type="java.lang.String">
+		    <column name="managertime" length="128" />
+		   </key-property>
+		   <key-property name="traintime" type="java.lang.String">
+		    <column name="traintime" length="128" />
+		   </key-property>
+		   <key-property name="nologintime" type="java.lang.String">
+		    <column name="nologintime" length="128" />
+		   </key-property>
+		   <key-property name="liyonglv" type="java.lang.String">
+		    <column name="liyonglv" length="128" />
+		   </key-property>
+		   <key-property name="zongliyonglv" type="java.lang.String">
+		    <column name="zongliyonglv" length="128" />
+		   </key-property>
+		   <key-property name="keyonglv" type="java.lang.String">
+		    <column name="keyonglv" length="128" />
+		   </key-property>
+		   <key-property name="unansweredcount" type="java.lang.Long">
+		    <column name="unansweredcount" length="19" />
+		   </key-property>
+		   <key-property name="endinboundcountlv" type="java.lang.String">
+		    <column name="endinboundcountlv" length="128" />
+		   </key-property>
+		   
+		 </composite-id>
+				
+		</class>
+		
+		
+</hibernate-mapping>

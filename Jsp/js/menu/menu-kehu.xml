@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_2" text="客户资料" iconCls="mod-kehu">
+  <Items id="customer" text="客户管理" iconCls="menu-customer" isPublic="false"> 
+  	<!-- Item id="CustomerView" text="客户" iconCls="menu-contract"/ -->
+  	<!-- Item id="CusContactView" text="客户联系方式" iconCls="menu-contract"/ -->
+ 	<Item id="CusPersonalView" text="个人客户" iconCls="menu-contract"/>
+ 	<Item id="BusinessView" text="企业客户" iconCls="menu-customerView"/>
+ 	 <Item id="ProviderView" text="供应商" iconCls="menu-provider"> 
+      <Function id="_ProviderQuery" text="查看供应商" iconCls="menu-list"> 
+        <url>/customer/listProvider.do</url> 
+      </Function>  
+      <Function id="_ProviderAdd" text="添加供应商" iconCls="menu-add"> 
+        <url>/customer/saveProvider.do</url> 
+      </Function>  
+      <Function id="_ProviderEdit" text="编辑供应商" iconCls="btn-edit"> 
+        <url>/customer/listProvider.do</url>  
+        <url>/customer/getProvider.do</url>  
+        <url>/customer/saveProvider.do</url> 
+      </Function>  
+      <Function id="_ProviderDel" text="删除供应商" iconCls="menu-del"> 
+        <url>/customer/listProvider.do</url>  
+        <url>/customer/multiDelProvider.do</url> 
+      </Function> 
+    </Item> 
+ 	
+ 	 <Item id="CusLinkmanView" text="联系人" iconCls="menu-cusLinkman"> 
+      <Function id="_CusLinkmanQuery" text="查看联系人信息" iconCls="menu-list"> 
+        <url>/customer/listCusLinkman.do</url> 
+      </Function>  
+      <Function id="_CusLinkmanAdd" text="添加联系人" iconCls="menu-add"> 
+        <url>/customer/listCusLinkman.do</url>  
+        <url>/customer/saveCusLinkman.do</url> 
+      </Function>  
+      <Function id="_CusLinkmanEdit" text="编辑联系人" iconCls="btn-edit"> 
+        <url>/customer/listCusLinkman.do</url>  
+        <url>/customer/saveCusLinkman.do</url>  
+        <url>/customer/getCusLinkman.do</url> 
+      </Function>  
+      <Function id="_CusLinkmanDel" text="删除联系人" iconCls="menu-del"> 
+        <url>/customer/listCusLinkman.do</url>  
+        <url>/customer/multiDelCusLinkman.do</url> 
+      </Function> 
+    </Item>
+   <Item id="SearchVipView" text="会员卡查询" iconCls="menu-contract"/>
+    <!--  Item id="CusCompanyView" text="公司客户" iconCls="menu-customerView"> 
+      <Function id="_CustomerQuery" text="查看公司客户信息" iconCls="menu-list"> 
+        <url>/customer/listCustomer.do</url> 
+      </Function>  
+      <Function id="_CustomerAdd" text="添加公司客户信息" iconCls="menu-add"> 
+        <url>/customer/listCustomer.do</url>  
+        <url>/customer/saveCustomer.do</url>  
+        <url>/customer/checkCustomer.do</url>  
+        <url>/customer/numberCustomer.do</url>  
+        <url>/system/listRegion.do</url> 
+      </Function>  
+      <Function id="_CustomerEdit" text="编辑公司客户信息" iconCls="btn-edit"> 
+        <url>/customer/listCustomer.do</url>  
+        <url>/customer/saveCustomer.do</url>  
+        <url>/customer/checkCustomer.do</url>  
+        <url>/customer/numberCustomer.do</url>  
+        <url>/system/listRegion.do</url>  
+        <url>/customer/getCustomer.do</url> 
+      </Function>  
+      <Function id="_CustomerDel" text="删除公司客户信息" iconCls="menu-del"> 
+        <url>/customer/listCustomer.do</url>  
+        <url>/customer/multiDelCustomer.do</url> 
+      </Function>  
+      <Function id="_CustomerSendMail" text="发送邮件" iconCls="btn-mail_send"> 
+        <url>/customer/loadVm.do</url>  
+        <url>/customer/send.do</url> 
+      </Function> 
+    </Item-->  
+    
+    
+    
+   
+    <Item id="myCustomer" text="我的客户" iconCls="menu-project"> 
+    	<!-- Item id="MyCusPersonalView" text="个人客户" iconCls="menu-contract"/>
+    	<Item id="MyCusCompanyView" text="公司客户" iconCls="menu-customerView"/>
+    	<Item id="ProviderView" text="供应商" iconCls="menu-provider"/-->
+    </Item>
+    <Item id="CusPersonalFenPeiView" text="客户分配" iconCls="menu-contract"/>
+    <Item id="CusPersonalJiChuView" text="基础设置" iconCls="menu-customerView">
+    	<Item id="LeveManagerView" text="级别管理" iconCls="menu-contract"/>
+ 		<Item id="VipManagerView" text="会员卡管理" iconCls="menu-contract"/>
+    </Item>
+
+    <!-- <Item id="CusConnectionView" text="交往信息管理" iconCls="menu-connection"> 
+      <Function id="_CusConnectionQuery" text="查看交往信息" iconCls="menu-list"> 
+        <url>/customer/listCusConnection.do</url> 
+      </Function>  
+      <Function id="_CusConnectionAdd" text="添加交往信息" iconCls="menu-add"> 
+        <url>/customer/listCusConnection.do</url>  
+        <url>/customer/saveCusConnection.do</url>  
+        <url>/customer/findCusLinkman.do</url> 
+      </Function>  
+      <Function id="_CusConnectionEdit" text="编辑交往信息" iconCls="btn-edit"> 
+        <url>/customer/listCusConnection.do</url>  
+        <url>/customer/saveCusConnection.do</url>  
+        <url>/customer/findCusLinkman.do</url>  
+        <url>/customer/getCusConnection.do</url> 
+      </Function>  
+      <Function id="_CusConnectionDel" text="删除交往信息" iconCls="menu-del"> 
+        <url>/customer/listCusConnection.do</url>  
+        <url>/customer/multiDelCusConnection.do</url> 
+      </Function> 
+    </Item>  
+    <Item id="ProjectView" text="项目管理" iconCls="menu-project"> 
+      <Function id="_ProjectQuery" text="查看项目" iconCls="menu-list"> 
+        <url>/customer/listProject.do</url> 
+      </Function>  
+      <Function id="_ProjectAdd" text="添加项目" iconCls="menu-add"> 
+        <url>/customer/listProject.do</url>  
+        <url>/customer/saveProject.do</url>  
+        <url>/customer/numberProject.do</url>  
+        <url>/customer/findCusLinkman.do</url> 
+      </Function>  
+      <Function id="_ProjectEdit" text="编辑项目" iconCls="btn-edit"> 
+        <url>/customer/listProject.do</url>  
+        <url>/customer/saveProject.do</url>  
+        <url>/customer/numberProject.do</url>  
+        <url>/customer/findCusLinkman.do</url>  
+        <url>/customer/getProject.do</url> 
+      </Function>  
+      <Function id="_ProjectDel" text="删除项目" iconCls="menu-del"> 
+        <url>/customer/listProject.do</url>  
+        <url>/customer/multiDelProject.do</url> 
+      </Function> 
+    </Item>  
+    <Item id="ContractView" text="合同管理" iconCls="menu-contract"> 
+      <Function id="_ContractQuery" text="查看合同" iconCls="menu-list"> 
+        <url>/customer/listContract.do</url> 
+      </Function>  
+      <Function id="_ContractAdd" text="添加合同" iconCls="menu-add"> 
+        <url>/customer/listContract.do</url>  
+        <url>/customer/saveContract.do</url>  
+        <url>/customer/getProject.do</url>  
+        <url>/customer/removeFileContract.do</url>  
+        <url>/customer/listContractConfig.do</url>  
+        <url>/customer/multiDelContractConfig.do</url> 
+      </Function>  
+      <Function id="_ContractEdit" text="编辑合同" iconCls="btn-edit"> 
+        <url>/customer/listContract.do</url>  
+        <url>/customer/saveContract.do</url>  
+        <url>/customer/getProject.do</url>  
+        <url>/customer/removeFileContract.do</url>  
+        <url>/customer/listContractConfig.do</url>  
+        <url>/customer/multiDelContractConfig.do</url>  
+        <url>/customer/getContract.do</url> 
+      </Function>  
+      <Function id="_ContractDel" text="删除合同" iconCls="menu-del"> 
+        <url>/customer/listContract.do</url>  
+        <url>/customer/multiDelContract.do</url> 
+      </Function> 
+    </Item>
+    <Item id="ProductView" text="产品信息管理" iconCls="menu-product"> 
+      <Function id="_ProductQuery" text="查看产品" iconCls="menu-list"> 
+        <url>/customer/listProduct.do</url> 
+      </Function>  
+      <Function id="_ProductAdd" text="添加产品" iconCls="menu-add"> 
+        <url>/customer/saveProduct.do</url>  
+        <url>/customer/listProvider.do</url> 
+      </Function>  
+      <Function id="_ProductEdit" text="编辑产品" iconCls="btn-edit"> 
+        <url>/customer/listProduct.do</url>  
+        <url>/customer/getProduct.do</url>  
+        <url>/customer/saveProduct.do</url> 
+      </Function>  
+      <Function id="_ProductDel" text="删除产品" iconCls="menu-del"> 
+        <url>/customer/listProduct.do</url>  
+        <url>/customer/multiDelProduct.do</url> 
+      </Function> 
+    </Item>     -->
+    
+    
+    <!--<Item text="销售管理"></Item>--> 
+  </Items>  
+</Menus>

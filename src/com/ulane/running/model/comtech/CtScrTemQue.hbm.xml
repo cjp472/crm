@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.running.model.comtech.CtScrTemQue" table="CT_SCR_TEM_QUE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="scrQueId" column="SCR_QUE_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CT_SCR_TEM_QUE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="disorder" type="java.lang.Short" update="true"
+			insert="true" access="property" column="DISORDER" length="5"
+			not-null="true" unique="false" />
+		<!--
+			imported bi-directional many-to-one association to CtScrChapcter
+		-->
+		<many-to-one name="ctScrChapcter"
+			class="com.ulane.running.model.comtech.CtScrChapcter" not-null="false"
+			fetch="select">
+			<column name="QUE_CAT_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to CtScrQue -->
+		<many-to-one name="ctScrQue"
+			class="com.ulane.running.model.comtech.CtScrQue" not-null="false"
+			fetch="select">
+			<column name="QUE_ID" />
+		</many-to-one>
+		<!--
+			imported bi-directional many-to-one association to CtScrTemplate
+		-->
+		<many-to-one name="ctScrTemplate"
+			class="com.ulane.running.model.comtech.CtScrTemplate" not-null="false"
+			fetch="select">
+			<column name="TMP_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to CtScrAnsDetail
+		-->
+		<set name="ctScrAnsDetails" table="ct_scr_ans_detail" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="SCR_QUE_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.comtech.CtScrAnsDetail" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.SysTemType" table="SYS_TEM_TYPE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="tmpTypeId" column="TMP_TYPE_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SYS_TEM_TYPE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="tmpTypeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="TMP_TYPE_NAME" length="30"
+			not-null="false" unique="false" />
+		<property name="comMent" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_MENT" length="100"
+			not-null="false" unique="false" />
+		<property name="parentId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT_ID" length="38"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="ukTmpTypeStatus" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="UK_TMP_TYPE_STATUS"
+			length="10" not-null="false" unique="false" />
+		<property name="kukTmpTypeSort" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="KUK_TMP_TYPE_SORT"
+			length="10" not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" access="property" column="PATH" length="100" not-null="false"
+			unique="false" />
+		<!-- 新增字段key值 -->	
+		<property name="key" type="java.lang.String" update="true"
+			insert="true" access="property" column="KEY" length="30" not-null="false"
+			unique="false" />	
+	</class>
+</hibernate-mapping>

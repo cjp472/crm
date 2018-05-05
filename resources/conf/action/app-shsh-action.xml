@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd"> 
+	
+
+
+
+
+<!-- start:  Generated for ShBugRepaire From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBugRepaireAction" class="com.ulane.shsh.action.shhq.ShBugRepaireAction" scope="prototype"/>
+<!-- end:  Generated for ShBugRepaire From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBugReport From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBugReportAction" class="com.ulane.shsh.action.shhq.ShBugReportAction" scope="prototype"/>
+<!-- end:  Generated for ShBugReport From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBugRepStuff From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBugRepStuffAction" class="com.ulane.shsh.action.shhq.ShBugRepStuffAction" scope="prototype"/>
+<!-- end:  Generated for ShBugRepStuff From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderAccept From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBuilderAcceptAction" class="com.ulane.shsh.action.shhq.ShBuilderAcceptAction" scope="prototype"/>
+<!-- end:  Generated for ShBuilderAccept From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderApply From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBuilderApplyAction" class="com.ulane.shsh.action.shhq.ShBuilderApplyAction" scope="prototype"/>
+<!-- end:  Generated for ShBuilderApply From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderControl From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBuilderControlAction" class="com.ulane.shsh.action.shhq.ShBuilderControlAction" scope="prototype"/>
+<!-- end:  Generated for ShBuilderControl From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderMethod From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBuilderMethodAction" class="com.ulane.shsh.action.shhq.ShBuilderMethodAction" scope="prototype"/>
+<!-- end:  Generated for ShBuilderMethod From Template: app-shsh-action.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderTime From Template: app-shsh-action.xml.beansvm  -->
+ <bean id="ShBuilderTimeAction" class="com.ulane.shsh.action.shhq.ShBuilderTimeAction" scope="prototype"/>
+<!-- end:  Generated for ShBuilderTime From Template: app-shsh-action.xml.beansvm  -->
+</beans>

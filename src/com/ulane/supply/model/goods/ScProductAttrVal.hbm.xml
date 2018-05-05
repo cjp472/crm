@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.supply.model.goods.ScProductAttrVal"
+		table="SC_PRODUCT_ATTR_VAL" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="productAttrVal" column="PRODUCT_ATTR_VAL" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_PRODUCT_ATTR_VAL_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="productDispVal" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRODUCT_DISP_VAL"
+			length="60" not-null="false" unique="false" />
+		<property name="productTranVal" type="java.lang.String"
+			update="true" insert="true" access="property" column="PRODUCT_TRAN_VAL"
+			length="60" not-null="false" unique="false" />
+		<property name="createUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updateUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="desc" type="java.lang.String" update="true"
+			insert="true" access="property" column="DESC" length="500" not-null="false"
+			unique="false" />
+		<!--
+			imported bi-directional many-to-one association to ScProductAttr
+		-->
+		<many-to-one name="scProductAttr"
+			class="com.ulane.supply.model.goods.ScProductAttr" not-null="false"
+			fetch="select">
+			<column name="PRODUCT_ATTR_CODE" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to ScProAttrRelation
+		-->
+		<set name="scProAttrRelations" table="sc_pro_attr_relation" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="ATTR_ID" />
+			</key>
+			<many-to-many class="com.ulane.supply.model.goods.ScProductAttrVal" column="ATTR_RELATED_ID" fetch="join" />
+		</set>
+	</class>
+</hibernate-mapping>

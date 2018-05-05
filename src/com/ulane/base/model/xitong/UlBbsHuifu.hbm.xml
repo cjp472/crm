@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.UlBbsHuifu" table="UL_BBS_HUIFU"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="bbsHuifu" column="BBS_HUIFU" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">SEQ_BBS_HUATI_ID</param>
+			</generator>
+		</id>
+		<property name="content" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONTENT" length="1000"
+			not-null="false" unique="false" />
+		<property name="reply" type="java.lang.String" update="true"
+			insert="true" access="property" column="REPLY" length="200" not-null="false"
+			unique="false" />
+		<property name="replytime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="REPLYTIME" length="11"
+			not-null="false" unique="false" />
+		<property name="paertId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PAERT_ID" length="38"
+			not-null="false" unique="false" />
+		<property name="isdelete" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ISDELETE" length="22"
+			not-null="false" unique="false" />
+		<property name="updatetime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATETIME" length="11"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UlBbsHuati -->
+		<many-to-one name="ulBbsHuati" class="com.ulane.base.model.xitong.UlBbsHuati"
+			not-null="false" fetch="select">
+			<column name="BBS_HUATI_ID" />
+		</many-to-one>
+		<set name="ulBbsHuifuKnows" table="UL_BBS_HUIFU_KNOW" lazy="true" cascade="save-update">
+			<key>
+				<column name="BBS_HUIFU" />
+			</key>
+			<many-to-many class="com.ulane.know.model.know.UkSysKnow"
+				column="KNOW_ID" fetch="join" />
+		</set>
+		<set name="ulBbsHuifuFiles" table="UL_BBS_HUIFU_FILE" lazy="true" cascade="save-update">
+			<key>
+				<column name="BBS_HUIFU" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.FileAttach"
+				column="fileId" fetch="join" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,93 @@
+package com.ulane.base.model.xitong;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+@SuppressWarnings("serial")
+public class Equipment extends com.htsoft.core.model.BaseModel{
+	//private static final long serialVersionUID = 6628835560348950900L;
+	protected Long EId;
+	protected   String  equipmentId;// 机具号
+	protected  String  equipmentName;//网点名称
+	
+	public Long getEId() {
+		return EId;
+	}
+
+	public void setEId(Long aValue) {
+		EId = aValue;
+	}
+
+	public String getEquipmentId() {
+		return equipmentId;
+	}
+
+	public void setEquipmentId(String aValue) {
+		this.equipmentId = aValue;
+	}
+
+	public String getEquipmentName() {
+		return equipmentName;
+	}
+
+	public void setEquipmentName(String aValue) {
+		this.equipmentName = aValue;
+	}
+	/**
+	 * Default Empty Constructor for class UlBbsHuati
+	 */
+	public Equipment () {
+		
+		super();
+		//System.out.println("==============equipment");
+	}
+	
+	/**
+	 * Default Key Fields Constructor for class UlBbsHuati
+	 */
+	public Equipment (Long in_EId) {
+		//System.out.println("========in_EId"+in_EId);
+		this.setEId(in_EId);
+		
+    }
+	public boolean equals(Object object) {
+		if (!(object instanceof Equipment)) {
+			return false;
+		}
+		Equipment rhs = (Equipment) object;
+		return new EqualsBuilder().append(this.EId, rhs.EId)
+				.append(this.equipmentId, rhs.equipmentId)
+				.append(this.equipmentName, rhs.equipmentName)
+				.isEquals();
+	}
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {       
+		return new HashCodeBuilder(-82280557, -700257973)
+		.append(this.EId)
+		.append(this.equipmentId)
+		.append(this.equipmentName)
+				.toHashCode();
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+		return new ToStringBuilder(this)
+		.append("EId",this.EId)
+		.append("equipmentId", this.equipmentId)
+		.append("equipmentName", this.equipmentName).toString();
+			 
+				
+	}
+
+	
+	
+	
+	
+}

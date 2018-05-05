@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObComSalerul" table="OB_COM_SALERUL"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="rulId" column="RUL_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_COM_SALERUL_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="rulNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="RUL_NAM" length="128"
+			not-null="false" unique="false" />
+		<property name="rulTypeId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RUL_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="rulValMin" type="java.lang.String" update="true"
+			insert="true" access="property" column="RUL_VAL_MIN" length="18"
+			not-null="false" unique="false" />
+		<property name="rulValMax" type="java.lang.String" update="true"
+			insert="true" access="property" column="RUL_VAL_MAX" length="50"
+			not-null="false" unique="false" />
+		<property name="rulDis" type="java.lang.Short" update="true"
+			insert="true" access="property" column="RUL_DIS" length="5" not-null="false"
+			unique="false" />
+		<property name="rulStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="RUL_STA_ID" length="5"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObCom -->
+		<many-to-one name="obCom" class="com.ulane.callout.model.outb.ObCom"
+			not-null="false" fetch="select">
+			<column name="COM_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

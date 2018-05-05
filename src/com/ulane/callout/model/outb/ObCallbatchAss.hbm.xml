@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObCallbatchAss" table="OB_CALLBATCH_ASS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="callbatchAssId" column="CALLBATCH_ASS_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_CALLBATCH_ASS_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="parentCallbatchAssId" type="java.lang.Long"
+			update="true" insert="true" access="property" column="PARENT_CALLBATCH_ASS_ID"
+			length="18" not-null="false" unique="false" />
+		<property name="assStepId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ASS_STEP_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="assTypId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ASS_TYP_ID" length="5"
+			not-null="true" unique="false" />
+<!-- 		
+		<property name="fromUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FROM_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="toUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TO_USE_ID" length="18"
+			not-null="false" unique="false" />
+ -->				
+		<many-to-one
+			name="fromAppUser"
+			class="com.htsoft.oa.model.system.AppUser"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="FROM_USE_ID" />
+		</many-to-one>
+		<many-to-one
+			name="toAppUser"
+			class="com.htsoft.oa.model.system.AppUser"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TO_USE_ID" />
+		</many-to-one>	
+			
+		<many-to-one
+			name="retriveAppUser"
+			class="com.htsoft.oa.model.system.AppUser"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="RETRIVE_USE_ID" />		
+		</many-to-one>	
+					
+		<property name="staDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="endDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="assignCount" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="ASSIGN_COUNT" length="10"
+			not-null="true" unique="false" />
+		<property name="retriveCount" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="RETRIVE_COUNT"
+			length="10" not-null="true" unique="false" />
+		<property name="retriveCountAdmin" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="RETRIVE_COUNT_ADMIN"
+			length="10" not-null="true" unique="false" />
+		<property name="retriveCountJL" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="RETRIVE_COUNT_JL"
+			length="10" not-null="true" unique="false" />
+		<property name="retriveCountZZ" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="RETRIVE_COUNT_ZZ"
+			length="10" not-null="true" unique="false" />			
+		<property name="holdCount" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="HOLD_COUNT" length="10"
+			not-null="true" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObCallbatch -->
+		<many-to-one name="obCallbatch"
+			class="com.ulane.callout.model.outb.ObCallbatch" not-null="false"
+			fetch="select">
+			<column name="CALLBATCH_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ObCalllist -->
+		<many-to-one name="obCalllist"
+			class="com.ulane.callout.model.outb.ObCalllist" not-null="false"
+			fetch="select">
+			<column name="CALLLIST_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ObCom -->
+		<many-to-one name="obCom" class="com.ulane.callout.model.outb.ObCom"
+			not-null="false" fetch="select">
+			<column name="COM_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchAssTask
+		
+		<set name="obCallbatchAssTasks" table="ob_callbatch_ass_task"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLBATCH_ASS_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchAssTask" />
+		</set>-->
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchCus
+		-->
+		<set name="obCallbatchCuss" table="ob_callbatch_cus" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchCus" />
+		</set>
+		<!-- exported bi-directional one-to-many association to ObSaletask -->
+		<set name="obSaletasks" table="ob_saletask" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLBATCH_ASS_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObSaletask" />
+		</set>
+		<property name="retriveDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="RETRIVE_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="toUserNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="TO_USERNO" length="20" not-null="false"
+			unique="false" />						
+	</class>
+</hibernate-mapping>

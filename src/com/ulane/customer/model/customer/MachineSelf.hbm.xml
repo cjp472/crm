@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.MachineSelf" table="MACHINE_SELF"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="msid" column="MS_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_MACHINE_SELF_ID
+            	</param>
+			</generator>
+		</id>
+		
+		<property name="wdNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_WDNUM"
+			length="16" />
+			
+		<property name="wdName" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_WDNAME"
+			length="16" />
+			
+		<property name="tellernum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_TELLERNUM"
+			length="16" />
+			
+		<property name="bustype" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_BUSTYPE"
+			length="16" />
+		<property name="tradedate" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_TRADEDATE"
+			length="18" />
+			
+		<property name="dealnum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_DEALNUM"
+			length="32" />
+			
+		<property name="traderesult" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_TRADERESULT"
+			length="128" />
+			
+		<property name="cusName" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_CUSNAME"
+			length="128" />
+			
+		<property name="certigier" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_CERTIGIER"
+			length="128" />
+			
+		<property name="cardnum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_CARDNUM"
+			length="64" />
+			
+		<property name="idcardnum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_IDCARDNUM"
+			length="32" />
+			
+		<property name="presentID" type="java.lang.Long"
+			update="true" insert="true" access="property" column="MS_PRESENTID"
+			length="18" />
+			
+		<property name="parentID" type="java.lang.Long"
+			update="true" insert="true" access="property" column="MS_PARENTID"
+			length="18" />
+		
+		<property name="busDealNum" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_BUSDEALNUM"
+			length="32" />
+		
+		<property name="amount" type="java.lang.String"
+			update="true" insert="true" access="property" column="MS_AMOUNT"
+			length="32" />	
+		
+		<!-- 
+		<set name="machAttachs" table="MACHINE_ATTACH" lazy="true" inverse="true" cascade="save-update" sort="unsorted"> 
+	      <key> 
+	        <column name="MS_MACHSELF_ID"/> 
+	      </key>  
+	      <one-to-many class="com.ulane.customer.model.customer.MachineSelfAttach"/> 
+	    </set>  --> 
+	</class>
+</hibernate-mapping>

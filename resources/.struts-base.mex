@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="base" location="0,0" size="0,0">
+    <action name="*UlUsergroup" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlBbsHuati" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlBbsJieshou" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlBbsHuifu" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlDepartment" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlDepEmployee" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlEmployee" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*UlNewsReceive" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*SysTemType" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*ServiceWsdlManager" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*ServiceWsdlMethod" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*BeanObject" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="*BeanObjectColumns" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+</Struts2Diagram>
+

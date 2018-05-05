@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcChkGuid"
+        table="QC_CHK_GUID"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="chkGuidId"
+            column="CHK_GUID_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHK_GUID_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="guidUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="GUID_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="guidContent"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="GUID_CONTENT"
+            length="2048"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="guidRemark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="GUID_REMARK"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="creUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CRE_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="creDat"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CRE_DAT"
+            length="7"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="updUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPD_USE_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updDat"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPD_DAT"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcCheck -->
+		<many-to-one
+			name="qcCheck"
+			class="com.ulane.running.model.qucon.QcCheck"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="CHK_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to QcChkGuidCourseware -->
+ <!--  
+	<set name="qcChkGuidCoursewares"
+	     table="qc_chk_guid_courseware"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CHK_GUID_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.qucon.QcChkGuidCourseware"
+		/>
+	</set>
+ -->     
+ <!-- exported bi-directional one-to-many association to QcChkGuidFile -->
+	<set name="qcChkGuidFiles"
+	     table="qc_chk_guid_file"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CHK_GUID_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.qucon.QcChkGuidFile"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to QcChkGuidKm -->
+ <!-- 	<set name="qcChkGuidKms"
+	     table="qc_chk_guid_km"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CHK_GUID_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.qucon.QcChkGuidKm"
+		/>
+	</set>     
+	 -->
+	
+    </class>
+</hibernate-mapping>

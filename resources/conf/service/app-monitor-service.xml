@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+
+
+
+<!-- start:  Generated for UnimAgent From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAgentService" class="com.ulane.monitor.service.unim.impl.UnimAgentServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAgentDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAgent From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAgentloginlog From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAgentloginlogService" class="com.ulane.monitor.service.unim.impl.UnimAgentloginlogServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAgentloginlogDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAgentloginlog From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAgentMap From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAgentMapService" class="com.ulane.monitor.service.unim.impl.UnimAgentMapServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAgentMapDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAgentMap From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimMapAgent From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimMapAgentService" class="com.ulane.monitor.service.unim.impl.UnimMapAgentServiceImpl">
+   	 	<constructor-arg index="0" ref="unimMapAgentDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimMapAgent From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimCategory From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimCategoryService" class="com.ulane.monitor.service.unim.impl.UnimCategoryServiceImpl">
+   	 	<constructor-arg index="0" ref="unimCategoryDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimCategory From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimExtension From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimExtensionService" class="com.ulane.monitor.service.unim.impl.UnimExtensionServiceImpl">
+   	 	<constructor-arg index="0" ref="unimExtensionDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimExtension From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimMapNavigation From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimMapNavigationService" class="com.ulane.monitor.service.unim.impl.UnimMapNavigationServiceImpl">
+   	 	<constructor-arg index="0" ref="unimMapNavigationDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimMapNavigation From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimServerConfig From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimServerConfigService" class="com.ulane.monitor.service.unim.impl.UnimServerConfigServiceImpl">
+   	 	<constructor-arg index="0" ref="unimServerConfigDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimServerConfig From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimSkillgroup From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimSkillgroupService" class="com.ulane.monitor.service.unim.impl.UnimSkillgroupServiceImpl">
+   	 	<constructor-arg index="0" ref="unimSkillgroupDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimSkillgroup From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimThrlevl From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimThrlevlService" class="com.ulane.monitor.service.unim.impl.UnimThrlevlServiceImpl">
+   	 	<constructor-arg index="0" ref="unimThrlevlDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimThrlevl From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimMonitorAgent From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimMonitorAgentService" class="com.ulane.monitor.service.unim.impl.UnimMonitorAgentServiceImpl">
+   	 	<constructor-arg index="0" ref="unimMonitorAgentDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimMonitorAgent From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelMap From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimChannelMapService" class="com.ulane.monitor.service.unim.impl.UnimChannelMapServiceImpl">
+   	 	<constructor-arg index="0" ref="unimChannelMapDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimChannelMap From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelNavigation From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimChannelNavigationService" class="com.ulane.monitor.service.unim.impl.UnimChannelNavigationServiceImpl">
+   	 	<constructor-arg index="0" ref="unimChannelNavigationDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimChannelNavigation From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimChannel From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimChannelService" class="com.ulane.monitor.service.unim.impl.UnimChannelServiceImpl">
+   	 	<constructor-arg index="0" ref="unimChannelDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimChannel From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelTarget From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimChannelTargetService" class="com.ulane.monitor.service.unim.impl.UnimChannelTargetServiceImpl">
+   	 	<constructor-arg index="0" ref="unimChannelTargetDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimChannelTarget From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimChaTarPar From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimChaTarParService" class="com.ulane.monitor.service.unim.impl.UnimChaTarParServiceImpl">
+   	 	<constructor-arg index="0" ref="unimChaTarParDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimChaTarPar From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimChaTarThrlevl From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimChaTarThrlevlService" class="com.ulane.monitor.service.unim.impl.UnimChaTarThrlevlServiceImpl">
+   	 	<constructor-arg index="0" ref="unimChaTarThrlevlDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimChaTarThrlevl From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsMap From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssetsMapService" class="com.ulane.monitor.service.unim.impl.UnimAssetsMapServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssetsMapDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssetsMap From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsNavigation From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssetsNavigationService" class="com.ulane.monitor.service.unim.impl.UnimAssetsNavigationServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssetsNavigationDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssetsNavigation From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssCategory From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssCategoryService" class="com.ulane.monitor.service.unim.impl.UnimAssCategoryServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssCategoryDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssCategory From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssets From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssetsService" class="com.ulane.monitor.service.unim.impl.UnimAssetsServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssetsDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssets From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssType From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssTypeService" class="com.ulane.monitor.service.unim.impl.UnimAssTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssTypeDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssType From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssStatus From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssStatusService" class="com.ulane.monitor.service.unim.impl.UnimAssStatusServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssStatusDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssStatus From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsTarget From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssetsTargetService" class="com.ulane.monitor.service.unim.impl.UnimAssetsTargetServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssetsTargetDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssetsTarget From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssTarPar From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssTarParService" class="com.ulane.monitor.service.unim.impl.UnimAssTarParServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssTarParDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssTarPar From Template: app-monitor-service.xml.beansvm  -->
+<!-- start:  Generated for UnimAssTarThrlevl From Template: app-monitor-service.xml.beansvm  -->
+	 <bean id="unimAssTarThrlevlService" class="com.ulane.monitor.service.unim.impl.UnimAssTarThrlevlServiceImpl">
+   	 	<constructor-arg index="0" ref="unimAssTarThrlevlDao"/>
+   	 </bean>
+<!-- end:  Generated for UnimAssTarThrlevl From Template: app-monitor-service.xml.beansvm  -->
+</beans>

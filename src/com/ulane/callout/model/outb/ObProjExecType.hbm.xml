@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObProjExecType" table="OB_PROJ_EXEC_TYPE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="projExecTypeId" column="PROJ_EXEC_TYPE_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_PROJ_EXEC_TYPE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="projectZxfs" type="java.lang.Short" update="true"
+			insert="true" access="property" column="PROJECT_ZXFS" length="5"
+			not-null="false" unique="false" />
+		
+		<many-to-one name="obProject" class="com.ulane.callout.model.outb.ObProject"
+			not-null="false" fetch="select">
+			<column name="PROJ_ID" />
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>

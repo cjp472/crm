@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowTemplate" table="UK_KNOW_TEMPLATE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="knowTmpId" column="KNOW_TMP_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_KNOW_TMP_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="tmpName" type="java.lang.String" update="true"
+			insert="true" access="property" column="TMP_NAME" length="30"
+			not-null="false" unique="false" />
+		<property name="tmpDescribe" type="java.lang.String" update="true"
+			insert="true" access="property" column="TMP_DESCRIBE" length="100"
+			not-null="false" unique="false" />
+		<property name="beginTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="BEGIN_TIME" length="11"
+			not-null="false" unique="false" />
+		<property name="closeTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CLOSE_TIME" length="11"
+			not-null="false" unique="false" />
+		<property name="updateTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME" length="11"
+			not-null="false" unique="false" />
+		<property name="knowStatus" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="KNOW_STATUS" length="10"
+			not-null="false" unique="false" />
+		<property name="knowVersion" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_VERSION" length="18"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="isDelete" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_DELETE" length="3"
+			not-null="false" unique="false" />
+			
+		
+		<!-- 
+		<property name="knowTmpType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_TMP_TYPE" length="5"
+			not-null="false" unique="false" />	
+			
+		<property name="knowTmpClass" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_TMP_CLASS" length="5"
+			not-null="false" unique="false" />
+			
+		<property name="knowTmpRange" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_TMP_RANGE" length="5"
+			not-null="false" unique="false" />	
+		
+		 -->			
+		<property name="tempContent" type="java.lang.String" update="true" insert="true" access="property" column="tempContent" length="65535" not-null="false" unique="false"/>  
+        <property name="extDef" type="java.lang.String" update="true" insert="true" access="property" column="extDef" length="65535" not-null="false" unique="false"/>  
+		<!-- exported bi-directional one-to-many association to UkKnowType -->
+		<many-to-one name="knowTmpType"
+			class="com.htsoft.oa.model.system.Dictionary" not-null="false"
+			fetch="select" not-found="ignore">
+			<column name="KNOW_TMP_TYPE" />
+		</many-to-one>	
+		
+		<many-to-one name="knowTmpClass"
+			class="com.htsoft.oa.model.system.Dictionary" not-null="false"
+			fetch="select" not-found="ignore">
+			<column name="KNOW_TMP_CLASS" />
+		</many-to-one>	
+		
+		<many-to-one name="knowTmpRange"
+			class="com.htsoft.oa.model.system.Dictionary" not-null="false"
+			fetch="select" not-found="ignore">
+			<column name="KNOW_TMP_RANGE" />
+		</many-to-one>	
+		
+		<set name="ukKnowTypes" table="uk_know_type" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_TMP_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowType" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UkSysKnow -->
+		<set name="ukSysKnows" table="uk_sys_know" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_TMP_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkSysKnow" />
+		</set>
+	</class>
+</hibernate-mapping>

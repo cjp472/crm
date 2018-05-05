@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+  <class name="com.htsoft.oa.model.customer.Customer" table="customer" select-before-update="false" dynamic-update="false" dynamic-insert="false" optimistic-lock="version"> 
+    <id name="customerId" column="customerId" type="java.lang.Long" length="19"> 
+      <generator class="sequence">
+        <param name="sequence">S_customer</param>
+      </generator> 
+    </id>  
+    <property name="customerNo" type="java.lang.String" update="true" insert="true" access="property" column="customerNo" length="64" not-null="true" unique="false"/>  
+    <property name="industryType" type="java.lang.String" update="true" insert="true" access="property" column="industryType" length="64" not-null="false" unique="false"/>  
+    <property name="customerSource" type="java.lang.String" update="true" insert="true" access="property" column="customerSource" length="64" not-null="false" unique="false"/>  
+    <property name="customerType" type="java.lang.Short" update="true" insert="true" access="property" column="customerType" length="5" not-null="false" unique="false"/>  
+    <property name="companyScale" type="java.lang.Integer" update="true" insert="true" access="property" column="companyScale" not-null="false" unique="false"/>  
+    <property name="customerName" type="java.lang.String" update="true" insert="true" access="property" column="customerName" length="128" not-null="false" unique="false"/>  
+    <property name="customerManager" type="java.lang.String" update="true" insert="true" access="property" column="customerManager" length="32" not-null="false" unique="false"/>  
+    <property name="phone" type="java.lang.String" update="true" insert="true" access="property" column="phone" length="32" not-null="false" unique="false"/>  
+    <property name="fax" type="java.lang.String" update="true" insert="true" access="property" column="fax" length="32" not-null="false" unique="false"/>  
+    <property name="site" type="java.lang.String" update="true" insert="true" access="property" column="site" length="128" not-null="false" unique="false"/>  
+    <property name="email" type="java.lang.String" update="true" insert="true" access="property" column="email" length="128" not-null="false" unique="false"/>  
+    <property name="state" type="java.lang.String" update="true" insert="true" access="property" column="state" length="32" not-null="false" unique="false"/>  
+    <property name="city" type="java.lang.String" update="true" insert="true" access="property" column="city" length="32" not-null="false" unique="false"/>  
+    <property name="zip" type="java.lang.String" update="true" insert="true" access="property" column="zip" length="32" not-null="false" unique="false"/>  
+    <property name="address" type="java.lang.String" update="true" insert="true" access="property" column="address" length="100" not-null="false" unique="false"/>  
+    <property name="registerFun" type="java.math.BigDecimal" update="true" insert="true" access="property" column="registerFun" length="10" not-null="false" unique="false"/>  
+    <property name="turnOver" type="java.math.BigDecimal" update="true" insert="true" access="property" column="turnOver" length="10" not-null="false" unique="false"/>  
+    <property name="currencyUnit" type="java.lang.String" update="true" insert="true" access="property" column="currencyUnit" length="32" not-null="false" unique="false"/>  
+    <property name="otherDesc" type="java.lang.String" update="true" insert="true" access="property" column="otherDesc" length="800" not-null="false" unique="false"/>  
+    <property name="principal" type="java.lang.String" update="true" insert="true" access="property" column="principal" length="32" not-null="false" unique="false"/>  
+    <property name="openBank" type="java.lang.String" update="true" insert="true" access="property" column="openBank" length="64" not-null="false" unique="false"/>  
+    <property name="accountsNo" type="java.lang.String" update="true" insert="true" access="property" column="accountsNo" length="64" not-null="false" unique="false"/>  
+    <property name="taxNo" type="java.lang.String" update="true" insert="true" access="property" column="taxNo" length="64" not-null="false" unique="false"/>  
+    <property name="notes" type="java.lang.String" update="true" insert="true" access="property" column="notes" length="500" not-null="false" unique="false"/>  
+    <property name="rights" type="java.lang.Short" update="true" insert="true" access="property" column="rights" length="5" not-null="false" unique="false"/>  
+    <property name="isMail" type="java.lang.Short" update="true" insert="true" access="property" column="IS_MAIL" length="5" not-null="false" unique="false"/>  
+    <property name="isDm" type="java.lang.Short" update="true" insert="true" access="property" column="IS_DM" length="5" not-null="false" unique="false"/>  
+    <property name="happyCall" type="java.lang.Short" update="true" insert="true" access="property" column="HAPPY_CALL" length="5" not-null="false" unique="false"/>  
+    <property name="cusType" type="java.lang.Short" update="true" insert="true" access="property" column="CUS_TYPE" length="5" not-null="false" unique="false"/>  
+    <!-- exported bi-directional one-to-many association to CusLinkman  -->  
+    <set name="cusLinkmans" table="cus_linkman" lazy="true" inverse="true" cascade="save-update,delete-orphan" sort="unsorted"> 
+      <key> 
+        <column name="customerId"/> 
+      </key>  
+      <one-to-many class="com.htsoft.oa.model.customer.CusLinkman"/> 
+    </set>  
+     <!-- exported bi-directional one-to-many association to CusContact  -->  
+    <set name="cusContacts" table="cus_contact" lazy="true" inverse="true" cascade="save-update" sort="unsorted"> 
+      <key> 
+        <column name="customerId"/> 
+      </key>  
+      <one-to-many class="com.ulane.customer.model.customer.CusContact"/> 
+    </set>  
+    
+    <!-- exported bi-directional one-to-many association to Project  -->  
+    <set name="projects" table="project" lazy="true" inverse="true" cascade="save-update,delete-orphan" sort="unsorted"> 
+      <key> 
+        <column name="customerId"/> 
+      </key>  
+      <one-to-many class="com.htsoft.oa.model.customer.Project" /> 
+    </set>  
+    <!-- exported bi-directional one-to-many association to Project  -->  
+    <set name="cusConnections" table="cus-connections" lazy="true" inverse="true" cascade="save-update,delete-orphan" sort="unsorted"> 
+      <key> 
+        <column name="customerId"/> 
+      </key>  
+      <one-to-many class="com.htsoft.oa.model.customer.CusConnection"/> 
+    </set> 
+     <!-- exported bi-directional one-to-many association to CusRelationship  -->  
+    <set name="customerRels" table="cus_relationship" lazy="true" inverse="false" cascade="save-update" sort="unsorted">
+		<key>
+			<column name="CUSTOMERID" />
+		</key>
+		<one-to-many class="com.ulane.customer.model.customer.CusRelationship" />
+	</set>
+    <joined-subclass name="com.ulane.customer.model.customer.CusCompany" table="CUS_COMPANY">
+		<key column="CUSTOMERID" foreign-key="customerId"></key> 
+		<property name="busiCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="BUSI_CODE" length="128"
+			not-null="false" unique="false" />
+		<property name="cusCatId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_CAT_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="nameCn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_CN" length="128"
+			not-null="true" unique="false" />
+		<property name="nameEn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_EN" length="128"
+			not-null="false" unique="false" />
+		<property name="nameAli" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_ALI" length="128"
+			not-null="false" unique="false" />
+		<property name="simpleCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="SIMPLE_CODE" length="512"
+			not-null="false" unique="false" />
+		<property name="enrollCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="ENROLL_CODE" length="100"
+			not-null="false" unique="false" />
+		<property name="taxnumber" type="java.lang.String" update="true"
+			insert="true" access="property" column="TAXNUMBER" length="50"
+			not-null="false" unique="false" />
+		<property name="occupationId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="OCCUPATION_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="companyCharacterId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="COMPANY_CHARACTER_ID"
+			length="5" not-null="false" unique="false" />
+		<property name="companyTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="COMPANY_TYPE_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="companyCreditId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="COMPANY_CREDIT_ID"
+			length="5" not-null="false" unique="false" />
+		<property name="regionId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="REGION_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="tradeAddress" type="java.lang.String" update="true"
+			insert="true" access="property" column="TRADE_ADDRESS" length="2048"
+			not-null="false" unique="false" />
+		<property name="tradeZipcode" type="java.lang.String" update="true"
+			insert="true" access="property" column="TRADE_ZIPCODE" length="6"
+			not-null="false" unique="false" />
+		<property name="tradeScope" type="java.lang.String" update="true"
+			insert="true" access="property" column="TRADE_SCOPE" length="4000"
+			not-null="false" unique="false" />
+		<property name="registerAddress" type="java.lang.String"
+			update="true" insert="true" access="property" column="REGISTER_ADDRESS"
+			length="2048" not-null="false" unique="false" />
+		<property name="registerZipcode" type="java.lang.String"
+			update="true" insert="true" access="property" column="REGISTER_ZIPCODE"
+			length="6" not-null="false" unique="false" />
+		<property name="legalName" type="java.lang.String" update="true"
+			insert="true" access="property" column="LEGAL_NAME" length="100"
+			not-null="false" unique="false" />
+		<property name="registerMoney" type="java.lang.String"
+			update="true" insert="true" access="property" column="REGISTER_MONEY"
+			length="20" not-null="false" unique="false" />
+		<property name="regTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="REG_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="companyUrl" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMPANY_URL" length="100"
+			not-null="false" unique="false" />
+		<property name="companyRemark" type="java.lang.String"
+			update="true" insert="true" access="property" column="COMPANY_REMARK"
+			length="2048" not-null="false" unique="false" />
+		<property name="hasChecked" type="java.lang.Short" update="true"
+			insert="true" access="property" column="HAS_CHECKED" length="5"
+			not-null="true" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="10"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="10"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT1" length="256" not-null="false"
+			unique="false" />
+		<property name="ext2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT2" length="256" not-null="false"
+			unique="false" />
+		<property name="ext3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT3" length="256" not-null="false"
+			unique="false" />
+		<property name="ext4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT4" length="256" not-null="false"
+			unique="false" />
+		<property name="ext5" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT5" length="256" not-null="false"
+			unique="false" />
+		<property name="ext6" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT6" length="256" not-null="false"
+			unique="false" />
+		<property name="ext8" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT8" length="256" not-null="false"
+			unique="false" />
+		<property name="ext7" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT7" length="256" not-null="false"
+			unique="false" />
+		<property name="ext9" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT9" length="256" not-null="false"
+			unique="false" />
+		<property name="ext10" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT10" length="256" not-null="false"
+			unique="false" />
+		<property name="ext11" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT11" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext12" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT12" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext13" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT13" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext14" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT14" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext15" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT15" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext16" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT16" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext17" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT17" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext18" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT18" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext19" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT19" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext20" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT20" length="2048"
+			not-null="false" unique="false" />
+		<!-- exported bi-directional one-to-many association to CusPerComRel -->
+		<set name="cusPerComRels" table="cus_per_com_rel" lazy="true"
+			inverse="true" cascade="save-update,delete-orphan" sort="unsorted">
+			<key>
+				<column name="CUS_CUSTOMERID" />
+			</key>
+			<many-to-many class="com.ulane.customer.model.customer.CusCompany"
+				column="customerId" fetch="join" />
+		</set>
+	</joined-subclass>
+	
+	<joined-subclass name="com.ulane.customer.model.customer.CusPersonal" table="CUS_PERSONAL">
+		<key column="CUSTOMERID" foreign-key="customerId"></key> 
+		<property name="busiCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="BUSI_CODE" length="128"
+			not-null="false" unique="false" />
+		<property name="cusCatId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_CAT_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="nameCn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_CN" length="128"
+			not-null="true" unique="false" />
+		<property name="nameEn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_EN" length="128"
+			not-null="false" unique="false" />
+		<property name="nameAli" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_ALI" length="128"
+			not-null="false" unique="false" />
+		<property name="gender" type="java.lang.String" update="true"
+			insert="true" access="property" column="GENDER" length="5" not-null="false"
+			unique="false" />
+		<property name="country" type="java.lang.Short" update="true"
+			insert="true" access="property" column="COUNTRY" length="5" not-null="false"
+			unique="false" />
+		<property name="regionId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="REGION_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="credTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CRED_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="credNum" type="java.lang.String" update="true"
+			insert="true" access="property" column="CRED_NUM" length="128"
+			not-null="false" unique="false" />
+		<property name="credDurDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRED_DUR_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="birthday" type="java.util.Date" update="true"
+			insert="true" access="property" column="BIRTHDAY" length="7"
+			not-null="false" unique="false" />
+		<property name="workCompany" type="java.lang.String" update="true"
+			insert="true" access="property" column="WORK_COMPANY" length="128"
+			not-null="false" unique="false" />
+		<property name="cusTitId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_TIT_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="cusEduId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_EDU_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="cusTraId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_TRA_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="jobTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="JOB_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="cusGraId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_GRA_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="hasMarried" type="java.lang.Short" update="true"
+			insert="true" access="property" column="HAS_MARRIED" length="5"
+			not-null="false" unique="false" />
+		<property name="haveChild" type="java.lang.Short" update="true"
+			insert="true" access="property" column="HAVE_CHILD" length="5"
+			not-null="false" unique="false" />
+		<property name="salaryId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="SALARY_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="cusFromId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_FROM_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="hasChecked" type="java.lang.Short" update="true"
+			insert="true" access="property" column="HAS_CHECKED" length="5"
+			not-null="true" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="10"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="10"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="isDelete" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_DELETE" length="5"
+			not-null="true" unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT1" length="256" not-null="false"
+			unique="false" />
+		<property name="ext2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT2" length="256" not-null="false"
+			unique="false" />
+		<property name="ext3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT3" length="256" not-null="false"
+			unique="false" />
+		<property name="ext4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT4" length="256" not-null="false"
+			unique="false" />
+		<property name="ext5" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT5" length="256" not-null="false"
+			unique="false" />
+		<property name="ext6" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT6" length="256" not-null="false"
+			unique="false" />
+		<property name="ext8" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT8" length="256" not-null="false"
+			unique="false" />
+		<property name="ext7" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT7" length="256" not-null="false"
+			unique="false" />
+		<property name="ext9" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT9" length="256" not-null="false"
+			unique="false" />
+		<property name="ext10" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT10" length="256" not-null="false"
+			unique="false" />
+		<property name="ext11" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT11" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext12" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT12" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext13" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT13" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext14" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT14" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext15" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT15" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext16" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT16" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext17" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT17" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext18" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT18" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext19" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT19" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext20" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT20" length="2048"
+			not-null="false" unique="false" />
+		<!-- exported bi-directional one-to-many association to CusPerComRel -->
+		<property name="birthdayType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BIRTHDAY_TYPE" length="5"
+			not-null="false" unique="false" />
+		<!-- exported bi-directional one-to-many association to CusPerPerRel -->
+		
+	</joined-subclass>
+    
+  </class> 
+</hibernate-mapping>

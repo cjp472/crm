@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.fee.ObFeeRule" table="OB_FEE_RULE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="feeRuleId" column="FEE_RULE_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_FEE_RULE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="ruleName" type="java.lang.String" update="true"
+			insert="true" access="property" column="RULE_NAME" length="120"
+			not-null="false" unique="false" />
+		<property name="effectiveTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="EFFECTIVE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="failureTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="FAILURE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="calculationWay" type="java.lang.Short"
+			update="true" insert="true" access="property" column="CALCULATION_WAY"
+			length="5" not-null="false" unique="false" />
+		<property name="calculationMethod" type="java.lang.Short"
+			update="true" insert="true" access="property" column="CALCULATION_METHOD"
+			length="5" not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="comments" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMMENTS" length="255"
+			not-null="false" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="zhiwei" type="java.lang.String" update="true"
+			insert="true" access="property" column="ZHIWEI" length="120" not-null="false"
+			unique="false" />
+		<property name="zhiji" type="java.lang.String" update="true"
+			insert="true" access="property" column="ZHIJI" length="120" not-null="false"
+			unique="false" />
+		<!--
+			imported bi-directional many-to-one association to ObFeeIndexProject
+		-->
+		<many-to-one name="obFeeIndexProject"
+			class="com.ulane.customer.model.fee.ObFeeIndexProject" not-null="false"
+			fetch="select">
+			<column name="FEE_INDEX_PROJECT_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to ObFeeRuleUser
+		-->
+		<set name="obFeeRuleUsers" table="ob_fee_rule_user" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="FEE_RULE_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.AppUser"
+				column="USERID" fetch="join" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObFeeRuleValue
+		-->
+		<set name="obFeeRuleValues" table="ob_fee_rule_value" lazy="true"
+			inverse="true" cascade="all" sort="unsorted">
+			<key>
+				<column name="FEE_RULE_ID" />
+			</key>
+			<one-to-many class="com.ulane.customer.model.fee.ObFeeRuleValue" />
+		</set>
+		<set name="ulDepartment" table="ob_fee_rule_user" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="FEE_RULE_ID" />
+			</key>
+			<many-to-many class="com.ulane.base.model.xitong.UlDepartment"
+				fetch="join" column="DEP_ID" />
+		</set>
+	</class>
+</hibernate-mapping>

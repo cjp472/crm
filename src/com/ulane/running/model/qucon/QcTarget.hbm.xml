@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.running.model.qucon.QcTarget" table="QC_TARGET"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="tarId" column="TAR_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_QC_TARGET_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="tarTopic" type="java.lang.String" update="true"
+			insert="true" access="property" column="TAR_TOPIC" length="512"
+			not-null="true" unique="false" />
+		<property name="tarContent" type="java.lang.String" update="true"
+			insert="true" access="property" column="TAR_CONTENT" length="2048"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7"
+			not-null="true" unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+	    <property name="tarCatId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TAR_CAT_ID" length="18"
+			not-null="false" unique="false" />	
+		<!-- exported bi-directional one-to-many association to QcTarcatTar 
+		<set name="qcTarcats" table="QC_TARCAT_TAR" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TAR_ID" />
+			</key>
+			<many-to-many fetch="join" class="com.ulane.running.model.qucon.QcTarCat" column="TAR_CAT_ID"/>
+		</set>-->
+		<!-- exported bi-directional one-to-many association to QcTempTar -->
+		<set name="qcTempTars" table="qc_temp_tar" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TAR_ID" />
+			</key>
+			<one-to-many class="com.ulane.running.model.qucon.QcTempTar" />
+		</set>
+		<many-to-one name="appUser1" class="com.htsoft.oa.model.system.AppUser" column="CRE_USE_ID" cascade="none" not-null="false" 	outer-join="false" update="false" insert="false" />
+		<many-to-one name="appUser2" class="com.htsoft.oa.model.system.AppUser" column="UPD_USE_ID" cascade="none" not-null="false" 	outer-join="false" update="false" insert="false" />
+		<many-to-one name="qcTarCat" class="com.ulane.running.model.qucon.QcTarCat" column="TAR_CAT_ID" cascade="none" not-null="false" 	outer-join="false" update="false" insert="false" />
+	</class>
+</hibernate-mapping>

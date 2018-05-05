@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
+
+<!-- start:  Generated for UlUgroupRole From Template: app-xitong-dao.xml.beansvm  -->
+	<!-- bean id="ulUgroupRoleDao" class="com.ulane.base.dao.xitong.impl.UlUgroupRoleDaoImpl" parent="baseDao"/ -->
+<!-- end:  Generated for UlUgroupRole From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlUgroupUser From Template: app-xitong-dao.xml.beansvm  -->
+	<!-- bean id="ulUgroupUserDao" class="com.ulane.base.dao.xitong.impl.UlUgroupUserDaoImpl" parent="baseDao"/ -->
+<!-- end:  Generated for UlUgroupUser From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlUsergroup From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulUsergroupDao" class="com.ulane.base.dao.xitong.impl.UlUsergroupDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlUsergroup From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlBbsHuati From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulBbsHuatiDao" class="com.ulane.base.dao.xitong.impl.UlBbsHuatiDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlBbsHuati From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlBbsJieshou From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulBbsJieshouDao" class="com.ulane.base.dao.xitong.impl.UlBbsJieshouDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlBbsJieshou From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlBbsHuifu From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulBbsHuifuDao" class="com.ulane.base.dao.xitong.impl.UlBbsHuifuDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlBbsHuifu From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlDepartment From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulDepartmentDao" class="com.ulane.base.dao.xitong.impl.UlDepartmentDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlDepartment From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlDepEmployee From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulDepEmployeeDao" class="com.ulane.base.dao.xitong.impl.UlDepEmployeeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlDepEmployee From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlEmployee From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulEmployeeDao" class="com.ulane.base.dao.xitong.impl.UlEmployeeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlEmployee From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlNewsReceive From Template: app-xitong-dao.xml.beansvm  -->
+	<bean id="ulNewsReceiveDao" class="com.ulane.base.dao.info.impl.UlNewsReceiveDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlNewsReceive From Template: app-xitong-dao.xml.beansvm  -->
+<!-- start:  Generated for UlContactEmpl From Template: app-know-dao.xml.beansvm  -->
+	<bean id="ulContactEmplDao" class="com.ulane.base.dao.xitong.impl.UlContactEmplDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for UlContactEmpl From Template: app-know-dao.xml.beansvm  -->
+
+
+	<bean id="ulContactDepDao" class="com.ulane.base.dao.xitong.impl.UlContactDepDaoImpl" parent="baseDao"/>
+	
+	
+<!-- start:  Generated for SysTemType From Template: app-base-dao.xml.beansvm  -->
+	<bean id="sysTemTypeDao" class="com.ulane.base.dao.xitong.impl.SysTemTypeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SysTemType From Template: app-base-dao.xml.beansvm  -->
+<!-- start:  Generated for ServiceWsdlManager From Template: app-base-dao.xml.beansvm  -->
+	<bean id="serviceWsdlManagerDao" class="com.ulane.base.dao.xitong.impl.ServiceWsdlManagerDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ServiceWsdlManager From Template: app-base-dao.xml.beansvm  -->
+<!-- start:  Generated for ServiceWsdlMethod From Template: app-base-dao.xml.beansvm  -->
+	<bean id="serviceWsdlMethodDao" class="com.ulane.base.dao.xitong.impl.ServiceWsdlMethodDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ServiceWsdlMethod From Template: app-base-dao.xml.beansvm  -->
+<!-- start:  Generated for BeanObject From Template: app-base-dao.xml.beansvm  -->
+	<bean id="beanObjectDao" class="com.ulane.base.dao.xitong.impl.BeanObjectDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for BeanObject From Template: app-base-dao.xml.beansvm  -->
+<!-- start:  Generated for BeanObjectColumns From Template: app-base-dao.xml.beansvm  -->
+	<bean id="beanObjectColumnsDao" class="com.ulane.base.dao.xitong.impl.BeanObjectColumnsDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for BeanObjectColumns From Template: app-base-dao.xml.beansvm  -->
+<!-- start:  Generated for SysPara From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="sysParaDao" class="com.ulane.base.dao.info.impl.SysParaDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SysPara From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for SysParaOpt From Template: app-supply-dao.xml.beansvm  -->
+	<bean id="sysParaOptDao" class="com.ulane.base.dao.info.impl.SysParaOptDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for SysParaOpt From Template: app-supply-dao.xml.beansvm  -->
+<!-- start:  Generated for BeanObject From Template: app-base-dao.xml.beansvm  -->
+	<bean id="beanExtSetDao" class="com.ulane.base.dao.xitong.impl.BeanExtSetDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for BeanObject From Template: app-base-dao.xml.beansvm  -->
+</beans>

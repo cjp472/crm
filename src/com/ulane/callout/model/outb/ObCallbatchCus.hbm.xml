@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObCallbatchCus" table="OB_CALLBATCH_CUS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="callbatchCusId" column="CALLBATCH_CUS_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_CALLBATCH_CUS_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="assStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ASS_STA_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="assStepId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="ASS_STEP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="fromUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FROM_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="toUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TO_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<!--
+			imported bi-directional many-to-one association to ObCallbatchAss
+		-->
+		<many-to-one name="obCallbatchAss"
+			class="com.ulane.callout.model.outb.ObCallbatchAss" not-null="false"
+			fetch="select">
+			<column name="CALLBATCH_ASS_ID" />
+		</many-to-one>
+		<property name="cusId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CUS_ID" length="18"
+			not-null="true" unique="false" />		
+		<property name="callbatchId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CALLBATCH_ID" length="18"
+			not-null="true" unique="false" />
+<!--			
+		<property name="retriveAssId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RETRIVE_ASS_ID" length="18"
+			not-null="false" unique="false" />	
+-->			
+		<property name="toUserNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="TO_USERNO" length="20" not-null="false"
+			unique="false" />						
+	</class>
+</hibernate-mapping>

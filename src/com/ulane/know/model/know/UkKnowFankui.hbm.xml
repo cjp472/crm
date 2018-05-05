@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowFankui" table="UK_KNOW_FANKUI"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="fankuiId" column="FANKUI_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_KNOW_FANKUI_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="fankuiTitle" type="java.lang.String" update="true"
+			insert="true" access="property" column="FANKUI_TITLE" length="30"
+			not-null="false" unique="false" />
+		<property name="fankuiTime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="FANKUI_TIME" length="11"
+			not-null="false" unique="false" />
+		<property name="fankuiContent" type="java.lang.String"
+			update="true" insert="true" access="property" column="FANKUI_CONTENT"
+			length="300" not-null="false" unique="false" />
+		<property name="userid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USERID" length="38" not-null="false"
+			unique="false" /><!-- 
+		<property name="fileid" type="java.lang.String" update="true"
+			insert="true" access="property" column="FILEID" length="500" not-null="false"
+			unique="false" />
+			<property name="reKnowId" type="java.lang.String" update="true"
+			insert="true" access="property" column="RE_KNOW_ID" length="500" not-null="false"
+			unique="false" /> -->
+		<property name="knowStatus" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="KNOW_STATUS" length="10"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UkSysKnow -->
+		<many-to-one name="ukSysKnow" class="com.ulane.know.model.know.UkSysKnow"
+			not-null="false" fetch="select">
+			<column name="KNOW_ID" />
+		</many-to-one>
+		<set name="reKnow" table="UK_KNOW_FANKUI_RE_KNOW" inverse="false"
+			lazy="true" cascade="save-update">
+			<key column="FANKUIID"></key>
+			<many-to-many column="RE_KNOW_ID" fetch="join"
+				class="com.ulane.know.model.know.UkSysKnow"></many-to-many>
+		</set>
+		<set name="ukKnowFankuiFile" table="UK_KNOW_FANKUI_FILE" lazy="true" cascade="all">
+			<key>
+				<column name="FANKUIID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.system.FileAttach"
+				column="fileId" fetch="join" />
+		</set>
+	</class>
+</hibernate-mapping>

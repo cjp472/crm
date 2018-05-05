@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
+
+
+
+<!-- start:  Generated for UlUgroupRole From Template: app-xitong-service.xml.beansvm  -->
+	 <!--bean id="ulUgroupRoleService" class="com.ulane.base.service.xitong.impl.UlUgroupRoleServiceImpl">
+   	 	<constructor-arg index="0" ref="ulUgroupRoleDao"/>
+   	 </bean-->
+<!-- end:  Generated for UlUgroupRole From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlUgroupUser From Template: app-xitong-service.xml.beansvm  -->
+	 <!--bean id="ulUgroupUserService" class="com.ulane.base.service.xitong.impl.UlUgroupUserServiceImpl">
+   	 	<constructor-arg index="0" ref="ulUgroupUserDao"/>
+   	 </bean-->
+<!-- end:  Generated for UlUgroupUser From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlUsergroup From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulUsergroupService" class="com.ulane.base.service.xitong.impl.UlUsergroupServiceImpl">
+   	 	<constructor-arg index="0" ref="ulUsergroupDao"/>
+   	 </bean>
+<!-- end:  Generated for UlUsergroup From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlBbsHuati From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulBbsHuatiService" class="com.ulane.base.service.xitong.impl.UlBbsHuatiServiceImpl">
+   	 	<constructor-arg index="0" ref="ulBbsHuatiDao"/>
+   	 </bean>
+<!-- end:  Generated for UlBbsHuati From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlBbsJieshou From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulBbsJieshouService" class="com.ulane.base.service.xitong.impl.UlBbsJieshouServiceImpl">
+   	 	<constructor-arg index="0" ref="ulBbsJieshouDao"/>
+   	 </bean>
+<!-- end:  Generated for UlBbsJieshou From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlBbsHuifu From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulBbsHuifuService" class="com.ulane.base.service.xitong.impl.UlBbsHuifuServiceImpl">
+   	 	<constructor-arg index="0" ref="ulBbsHuifuDao"/>
+   	 </bean>
+<!-- end:  Generated for UlBbsHuifu From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlDepartment From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulDepartmentService" class="com.ulane.base.service.xitong.impl.UlDepartmentServiceImpl">
+   	 	<constructor-arg index="0" ref="ulDepartmentDao"/>
+   	 </bean>
+<!-- end:  Generated for UlDepartment From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlDepEmployee From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulDepEmployeeService" class="com.ulane.base.service.xitong.impl.UlDepEmployeeServiceImpl">
+   	 	<constructor-arg index="0" ref="ulDepEmployeeDao"/>
+   	 </bean>
+<!-- end:  Generated for UlDepEmployee From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlEmployee From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulEmployeeService" class="com.ulane.base.service.xitong.impl.UlEmployeeServiceImpl">
+   	 	<constructor-arg index="0" ref="ulEmployeeDao"/>
+   	 </bean>
+<!-- end:  Generated for UlEmployee From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlNewsReceive From Template: app-xitong-service.xml.beansvm  -->
+	 <bean id="ulNewsReceiveService" class="com.ulane.base.service.info.impl.UlNewsReceiveServiceImpl">
+   	 	<constructor-arg index="0" ref="ulNewsReceiveDao"/>
+   	 </bean>
+<!-- end:  Generated for UlNewsReceive From Template: app-xitong-service.xml.beansvm  -->
+<!-- start:  Generated for UlContactEmpl From Template: app-know-service.xml.beansvm  -->
+	 <bean id="ulContactEmplService" class="com.ulane.base.service.xitong.impl.UlContactEmplServiceImpl">
+   	 	<constructor-arg index="0" ref="ulContactEmplDao"/>
+   	 </bean>
+<!-- end:  Generated for UlContactEmpl From Template: app-know-service.xml.beansvm  -->
+
+
+
+
+
+	<bean id="ulContactDepService" class="com.ulane.base.service.xitong.impl.UlContactDepServiceImpl">
+   	 	<constructor-arg index="0" ref="ulContactDepDao"/>
+   	 </bean>
+
+
+
+<!-- start:  Generated for SysTemType From Template: app-base-service.xml.beansvm  -->
+	 <bean id="sysTemTypeService" class="com.ulane.base.service.xitong.impl.SysTemTypeServiceImpl">
+   	 	<constructor-arg index="0" ref="sysTemTypeDao"/>
+   	 </bean>
+<!-- end:  Generated for SysTemType From Template: app-base-service.xml.beansvm  -->
+<!-- start:  Generated for ServiceWsdlManager From Template: app-base-service.xml.beansvm  -->
+	 <bean id="serviceWsdlManagerService" class="com.ulane.base.service.xitong.impl.ServiceWsdlManagerServiceImpl">
+   	 	<constructor-arg index="0" ref="serviceWsdlManagerDao"/>
+   	 </bean>
+<!-- end:  Generated for ServiceWsdlManager From Template: app-base-service.xml.beansvm  -->
+<!-- start:  Generated for ServiceWsdlMethod From Template: app-base-service.xml.beansvm  -->
+	 <bean id="serviceWsdlMethodService" class="com.ulane.base.service.xitong.impl.ServiceWsdlMethodServiceImpl">
+   	 	<constructor-arg index="0" ref="serviceWsdlMethodDao"/>
+   	 </bean>
+<!-- end:  Generated for ServiceWsdlMethod From Template: app-base-service.xml.beansvm  -->
+<!-- start:  Generated for BeanObject From Template: app-base-service.xml.beansvm  -->
+	 <bean id="beanObjectService" class="com.ulane.base.service.xitong.impl.BeanObjectServiceImpl">
+   	 	<constructor-arg index="0" ref="beanObjectDao"/>
+   	 </bean>
+<!-- end:  Generated for BeanObject From Template: app-base-service.xml.beansvm  -->
+<!-- start:  Generated for BeanObjectColumns From Template: app-base-service.xml.beansvm  -->
+	 <bean id="beanObjectColumnsService" class="com.ulane.base.service.xitong.impl.BeanObjectColumnsServiceImpl">
+   	 	<constructor-arg index="0" ref="beanObjectColumnsDao"/>
+   	 </bean>
+<!-- end:  Generated for BeanObjectColumns From Template: app-base-service.xml.beansvm  -->
+<!-- start:  Generated for SysPara From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="sysParaService" class="com.ulane.base.service.info.impl.SysParaServiceImpl">
+   	 	<constructor-arg index="0" ref="sysParaDao"/>
+   	 </bean>
+<!-- end:  Generated for SysPara From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for SysParaOpt From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="sysParaOptService" class="com.ulane.base.service.info.impl.SysParaOptServiceImpl">
+   	 	<constructor-arg index="0" ref="sysParaOptDao"/>
+   	 </bean>
+<!-- end:  Generated for SysParaOpt From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for BeanObject From Template: app-base-service.xml.beansvm  -->
+	 <bean id="beanExtSetService" class="com.ulane.base.service.xitong.impl.BeanExtSetServiceImpl">
+   	 	<constructor-arg index="0" ref="beanExtSetDao"/>
+   	 </bean>
+<!-- end:  Generated for BeanObject From Template: app-base-service.xml.beansvm  -->
+</beans>

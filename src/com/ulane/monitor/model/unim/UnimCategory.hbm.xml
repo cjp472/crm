@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimCategory" table="UNIM_CATEGORY"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="catId" column="CAT_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					S_UNIM_CATEGORY
+            	</param>
+			</generator>
+		</id>
+		<property name="typeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="TYPE_ID" length="5" not-null="false"
+			unique="false" />
+		<property name="catName" type="java.lang.String" update="true"
+			insert="true" access="property" column="CAT_NAME" length="128"
+			not-null="false" unique="false" />
+		<property name="catCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="CAT_CODE" length="128"
+			not-null="false" unique="false" />
+		<property name="extend1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND1" length="256"
+			not-null="false" unique="false" />
+		<property name="extend2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND2" length="256"
+			not-null="false" unique="false" />
+		<property name="extend3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND3" length="256"
+			not-null="false" unique="false" />
+		<property name="extend4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND4" length="256"
+			not-null="false" unique="false" />
+		<property name="statustype" type="java.lang.String" update="true"
+			insert="true" access="property" column="STATUSTYPE" length="255"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="512"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="5"
+			not-null="false" unique="false" />
+		
+		<!-- exported bi-directional one-to-many association to UnimThrlevl -->
+		<!--
+			set name="unimThrlevls" table="unim_thrlevl" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted" > <key> <column
+			name="STATUS_ID"/> </key> <one-to-many
+			class="com.ulane.monitor.model.unim.UnimThrlevl" /> </set
+		-->
+	</class>
+</hibernate-mapping>

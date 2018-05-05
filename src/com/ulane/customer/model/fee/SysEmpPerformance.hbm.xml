@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.fee.SysEmpPerformance" table="SYS_EMP_PERFORMANCE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="empPerId" column="EMP_PER_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SYS_EMP_PERFORMANCE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="employeeId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="EMPLOYEE_ID" length="5" not-null="false"
+			unique="false" />
+		<property name="employeeNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="EMPLOYEE_NO" length="60" not-null="false"
+			unique="false" />
+		<property name="totalPhones" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TOTAL_PHONES" length="15" not-null="false"
+			unique="false" />
+		<property name="totalOrders" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TOTAL_ORDERS" length="15" not-null="false"
+			unique="false" />
+		<property name="totalOrderCash" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="TOTAL_ORDER_CASH" length="15"  scale="2" not-null="false"
+			unique="false" />
+		<property name="canceledOrders" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CANCELED_ORDERS" precision="15" 
+			not-null="false" unique="false" />
+		<property name="canceledCash" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="CANCELED_CASH" length="15"  scale="2" not-null="false"
+			unique="false" />
+		<property name="exchangeCash" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="EXCHANGE_CASH" length="15"  scale="2" not-null="false"
+			unique="false" />	
+		<property name="exchangeOrders" type="java.lang.Long" update="true"
+			insert="true" access="property" column="EXCHANGE_ORDERS" precision="15" 
+			not-null="false" unique="false" />
+		<property name="validOrderCash" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="VALID_ORDER_CASH" length="15"  scale="2" not-null="false"
+			unique="false" />	
+		<property name="validOrders" type="java.lang.Long" update="true"
+			insert="true" access="property" column="VALID_ORDERS" precision="15" 
+			not-null="false" unique="false" />	
+		<property name="backOrderCash" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="BACK_ORDER_CASH" length="15"  scale="2" not-null="false"
+			unique="false" />	
+		<property name="backOrders" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BACK_ORDERS" precision="15" 
+			not-null="false" unique="false" />				
+		<property name="perDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="PER_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="sumDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="SUM_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="orderGoods" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ORDER_GOODS" precision="15" 
+			not-null="false" unique="false" />	
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7"
+			not-null="false" unique="false" />	
+		<property name="creUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="creUserNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="CRE_USER_NO" length="60"
+			not-null="false" unique="false" />
+		<property name="updUserNo" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USER_NO" length="60"
+			not-null="false" unique="false" />
+		<property name="empPerQuarter" type="java.lang.String" update="true"
+			insert="true" access="property" column="EMP_PER_QUARTER" length="10"
+			not-null="false" unique="false" />
+		<property name="empPerNd" type="java.lang.String" update="true"
+			insert="true" access="property" column="EMP_PER_ND" length="10"
+			not-null="false" unique="false" />
+			
+	</class>
+	
+</hibernate-mapping>

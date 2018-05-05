@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.fee.ObFeeRuleValue" table="OB_FEE_RULE_VALUE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="feeRuleValueId" column="FEE_RULE_VALUE_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_FEE_RULE_VALUE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="minimum" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="MINIMUM" precision="10"
+			scale="4" not-null="false" unique="false" />
+		<property name="maximum" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="MAXIMUM" precision="10"
+			scale="4" not-null="false" unique="false" />
+		<property name="coefficient" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="COEFFICIENT"
+			precision="10" scale="4" not-null="false" unique="false" />
+		<property name="increase" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="INCREASE" precision="10"
+			scale="4" not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObFeeRule -->
+		<many-to-one name="obFeeRule" class="com.ulane.customer.model.fee.ObFeeRule"
+			not-null="false" fetch="select">
+			<column name="FEE_RULE_ID" />
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>

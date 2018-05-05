@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimThrlevl" table="UNIM_THRLEVL"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="thrlevlId" column="THRLEVL_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					S_UNIM_THRLEVL
+            	</param>
+			</generator>
+		</id>
+		<property name="thrlevladv" type="java.lang.String" update="true"
+			insert="true" access="property" column="THRLEVLADV" length="18"
+			not-null="false" unique="false" />
+		<property name="thrlevlwar" type="java.lang.String" update="true"
+			insert="true" access="property" column="THRLEVLWAR" length="18"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UnimAgent -->
+		<many-to-one name="unimAgent" class="com.ulane.monitor.model.unim.UnimAgent"
+			not-null="false" fetch="select">
+			<column name="MONITOR_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to UnimCategory -->
+		<many-to-one name="unimCategory"
+			class="com.ulane.monitor.model.unim.UnimCategory" not-null="false"
+			fetch="select">
+			<column name="STATUS_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

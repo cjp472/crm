@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.supply.model.purchase.ScBoPurchaseDetail"
+		table="SC_BO_PURCHASE_DETAIL" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="bizOrderDetailId" column="BIZ_ORDER_DETAIL_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_BO_PURCHASE_DETAIL_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="productUnitPrice" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="PRODUCT_UNIT_PRICE"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="productCount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PRODUCT_COUNT" length="15"
+			not-null="false" unique="false" />
+		<property name="discountForeSubtotal" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="DISCOUNT_FORE_SUBTOTAL"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="discount" type="java.lang.String" update="true"
+			insert="true" access="property" column="DISCOUNT" length="8"
+			not-null="false" unique="false" />
+		<property name="changedAmount" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="CHANGED_AMOUNT"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="discountAfterSubtotal" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="DISCOUNT_AFTER_SUBTOTAL"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="desc" type="java.lang.String" update="true"
+			insert="true" access="property" column="DESC" length="500" not-null="false"
+			unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_1" length="60" not-null="false"
+			unique="false" />
+		<property name="ext2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_2" length="60" not-null="false"
+			unique="false" />
+		<property name="ext3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_3" length="60" not-null="false"
+			unique="false" />
+		<property name="ext4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_4" length="60" not-null="false"
+			unique="false" />
+		<property name="ext5" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_5" length="60" not-null="false"
+			unique="false" />
+		<property name="ext6" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_6" length="60" not-null="false"
+			unique="false" />
+		<property name="ext7" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_7" length="60" not-null="false"
+			unique="false" />
+		<property name="ext8" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_8" length="60" not-null="false"
+			unique="false" />
+		<property name="ext9" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_9" length="60" not-null="false"
+			unique="false" />
+		<property name="ext10" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_10" length="60" not-null="false"
+			unique="false" />
+		<property name="ext11" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="EXT_11" precision="15" scale="5"
+			not-null="false" unique="false" />
+		<property name="ext12" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="EXT_12" precision="15" scale="5"
+			not-null="false" unique="false" />
+		<property name="ext13" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="EXT_13" precision="15" scale="5"
+			not-null="false" unique="false" />
+		<property name="ext14" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="EXT_14" precision="15" scale="5"
+			not-null="false" unique="false" />
+		<property name="ext15" type="java.math.BigDecimal" update="true"
+			insert="true" access="property" column="EXT_15" precision="15" scale="5"
+			not-null="false" unique="false" />
+		<property name="ext16" type="java.util.Date" update="true"
+			insert="true" access="property" column="EXT_16" length="7" not-null="false"
+			unique="false" />
+		<property name="ext17" type="java.util.Date" update="true"
+			insert="true" access="property" column="EXT_17" length="7" not-null="false"
+			unique="false" />
+		<property name="ext18" type="java.util.Date" update="true"
+			insert="true" access="property" column="EXT_18" length="7" not-null="false"
+			unique="false" />
+		<property name="ext19" type="java.util.Date" update="true"
+			insert="true" access="property" column="EXT_19" length="7" not-null="false"
+			unique="false" />
+		<property name="ext20" type="java.util.Date" update="true"
+			insert="true" access="property" column="EXT_20" length="7" not-null="false"
+			unique="false" />
+		<!--
+			imported bi-directional many-to-one association to ScBizOrderPurchase
+		-->
+		<many-to-one name="scBizOrderPurchase"
+			class="com.ulane.supply.model.purchase.ScBizOrderPurchase" not-null="false"
+			fetch="select">
+			<column name="BIZ_ORDER_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ScGoods -->
+		<many-to-one name="scGoods" class="com.ulane.supply.model.goods.ScGoods"
+			not-null="false" fetch="select">
+			<column name="GOODS_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ScWarehouse -->
+		<many-to-one name="scWarehouse"
+			class="com.ulane.supply.model.stock.ScWarehouse" not-null="false"
+			fetch="select">
+			<column name="WAREHOUSE_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to
+			ScBoPurchaseClassify
+		-->
+		<set name="scBoPurchaseClassifys" table="sc_bo_purchase_classify"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="BIZ_ORDER_DETAIL_ID" />
+			</key>
+			<one-to-many class="com.ulane.supply.model.purchase.ScBoPurchaseClassify" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to
+			ScBoPurchaseDetailProInst
+		-->
+		<set name="scBoPurchaseDetailProInsts" table="sc_bo_purchase_detail_pro_inst"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="BIZ_ORDER_DETAIL_ID" />
+			</key>
+			<many-to-many
+				class="com.ulane.supply.model.goods.ScProductInst" 
+				column="PRODUCT_INST_ID" fetch="join" />
+		</set>
+	</class>
+</hibernate-mapping>

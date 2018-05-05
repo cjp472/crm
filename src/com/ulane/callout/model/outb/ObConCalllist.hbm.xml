@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObConCalllist" table="OB_CON_CALLLIST"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="cusId" column="CUS_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_CON_CALLLIST_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="busiCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="BUSI_CODE" length="128"
+			not-null="false" unique="false" />
+		<property name="inCustBase" type="java.lang.String" update="true"
+			insert="true" access="property" column="IN_CUST_BASE" length="5"
+			not-null="true" unique="false" />
+		<property name="nameCn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_CN" length="128"
+			not-null="true" unique="false" />
+		<property name="nameAli" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_ALI" length="128"
+			not-null="false" unique="false" />
+		<property name="cusTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="gender" type="java.lang.String" update="true"
+			insert="true" access="property" column="GENDER" length="5" not-null="false"
+			unique="false" />
+		<property name="credTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CRED_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="credNum" type="java.lang.String" update="true"
+			insert="true" access="property" column="CRED_NUM" length="128"
+			not-null="false" unique="false" />
+		<property name="credDurDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRED_DUR_DAT" length="7"
+			not-null="false" unique="false" />
+		<property name="birthday" type="java.lang.String" update="true"
+			insert="true" access="property" column="BIRTHDAY" length="10"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="10"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="10"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_1" length="256" not-null="false"
+			unique="false" />
+		<property name="ext2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_2" length="256" not-null="false"
+			unique="false" />
+		<property name="ext3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_3" length="256" not-null="false"
+			unique="false" />
+		<property name="ext4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_4" length="256" not-null="false"
+			unique="false" />
+		<property name="ext5" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_5" length="256" not-null="false"
+			unique="false" />
+		<property name="ext6" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_6" length="256" not-null="false"
+			unique="false" />
+		<property name="ext7" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_7" length="256" not-null="false"
+			unique="false" />
+		<property name="ext8" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_8" length="256" not-null="false"
+			unique="false" />
+		<property name="ext9" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_9" length="256" not-null="false"
+			unique="false" />
+		<property name="ext10" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT_10" length="256"
+			not-null="false" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<!--
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false"
+			fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>-->
+		<!-- imported bi-directional many-to-one association to ObCallbatch -->
+		<many-to-one name="obCallbatch"
+			class="com.ulane.callout.model.outb.ObCallbatch" not-null="false"
+			fetch="select">
+			<column name="CALLBATCH_ID" />
+		</many-to-one>
+		
+		<many-to-one name="obCom"
+			class="com.ulane.callout.model.outb.ObCom" not-null="false"
+			fetch="select">
+			<column name="COM_ID" />
+		</many-to-one>		
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchImpTmp
+		-->
+		<set name="obCallbatchImpTmps" table="ob_callbatch_imp_tmp" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CUS_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchImpTmp" />
+		</set>
+        <property
+            name="age"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="AGE"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="cusCode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CUS_CODE"
+            length="128"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="customerId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CUSTOMERID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+      	<property name="isLocked" type="java.lang.Short" update="true"
+			insert="true" access="property" column="IS_LOCKED" length="5"
+			not-null="false" unique="false" />                   		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,46 @@
+全部的选择器分类 【目录为js/selector.*】
+-----------------------------------------------
+1.  图书选择器                              BookSelector.js 
+2.  车辆选择器                              CarSelector.js
+3.  会议信息选择器                    ConferenceSelector.js
+4.  客户选择器                              CustomerSelector.js
+5.  部门选择器                              DepSelector.js
+6.  班次选择器                              DutySectionSelector.js
+7.  用户邮件选择器                    EMailSelector.js
+8.  单一档案选择器                    EmpProfileSelector
+9.  流程选择器                              FlowSelector.js            
+10. 流程表单选择选择器          FormDefSelector.js
+11. 分类列表选择器                    GlobalTypeSelector.js
+12. 商品选择器                              GoodsSelector.js
+13. 职位信息选择器                    JobSelector.js
+14. 关键字面板选择器               KnowKeywordPanleSelector.js
+15. 知识库选择器                         knowledgeSelector.js
+16. 名单选择器                              ObCallNameSelector.js
+17. 组织机构选择器(单选)  ObOrganizationSelector.js
+18. 项目选择器(单选)      ObProjectSelector.js
+19. 子组织机构列表选择器     ObZuZhiJiGouSelector.js
+20. 在线用户选择器                    OnlineUserSelector.js
+21. 套红模板选择器                    PaintTemplateSelector.js
+22. 项目选择器                              ProjectSelector.js
+23. 供应商列表选择器               ProviderSelector.js
+24. 发布模版选择器                    PublishSelector.js
+25. 指标选择器                              QcTargetSelector.js
+26. 相对岗位信息列表选择器RelativeJobSelector.js
+27. 重置密码                                   ResetPwd.js
+28. 角色选择器                              RoleSelector.js
+29. 薪酬项目选择器                    SalaryItemSelector.js
+30. 印章选择器                              SealSelector.js
+31. 栏目选择器                              SectionSelector.js
+32. 用户列表分类选择器          ugUserSelector.js
+33. 关键字选择器                         UkKnowKeywordSelector.js
+34. 知识分类选择器                    UkKnowTypeSelector.js
+35. 知识选择器                              UkSysKnowSelector.js
+36. 员工选择器{单选)      UlEmployeeSelector.js
+37. 员工选择器(多选)      UlEmployeeSelectors.js
+38. 负责人选择器(单选)    UlPersonChargeSelector.js
+39. 用户组下拉框多选选择器 UserGroupAllTreeSelector.js
+40. 用户组选择器                         UsergroupSelector.js
+41. 下拉树工具                              UsergroupTreeSelector.js   
+42. 用户选择器                              UserSelector.js
+43. 下属选择器                              UserSubSelector.js
+----------------------------------------------------------    

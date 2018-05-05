@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcChkList"
+        table="QC_CHK_LIST"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="chkListId"
+            column="CHK_LIST_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHK_LIST_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="chkUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="objTyeId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="OBJ_TYE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="objId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OBJ_ID"
+            length="100"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="assTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="ASS_TIME"
+            length="7"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="chkStaId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="chkTimeSta"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_TIME_STA"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="chkTimeEnd"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHK_TIME_END"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+     </class>
+</hibernate-mapping>

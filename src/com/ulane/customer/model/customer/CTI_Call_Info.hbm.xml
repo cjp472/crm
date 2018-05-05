@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CTI_Call_Info" table="Z_CTI_CALLINFO" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="cid" column="CID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							SEQ_CTI_CALLINFO
+		            	</param>
+					</generator>
+				</id>
+				<property name="cStartTime" type="java.lang.String" column="CSTARTTIME" length="128" />
+				<property name="cEndTime" type="java.lang.String" column="CENDTIME" length="128" />
+				<property name="cDate" type="java.lang.String" column="CDATE" length="128" />
+				<property name="cMachineID" type="java.lang.String" column="CMACHINEID" length="128" />
+				<property name="cAgentID" type="java.lang.String" column="CAGENTID" length="128" />
+				<property name="cTermNum" type="java.lang.String" column="CTERMNUM" length="128" />
+	</class>
+</hibernate-mapping>

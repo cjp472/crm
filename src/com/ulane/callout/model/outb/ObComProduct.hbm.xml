@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObComProduct" table="ob_com_product"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="comProductId" column="COM_PRODUCT_ID" type="java.lang.Long" length="18">
+				   <generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_OB_COM_PRODUCT_ID
+            	</param>
+			</generator>
+		
+		</id>
+		<property name="goodsId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GOODS_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="18"
+			not-null="true" unique="false" />
+		<property name="comId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="COM_ID" length="18"
+			not-null="false" unique="false" />
+	 
+	</class>
+</hibernate-mapping>

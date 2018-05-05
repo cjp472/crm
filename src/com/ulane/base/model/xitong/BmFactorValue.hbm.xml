@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.BmFactorValue" table="BM_FACTOR_VALUE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="factorValueId" column="FACTOR_VALUE_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_BM_FACTOR_VALUE
+            	</param>
+			</generator>
+		</id>
+		<property name="factorNum" type="java.lang.String" update="true"
+			insert="true" access="property" column="FACTOR_NUM" length="30"
+			not-null="false" unique="false" />
+		<property name="factorValue" type="java.lang.String" update="true"
+			insert="true" access="property" column="FACTOR_VALUE" length="255"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="true" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="comments" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMMENTS" length="255"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to BmFactor 
+		<many-to-one name="bmFactor" class="com.ulane.base.model.xitong.BmFactor"
+			not-null="false" fetch="select">
+			<column name="FACTOR_ID" />
+		</many-to-one>-->
+	</class>
+</hibernate-mapping>

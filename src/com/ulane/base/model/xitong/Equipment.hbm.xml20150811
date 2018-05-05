@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ulane.base.model.xitong.Equipment" table="EQUIPMENT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="EId" column="EID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_EQUIPMENT_ID
+            	</param>
+			</generator>
+		</id>
+         <property
+            name="equipmentId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTID"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="equipmentName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="EQUIPMENTNAME"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+     </class>
+</hibernate-mapping>

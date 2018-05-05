@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd"> 
+	
+
+<!-- start:  Generated for ObBizTypeTreeCom From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObBizTypeTreeComAction" class="com.ulane.callout.action.outb.ObBizTypeTreeComAction" scope="prototype"/>
+<!-- end:  Generated for ObBizTypeTreeCom From Template: app-callout-action.xml.beansvm  -->
+
+<!-- start:  Generated for ObCallbatch From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCallbatchAction" class="com.ulane.callout.action.outb.ObCallbatchAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatch From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchAss From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCallbatchAssAction" class="com.ulane.callout.action.outb.ObCallbatchAssAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatchAss From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchHis From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCallbatchHisAction" class="com.ulane.callout.action.outb.ObCallbatchHisAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatchHis From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchImpTmp From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCallbatchImpTmpAction" class="com.ulane.callout.action.outb.ObCallbatchImpTmpAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatchImpTmp From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCalllist From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCalllistAction" class="com.ulane.callout.action.outb.ObCalllistAction" scope="prototype"/>
+<!-- end:  Generated for ObCalllist From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCom From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObComAction" class="com.ulane.callout.action.outb.ObComAction" scope="prototype"/>
+<!-- end:  Generated for ObCom From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObComSalerul From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObComSalerulAction" class="com.ulane.callout.action.outb.ObComSalerulAction" scope="prototype"/>
+<!-- end:  Generated for ObComSalerul From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObConCalllist From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObConCalllistAction" class="com.ulane.callout.action.outb.ObConCalllistAction" scope="prototype"/>
+<!-- end:  Generated for ObConCalllist From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObProject From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObProjectAction" class="com.ulane.callout.action.outb.ObProjectAction" scope="prototype"/>
+<!-- end:  Generated for ObProject From Template: app-callout-action.xml.beansvm  -->
+
+ <bean id="ObWashHisAction" class="com.ulane.callout.action.outb.ObWashHisAction" scope="prototype"/>
+
+<!-- start:  Generated for ObSaletask From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObSaletaskAction" class="com.ulane.callout.action.outb.ObSaletaskAction" scope="prototype"/>
+<!-- end:  Generated for ObSaletask From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObSaletaskBo From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObSaletaskBoAction" class="com.ulane.callout.action.outb.ObSaletaskBoAction" scope="prototype"/>
+<!-- end:  Generated for ObSaletaskBo From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchCus From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCallbatchCusAction" class="com.ulane.callout.action.outb.ObCallbatchCusAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatchCus From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchImpWash From Template: app-callout-action.xml.beansvm  -->
+ <bean id="ObCallbatchImpWashAction" class="com.ulane.callout.action.outb.ObCallbatchImpWashAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatchImpWash From Template: app-callout-action.xml.beansvm  -->
+<!-- start:  Generated for ObCallbatchExtract From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="ObCallbatchExtractAction" class="com.ulane.callout.action.outb.ObCallbatchExtractAction" scope="prototype"/>
+<!-- end:  Generated for ObCallbatchExtract From Template: app-monitor-action.xml.beansvm  -->
+</beans>

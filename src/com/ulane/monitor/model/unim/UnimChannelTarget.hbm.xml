@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimChannelTarget"
+		table="UNIM_CHANNEL_TARGET" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="targetId" column="TARGET_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UNIM_CHANNEL_TARGET_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="targetName" type="java.lang.String" update="true"
+			insert="true" access="property" column="TARGET_NAME" length="128"
+			not-null="true" unique="false" />
+		<property name="targetCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="TARGET_CODE" length="128"
+			not-null="true" unique="false" />
+		<property name="srcTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="SRC_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="4000"
+			not-null="false" unique="false" />
+		<property name="orderno" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ORDERNO" length="18"
+			not-null="true" unique="false" />
+		<property name="status" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS" length="5" not-null="true"
+			unique="false" />
+		<!-- imported bi-directional many-to-one association to UnimChannel -->
+		<many-to-one name="unimChannel"
+			class="com.ulane.monitor.model.unim.UnimChannel" not-null="false"
+			fetch="select">
+			<column name="CHANNEL_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to UnimChaTarPar
+		-->
+		<set name="unimChaTarPars" table="unim_cha_tar_par" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TARGET_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimChaTarPar" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UnimChaTarThrlevl
+		-->
+	<!-- 	<set name="unimChaTarThrlevls" table="unim_cha_tar_thrlevl" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TARGET_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimChaTarThrlevl" />
+		</set>
+		 -->
+	</class>
+</hibernate-mapping>

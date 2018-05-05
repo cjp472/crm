@@ -1,0 +1,187 @@
+/**
+ * @author cf0666@gmail.com
+ * @createtime 
+ * @class CtScrQueOptForm
+ * @extends Ext.Window
+ * @description CtScrQueOpt表单
+ * @company 优创融联科技
+ */
+CtScrQueOptForm = Ext.extend(Ext.Panel, {
+			//构造函数
+			constructor : function(_cfg) {
+				Ext.applyIf(this, _cfg);
+				//必须先初始化组件
+				this.initUIComponents();
+				CtScrQueOptForm.superclass.constructor.call(this, {
+							id : 'CtScrQueOptFormWin',
+							layout : 'fit',
+							items : this.formPanel,
+							modal : true,
+							height : 400,
+							width : 500,
+							maximizable : true,
+							title : '[CtScrQueOpt]详细信息',
+							buttonAlign : 'center',
+							buttons : [
+										{
+											text : __save,
+											iconCls : 'btn-save',
+											scope : this,
+											handler : this.save
+										}, {
+											text : __reset,
+											iconCls : 'btn-reset',
+											scope : this,
+											handler : this.reset
+										}, {
+											text : __cancel,
+											iconCls : 'btn-cancel',
+											scope : this,
+											handler : this.cancel
+										}
+							         ]
+				});
+			},//end of the constructor
+			//初始化组件
+			initUIComponents : function() {
+				this.formPanel = new Ext.FormPanel({
+							layout : 'form',
+							bodyStyle : 'padding:10px',
+							border : false,
+							autoScroll:true,
+							//id : 'CtScrQueOptForm',
+							defaults : {
+								anchor : '96%,96%'
+							},
+							defaultType : 'textfield',
+							items : [{
+								name : 'ctScrQueOpt.optId',
+								xtype : 'hidden',
+								value : this.optId == null ? '' : this.optId
+							}
+																																																								
+														
+							,{  
+							    																			fieldLabel : '题目',	
+									 																			hiddenName : 'ctScrQueOpt.queId'
+																												,allowBlank:false
+									 																		        											,xtype:'combo'
+											,editabel : false
+											,lazyInit : false
+											,triggerAction : 'all'
+											,store : new Ext.data.SimpleStore( {
+												autoLoad : true,
+												url : __ctxPath + '/comtech/listqueId.do',
+												fields : [ 'queId', 'queIdName' ],
+												listeners : {
+													load : function() {
+														var combo = Ext.getCmp('queId');
+														var store = combo.getStore();
+														var rows = [];//定义数组
+														for(var i=0;i<store.getCount();i++){ //store.getCount()为store的长度
+															if(store.getAt(i).data['queId']==combo.getValue()){
+																combo.setValue(store.getAt(i).data['queIdName']);
+																break;
+															}
+														}
+													}
+												}
+											})
+											,displayField : 'queIdName'
+											,valueField : 'queId'
+											,id : 'queId'
+																				 															}
+							 							
+																																																	
+														
+							,{  
+							    																			fieldLabel : '题项',	
+									 																			name : 'ctScrQueOpt.optContent'
+																												,allowBlank:false
+									 																			 											,xtype:'textarea'
+																															 										,maxLength: 2048
+									 															}
+							 							
+																																																	
+														
+							,{  
+							    																			fieldLabel : '序号',	
+									 																			name : 'ctScrQueOpt.disorder'
+																												,allowBlank:false
+									 																		        																									,xtype:'numberfield'
+																																 															}
+							 							
+																																																	
+														
+							,{  
+							       								
+																			fieldLabel : '是否默认&YorN',	
+									 									hiddenName : 'ctScrQueOpt.isDefault'
+																			,allowBlank:false
+									 									,xtype:'combo'
+									,editable : false
+									,mode : 'local'
+									,triggerAction : 'all'
+									,store : [['1',__yes],['0',__no]]
+															}
+							 							
+																																																	
+														
+							,{  
+							    																			fieldLabel : '状态：有效、注销&CT_ZT',	
+									 																			hiddenName : 'ctScrQueOpt.staId'
+																												,allowBlank:false
+									 																		        																									,xtype : 'mtdiccombo'
+													,editable : true
+													,lazyInit : false
+													,forceSelection : false
+													,itemKey : 'CT_ZT'
+																																 															}
+							 							
+																																			]
+						});
+				//加载表单对应的数据	
+				if (this.optId != null && this.optId != 'undefined') {
+					this.formPanel.loadData({
+								url : __ctxPath + '/comtech/getCtScrQueOpt.do?optId='+ this.optId,
+								root : 'data',
+								preName : 'ctScrQueOpt'
+							});
+				}
+				
+			},//end of the initcomponents
+
+			/**
+			 * 重置
+			 * @param {} formPanel
+			 */
+			reset : function() {
+				this.formPanel.getForm().reset();
+			},
+			/**
+			 * 取消
+			 * @param {} window
+			 */
+			cancel : function() {
+				this.close();
+			},
+			/**
+			 * 保存记录
+			 */
+			save : function() {
+				$postForm({
+						formPanel:this.formPanel,
+						scope:this,
+						url:__ctxPath + '/comtech/saveCtScrQueOpt.do',
+						callback:function(fp,action){
+							var gridPanel = Ext.getCmp('CtScrQueOptGrid');
+							if (gridPanel != null) {
+								gridPanel.getStore().reload();
+							}
+							this.close();
+						}
+					}
+				);
+			}//end of save
+
+		});

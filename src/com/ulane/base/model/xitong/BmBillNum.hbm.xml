@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.BmBillNum" table="BM_BILL_NUM"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="billNumId" column="BILL_NUM_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_BM_BILL_NUM
+            	</param>
+			</generator>
+		</id>
+		<property name="billType" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BILL_TYPE" length="22"
+			not-null="false" unique="false" />
+		<property name="isCheckUniqueness" type="java.lang.Long"
+			update="true" insert="true" access="property" column="IS_CHECK_UNIQUENESS"
+			length="22" not-null="false" unique="false" />
+		<property name="isDeleteRetain" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_DELETE_RETAIN" length="22"
+			not-null="false" unique="false" />
+		<property name="isAutoFill" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_AUTO_FILL" length="22"
+			not-null="false" unique="false" />
+		<property name="prefix" type="java.lang.String" update="true"
+			insert="true" access="property" column="PREFIX" length="20" not-null="false"
+			unique="false" />
+		<property name="factor1Median" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FACTOR1_MEDIAN" length="22"
+			not-null="false" unique="false" />
+		<property name="factor2Median" type="java.lang.Long" update="true"
+			insert="true" access="property" column="FACTOR2_MEDIAN" length="22"
+			not-null="false" unique="false" />
+		<property name="yearMedian" type="java.lang.Long" update="true"
+			insert="true" access="property" column="YEAR_MEDIAN" length="22"
+			not-null="false" unique="false" />
+		<property name="isYear" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_YEAR" length="22"
+			not-null="false" unique="false" />
+		<property name="monthMedian" type="java.lang.Long" update="true"
+			insert="true" access="property" column="MONTH_MEDIAN" length="22"
+			not-null="false" unique="false" />
+		<property name="isMonth" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_MONTH" length="22"
+			not-null="false" unique="false" />
+		<property name="dayMedian" type="java.lang.Long" update="true"
+			insert="true" access="property" column="DAY_MEDIAN" length="22"
+			not-null="false" unique="false" />
+		<property name="isDay" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_DAY" length="22" not-null="false"
+			unique="false" />
+		<property name="zeroLogo" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ZERO_LOGO" length="22"
+			not-null="false" unique="false" />
+		<property name="numberMedian" type="java.lang.Long" update="true"
+			insert="true" access="property" column="NUMBER_MEDIAN" length="22"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="true" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="comments" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMMENTS" length="255"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to BmFactor 
+		<many-to-one name="bmFactor1" class="com.ulane.base.model.xitong.BmFactor"
+			not-null="false" fetch="select">
+			<column name="FACTOR1_ID" />
+		</many-to-one>
+		<many-to-one name="bmFactor2" class="com.ulane.base.model.xitong.BmFactor"
+			not-null="false" fetch="select">
+			<column name="FACTOR2_ID" />
+		</many-to-one>
+		-->
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CTI_Login_Info" table="Z_CTI_LOGIN" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="id" column="LID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							SEQ_CTI_LOGIN
+		            	</param>
+					</generator>
+				</id>
+				<property name="LoginTime" type="java.lang.String" column="LOGINTIME" length="128" />
+				<property name="LogoutTime" type="java.lang.String" column="LOGOUTTIME" length="128" />
+				<property name="LoginDate" type="java.lang.String" column="LOGDATE" length="128" />
+				<property name="MachineID" type="java.lang.String" column="LMACHINEID" length="128" />
+				<property name="AgentID" type="java.lang.String" column="LAGENTID" length="128" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,736 @@
+/**
+ * @author:cf0666@gmail.com
+ * @class UlEmployeeView
+ * @extends Ext.Panel
+ * @description [UlEmployee]管理
+ * @company 优创融联科技
+ * @createtime:
+ */
+UlEmployeeView = Ext.extend(Ext.Panel, {
+			// 构造函数
+			    constructor : function(_cfg) {
+				Ext.applyIf(this, _cfg);
+				// 初始化组件
+				this.initUIComponents();
+				// 调用父类构造
+				UlEmployeeView.superclass.constructor.call(this, {
+							id : 'UlEmployeeViewWin',
+							title : '员工档案管理',
+							region : 'center',
+							layout : 'border',
+							items : [this.searchPanel, this.gridPanel]
+						});
+			},// end of constructor
+			// 初始化组件
+			initUIComponents : function() {
+				var fieldnameComboData=[
+					['fullname','姓名',new Ext.form.TextField({name : 'fullname',allowBlank:true})],
+					['alias','别名',new Ext.form.TextField({name : 'alias',allowBlank:true})],
+					['sex','性别',new MT.DicComboBox({hiddenName : 'sex',itemKey : 'XB001'})],
+					['birthday','生日',new Ext.form.DateField({hiddenName : 'sex',format : 'Y-m-d'})]
+				]
+				var UlEmployeeAdvancedSearchWin = Ext.extend(MT.AdvancedSearchWin, {
+					title : '员工管理高级查询',
+					fieldData : fieldnameComboData
+				});
+						
+				// 初始化搜索条件Panel
+				this.searchPanel = new Ext.FormPanel({
+//							layout : 'form',
+//							region : 'north',
+//							id : 'UlEmployeeSearchPanel',
+//							colNums : 3,
+							region:'north',
+							height : 35,
+							frame : false,
+							border:false,
+							id : 'UlEmployeeSearchPanel',
+							layout : 'hbox',
+							layoutConfig: {
+				                    padding:'5',
+				                    align:'middle'
+				            },
+							defaults : {
+								xtype : 'label',
+								border:false,
+								margins:{top:0, right:4, bottom:4, left:4}
+							},
+							items : [{
+                                        text : '工号'
+                                    }, {
+                                        name : 'Q_userNo_S_LK',
+                                        xtype : 'textfield'
+                                    }, {
+										text : '姓名'
+									}, {
+										name : 'Q_fullname_S_LK',
+										xtype : 'textfield'
+									}, {
+										text : '职务'
+									}, {
+										hiddenName : 'Q_zhiwei_S_EQ',
+										xtype : 'mtdiccombo',
+										editable : false,
+										lazyInit : false,
+										forceSelection : false,
+										itemKey : 'ZW001'
+							},{
+										xtype : 'button',
+										text : '查询',
+										iconCls : 'search',
+										scope:this,
+										handler : this.search
+									},{
+										xtype : 'button',
+										text : '清空',
+										iconCls : 'reset',
+										scope:this,
+										handler : this.reset
+									},{
+										xtype : 'button',
+										text : '高级查询',
+										iconCls : 'search',
+										scope:this,
+										handler : function(){new UlEmployeeAdvancedSearchWin().show();}
+									}]
+						});// end of searchPanel
+
+				this.topbar = new Ext.Toolbar({
+							items : ['->', {
+										iconCls : 'btn-del',
+										text : '删除',
+										xtype : 'button',
+										scope : this,
+										handler : this.removeSelRs
+										//handler:this.removemutlDel
+									}, '->', {
+//										text : '启用',
+//										iconCls : 'btn-setting',
+//										handler : this.enableSelRs
+//									}, '->', {
+										iconCls : 'btn-add',
+										text : '添加',
+										xtype : 'button',
+										scope : this,
+										handler : this.createRs
+									} ]
+						});
+
+				this.gridPanel = new HT.GridPanel({
+					region : 'center',
+					tbar : this.topbar,
+                    //showSm:false,
+                    showSm:true,
+					// 使用RowActions
+					rowActions : true,
+					id : 'UlEmployeeGrid',
+					url : __ctxPath + "/xitong/listUlEmployee.do",
+					fields : [{
+								name : 'useid',
+								type : 'int'
+							}, 'fullname', 'sex', 'birthday', 'parent','education','alias','type','biyeyuanxiao',
+							'ulDepartment', 'zhiwei', 'zhiji', 'status','ruzhifangshi','hetongdaoqishijian','zhuanzhengshijian',
+							'parent','parentName','ruzhishijian','note','ulContactEmp',
+							'hujiGuojia','hujiSheng','hujiShi','hujiDiqu',
+							'gongzuodiGuojia','gongzuodiSheng','gongzuodiShi','gongzuodiDiqu','userNo'],
+					columns : [{
+								header : '工号',
+								dataIndex : 'userNo',
+								sortable : true
+//								hidden : false
+							}, {
+								header : '姓名',
+								dataIndex : 'fullname'
+							}, {
+								header : '性别',
+								dataIndex : 'sex',
+								renderer : function(value) {
+									return XB001.get(value);
+								}
+							}, {
+								header : '生日',
+								dataIndex : 'birthday',
+								renderer : function(value){
+										if(value != null && value != undefined)
+											return value.substring(0, 10);
+										else
+											return '';
+								}
+							}, {
+								header : '所属部门',
+								dataIndex : 'ulDepartment',
+								renderer : function(value) {
+									if (value == null) {
+										return '';
+									} else {
+										return value.depname;
+									}
+								}
+							}, {
+								header : '上级',
+								dataIndex : 'parentName'
+//								renderer : function(value) {
+//									if (value == null) {
+//										return '';
+//									} else {
+//										return value.fullname;
+//									}
+//								}
+							},{	
+								header : '入职时间',
+								dataIndex : 'ruzhishijian',
+								renderer : function(value){
+									if(value != null && value != undefined)
+										return value.substring(0, 10);
+									else
+										return '';
+								}
+							}, {
+								header : '职务',
+								dataIndex : 'zhiwei',
+								renderer : function(value) {
+									return ZW001.get(value);
+								}
+							}, {
+								header : '职级',
+								dataIndex : 'zhiji',
+								renderer : function(value) {
+									return ZJ001.get(value);
+								}
+							}, {
+								header : '状态',
+								dataIndex : 'status',
+								renderer : function(value) {
+									return ZT001.get(value);
+								}
+							}, new Ext.ux.grid.RowActions({
+										header : '管理',
+										width : 85,
+										actions : [{
+
+													iconCls : 'btn-readdocument',
+		
+													qtip : '查看',
+		
+													style : 'margin:0 1px 0 1px'
+												},{
+//													iconCls : 'btn-setting',
+//													qtip : '启用',
+//													style : 'margin:0 3px 0 3px'
+//												}, {
+													iconCls : 'btn-edit',
+													qtip : '编辑',
+													style : 'margin:0 1px 0 1px'
+												}, {
+													iconCls : 'btn-del',
+													qtip : '删除',
+													style : 'margin:0 3px 0 3px'
+												}],
+										listeners : {
+											scope : this,
+											'action' : this.onRowAction
+										}
+									})]
+						// end of columns
+				});
+
+				this.gridPanel.addListener('rowdblclick', this.rowClick);
+
+			},// end of the initComponents()
+		
+			
+			
+			// 重置查询表单
+			reset : function() {
+				this.searchPanel.getForm().reset();
+			},
+			// 按条件搜索
+			search : function() {
+				$search({
+							searchPanel : this.searchPanel,
+							gridPanel : this.gridPanel
+						});
+			},
+			// GridPanel行双击 处理事件
+			rowClick : function(grid, rowindex, e) {
+				grid.getSelectionModel().each(function(record) {
+							var tabs = Ext.getCmp('centerTabPanel');
+							var aForm = Ext.getCmp('UlEmployeeFormWin');
+							if (aForm != null) {
+								tabs.remove('UlEmployeeFormWin');
+							}
+							aForm = new UlEmployeeForm({
+										useid : record.data.useid,
+										huji : [0, record.data.hujiSheng, 
+										        record.data.hujiShi, record.data.hujiDiqu],
+										gongzuodi : [0, record.data.gongzuodiSheng, 
+												        record.data.gongzuodiShi, record.data.hujiDiqu ]
+									});
+							aForm.setTitle('员工:' + record.data.fullname + '详情');
+							tabs.add(aForm);
+							tabs.activate(aForm);
+						});
+			},
+			// 创建记录
+			createRs : function() {
+				// new UlEmployeeForm().show();
+				var tabs = Ext.getCmp('centerTabPanel');
+				var aForm = Ext.getCmp('UlEmployeeFormWin');
+				if (aForm != null) {
+					aForm.destroy();
+				}
+				aForm = new UlEmployeeForm();
+				aForm.setTitle('员工档案添加');
+				tabs.add(aForm);
+				tabs.activate(aForm);
+			},
+			// 按ID删除记录  按行删除
+			removeRs : function(id) {
+                Ext.Ajax.request({
+                    url : __ctxPath + '/xitong/multiDelUlEmployee.do',
+                    params : {
+                        ids : id
+                    },
+                    method : 'post',
+                    success : function(result, request) {
+                         var res = Ext.util.JSON.decode(result.responseText);
+                         if (res.success == false) {
+                            Ext.ux.Toast.msg('操作信息', '员工'+res.data+'存在关联，删除失败。\n其余用户成功删除');
+                         } else {
+                            Ext.ux.Toast.msg('操作信息', '删除成功!');
+                         }
+                         Ext.getCmp('UlEmployeeGrid').getStore().reload();
+                    }
+                });
+			},
+			// 把选中ID删除
+//			removeSelRs : function() {
+//                var grid = this.gridPanel;
+//                var rows = grid.getSelectionModel().getSelections();
+//                if (rows != null && rows.length > 0) {
+//                    var ids = new Array();
+//                    for (var i = 0; i < rows.length; i++)
+//                        ids.push(rows[i].data.useid);
+//                }
+//                Ext.Ajax.request({
+//                    url : __ctxPath + '/xitong/multiDel12UlEmployee.do',
+//                    params : {
+//                        ids : ids
+//                    },
+//                    method : 'post',
+//                    success : function(result, request) {
+//                         var res = Ext.util.JSON.decode(result.responseText);
+//                         if (res.success == false) {
+//                            Ext.ux.Toast.msg('操作信息', '员工'+res.data+'存在关联，删除失败。\n其余用户成功删除');
+//                         } else {
+//                            Ext.ux.Toast.msg('操作信息', '删除成功!');
+//                         }
+//                         Ext.getCmp('UlEmployeeGrid').getStore().reload();
+//                    }
+//                });
+//			},
+			// 按ID启用记录  按行启用
+			enableRs : function(record) {
+				Ext.Msg.confirm('启用操作', '你确定启用该员工?', function(btn) {
+					if (btn == 'yes') {
+						Ext.Ajax.request({
+							url : __ctxPath + '/xitong/multiEnableUlEmployee.do',
+							params : {
+								ids : record.data.useid
+							},
+							success : function(result, request) {
+								var res = Ext.util.JSON.decode(result.responseText);
+								if (res.success == false) {
+									Ext.ux.Toast.msg('操作信息', res.message);
+								} else {
+									Ext.ux.Toast.msg('操作信息', '启用成功!');
+								}
+								Ext.getCmp('UlEmployeeGrid').getStore().reload();
+							},
+							failure : function(result, request) {}
+						});
+					}
+				});
+			},
+			// 把选中ID启用
+			enableSelRs : function() {
+				var grid = Ext.getCmp('UlEmployeeGrid');
+				var rows = grid.getSelectionModel().getSelections();
+				if (rows != null && rows.length > 0) {
+					var ids = new Array();
+					for (var i = 0; i < rows.length; i++)
+						ids.push(rows[i].data.useid);
+				}
+				Ext.Msg.confirm('启用操作', '你确定启用该员工?', function(btn) {
+					if (btn == 'yes') {
+						Ext.Ajax.request({
+							url : __ctxPath + '/xitong/multiEnableUlEmployee.do',
+							params : {
+								ids :ids
+							},
+							success : function(result, request) {
+								var res = Ext.util.JSON.decode(result.responseText);
+								if (res.success == false) {
+									Ext.ux.Toast.msg('操作信息', res.message);
+								} else {
+									Ext.ux.Toast.msg('操作信息', '启用成功!');
+								}
+								Ext.getCmp('UlEmployeeGrid').getStore().reload();
+							},
+							failure : function(result, request) {}
+						});
+					}
+				});
+			},
+	        // 2014/3/26根据选中的ID删除数据
+			removeSelRs : function() {
+				 var grid = this.gridPanel;
+	                var rows = grid.getSelectionModel().getSelections();
+	                if (rows != null && rows.length > 0) {
+	                    var ids = new Array();
+	                    for (var i = 0; i < rows.length; i++)
+	                        ids.push(rows[i].data.useid);
+	                }
+				Ext.Msg.confirm('删除信息确认', '注意：删除该员工档案信息，该员工下的所有相关数据也一并删除，\n并不能恢复，您确认要删除该记录吗？', function(btn) {
+					if (btn == 'yes') {
+               
+                Ext.Ajax.request({
+                	url : __ctxPath + '/xitong/multideleteUlEmployee.do',
+                    params : {
+                        ids : ids
+                    },
+                    method : 'post',
+                    success : function(result, request) {
+                         var res = Ext.util.JSON.decode(result.responseText);
+                         if (res.success == false) {
+                           // Ext.ux.Toast.msg('操作信息', '员工'+res.data+'存在关联，删除失败。\n其余用户成功删除');
+                        Ext.ux.Toast.msg('操作信息', '亲！\n用户处于正常或者未启用状态，请删除其他状态的用户！删除失败。\n其余用户成功删除');
+                         } else {
+                            Ext.ux.Toast.msg('操作信息', '删除成功!');
+                         }
+                         Ext.getCmp('UlEmployeeGrid').getStore().reload();
+                    }
+               });
+//			
+		
+	}
+});
+},
+			
+			 //删除每行2014-3-17的记录
+			removeDel : function(id) {
+				//var ss=Ext.getCmp('uuu').getValue();
+				//alert(id);
+				Ext.Msg.confirm('删除信息确认', '注意：删除该员工档案信息，该员工下的所有相关数据也一并删除，\n并不能恢复，您确认要删除该记录吗？', function(btn) {
+					if (btn == 'yes') {						
+							 Ext.Ajax.request({
+				                    url : __ctxPath + '/xitong/multideleteUlEmployee.do',
+				                    params : {
+								     ids : id
+								     
+				                    },
+				                    method : 'post',
+				                    success : function(result, request) {
+				                         var res = Ext.util.JSON.decode(result.responseText);
+				                         if (res.success == false) {
+				                           // Ext.ux.Toast.msg('操作信息', '员工'+res.data+'存在关联，删除失败。\n其余用户成功删除');
+				                           
+				                         Ext.ux.Toast.msg('操作信息', '亲！\n用户处于正常或者未启用状态，请删除其他状态的用户！删除失败。\n其余用户成功删除');
+				                        
+				                         } else if(res.success==true){
+				                            Ext.ux.Toast.msg('操作信息', '删除成功!');
+				                         }
+				                         Ext.getCmp('UlEmployeeGrid').getStore().reload();
+				                     }
+				                });
+//							
+						
+					}
+				});
+			},
+
+			// 编辑Rs
+			editRs : function(record) {
+	            var tabs = Ext.getCmp('centerTabPanel');
+	            var aForm = Ext.getCmp('UlEmployeeForm');
+	            if (aForm != null) {
+	                tabs.remove('UlEmployeeForm');
+	            }
+	            aForm = new UlEmployeeForm({
+	                        useid : record.data.useid,
+	                        huji : [0, record.data.hujiSheng, 
+	                                record.data.hujiShi, record.data.hujiDiqu],
+	                        gongzuodi : [0, record.data.gongzuodiSheng, 
+	                                        record.data.gongzuodiShi, record.data.hujiDiqu ]
+	                    });
+	            aForm.setTitle('员工:' + record.data.fullname + '详情');
+	            tabs.add(aForm);
+	            tabs.activate(aForm);
+	        },
+			// 行的Action
+			onRowAction : function(grid, record, action, row, col) {
+				switch (action) {
+					case 'btn-del' :
+						//this.removeRs.call(this, record.data.useid);
+						this.removeDel.call(this,record.data.useid);
+						break;
+					case 'btn-edit' :
+						this.editRs.call(this, record);
+						break;
+					case 'btn-readdocument' :
+						UlEmployeeInfo(record.data);
+						break;
+					default :
+						break;
+				}
+			}
+	        
+	        
+	        
+	        
+	        
+	        
+		});
+
+/**
+ * 
+ * HY 2014/3/24
+ * 弹窗显示员工资料详情
+ */
+var UlEmployeeInfo = function(ulemp) {
+	//alert(ulemp);
+	var formPanel = new Ext.FormPanel({
+				//url : __ctxPath + '/system/resetArrpwdAppUser.do',
+				layout : 'form',
+				id : 'xxx',
+				frame : true,
+//				
+				items:[{
+					layout : 'column',
+					border : false,
+					items:[{	
+							columnWidth : .3,
+							border : false,
+							layout : 'form',
+							items : [{
+									xtype : 'displayfield',
+									fieldLabel : '姓名',
+									//anchor : '100%',
+									id : 'ddd',
+									name : 'xxxf',
+									value : ulemp.fullname
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '性别',
+									//anchor : '100%',
+									id : 'sdsd',
+									name : 'vvvv',
+									value :XB001.get(ulemp.sex)
+								},
+								
+								{
+									xtype : 'displayfield',
+									fieldLabel : '工号',
+									//anchor : '100%',
+									id : 'sdfsdfsad',
+									name : '222',
+									value : ulemp.useid
+								},{
+									xtype : 'displayfield',
+									fieldLabel : '生日',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									//name : '222',
+									//value : ulemp.birthday.substring(0, 10)
+									value : ulemp.birthday
+								},
+								{
+									xtype : 'displayfield',
+									fieldLabel : '类型',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									//name : '222',
+									value:YGLX0001.get(ulemp.type)
+								},{
+									xtype : 'displayfield',
+									fieldLabel : '状态',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									//name : '222',
+									value :ZT001.get(ulemp.status) 
+//								},{
+//									fieldLabel : '备注',
+//									name : 'ulEmployee.note',
+//									xtype : 'textarea',
+//									anchor:'100%',
+//									readOnly : true,
+//									id : 'ulEmployee.note_form',
+//									//maxLength : 500
+//									width:300,
+//									height:100,
+//									value:ulemp.note
+								}]
+						},{	
+							columnWidth : .3,
+							border : false,
+							layout : 'form',
+							items : [{
+									xtype : 'displayfield',
+									fieldLabel : '上级',
+									//anchor : '100%',
+									//id : 'ddd',
+									name : 'xxxf',
+									value : ulemp.parentName
+//								}, {
+//									xtype : 'displayfield',
+//									fieldLabel : '职级',
+//									//anchor : '100%',
+//									//id : 'sdsd',
+//									//name : 'vvvv',
+//									value : ZW001.get(ulemp.zhiji)
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '职务',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									//name : '222',
+									//value : ulemp.education
+									value:ZW001.get(ulemp.zhiwei)
+								},{
+									xtype : 'displayfield',
+									fieldLabel : '别名',
+									//anchor : '100%',
+									//id : 'ddd',
+									name : 'xxxf',
+									value : ulemp.alias
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '学历',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									//name : '222',
+									value : YGXL0001.get(ulemp.education)
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '部门',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									name : '222',
+									value : ulemp.ulDepartment.depname
+								} ]
+						},{	
+							columnWidth : .3,
+							border : false,
+							layout : 'form',
+							items : [{
+									xtype : 'displayfield',
+									fieldLabel : '转正时间',
+									//anchor : '100%',
+									//id : 'ddd',
+									name : 'xxxf',
+									//value : ulemp.zhuanzhengshijian.substring(0, 10)
+									value:ulemp.zhuanzhengshijian
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '毕业学院',
+									//anchor : '100%',
+									//id : 'sdsd',
+									name : 'vvvv',
+									value : ulemp.biyeyuanxiao
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '入职时间',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									name : '222',
+									//value : ulemp.ruzhishijian.substring(0, 10)
+									value : ulemp.ruzhishijian
+								}, {
+									xtype : 'displayfield',
+									fieldLabel : '入职方式',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									name : '222',
+									value : RZFS001.get(ulemp.ruzhifangshi)
+								},
+//								{
+//									xtype : 'displayfield',
+//									fieldLabel : '户籍所在地',
+//									//anchor : '100%',
+//									//id : 'sdfsdfsad',
+//									name : '222',
+//									value : ulemp.hujiGuojia
+//								}
+//								,
+//								{
+//									xtype : 'displayfield',
+//									fieldLabel : '工作所在地',
+//									//anchor : '100%',
+//									//id : 'sdfsdfsad',
+//									name : '222',
+//									value : ulemp.gongzuodiGuojia
+//								},
+//								{
+//									xtype : 'displayfield',
+//									fieldLabel : '联系方式',
+//									//anchor : '100%',
+//									//id : 'sdfsdfsad',
+//									name : '222111',
+//									value :LXFS002.get(ulemp.ulContactEmp.contactType)
+//								},
+								{
+									xtype : 'displayfield',
+									fieldLabel : '合同到期时间',
+									//anchor : '100%',
+									//id : 'sdfsdfsad',
+									name : '222',
+									//value : ulemp.hetongdaoqishijian.substring(0, 10)
+									value : ulemp.hetongdaoqishijian
+								
+								}]
+						},{	
+							columnWidth : .3,
+							border : false,
+							layout : 'form',
+							items : [{
+								fieldLabel : '备注',
+								name : 'ulEmployee.note',
+								xtype : 'textarea',
+								anchor:'100%',
+								readOnly : true,
+								id : 'ulEmployee.note_form',
+								maxLength : 500,
+							       //width:100,
+								   //height:1000,
+								value:ulemp.note
+								}]
+						}
+//						
+					]
+				}]
+				
+				
+			});
+
+	var setPassword = new Ext.Window({
+		title :"员工"+ulemp.fullname+"的详细信息",
+		//title:"员工"+ulemp.useid+"的详细信息"
+		iconCls : 'btn-readdocument',
+		width : 800,
+		height : 400,
+		modal : true,
+		layout : 'anchor',
+		bodyStyle : 'padding:5px;',
+		buttonAlign : 'center',
+		items : [formPanel],
+		closable : false,
+		buttons : [{
+			text : '返回',
+			iconCls : 'btn-back',
+			handler : function() {
+					setPassword.close();
+			}
+		}]
+	});
+	setPassword.show();
+};

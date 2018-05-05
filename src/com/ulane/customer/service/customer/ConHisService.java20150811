@@ -1,0 +1,155 @@
+package com.ulane.customer.service.customer;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import groovy.io.FileType;
+
+import java.io.InputStream;
+import java.sql.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.mahout.df.data.Data;
+
+import com.htsoft.core.jbpm.pv.TaskInfo;
+import com.htsoft.core.service.BaseService;
+import com.htsoft.core.web.paging.PagingBean;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.customer.model.customer.CallIdOrAgentInfo;
+import com.ulane.customer.model.customer.ConHis;
+import com.ulane.customer.model.customer.Examine;
+import com.ulane.customer.model.customer.SysWorkattendance;
+import com.ulane.customer.model.customer.MachineSelf;
+import com.ulane.customer.model.customer.MachineSelfAttach;
+import com.ulane.customer.model.customer.OperationData;
+import com.ulane.know.model.know.UkKnowType;
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+
+public interface ConHisService extends BaseService<ConHis>{
+	
+	/**
+	 * 更新联络历史
+	 * @param param
+	 * @return
+	 */
+	public String updateConHis(Map<String,String> param);
+	
+	//public InputStream reportsExcle();
+	
+	public Long getMaxConHis();
+	
+	/***
+	 * 2014/04/22
+	 * hy   
+	 * 存储后台对应callid和agentid编号
+	 * @param callIdOrAgentInfo
+	 */
+	public void saveCallIdOrAgentId(String callid,String agentid,String machineid);
+	
+	
+	/***
+	 * 2014/12/18
+	 * hy   
+	 * 存储后台OperationData数据
+	 * @param 
+	 */
+	public void insertOperationData(Long BS_num,String agentid,String insertTime , String Stype);
+	
+	/***
+	 * 2014/12/18
+	 * Hyman   
+	 * 查询OperationData数据中BS_Num字段最大的值
+	 * @param 
+	 */
+	public OperationData selectMaxOpera();
+	
+	/***
+	 * 2014/12/18
+	 * Hyman   
+	 * 插入Attendance数据值  考勤记录
+	 * @param  Long BS_num,String agentid,String loginsystime,String loginctitime,String logoutsystime,String status,String reason
+	 */
+	public void insertWorkAttendance(Long BS_num,String agentid,String loginsystime,String loginctitime,String logoutsystime,String status,String reason,String remarks);
+	
+	
+	
+	
+	/***
+	 * 2014/07/29
+	 * hy   
+	 * 身份核查补录，后台记录数据，提供报表基础
+	 * @param callIdOrAgentInfo
+	 */
+	public void insertExamineInfo(Examine examine);
+	
+	/***
+	 * 2014/06/03
+	 * hy   
+	 * 修改自动生成流水号	
+	 * @param conhisid
+	 * @param cusName
+	 * @param dealno
+	 */
+	public void updateDealNum(String conhisid,String cusName,String dealno);
+	
+	public Equipment selectEquiName(String eId);
+	
+	
+	/**
+	 * 2014/11/7
+	 * 补录报表的查询
+	 * （带分页）
+	 * nk
+	 */
+	
+	public List<Examine>  ExamineReport(Integer start, Integer limit, String dealNum, String cusName,
+			 String transactP, String examineP,  String examineD,  String examineR);
+	
+	public Integer ExamineReportCount(String dealNum, String cusName,
+			 String transactP, String examineP,  String examineD,  String examineR);
+	
+	/**
+	 * 20150208
+	 * 自主终端资料查询
+	 * Fernando 
+	 */
+	public List<MachineSelf>  machineSelfList(Integer start, Integer limit, String wdNum, String cusName,
+			 String tellernum, String tradedateStart,String tradedateEnd,String traderesult);
+	
+	public Integer machineSelfCount(String wdNum, String cusName,String tellernum, String tradedateStart,String tradedateEnd,String traderesult);
+	
+	/**
+	 * 20150209
+	 * 自助终端详细文件信息
+	 * Fernando
+	 */
+	public List<MachineSelfAttach> machSelfAttachList (String msid);
+	
+	
+	/**
+	 * 2015/01/30
+	 * 质检考核的查询
+	 * （带分页）
+	 * nk
+	 */
+	
+	public List<SysWorkattendance>  SysWorkattendance(Integer start, Integer limit, String loginTime, String logoutTime);
+			
+	public Integer SysWorkattendanceCount( String loginTime,String logoutTime);
+	
+	
+//	/**
+//	 * 插入高清录音文件路径
+//	 * Fernando
+//	 * 2015/3/4
+//	 */
+//	public void saveWavAttach(String conhisid , String filepath , Date creatDate , String agentId , Long fileType , Long fileSource);
+	
+}
+
+

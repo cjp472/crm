@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.base.model.xitong.ServiceWsdlManager"
+        table="SERVICE_WSDL_MANAGER"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="serviceWsdlId"
+            column="SERVICE_WSDL_ID"
+            type="java.lang.Long"
+            length="38"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SERVICE_WSDL_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="serviceWsdlName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERVICE_WSDL_NAME"
+            length="30"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="serviceWsdlUrl"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="SERVICE_WSDL_URL"
+            length="150"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="comMent"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMMENTS"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createBy"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_BY"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateBy"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_BY"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_DATE"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_DATE"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to ServiceWsdlMethod -->
+	<set name="serviceWsdlMethods"
+	     table="service_wsdl_method"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="SERVICE_WSDL_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.base.model.xitong.ServiceWsdlMethod"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

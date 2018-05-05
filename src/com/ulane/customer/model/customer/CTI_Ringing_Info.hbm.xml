@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CTI_Ringing_Info" table="Z_CTI_RINGING" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+				<id name="rid" column="RID" type="java.lang.Long"
+					length="18">
+					<generator class="sequence">
+						<param name="sequence">
+							SEQ_CTI_RINGING
+		            	</param>
+					</generator>
+				</id>
+				<property name="rStartTime" type="java.lang.String" column="RSTARTTIME" length="128" />
+				<property name="rEndTime" type="java.lang.String" column="RENDTIME" length="128" />
+				<property name="rDate" type="java.lang.String" column="RDATE" length="128" />
+				<property name="rMachineID" type="java.lang.String" column="RMACHINEID" length="128" />
+				<property name="rAgentID" type="java.lang.String" column="RAGENTID" length="128" />
+				<property name="rType" type="java.lang.Long" column="RTYPE" length="18" />
+				<property name="rCallID" type="java.lang.String" column="RCALLID" length="128" />
+				<property name="rCallNum" type="java.lang.String" column="RTERMNUM" length="128" />
+				<property name="rRingingTime" type="java.lang.Long" column="RRINGINGTIME" length="18" />
+				<property name="rBothTime" type="java.lang.String" column="RBOTHTIME" length="128" />
+				<property name="rBothTimeType" type="java.lang.Long" column="RBOTHTIMETYPE" length="18" />
+	</class>
+</hibernate-mapping>

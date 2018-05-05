@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObCallbatchExtract"
+		table="OB_CALLBATCH_EXTRACT" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="extractId" column="EXTRACT_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_CALLBATCH_EXTRACT_ID
+            	</param>
+			</generator>
+		</id>
+<!-- 			
+		<property name="userId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="fromCallbatchId" type="java.lang.Long"
+			update="true" insert="true" access="property" column="FROM_CALLBATCH_ID"
+			length="18" not-null="false" unique="false" />
+		<property name="toCallbatchId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TO_CALLBATCH_ID" length="18"
+			not-null="false" unique="false" />
+ -->			
+		<property name="staDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_DAT" length="7" not-null="false"
+			unique="false" />
+        <many-to-one name="fromObCallbatch"
+			class="com.ulane.callout.model.outb.ObCallbatch" not-null="false"
+			fetch="select">
+			<column name="FROM_CALLBATCH_ID" />
+		</many-to-one>  
+		
+		<many-to-one name="toObCallbatch"
+			class="com.ulane.callout.model.outb.ObCallbatch" not-null="false"
+			fetch="select">
+			<column name="TO_CALLBATCH_ID" />
+		</many-to-one>  
+		<many-to-one
+			name="user"
+			class="com.htsoft.oa.model.system.AppUser"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="USER_ID" />
+		</many-to-one>					
+	</class>
+</hibernate-mapping>

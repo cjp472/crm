@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_3" text="会员营销" iconCls="mod-waihu">
+	<Items id="1" text="营销策划" iconCls="menu-conf-summary">
+		<Item id="ObProjectView" text="营销项目" iconCls="menu-section-view" />
+		<Item id="ObComView" text="营销活动" iconCls="menu-form" />
+	</Items>
+	<Items id="2" text="名单管理" iconCls="menu-holiday">
+		<Item id="ObCalllistView" text="呼叫名单" iconCls="menu-mobile" />
+		<Items id="ObMDChouqu"  text="名单抽取" iconCls="btn-flowView"  >
+		<!-- 
+		<Item id="ObCalllistChouquUserView"  text="客户资料"  />
+		-->
+		<Item id="ObCalllistChouquView"  text="营销项目"  />
+		</Items>
+		<Item id="ObCallbatchView"  text="导入批次" iconCls="btn-changeTask" />
+		<Item id="ObCallListClearnView"  text="名单清洗 " iconCls="btn-borrow" />
+	</Items>
+	<Items id="4" text="名单分配" iconCls="menu-flowNew">
+		<Item id="ObCalllistMFeipeiView" text="管理员分配"  iconCls="menu-subuser" />
+		<Item id="ObCalllistJFeipeiView" text="经理分配"  iconCls="menu-arch-dispatch" >
+				<Function id="_ObCalllistJFeipei" text="经理分配权限"/>
+		</Item>
+		<Item id="ObCalllistZFeipeiView" text="主管分配" iconCls="menu-conference_add" >
+		    <Function id="_ObCalllistZFeipei" text="组长分配权限"/>
+		</Item>
+		<Item id="ObCalllistHuishouView" text="名单回收"  iconCls="menu-archive-history" />
+		
+	</Items>
+	<Items id="5" text="营销执行" iconCls="menu-subDiary">
+		<Item id="YXtaskView" text="营销任务" iconCls="assets-type" />
+		<Item id="ConHuSunHuiFangView" text="呼损回访"  iconCls="menu-job-check" />
+		<!-- 
+		<Item id="" text="任务提醒" iconCls="clock_link" />
+	    -->
+	</Items>
+	<Items id="6" text="佣金管理" iconCls="menu_money">
+		
+		<Item id="MontargetwManagerView" text="目标管理"  iconCls="menu-form" />
+		<Item id="MonRuleManagerView" text="佣金规则"  iconCls="menu-archive-proof" />
+		<Item id="MonshowView" text="佣金查询"  iconCls="menu-archive-issue-manage" />
+		<Item id="MonmytargetView" text="我的目标"  iconCls="menu-arch-rec-type" />
+		<Item id="MonmyshowView" text="我的佣金"  iconCls="menu-assets" />
+		<!-- <Item id="MonThatView" text="实时佣金查询"  iconCls="menu-archive-department" /> -->
+	</Items>
+	
+	
+</Menus>

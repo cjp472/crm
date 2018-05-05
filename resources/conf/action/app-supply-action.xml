@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd"> 
+	
+
+
+<!-- start:  Generated for ScBizOrderFee From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizOrderFeeAction" class="com.ulane.supply.action.supply.ScBizOrderFeeAction" scope="prototype"/>
+<!-- end:  Generated for ScBizOrderFee From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderPurchase From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizOrderPurchaseAction" class="com.ulane.supply.action.purchase.ScBizOrderPurchaseAction" scope="prototype"/>
+<!-- end:  Generated for ScBizOrderPurchase From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderRelated From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizOrderRelatedAction" class="com.ulane.supply.action.supply.ScBizOrderRelatedAction" scope="prototype"/>
+<!-- end:  Generated for ScBizOrderRelated From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderSales From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizOrderSalesAction" class="com.ulane.supply.action.sales.ScBizOrderSalesAction" scope="prototype"/>
+<!-- end:  Generated for ScBizOrderSales From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizOrderStock From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizOrderStockAction" class="com.ulane.supply.action.stock.ScBizOrderStockAction" scope="prototype"/>
+<!-- end:  Generated for ScBizOrderStock From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizRelationType From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizRelationTypeAction" class="com.ulane.supply.action.supply.ScBizRelationTypeAction" scope="prototype"/>
+<!-- end:  Generated for ScBizRelationType From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizSalesClassify From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizSalesClassifyAction" class="com.ulane.supply.action.sales.ScBizSalesClassifyAction" scope="prototype"/>
+<!-- end:  Generated for ScBizSalesClassify From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBizSalesDetail From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBizSalesDetailAction" class="com.ulane.supply.action.sales.ScBizSalesDetailAction" scope="prototype"/>
+<!-- end:  Generated for ScBizSalesDetail From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBoPurchaseClassify From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBoPurchaseClassifyAction" class="com.ulane.supply.action.purchase.ScBoPurchaseClassifyAction" scope="prototype"/>
+<!-- end:  Generated for ScBoPurchaseClassify From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBoPurchaseDetail From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBoPurchaseDetailAction" class="com.ulane.supply.action.purchase.ScBoPurchaseDetailAction" scope="prototype"/>
+<!-- end:  Generated for ScBoPurchaseDetail From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBoStockClassify From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBoStockClassifyAction" class="com.ulane.supply.action.stock.ScBoStockClassifyAction" scope="prototype"/>
+<!-- end:  Generated for ScBoStockClassify From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScBoStockDetail From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScBoStockDetailAction" class="com.ulane.supply.action.stock.ScBoStockDetailAction" scope="prototype"/>
+<!-- end:  Generated for ScBoStockDetail From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScGoods From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScGoodsAction" class="com.ulane.supply.action.goods.ScGoodsAction" scope="prototype"/>
+<!-- end:  Generated for ScGoods From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPrice From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScGoodsPriceAction" class="com.ulane.supply.action.goods.ScGoodsPriceAction" scope="prototype"/>
+<!-- end:  Generated for ScGoodsPrice From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceHis From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScGoodsPriceHisAction" class="com.ulane.supply.action.goods.ScGoodsPriceHisAction" scope="prototype"/>
+<!-- end:  Generated for ScGoodsPriceHis From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceRule From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScGoodsPriceRuleAction" class="com.ulane.supply.action.goods.ScGoodsPriceRuleAction" scope="prototype"/>
+<!-- end:  Generated for ScGoodsPriceRule From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsPriceVersion From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScGoodsPriceVersionAction" class="com.ulane.supply.action.goods.ScGoodsPriceVersionAction" scope="prototype"/>
+<!-- end:  Generated for ScGoodsPriceVersion From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScGoodsStock From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScGoodsStockAction" class="com.ulane.supply.action.stock.ScGoodsStockAction" scope="prototype"/>
+<!-- end:  Generated for ScGoodsStock From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScPriceVersion From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScPriceVersionAction" class="com.ulane.supply.action.goods.ScPriceVersionAction" scope="prototype"/>
+<!-- end:  Generated for ScPriceVersion From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScProductAttr From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScProductAttrAction" class="com.ulane.supply.action.goods.ScProductAttrAction" scope="prototype"/>
+<!-- end:  Generated for ScProductAttr From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScProductAttrVal From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScProductAttrValAction" class="com.ulane.supply.action.goods.ScProductAttrValAction" scope="prototype"/>
+<!-- end:  Generated for ScProductAttrVal From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScProductClassify From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScProductClassifyAction" class="com.ulane.supply.action.goods.ScProductClassifyAction" scope="prototype"/>
+<!-- end:  Generated for ScProductClassify From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScProductInst From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScProductInstAction" class="com.ulane.supply.action.goods.ScProductInstAction" scope="prototype"/>
+<!-- end:  Generated for ScProductInst From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScProductInstNote From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScProductInstNoteAction" class="com.ulane.supply.action.goods.ScProductInstNoteAction" scope="prototype"/>
+<!-- end:  Generated for ScProductInstNote From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScPurchasePrice From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScPurchasePriceAction" class="com.ulane.supply.action.goods.ScPurchasePriceAction" scope="prototype"/>
+<!-- end:  Generated for ScPurchasePrice From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScPurpriceVersion From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScPurpriceVersionAction" class="com.ulane.supply.action.goods.ScPurpriceVersionAction" scope="prototype"/>
+<!-- end:  Generated for ScPurpriceVersion From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScThresholdLevel From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScThresholdLevelAction" class="com.ulane.supply.action.stock.ScThresholdLevelAction" scope="prototype"/>
+<!-- end:  Generated for ScThresholdLevel From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ScWarehouse From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ScWarehouseAction" class="com.ulane.supply.action.stock.ScWarehouseAction" scope="prototype"/>
+<!-- end:  Generated for ScWarehouse From Template: app-supply-action.xml.beansvm  -->
+<bean id="ScProductComAction" class="com.ulane.supply.action.goods.ScProductComAction" scope="prototype"/>
+</beans>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.qucon.QcChkRulDetail"
+        table="QC_CHK_RUL_DETAIL"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="detailId"
+            column="DETAIL_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_CHK_RUL_DETAIL_ID
+            	</param>
+            </generator>
+        </id>
+        <property
+            name="typId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="TYP_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="val"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="VAL"
+            length="10"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="valSta"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="VAL_STA"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="valEnd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="VAL_END"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="rulStaId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUL_STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="rul"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="RUL"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="detailType"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="DETAIL_TYPE"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property name="objectId" type="java.lang.Long" update="true"
+            insert="true" access="property"
+            column="OBJECT_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <many-to-one name="qcChkRul"
+			class="com.ulane.running.model.qucon.QcChkRul" not-null="false"
+			fetch="select">
+			<column name="CHK_RUL_ID" />
+		</many-to-one>	
+     </class>
+</hibernate-mapping>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd"> 
+	
+
+
+
+<!-- start:  Generated for UnimAgent From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAgentAction" class="com.ulane.monitor.action.unim.UnimAgentAction" scope="prototype"/>
+<!-- end:  Generated for UnimAgent From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAgentloginlog From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAgentloginlogAction" class="com.ulane.monitor.action.unim.UnimAgentloginlogAction" scope="prototype"/>
+<!-- end:  Generated for UnimAgentloginlog From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAgentMap From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAgentMapAction" class="com.ulane.monitor.action.unim.UnimAgentMapAction" scope="prototype"/>
+<!-- end:  Generated for UnimAgentMap From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimCategory From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimCategoryAction" class="com.ulane.monitor.action.unim.UnimCategoryAction" scope="prototype"/>
+<!-- end:  Generated for UnimCategory From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimExtension From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimExtensionAction" class="com.ulane.monitor.action.unim.UnimExtensionAction" scope="prototype"/>
+<!-- end:  Generated for UnimExtension From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimMapNavigation From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimMapNavigationAction" class="com.ulane.monitor.action.unim.UnimMapNavigationAction" scope="prototype"/>
+<!-- end:  Generated for UnimMapNavigation From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimServerConfig From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimServerConfigAction" class="com.ulane.monitor.action.unim.UnimServerConfigAction" scope="prototype"/>
+<!-- end:  Generated for UnimServerConfig From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimSkillgroup From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimSkillgroupAction" class="com.ulane.monitor.action.unim.UnimSkillgroupAction" scope="prototype"/>
+<!-- end:  Generated for UnimSkillgroup From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimThrlevl From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimThrlevlAction" class="com.ulane.monitor.action.unim.UnimThrlevlAction" scope="prototype"/>
+<!-- end:  Generated for UnimThrlevl From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelMap From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimChannelMapAction" class="com.ulane.monitor.action.unim.UnimChannelMapAction" scope="prototype"/>
+<!-- end:  Generated for UnimChannelMap From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelNavigation From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimChannelNavigationAction" class="com.ulane.monitor.action.unim.UnimChannelNavigationAction" scope="prototype"/>
+<!-- end:  Generated for UnimChannelNavigation From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimChannel From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimChannelAction" class="com.ulane.monitor.action.unim.UnimChannelAction" scope="prototype"/>
+<!-- end:  Generated for UnimChannel From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimChannelTarget From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimChannelTargetAction" class="com.ulane.monitor.action.unim.UnimChannelTargetAction" scope="prototype"/>
+<!-- end:  Generated for UnimChannelTarget From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimChaTarPar From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimChaTarParAction" class="com.ulane.monitor.action.unim.UnimChaTarParAction" scope="prototype"/>
+<!-- end:  Generated for UnimChaTarPar From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimChaTarThrlevl From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimChaTarThrlevlAction" class="com.ulane.monitor.action.unim.UnimChaTarThrlevlAction" scope="prototype"/>
+<!-- end:  Generated for UnimChaTarThrlevl From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsMap From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssetsMapAction" class="com.ulane.monitor.action.unim.UnimAssetsMapAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssetsMap From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsNavigation From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssetsNavigationAction" class="com.ulane.monitor.action.unim.UnimAssetsNavigationAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssetsNavigation From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssCategory From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssCategoryAction" class="com.ulane.monitor.action.unim.UnimAssCategoryAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssCategory From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssets From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssetsAction" class="com.ulane.monitor.action.unim.UnimAssetsAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssets From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssType From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssTypeAction" class="com.ulane.monitor.action.unim.UnimAssTypeAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssType From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssStatus From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssStatusAction" class="com.ulane.monitor.action.unim.UnimAssStatusAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssStatus From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssetsTarget From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssetsTargetAction" class="com.ulane.monitor.action.unim.UnimAssetsTargetAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssetsTarget From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssTarPar From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssTarParAction" class="com.ulane.monitor.action.unim.UnimAssTarParAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssTarPar From Template: app-monitor-action.xml.beansvm  -->
+<!-- start:  Generated for UnimAssTarThrlevl From Template: app-monitor-action.xml.beansvm  -->
+ <bean id="UnimAssTarThrlevlAction" class="com.ulane.monitor.action.unim.UnimAssTarThrlevlAction" scope="prototype"/>
+<!-- end:  Generated for UnimAssTarThrlevl From Template: app-monitor-action.xml.beansvm  -->
+</beans>

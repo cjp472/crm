@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
+
+
+<!-- start:  Generated for CusPersonal From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusPersonalAction" class="com.ulane.customer.action.customer.CusPersonalAction" scope="prototype"/>
+<!-- end:  Generated for CusPersonal From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusCompany From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusCompanyAction" class="com.ulane.customer.action.customer.CusCompanyAction" scope="prototype"/>
+<!-- end:  Generated for CusCompany From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusPurchaseCompany From Template: app-supply-action.xml.beansvm  -->
+ <bean id="CusPurchaseCompanyAction" class="com.ulane.customer.action.customer.CusPurchaseCompanyAction" scope="prototype"/>
+<!-- end:  Generated for CusPurchaseCompany From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for CusContact From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusContactAction" class="com.ulane.customer.action.customer.CusContactAction" scope="prototype"/>
+<!-- end:  Generated for CusContact From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusHis From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusHisAction" class="com.ulane.customer.action.customer.CusHisAction" scope="prototype"/>
+<!-- end:  Generated for CusHis From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ConHis From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ConHisAction" class="com.ulane.customer.action.customer.ConHisAction" scope="prototype"/>
+ 
+ <!-- 报表添加映射类 -->
+  <!-- bean id="CusReportAction" class="com.ulane.customer.action.customer.CusReportAction" scope="prototype"/> -->
+ 
+<!-- end:  Generated for ConHis From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ConHushou From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ConHushouAction" class="com.ulane.customer.action.customer.ConHushouAction" scope="prototype"/>
+<!-- end:  Generated for ConHushou From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ConWeichuli From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ConWeichuliAction" class="com.ulane.customer.action.customer.ConWeichuliAction" scope="prototype"/>
+<!-- end:  Generated for ConWeichuli From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ConLanjie From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ConLanjieAction" class="com.ulane.customer.action.customer.ConLanjieAction" scope="prototype"/>
+<!-- end:  Generated for ConLanjie From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusBusiInvoke From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusBusiInvokeAction" class="com.ulane.customer.action.customer.CusBusiInvokeAction" scope="prototype"/>
+<!-- end:  Generated for CusBusiInvoke From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusSpeEve From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusSpeEveAction" class="com.ulane.customer.action.customer.CusSpeEveAction" scope="prototype"/>
+<!-- end:  Generated for CusSpeEve From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ConBwListTimeRul From Template: app-running-action.xml.beansvm  -->
+ <bean id="ConBwListTimeRulAction" class="com.ulane.customer.action.customer.ConBwListTimeRulAction" scope="prototype"/>
+<!-- end:  Generated for ConBwListTimeRul From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for ConBwListBusRul From Template: app-running-action.xml.beansvm  -->
+ <bean id="ConBwListBusRulAction" class="com.ulane.customer.action.customer.ConBwListBusRulAction" scope="prototype"/>
+<!-- end:  Generated for ConBwListBusRul From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for ConBwList From Template: app-running-action.xml.beansvm  -->
+ <bean id="ConBwListAction" class="com.ulane.customer.action.customer.ConBwListAction" scope="prototype"/>
+<!-- end:  Generated for ConBwList From Template: app-running-action.xml.beansvm  -->
+<!-- start:  Generated for ConServiceRequest From Template: app-supply-action.xml.beansvm  -->
+ <bean id="ConServiceRequestAction" class="com.ulane.customer.action.customer.ConServiceRequestAction" scope="prototype"/>
+<!-- end:  Generated for ConServiceRequest From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for ObFee From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ObFeeAction" class="com.ulane.customer.action.fee.ObFeeAction" scope="prototype"/>
+<!-- end:  Generated for ObFee From Template: app-customer-action.xml.beansvm  -->
+
+<!-- start:  Generated for SysEmpPerformance From Template: app-customer-action.xml.beansvm  -->
+ <bean id="SysEmpPerformanceAction" class="com.ulane.customer.action.fee.SysEmpPerformanceAction" scope="prototype"/>
+<!-- end:  Generated for SysEmpPerformance From Template: app-customer-action.xml.beansvm  -->
+
+<!-- start:  Generated for ObFeeIndex From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ObFeeIndexAction" class="com.ulane.customer.action.fee.ObFeeIndexAction" scope="prototype"/>
+<!-- end:  Generated for ObFeeIndex From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndexLevel From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ObFeeIndexLevelAction" class="com.ulane.customer.action.fee.ObFeeIndexLevelAction" scope="prototype"/>
+<!-- end:  Generated for ObFeeIndexLevel From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndexProject From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ObFeeIndexProjectAction" class="com.ulane.customer.action.fee.ObFeeIndexProjectAction" scope="prototype"/>
+<!-- end:  Generated for ObFeeIndexProject From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ObFeeRule From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ObFeeRuleAction" class="com.ulane.customer.action.fee.ObFeeRuleAction" scope="prototype"/>
+<!-- end:  Generated for ObFeeRule From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ObFeeRuleValue From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ObFeeRuleValueAction" class="com.ulane.customer.action.fee.ObFeeRuleValueAction" scope="prototype"/>
+<!-- end:  Generated for ObFeeRuleValue From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for ConBwlistApprove From Template: app-customer-action.xml.beansvm  -->
+ <bean id="ConBwlistApproveAction" class="com.ulane.customer.action.customer.ConBwlistApproveAction" scope="prototype"/>
+<!-- end:  Generated for ConBwlistApprove From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusRelationship From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusRelationshipAction" class="com.ulane.customer.action.customer.CusRelationshipAction" scope="prototype"/>
+<!-- end:  Generated for CusRelationship From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CsOrder From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CsOrderAction" class="com.ulane.customer.action.customer.CsOrderAction" scope="prototype"/>
+<!-- end:  Generated for CsOrder From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CusDelivery From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CusDeliveryAction" class="com.ulane.customer.action.customer.CusDeliveryAction" scope="prototype"/>
+<!-- end:  Generated for CusDelivery From Template: app-customer-action.xml.beansvm  -->
+<!-- start:  Generated for CsOrderTime From Template: app-customer-action.xml.beansvm  -->
+ <bean id="CsOrderTimeAction" class="com.ulane.customer.action.customer.CsOrderTimeAction" scope="prototype"/>
+<!-- end:  Generated for CsOrderTime From Template: app-customer-action.xml.beansvm  -->
+</beans>

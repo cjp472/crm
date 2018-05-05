@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimAssType" table="UNIM_ASS_TYPE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="typeId" column="TYPE_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UNIM_ASS_TYPE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="typeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="TYPE_NAME" length="128"
+			not-null="true" unique="false" />
+		<property name="typeCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="TYPE_CODE" length="128"
+			not-null="true" unique="false" />
+		<property name="extend1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND1" length="256"
+			not-null="false" unique="false" />
+		<property name="extend2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND2" length="256"
+			not-null="false" unique="false" />
+		<property name="extend3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND3" length="256"
+			not-null="false" unique="false" />
+		<property name="extend4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXTEND4" length="256"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="4000"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS" length="5" not-null="true"
+			unique="false" />
+		<!--  <property name="catId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CAT_ID" length="5" not-null="true"
+			unique="false" />-->
+			
+		<!--
+			imported bi-directional many-to-one association to UnimAssCategory
+		-->
+	   <many-to-one name="unimAssCategory"
+			class="com.ulane.monitor.model.unim.UnimAssCategory" not-null="false"
+			fetch="select" >
+			<column name="CAT_ID" />
+		</many-to-one>
+		
+		<!-- exported bi-directional one-to-many association to UnimAssets -->
+		<set name="unimAssetss" table="unim_assets" lazy="true" inverse="false"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="TYPE_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimAssets" />
+		</set>
+	</class>
+</hibernate-mapping>

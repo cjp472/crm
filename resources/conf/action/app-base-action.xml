@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
+
+<!-- start:  Generated for UlUgroupRole From Template: app-xitong-action.xml.beansvm  -->
+ <!--bean id="UlUgroupRoleAction" class="com.ulane.base.action.xitong.UlUgroupRoleAction" scope="prototype"/-->
+<!-- end:  Generated for UlUgroupRole From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlUgroupUser From Template: app-xitong-action.xml.beansvm  -->
+ <!--bean id="UlUgroupUserAction" class="com.ulane.base.action.xitong.UlUgroupUserAction" scope="prototype"/-->
+<!-- end:  Generated for UlUgroupUser From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlUsergroup From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlUsergroupAction" class="com.ulane.base.action.xitong.UlUsergroupAction" scope="prototype"/>
+<!-- end:  Generated for UlUsergroup From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlBbsHuati From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlBbsHuatiAction" class="com.ulane.base.action.xitong.UlBbsHuatiAction" scope="prototype"/>
+<!-- end:  Generated for UlBbsHuati From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlBbsJieshou From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlBbsJieshouAction" class="com.ulane.base.action.xitong.UlBbsJieshouAction" scope="prototype"/>
+<!-- end:  Generated for UlBbsJieshou From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlBbsHuifu From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlBbsHuifuAction" class="com.ulane.base.action.xitong.UlBbsHuifuAction" scope="prototype"/>
+<!-- end:  Generated for UlBbsHuifu From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlDepartment From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlDepartmentAction" class="com.ulane.base.action.xitong.UlDepartmentAction" scope="prototype"/>
+<!-- end:  Generated for UlDepartment From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlDepEmployee From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlDepEmployeeAction" class="com.ulane.base.action.xitong.UlDepEmployeeAction" scope="prototype"/>
+<!-- end:  Generated for UlDepEmployee From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlEmployee From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlEmployeeAction" class="com.ulane.base.action.xitong.UlEmployeeAction" scope="prototype"/>
+<!-- end:  Generated for UlEmployee From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for UlNewsReceive From Template: app-xitong-action.xml.beansvm  -->
+ <bean id="UlNewsReceiveAction" class="com.ulane.base.action.info.UlNewsReceiveAction" scope="prototype"/>
+<!-- end:  Generated for UlNewsReceive From Template: app-xitong-action.xml.beansvm  -->
+<!-- start:  Generated for SysTemType From Template: app-base-action.xml.beansvm  -->
+ <bean id="SysTemTypeAction" class="com.ulane.base.action.xitong.SysTemTypeAction" scope="prototype"/>
+<!-- end:  Generated for SysTemType From Template: app-base-action.xml.beansvm  -->
+<!-- start:  Generated for ServiceWsdlManager From Template: app-base-action.xml.beansvm  -->
+ <bean id="ServiceWsdlManagerAction" class="com.ulane.base.action.xitong.ServiceWsdlManagerAction" scope="prototype"/>
+<!-- end:  Generated for ServiceWsdlManager From Template: app-base-action.xml.beansvm  -->
+<!-- start:  Generated for ServiceWsdlMethod From Template: app-base-action.xml.beansvm  -->
+ <bean id="ServiceWsdlMethodAction" class="com.ulane.base.action.xitong.ServiceWsdlMethodAction" scope="prototype"/>
+<!-- end:  Generated for ServiceWsdlMethod From Template: app-base-action.xml.beansvm  -->
+<!-- start:  Generated for BeanObject From Template: app-base-action.xml.beansvm  -->
+ <bean id="BeanObjectAction" class="com.ulane.base.action.xitong.BeanObjectAction" scope="prototype"/>
+<!-- end:  Generated for BeanObject From Template: app-base-action.xml.beansvm  -->
+<!-- start:  Generated for BeanObjectColumns From Template: app-base-action.xml.beansvm  -->
+ <bean id="BeanObjectColumnsAction" class="com.ulane.base.action.xitong.BeanObjectColumnsAction" scope="prototype"/>
+<!-- end:  Generated for BeanObjectColumns From Template: app-base-action.xml.beansvm  -->
+<!-- start:  Generated for SysPara From Template: app-supply-action.xml.beansvm  -->
+ <bean id="SysParaAction" class="com.ulane.base.action.info.SysParaAction" scope="prototype"/>
+<!-- end:  Generated for SysPara From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for SysParaOpt From Template: app-supply-action.xml.beansvm  -->
+ <bean id="SysParaOptAction" class="com.ulane.base.action.info.SysParaOptAction" scope="prototype"/>
+<!-- end:  Generated for SysParaOpt From Template: app-supply-action.xml.beansvm  -->
+<!-- start:  Generated for BeanObject From Template: app-base-action.xml.beansvm  -->
+ <bean id="BeanExtSetAction" class="com.ulane.base.action.xitong.BeanExtSetAction" scope="prototype"/>
+<!-- end:  Generated for BeanObject From Template: app-base-action.xml.beansvm  -->
+</beans>

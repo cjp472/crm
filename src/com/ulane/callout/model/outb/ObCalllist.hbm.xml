@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObCalllist" table="OB_CALLLIST"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="calllistId" column="CALLLIST_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_CALLLIST_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="calllistNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="CALLLIST_NAM" length="128"
+			not-null="true" unique="false" />
+		<property name="calllistResouce" type="java.lang.Short"
+			update="true" insert="true" access="property" column="CALLLIST_RESOUCE"
+			length="5" not-null="false" unique="false" />
+		<property name="ownerTeam" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OWNER_TEAM" length="18"
+			not-null="false" unique="false" />
+		<property name="calllistTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CALLLIST_TYP_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="cusTypId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_TYP_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="staDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="endDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="1024"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="creTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="calllistStaId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CALLLIST_STA_ID" length="5"
+			not-null="true" unique="false" />
+		<!-- imported bi-directional many-to-one association to ObProject -->
+		<many-to-one name="obProject" class="com.ulane.callout.model.outb.ObProject"
+			not-null="false" fetch="select">
+			<column name="PROJ_ID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to ObCallbatch -->
+		<set name="obCallbatchs" table="ob_callbatch" lazy="true" inverse="true"
+			cascade="all" sort="unsorted">
+			<key>
+				<column name="CALLLIST_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatch" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchAss
+		-->
+		<set name="obCallbatchAsss" table="ob_callbatch_ass" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLLIST_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchAss" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchHis
+		-->
+		<set name="obCallbatchHiss" table="ob_callbatch_his" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLLIST_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchHis" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObComCalllist
+		-->
+		
+		
+		<!--
+		<set name="obComCalllist" table="ob_com_calllist" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLLIST_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComCalllist" />
+		</set>
+			-->
+		
+		<set name="obComs" table="ob_com_calllist" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLLIST_ID" />
+			</key>
+			<many-to-many class="com.ulane.callout.model.outb.ObCom" fetch="join" lazy="false" column="COM_ID"  />
+		</set>  
+		<!--
+		<many-to-one name="obCom" class="com.ulane.callout.model.outb.ObCom"
+			not-null="false" fetch="select">
+			<column name="COM_ID" />
+		</many-to-one>	-->		
+		<!-- exported bi-directional one-to-many association to ObSaletask -->
+		<set name="obSaletasks" table="ob_saletask" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CALLLIST_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObSaletask" />
+		</set>
+		<property name="calllistCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="CALLLIST_CODE" length="128"
+			not-null="false" unique="false" />		
+	</class>
+</hibernate-mapping>

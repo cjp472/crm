@@ -1,0 +1,274 @@
+package com.ulane.base.service.xitong.impl;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.util.List;
+
+import org.jbpm.api.RepositoryService;
+
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.service.impl.BaseServiceImpl;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.dao.system.AppUserDao;
+import com.htsoft.oa.model.flow.ProDefinition;
+import com.htsoft.oa.model.system.AppUser;
+import com.htsoft.oa.service.system.AppUserService;
+import com.ulane.base.dao.xitong.UlEmployeeDao;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.base.service.xitong.UlEmployeeService;
+import com.ulane.customer.model.customer.ConHis;
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+
+@SuppressWarnings("unused")
+public class UlEmployeeServiceImpl extends BaseServiceImpl<UlEmployee> implements UlEmployeeService{
+
+	private UlEmployeeDao dao;
+	
+	// 2014-3-16
+	private AppUserService appUserService;
+	private RepositoryService repositoryService;
+	private AppUserDao appUserDao;
+	
+	public UlEmployeeServiceImpl(UlEmployeeDao dao) {
+		super(dao);
+		System.out.println("======UlEmployeeServiceImpl======="+dao);
+		this.dao=dao;
+	}
+	
+	@Override
+	public List<UlEmployee> findByDepartment(String path, PagingBean pb) {
+		return dao.findByDepartment(path, pb);
+	}
+
+	public UlEmployee getEmployeeByUserNo(String userNo) {
+		return dao.getEmployeeByUserNo(userNo);
+	}
+
+	@Override
+	public Integer getEmployeeCount() {
+		return dao.getEmployeeCount();
+	}
+    /* 2014-3-16 
+     * */
+	@Override
+	public void ulEmployeeDel(Long employeeid) {
+		//删除AppUser 相关的数据
+		//appUserService.removeByDefId(employeeid);
+		AppUser au=appUserService.get(employeeid);
+		if(au!=null&& au.getEmployeeid()!=null && au.getStatus()==3 || au.getStatus()==5 ){
+			 
+				 try{
+					//删除Jbpm的流程定义
+						repositoryService.deleteDeploymentCascade(au.getEmployeeid());
+					}catch(Exception ex){
+						logger.error(ex);
+					}
+			 
+			
+			
+			
+		}
+		//删除流程定义
+		appUserService.remove(au);
+		
+	}
+	public void update(AppUser au) {
+		// TODO Auto-generated method stub
+		dao.update(au);
+	}
+
+	@Override
+	public AppUser selectSomeOne(Long id) {
+		// TODO Auto-method stub
+		return dao.selectSomeOne(id);
+	} 
+	
+//	public List<AppUser> selectOnly(Long id) {
+//		// TODO Auto-method stub
+//		return dao.selectOnly(id);
+//	} 
+	
+
+	// 查询list 2014-3-24
+	public List<UlEmployee> getShowList() {
+		// TODO Auto-generated method stub
+		System.out.println("service==========");
+		return dao.getShowList();
+	}
+     
+	public AppUser selectSomeOne() {
+		// TODO Auto-generated method stub
+		System.out.println("service=======用户管理查询成功！");
+		return null;
+	}
+	
+	/**2014/4/2
+	 * 带条件的查询
+	 * **/
+	@Override
+	public List<Equipment> getShowEquipment(String equipmentId,String equipmentName) {
+		System.out.println("servic    success");
+		return dao.getShowEquipment(equipmentId, equipmentName);
+	}
+	
+	
+	/*查询 
+	 * 修改时间  2014/4/23
+	 * */
+	public List<Equipment> getShowEquipment() {
+		System.out.println("servic    success");
+		return dao.getShowEquipment();
+	}
+	
+	public List<Equipment> getShowEquipment(Integer start, Integer limit) {
+		System.out.println("servic    success");
+		return dao.getShowEquipment(start,limit);
+	}
+	
+     
+	
+	/**2014/4/2
+	 * 批量删除和单个记录删除
+	 * **/
+	public void getDelEquipement(Long EId) {
+		System.out.println("删除成功");
+		dao.getDelEquipment(EId);
+		
+	}
+	/**2014/4/2
+	 * 设备管理的添加
+	 * **/
+	@Override
+	public void updateEquipment(Long EId,String equipmentId,String equipmentName) {
+		System.out.println("=========updata==");
+		 //dao.updateEquipment(EId);
+		dao.updateEquipment(EId, equipmentId, equipmentName);
+		
+		
+	}
+
+	//添加设备2014/4/24
+	@Override
+	public void addEquipment(String newname, String newId) {
+		System.out.println("===============add  service  success");
+		dao.addEquipment(newname, newId);
+		
+	}
+
+	@Override
+	public List<AppUser> selectSome(Long id) {
+		// TODO Auto-generated method stub
+		System.out.println("service     success");
+		return dao.selectOnly(id);
+	}
+
+	@Override
+	public List<AppUser> updateOnly(Long id) {
+		// TODO Auto-generated method stub
+		System.out.println("service sucess!");
+		return dao.selectOnly(id);
+	}
+
+	@Override
+	public void getUpdateDelAppUser(Long useid) {
+		System.out.println("service  appusersucess");
+		dao.getUpdateDelAppUser(useid);
+		
+	}
+
+	@Override
+	public List<AppUser> selectOnly(Long id) {
+		System.out.println("appUser  service  success");
+		return dao.selectOnly(id);
+	}
+
+	@Override
+	public List<Equipment> getEqName(String id) {
+		System.out.println("SUCCESS QUEERYFIRLTER!!!");
+		return dao.getEqName(id);
+	}
+
+	@Override
+	
+	public String getShowEquipment(Integer start, Integer limit,
+			String equipmentId, String equipmentName) {
+		System.out.println("分页查询成功   service！！！！！！！！！！");
+		return dao.getShowEquipment(start, limit, equipmentId, equipmentName);
+	}
+
+	@Override
+	/*
+	 * 2014/06/09  设备管理和业务资料
+	 * */
+	public Equipment getselectEqName(String id)throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("实体equipment ！！");
+		return dao.getselectEqName(id);
+	}
+
+	@Override
+	/*
+	 * 2014/06/09 select COnHIs
+	 * */
+	public List<ConHis> selectCoHis() {
+	  System.out.println("  select conhis SUCCESS1！！");
+		return dao.selectCoHis();
+	}
+//================================设备管理
+	@Override
+	public List<Equipment> listEquipment(Integer start, Integer limit,
+			String bankname, String branchId,String operatorId) {
+		System.out.println("[UlEmployeeServiceImpl]---调用：listEquipment()");
+				return dao.listEquipment(start, limit, bankname, branchId, operatorId);
+		// TODO Auto-generated method stub
+		//return dao.listEquipment(start, limit, equipmentId, bankname, equipmentName);
+	}
+
+	@Override
+	public Integer listEquipmentCount(String bankname, String branchId,String operatorId) {
+		System.out.println("[UlEmployeeServiceImpl]---调用：listEquipmentCount()");
+		return dao.listEquipmentCount(bankname, branchId, operatorId);
+		// TODO Auto-generated method stub
+		//return dao.listEquipmentCount(equipmentId, bankname, equipmentName);
+	}
+
+	@Override
+	public void addlistEquipment(String equipmentId, String operatorId,
+			String equipmentName, String branchId, String curdate,
+			String bankTypeId, String bankTypeName, String ip, String parentId,String address,String parentName) {
+		System.out.println("[UlEmployeeServiceImpl]---调用：addlistEquipment()");
+		//dao.addlistEquipment(equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId,address);
+		dao.addlistEquipment(equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId, address, parentName);
+	}
+
+	@Override
+	public Equipment getByEquipmentId(String equipmentId) {
+		System.out.println("[UlEmployeeServiceImpl]---调用：getByEquipmentId()");
+		return dao.getByEquipmentId(equipmentId);
+	}
+
+	@Override
+	public void updatelistEquipment(Long EId, String equipmentId,
+			String operatorId, String equipmentName, String branchId,
+			String curdate, Long bankTypeId, String bankTypeName, String ip,
+			Long parentId,String address,String parentName) {
+		System.out.println("[UlEmployeeServiceImpl]---调用：updatelistEquipment()");
+		//dao.updatelistEquipment(EId, equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId,address);
+		dao.updatelistEquipment(EId, equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId, address, parentName);
+	}
+
+
+
+
+    
+
+	
+	
+
+}

@@ -1,0 +1,133 @@
+package com.htsoft.oa.service.system;
+
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   -- http://www.ulane.cn
+ *  Copyright (C) 2008-2009 Beijing Ulane Technology Co., LTD
+ */
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
+import com.htsoft.core.service.BaseService;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.model.system.AppRole;
+import com.htsoft.oa.model.system.AppUser;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.customer.model.customer.ConHis;
+
+public interface AppUserService extends BaseService<AppUser> {
+
+	public AppUser findByUserName(String username);
+
+	public List<AppUser> findByDepartment(String path, PagingBean pb);
+	
+	/**
+	 * @description 根据userIds查询不对应的数据
+	 * @param path
+	 *            路径
+	 * @param userIds
+	 *            userId组成的字符串
+	 * @param pb
+	 *            PagingBean
+	 * @return List<AppUser>
+	 */
+	List<AppUser> findByDepartment(String path, String userIds, PagingBean pb);
+
+	public List<AppUser> findByRole(Long roleId, PagingBean pb);
+
+	public List<AppUser> findByRoleId(Long roleId);
+
+	/**
+	 * 根据部门查找不是上属的用户
+	 */
+	public List<AppUser> findSubAppUser(String path, Set<Long> userIds,
+			PagingBean pb);
+
+	/**
+	 * 根据角色查找不是上属的用户
+	 */
+	public List<AppUser> findSubAppUserByRole(Long roleId, Set<Long> userIds,
+			PagingBean pb);
+
+	public List<AppUser> findByDepId(Long depId);
+
+	/**
+	 * 动态密码接口服务方法
+	 * 
+	 * @param input
+	 *            参数数组
+	 * @param function
+	 *            接口名称
+	 * @return ok=成功 fail=失败
+	 */
+	public String initDynamicPwd(HashMap<String, String> input, String function);
+
+	/**
+	 * 按角色ID查找用户
+	 * 
+	 * @param roleIds
+	 *            角色Id，通过','分割
+	 * @return
+	 */
+	public List<AppUser> findUsersByRoleIds(String roleIds);
+
+	/**
+	 * @description 根据用户userId查询对应用户的上下级信息
+	 * @author YHZ
+	 * @data 2010-12-23PM
+	 * @param userId
+	 *            用户id
+	 * @param level
+	 *            0.下级,1.上级,2.同级
+	 * @return List<AppUser>
+	 */
+	List<AppUser> findRelativeUsersByUserId(Long userId, Short level);
+	
+
+	/**
+	 * 按角色取得用户列表
+	 * @param roleId
+	 * @return
+	 */
+	public List<AppUser> getUsersByRoleId(Long roleId);
+	
+	
+	/**
+	 * 返回当前用户的信息，以Json格式返回
+	 * @return
+	 */
+	public String getCurUserInfo();
+	
+	public List<AppUser> getAllUsers(Long flag);
+
+	public List<AppUser> findByUsergroup(Long pkUsergroupId, PagingBean pb);
+	
+	public List<AppUser> getUserIdsOrCalllistAssign(String type,String groupIds);
+	
+	public long getCount();
+	/***
+	 * 2014/6/9/
+	 */
+	
+	
+	public List<AppUser> getselectSatus();
+	/*2014/06/18   
+	 * ====================================================================用户管理的删除
+	 * **/
+	public void getDelUser(Long userId);
+
+	public List<AppRole> selectRoleName(Long userId);
+
+
+	public List<AppUser> SelectUserList(Integer start1, Integer limit1,
+			String username, String fullname, String userNo, String status);
+
+	public int SelectUserListCount(String username, String fullname,
+			String userNo, String status);
+
+	public List<AppRole> selectRole();
+
+
+	
+
+}

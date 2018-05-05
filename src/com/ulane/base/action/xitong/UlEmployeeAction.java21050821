@@ -1,0 +1,1378 @@
+package com.ulane.base.action.xitong;
+
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+ */
+import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.lang.StringUtils;
+import org.apache.mahout.df.data.Data;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.htsoft.core.Constants;
+import com.htsoft.core.command.QueryFilter;
+import com.htsoft.core.model.OnlineUser;
+import com.htsoft.core.util.AppUtil;
+import com.htsoft.core.util.BeanUtil;
+import com.htsoft.core.util.ContextUtil;
+import com.htsoft.core.util.JsonUtil;
+import com.htsoft.core.web.action.BaseAction;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.model.flow.ProcessRun;
+import com.htsoft.oa.model.system.AppFunction;
+import com.htsoft.oa.model.system.AppRole;
+import com.htsoft.oa.model.system.AppUser;
+import com.htsoft.oa.model.system.Region;
+import com.htsoft.oa.model.system.RegionDetail;
+import com.htsoft.oa.service.system.AppUserService;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.base.model.xitong.UlContactEmpl;
+import com.ulane.base.model.xitong.UlDepartment;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.base.service.xitong.UlContactEmplService;
+import com.ulane.base.service.xitong.UlDepartmentService;
+import com.ulane.base.service.xitong.UlEmployeeService;
+import com.ulane.customer.model.customer.ConHis;
+import com.ulane.customer.model.customer.SysWorkattendance;
+
+import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
+
+/**
+ * 
+ * @author cf0666@gmail.com
+ * 
+ */
+@SuppressWarnings("unused")
+public class UlEmployeeAction extends BaseAction {
+	@Resource
+	private AppUserService appUserService;
+	@Resource
+	private UlEmployeeService ulEmployeeService;
+	@Resource
+	private UlDepartmentService ulDepartmentService;
+	@Resource
+	private UlContactEmplService ulContactEmplService;
+
+	private UlEmployee ulEmployee;
+	
+	private UlContactEmpl ulContactEmpl;
+
+	private AppUser appUser;
+	private Long useid;
+	private Long depId;
+	// 2014/4/3
+	private Equipment equipment;
+    private  Long EId;
+    private String equipmentName;
+    private String equipmentId;
+    
+    
+	public String getEquipmentName() {
+		return equipmentName;
+	}
+
+	public void setEquipmentName(String equipmentName) {
+		this.equipmentName = equipmentName;
+	}
+
+	public String getEquipmentId() {
+		return equipmentId;
+	}
+
+	public void setEquipmentId(String equipmentId) {
+		this.equipmentId = equipmentId;
+	}
+
+	public Equipment getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
+	}
+
+	public Long getEId() {
+		return EId;
+	}
+
+	public void setEId(Long eId) {
+		EId = eId;
+	}
+
+	public UlContactEmpl getUlContactEmpl() {
+		return ulContactEmpl;
+	}
+
+	public void setUlContactEmpl(UlContactEmpl ulContactEmpl) {
+		this.ulContactEmpl = ulContactEmpl;
+	}
+
+	public Long getUseid() {
+		return useid;
+	}
+
+	public void setUseid(Long useid) {
+		this.useid = useid;
+	}
+
+	public UlEmployee getUlEmployee() {
+		return ulEmployee;
+	}
+
+	public void setUlEmployee(UlEmployee ulEmployee) {
+		this.ulEmployee = ulEmployee;
+	}
+
+	public Long getDepId() {
+		return depId;
+	}
+
+	public void setDepId(Long depId) {
+		this.depId = depId;
+	}
+
+	/**
+	 * 显示列表
+	 */
+	public String list() {
+		QueryFilter filter = new QueryFilter(getRequest());
+		filter.addSorted("userNo", "asc");
+		List<UlEmployee> list = ulEmployeeService.getAll(filter);
+		// removeDeleted(list);
+		for (UlEmployee u : list) {
+			if (u.getParent() != null) {
+				UlEmployee parent = ulEmployeeService.get(u.getParent());
+				u.setParentName(parent.getFullname());
+			}
+		}
+		// Type type=new TypeToken<List<UlEmployee>>(){}.getType();
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+				.append(filter.getPagingBean().getTotalItems()).append(
+						",result:");
+
+		// Gson gson=new Gson();
+		// buff.append(gson.toJson(list, type));
+		JSONSerializer ser = JsonUtil.getJSONSerializer();
+		buff.append(ser.serialize(list));
+		buff.append("}");
+
+		jsonString = buff.toString();
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 显示列表
+	 */
+	public String listBook() {
+
+		QueryFilter filter = new QueryFilter(getRequest());
+		filter.addSorted("useid", "asc");
+		filter.addFilter("Q_status_L_NEQ", UlEmployee.FLAG_DELETED.toString());
+		List<UlEmployee> list = ulEmployeeService.getAll(filter);
+	
+		removeDeleted(list);
+		for (UlEmployee u : list) {
+			if (u.getParent() != null) {
+				UlEmployee parent = ulEmployeeService.get(u.getParent());
+				u.setParentName(parent.getFullname());
+			}
+		}
+		// Type type=new TypeToken<List<UlEmployee>>(){}.getType();
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+				.append(filter.getPagingBean().getTotalItems()).append(
+						",result:");
+
+		// Gson gson=new Gson();
+		// buff.append(gson.toJson(list, type));
+		JSONSerializer ser = JsonUtil.getJSONSerializer();
+		buff.append(ser.include("contacts").serialize(list));
+		buff.append("}");
+
+		jsonString = buff.toString();
+
+		return SUCCESS;
+	}
+
+	public String getContact() {
+		if (useid == null) {
+			return SUCCESS;
+		}
+		UlEmployee ulEmployee = ulEmployeeService.get(useid);
+		JSONSerializer ser = JsonUtil.getJSONSerializer();
+		Iterator<UlContactEmpl> it = ulEmployee.getContacts().iterator();
+		while (it.hasNext()) {
+			if (it.next().getDelFlag().equals(Constants.FLAG_DELETED)) {
+				it.remove();
+			}
+		}
+
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+				.append(ulEmployee.getContacts().size()).append(",result:");
+
+		buff.append(ser.serialize(ulEmployee.getContacts()));
+		buff.append("}");
+		jsonString = buff.toString();
+		return SUCCESS;
+	}
+
+	/**
+	 * 批量删除
+	 * 
+	 * @return
+	 */
+	public String multiDel() {
+		StringBuffer unDelName = new StringBuffer();
+		String[] ids = getRequest().getParameterValues("ids");
+		if (ids != null) {
+			for (String id : ids) {
+				UlEmployee tmp=ulEmployeeService.get(new Long(id));
+				System.out.println("=================tmp"+tmp);
+				//UlEmployee tmp = ulEmployeeService.get(Long.parseLong(id));
+				//System.out.println("==========================tmp"+tmp);
+				QueryFilter qf = new QueryFilter();
+				qf.addFilter("Q_ulEmployee.useid_L_EQ", id);
+				List<AppUser> rs = appUserService.getAllNoRequest(qf);
+			if (rs.size() == 0) {
+				    // tmp.setStatus(UlEmployee.FLAG_DELETED.longValue());
+				//ulEmployeeService.save(tmp);
+				ulEmployeeService.remove(tmp);
+			} else {
+					unDelName.append(tmp.getFullname() + ",");
+			}
+			
+				
+			}
+		}
+		if (unDelName.length() == 0) {
+			jsonString = "{success:true}";
+		} else {
+			String data = unDelName.substring(0, unDelName.length() - 1);
+			//System.out.println("===============data"+data);
+			jsonString = "{success:false,data:'" + data + "'}";
+		}
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 批量启用
+	 * 
+	 * @return
+	 */
+	public String multiEnable() {
+		String[] ids = getRequest().getParameterValues("ids");
+		if (ids != null) {
+			for (String id : ids) {
+				UlEmployee tmp = ulEmployeeService.get(Long.parseLong(id));
+				// tmp.setStatus(UlEmployee.FLAG_ENABLED.longValue());
+				ulEmployeeService.save(tmp);
+			}
+		}
+		jsonString = "{success:true}";
+		return SUCCESS;
+	}
+	
+//删除
+	public String multiDelContact() {
+		String[] ids = getRequest().getParameterValues("ids");
+		System.out.println("======ids"+ids);
+		if (ids != null) {
+			for (String id : ids) {
+				UlContactEmpl tmp = ulContactEmplService
+						.get(Long.parseLong(id));
+				System.out.println("==================tmp"+tmp);
+				//tmp.setDelFlag(Constants.FLAG_DELETED);
+				//ulContactEmplService.save(tmp);
+			ulContactEmplService.remove(tmp);
+			}
+		}
+
+		jsonString = "{success:true}";
+
+		return SUCCESS;
+	}
+	
+	/*
+	 * 删除员工2014/3/26
+	 * nk
+	 * */
+     @SuppressWarnings("unchecked")
+	public String multidelete() {
+		StringBuffer unDelName = new StringBuffer();
+		String[] ids = getRequest().getParameterValues("ids");
+		String str = "";
+		List<AppUser> appuser = new ArrayList<AppUser>();// 对应多少个用户
+		List ides = new ArrayList();// 对应员工的id
+		// 1.如果员工档案信息和用户管理信息之间没有任何的关联关系，就直接删除
+		if (ids != null) {
+			for (String id : ids) {
+				ides.add(id);
+				UlEmployee tmp = ulEmployeeService.get(new Long(id));
+				QueryFilter qf = new QueryFilter();
+				qf.addFilter("Q_ulEmployee.useid_L_EQ", id);
+				List<AppUser> rs = appUserService.getAllNoRequest(qf);
+				// 判断用户与员工之间是否存在关联关系
+				if (rs.size() == 0) {// 员工和用户直接没有关联关系
+					System.out.println("员工和用户直接没有关联关系！");
+					str += "YesAu@ul";
+					//ulEmployeeService.remove(tmp);
+				} else if (rs.size() != 0) {
+					// 一、删除员工信息，判断用户的状态是正常或未启用状态，就不删除，否则就删除
+					// 1)首先查询用户
+					List<AppUser> app = ulEmployeeService.selectSome(new Long(
+							id));
+					appuser.addAll(app);
+					for (int i = 0; i < app.size(); i++) {
+						if (app.get(i).getStatus() == 1
+								|| app.get(i).getStatus() == 0) {
+							str += "NoAu@ul";// 不删除
+							unDelName.append(tmp.getFullname() + ",");
+							//System.out.println("3=不删除=="
+									//+ app.get(i).getStatus());
+						} else {
+
+							//
+							str += "YesAu@ul";// 删除
+							//System.out.println("4删除###########"
+									//+ app.get(i).getStatus());
+
+						}
+
+					}
+
+				}
+				// 				
+				if (unDelName.length() == 0) {
+
+					System.out.println("用户处于停用或注销状态");
+					jsonString = "{success:true}";
+				} else {
+					String data = unDelName
+							.substring(0, unDelName.length() - 1);
+					System.out.println("===============data" + data);
+					System.out.println("用户处于正常或者为启用状态，请删除其他状态的员工信息");
+					jsonString = "{success:false,data:'" + data + "'}";
+				}
+
+			}
+			System.out.println("<<<<OK");
+			System.out.println("><>>>>>>>>" + ids.length);
+			// System.out.println("用户：");
+			System.out.println("><>>>list>>>>>" + appuser.size());
+			System.out.println("><>>>list222>>>>>" + ides.size());
+			System.out.println(".....str" + str);
+			if (str.indexOf("NoAu@ul") >= 0) {
+
+				System.out.println("不  删除  ");
+			} else {
+				for (int i = 0; i < ids.length; i++) {
+					ulEmployeeService.getUpdateDelAppUser(useid);
+					// ulEmployeeService.update(appuser.get(i)); //删除用户
+					ulEmployeeService.remove(new Long(ides.get(i).toString())); // 删除员工
+					// System.out.println(">>>>>>>>>"+au.getStatus());
+					
+				}
+			}
+
+		}
+
+		return SUCCESS;
+	}
+
+
+	/**
+	 * 显示详细信息
+	 * 
+	 * @return
+	 */
+	public String get() {
+		UlEmployee ulEmployee = ulEmployeeService.get(useid);
+		JSONSerializer ser = JsonUtil.getJSONSerializer();
+		if (ulEmployee.getParent() != null)
+			ulEmployee.setParentName(ulEmployeeService.get(
+					ulEmployee.getParent()).getFullname());
+		// Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// 将数据转成JSON格式
+		// try {
+		// BeanInfo beaninfo = java.beans.Introspector
+		// .getBeanInfo(UlEmployee.class);
+		// String[] fields = new
+		// String[beaninfo.getPropertyDescriptors().length];
+		// for (PropertyDescriptor pd : beaninfo.getPropertyDescriptors()) {
+		// int i = 0;
+		// if (pd.getName().equals("parentEmp")
+		// || pd.getName().equals("ulDepartment")) {
+		// fields[i] = pd.getName() + ".*";
+		// } else {
+		// fields[i] = pd.getName();
+		// }
+		// System.out.println("add --" + fields[i]);
+		// i++;
+		// }
+		// ser.include(fields).exclude("*");
+		// } catch (IntrospectionException e) {
+		// }
+		// ser.include("useid", "alias", "birthday", "biyeyuanxiao",
+		// "education",
+		// "email", "fullname", "gongzuodiDiqu", "gongzuodiGuojia",
+		// "gongzuodiSheng", "gongzuodiShi", "hetongdaoqishijian",
+		// "hujiDiqu", "hujiGuojia", "hujiSheng", "hujiShi", "note",
+		// "parentEmp.*", // "ruzhifangshi", "sex", "status", "type",
+		// "zhiji", "zhiwei", "zhuanzhengshijian", "ulDepartment.*")
+		// .exclude("*");
+		ser.transform(new DateTransformer("yyyy-MM-dd"), "zhuanzhengshijian");
+		ser.transform(new DateTransformer("yyyy-MM-dd"), "birthday");
+		ser.transform(new DateTransformer("yyyy-MM-dd"), "hetongdaoqishijian");
+		ser.transform(new DateTransformer("yyyy-MM-dd"), "ruzhishijian");
+		StringBuffer sb = new StringBuffer("{success:true,data:");
+		//System.out.println("====sb"+sb);
+		sb.append(ser.serialize(ulEmployee));
+		sb.append("}");
+		setJsonString(sb.toString());
+		return SUCCESS;
+	}
+
+	public String save() {
+		String details = getRequest().getParameter("details");
+		String bankname = getRequest().getParameter("bankname");
+		String bankTypeId = getRequest().getParameter("bankTypeId");
+		System.out.println("============details"+details);
+		System.out.println("=[UlEmployeeAction]===========bankname"+bankname);
+		System.out.println("============bankTypeId"+bankTypeId);
+		if (StringUtils.isNotEmpty(details)) {
+			Gson gson = new Gson();
+			UlContactEmpl[] detailArr = (UlContactEmpl[]) gson.fromJson(
+					details, UlContactEmpl[].class);
+			ulEmployee.getContacts().clear();
+			if (detailArr != null) {
+				for (UlContactEmpl detail : detailArr) {
+					detail.setUlEmployee(ulEmployee);
+					detail.setDelFlag(Constants.FLAG_UNDELETED);
+					ulEmployee.addContact(detail);
+				}
+			}
+		}
+        if(StringUtils.isNotEmpty(bankname)){
+        	ulEmployee.setBankname(bankname);
+        }
+        if(StringUtils.isNotEmpty(bankTypeId)){
+        	ulEmployee.setBankTypeId(new Long(bankTypeId));
+        }
+		if (ulEmployee.getUseid() == null) {
+			// ulEmployee.setStatus(UlEmployee.FLAG_DISABLED.longValue());
+			ulEmployeeService.save(ulEmployee);
+			
+			
+		} else {
+			// UlEmployee orgUlEmployee =
+			// ulEmployeeService.get(ulEmployee.getUseid());
+			// try {
+			// BeanUtil.copyNotNullProperties(orgUlEmployee,ulEmployee);
+			// } catch (IllegalAccessException e) {
+			// e.printStackTrace();
+			// } catch (InvocationTargetException e) {
+			// e.printStackTrace();
+			// }
+			// for(UlContactEmpl tmp : rs){
+			// orgUlEmployee.getContacts().clear();
+			// orgUlEmployee.addContact(tmp);
+			// }
+			// ulEmployeeService.remove(ulEmployee);
+			ulEmployeeService.merge(ulEmployee);
+			QueryFilter qf = new QueryFilter();
+			Long id = ulEmployee.getUseid();
+			qf.addFilter("Q_ulEmployee.useid_L_EQ", id.toString());
+			List<AppUser> rs = appUserService.getAllNoRequest(qf);
+			for (AppUser tmp : rs) {
+				tmp.setFullname(ulEmployee.getFullname());
+				appUserService.save(tmp);
+			}
+			// //数据库中已有的子集
+			// List<UlContactEmpl> con_db = ulContactEmplService.getAllByUseid(
+			// ulEmployee.getUseid());
+			// //页面提交过来的子集
+			// Set<UlContactEmpl> con_page = ulEmployee.getContacts();
+			// for(UlContactEmpl tmp_db : con_db){
+			// boolean have = false;
+			// if(!con_page.isEmpty()){
+			// for(UlContactEmpl ulContactDep : con_page){
+			// ulContactEmplService.save(ulContactDep);
+			// if(tmp_db.getContactEmplId().equals(
+			// ulContactDep.getContactEmplId())){
+			// have = true;
+			// }
+			// }
+			// }
+			// if(!have){
+			// tmp_db.setDelFlag(Constants.FLAG_DELETED);
+			// ulEmployee.getContacts().add(tmp_db);
+			// }
+			// // waulContactDepService.save(tmp_db);
+			// }
+			// UlDepartment orgUlDepartment = new UlDepartment();
+			// BeanUtil.copyNotNullProperties(orgUlDepartment,ulDepartment);
+
+			// ulEmployeeService.save(ulEmployee);
+		}
+		setJsonString("{success:true}");
+		return SUCCESS;
+
+	}
+
+	public String selects() {
+		//System.out.println("aaaaaa");
+		PagingBean pb = getInitPagingBean();
+		List<UlEmployee> list = new ArrayList<UlEmployee>();
+		QueryFilter filter = new QueryFilter(getRequest());
+		filter.addSorted("userNo", "asc");
+		// filter
+		// .addFilter("Q_delFlag_SN_EQ", Constants.FLAG_UNDELETED
+		// .toString());
+		// query appuser
+
+		list = ulEmployeeService.getAll(filter);
+		// 员工所属部门
+		for (UlEmployee employee : list) {
+			UlDepartment dep = ulDepartmentService.get(employee
+					.getUlDepartment().getDepid());
+			employee.setDeptName(dep.getDepname());
+		}
+
+//		pb.setTotalItems(list.size());
+		int count = ulEmployeeService.getEmployeeCount();
+		// removeDeleted(list);
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+				.append(filter.getPagingBean().getTotalItems()).append(",result:");
+		JSONSerializer serializer = new JSONSerializer();
+		serializer.transform(new DateTransformer("yyyy-MM-dd"),
+				new String[] { "accessionTime" });
+		buff.append(serializer.exclude(new String[] { "password" }).serialize(
+				list));
+		buff.append("}");
+
+		jsonString = buff.toString();
+		return SUCCESS;
+	}
+
+	/**
+	 * 根据组织机构查询
+	 * 
+	 * @return
+	 */
+	public String select() {
+		PagingBean pb = getInitPagingBean();
+		String strDepId = getRequest().getParameter("depId");
+		// 表示从上级目录开始进行查找
+		String path = "0.";
+		appUser = ContextUtil.getCurrentUser();
+		AppUser appUsers = appUserService.get(appUser.getUserId());
+		if (appUsers.getUlEmployee() != null) {
+			ulEmployee = ulEmployeeService.get(new Long(appUsers
+					.getUlEmployee().getUseid()));
+		}
+
+		if (StringUtils.isNotEmpty(strDepId)) {
+			Long depId = Long.parseLong(strDepId);
+			UlDepartment dep = ulDepartmentService.get(depId);
+			if (dep != null) {
+				path = dep.getPath();
+			}
+		} else if (ulEmployee != null) {
+			UlDepartment dep = ulEmployee.getUlDepartment();
+			if (dep != null) {
+				path = dep.getPath();
+			}
+		}
+		List<UlEmployee> list = ulEmployeeService.findByDepartment(path, pb);
+
+		List<UlEmployee> list1 = new ArrayList<UlEmployee>();
+		for (UlEmployee e : list) {
+			try {
+				UlEmployee ulEmployee = new UlEmployee();
+				BeanUtil.copyNotNullProperties(ulEmployee, e);
+				list1.add(ulEmployee);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		// removeDeleted(list1);
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':");
+		buff.append(pb.getPageSize());
+		buff.append(",result:");
+		
+//		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+//		.append(filter.getPagingBean().getTotalItems()).append(",result:");
+		
+		JSONSerializer serializer = new JSONSerializer();
+		serializer.transform(new DateTransformer("yyyy-MM-dd"),
+				new String[] { "accessionTime" });
+		buff.append(serializer.exclude(
+				new String[] { "password", "ulDepartment" }).serialize(list1));
+		buff.append("}");
+
+		jsonString = buff.toString();
+		return SUCCESS;
+	}
+
+	/**
+	 * 在线员工
+	 * 
+	 * @return
+	 */
+	public String online() {
+		Map<String, OnlineUser> onlineUsers = new HashMap<String, OnlineUser>();
+		Map<String, OnlineUser> onlineUsersByDep = new HashMap<String, OnlineUser>();
+
+		onlineUsers = AppUtil.getOnlineUsers();// 获得所有在线用户
+
+		// 按部门选择在线用户
+		if (depId != null) {
+			for (String sessionId : onlineUsers.keySet()) {
+				OnlineUser onlineUser = new OnlineUser();
+				onlineUser = onlineUsers.get(sessionId);
+				// if(onlineUser.getDepId().equals(depId)){
+				String path = "";
+				if (!onlineUser.getUserId().equals(AppUser.SUPER_USER)) {
+					path = onlineUser.getDepPath();
+				}
+				if (!depId.equals(new Long(0))) {
+					if (java.util.regex.Pattern.compile("." + depId + ".")
+							.matcher(path).find()) {
+						onlineUsersByDep.put(sessionId, onlineUser);
+					}
+				} else {
+					onlineUsersByDep.put(sessionId, onlineUser);
+				}
+			}
+		}
+
+		Type type = new TypeToken<java.util.Collection<OnlineUser>>() {
+		}.getType();
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+				.append(onlineUsers.size()).append(",result:");
+
+		Gson gson = new Gson();
+		if (depId != null) {
+			buff.append(gson.toJson(onlineUsersByDep.values(), type));
+		} else {
+			buff.append(gson.toJson(onlineUsers.values(), type));
+		}
+		buff.append("}");
+		jsonString = buff.toString();
+		return SUCCESS;
+	}
+
+	/**
+	 * 将list中的已标记删除的节点去掉
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public void removeDeleted(List<UlEmployee> list) {
+		Iterator<UlEmployee> i_list = list.iterator();
+		while (i_list.hasNext()) {
+			if (i_list.next().getStatus()
+					.equals(UlEmployee.FLAG_DELETED.longValue()))
+				i_list.remove();
+		}
+	}
+
+	/**
+	 * lq
+	 * @return
+	 */
+	public String contacts() {
+		String ueid = getRequest().getParameter("employeeid");
+		if (StringUtils.isNotEmpty(ueid)) {
+			UlEmployee ue = ulEmployeeService.get(Long.parseLong(ueid));
+			Set ss = ue.getContacts();
+			List<UlEmployee> uelist = new ArrayList<UlEmployee>();
+			// for(int i=0;i< ss.size();i++){
+			// uelist.add();
+			// }
+			uelist = new ArrayList<UlEmployee>(ss);
+			StringBuffer childlistSB = new StringBuffer("{success:true,data:");
+			JSONSerializer jsonserializer = new JSONSerializer();
+			jsonserializer.transform(new DateTransformer("yyyy-MM-dd"),
+					new String[] {});
+			childlistSB.append(jsonserializer.serialize(uelist));
+			childlistSB.append("}");
+			jsonString = childlistSB.toString();
+		}
+		return SUCCESS;
+	}
+	
+	
+	
+	/*
+	 * 2014_4_2  设备管理的增删改查
+	 *1.设备管理，显示列表，判断equipmentId和equipmentName是否为空，
+	 *2 若为空查询全部的列表   2014/4/23修改 nk
+	 *3若不为空，根据条件查询 
+	 * */
+	
+	
+	
+public String list4() {
+		
+		Integer start = 0;
+		Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+
+		String s_start = getRequest().getParameter("start");
+		
+		String s_limit = getRequest().getParameter("limit");
+		System.out.println("===s_start"+s_start+"==========="+s_limit);
+		if (StringUtils.isNotEmpty(s_start)) {
+			start = new Integer(s_start);
+		}
+		if (StringUtils.isNotEmpty(s_limit)) {
+			limit = new Integer(s_limit);
+		}
+		
+		this.pagingBean = new PagingBean(start, limit);
+		
+		String equipmentId = getRequest().getParameter("id");
+		String equipmentName = getRequest().getParameter("name");
+		System.out.println("id=" + equipmentId + "name=" + equipmentName);
+		if (equipmentId==null && equipmentName==null) {
+			List<Equipment> list = ulEmployeeService.getShowEquipment();
+			System.out.println(">>>>>>>All=========list" + list);
+			StringBuffer buff = new StringBuffer("[");
+			for (int i = 0; i < list.size(); i++) {
+				buff.append("[").append(
+						"" + list.get(i).getEId() + ",'"
+								+ list.get(i).getEquipmentId() + "','"
+								+ list.get(i).getEquipmentName() + "'],");
+
+			}
+
+			if (list.size() > 0) {
+				buff.deleteCharAt(buff.length() - 1);
+			}
+			buff.append("]");
+			System.out.println("buff----" + buff);
+			setJsonString(buff.toString());
+			System.out.println("list=" + list.size());
+
+		}else{
+			/*
+			 * 条件查询
+			 * 当equipmentId,equipmentName为空，
+			 * 查询所有的，
+			 * 当不为空的时候 条件查询
+			 * */
+			if(equipmentId!="" || equipmentName!=""){
+//			if(equipmentId!=null || equipmentName!=null){
+			List<Equipment> list = ulEmployeeService.getShowEquipment(equipmentId, equipmentName);
+			System.out.println(">>>>>>>>>>>>>list" + list);
+			StringBuffer buff = new StringBuffer("[");
+			for (int i = 0; i < list.size(); i++) {
+				buff.append("[").append(
+						"" + list.get(i).getEId() + ",'"
+								+ list.get(i).getEquipmentId() + "','"
+								+ list.get(i).getEquipmentName() + "'],");
+
+			}
+
+			if (list.size() > 0) {
+				buff.deleteCharAt(buff.length() - 1);
+			}
+			buff.append("]");
+			System.out.println("buff----" + buff);
+			setJsonString(buff.toString());
+			System.out.println("list=" + list.size());
+			
+		}else{
+			
+			List<Equipment> list = ulEmployeeService.getShowEquipment();
+			System.out.println(">>>>>>>All=========list" + list);
+			StringBuffer buff = new StringBuffer("[");
+			for (int i = 0; i < list.size(); i++) {
+				buff.append("[").append(
+						"" + list.get(i).getEId() + ",'"
+								+ list.get(i).getEquipmentId() + "','"
+								+ list.get(i).getEquipmentName() + "'],");
+
+			}
+
+			if (list.size() > 0) {
+				buff.deleteCharAt(buff.length() - 1);
+			}
+			buff.append("]");
+			System.out.println("buff----" + buff);
+			setJsonString(buff.toString());
+			System.out.println("list=" + list.size());
+			
+			
+			
+		}
+		}
+		return SUCCESS;
+
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 批量删除 和单条记录的删除
+	 * @return
+	 */
+public String multiDel3() {
+        
+		String[] Ids = getRequest().getParameterValues("ids");
+		System.out.println("=============ids"+Ids.toString());
+		 Equipment eq=new Equipment();
+		if (Ids != null) {
+			for (String id : Ids) {
+				//String EId = null;
+				System.out.println("==================Eid"+id);
+				
+				ulEmployeeService.getDelEquipement(new Long(id));
+			
+				System.out.println("<<<<OK");
+			}
+		}
+        
+		jsonString = "{success:true}";
+
+		return SUCCESS;
+	}
+
+/**
+ * 设备管理 的删除，判断是否有关连，有的不删除，没有
+ * 
+ * */
+public String equipmentMultiDel() {
+    String equipmentId=getRequest().getParameter("equipmentId");
+    System.out.println("package com.ulane.base.action.xitong.UlEmployeeAction.java equipmentId="+equipmentId);
+	String[] Ids = getRequest().getParameterValues("ids");
+	System.out.println("=============ids"+Ids.toString());
+	 Equipment eq=new Equipment();
+	 String str="";
+	if (Ids != null) {
+		for (String id : Ids) {
+		
+			System.out.println("==================Eid"+id);
+			
+					ulEmployeeService.getDelEquipement(new Long(id));
+				//}
+			//}
+			
+		
+		
+			System.out.println("<<<<OK");
+		}
+	}
+    
+	jsonString = "{success:true}";
+
+	return SUCCESS;
+}
+
+
+
+
+
+
+/**
+ * 添加设备管理2014-4-15修改
+ */
+public String save4(){
+	String equipmentName=getRequest().getParameter("name");
+  
+	String equipmentId=getRequest().getParameter("id");
+	// 添加设备的时候，网点名称不能重复，机具号也不能呢过重复
+	// 1 根据Eid查询出网点名称和机具号，与添加的进行比较，如果重复，就不让添加
+		ulEmployeeService.addEquipment(equipmentName, equipmentId);
+	 setJsonString("{success:true}");
+	 return SUCCESS;
+	
+}
+
+
+/**
+ * 添加设备管理2014-4-15修改
+ */
+public String save3(){
+	
+	
+	// 添加设备的时候，网点名称不能重复，机具号也不能呢过重复
+	// 1 根据Eid查询出网点名称和机具号，与添加的进行比较，如果重复，就不让添加
+	 String newname=getRequest().getParameter("name");
+	    //System.out.println("《《《《《《《《equipmentName"+equipmentName);
+	 String newId=getRequest().getParameter("id");
+	 List<Equipment> list=ulEmployeeService.getShowEquipment();
+	 int flag=0;
+	 
+	 for(int i=0;i<list.size();i++){
+		 if(newId.equals("") || newId.equals(list.get(i).getEquipmentId())){
+			 System.err.println("您添加机具号重复，请重新输入");
+			 flag=flag+1;
+			 //("{success:false}");
+		 }
+	 }
+	 //setJsonString("{success:false}");
+		 System.out.println(">>>>>>>>>flag"+flag);
+		if(newId!="" && newname!="" && flag==0){
+	      ulEmployeeService.addEquipment(newname, newId);
+			
+		}
+	 
+		
+		if(newId!="" && newname!="" && flag==0){
+			jsonString = "{success:true}";
+		} else {
+			jsonString = "{success:false}";
+		}
+	 return SUCCESS;
+	
+}
+
+/**E
+ * 显示详细信息
+ * @return
+ */
+public String get3(){
+    UlEmployee equipment=ulEmployeeService.get(EId);
+	Gson gson=new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+	//将数据转成JSON格式
+	StringBuffer sb = new StringBuffer("{success:true,data:");
+	sb.append(gson.toJson(equipment));
+	sb.append("}");
+	setJsonString(sb.toString());
+	
+	return SUCCESS;
+}
+
+
+/*
+ * 2014-4-11修改设备管理*/
+public String check3(){
+	Long EId=Long.parseLong(getRequest().getParameter("EId"));
+	//System.out.println("...........EId"+EId);
+	String equipmentName=getRequest().getParameter("name");
+	//System.out.println("equipmentName"+equipmentName);
+	String equipmentId=getRequest().getParameter("id");
+		if(equipmentId!="" && equipmentName!=""){
+			ulEmployeeService.updateEquipment(EId, equipmentId, equipmentName);
+	    // ulEmployeeService.addEquipment(newname, newId);
+	     //setJsonString("{success:true}");
+		}	 
+//	
+//	
+		if(equipmentId!="" && equipmentName!=""){
+			jsonString = "{success:true}";
+		} else {
+			jsonString = "{success:false}";
+		}
+		
+	return SUCCESS;
+}
+
+
+
+//==============================================================================设备管理修改
+/**
+ * 2014 /11/2	设备管理* 
+ * 1 带条件的查询（怎么判断条件
+ * a 条件为null或"" ,查询所有，b 条件不为null，条件查询）
+ * 2 查询所有
+ * 需要显示分页： 开始（） 结束
+ * 查询总数count,(条件查询或查询所有)
+ * @anthor nk 
+ * */
+
+private PagingBean pagingBean = null;
+
+public PagingBean getPagingBean() {
+	return pagingBean;
+}
+
+public void setPagingBean(PagingBean pagingBean) {
+	this.pagingBean = pagingBean;
+}
+public PagingBean paging() {
+	// 取得分页的信息
+	Integer start = 0;
+	Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+
+	String s_start = getRequest().getParameter("start");
+	String s_limit =getRequest().getParameter("limit");
+	if (StringUtils.isNotEmpty(s_start)) {
+		start = new Integer(s_start);
+	}
+	if (StringUtils.isNotEmpty(s_limit)) {
+		limit = new Integer(s_limit);
+	}
+
+
+	this.pagingBean = new PagingBean(start, limit);
+	return pagingBean;
+}
+
+
+
+
+public String listEquipment(){
+	
+	String suoshuhang = getRequest().getParameter("suoshuhang"); 
+	String branchId = getRequest().getParameter("branchId"); 
+	String operatorId = getRequest().getParameter("operatorId");
+	System.out.println("====="+suoshuhang+branchId+operatorId);
+	Integer start = 0;
+	Integer limit = PagingBean.DEFAULT_PAGE_SIZE;
+	String s_start = getRequest().getParameter("start");
+	String s_limit = getRequest().getParameter("limit");
+	if (StringUtils.isNotEmpty(s_start)) {
+		start = new Integer(s_start);
+	}
+	if (StringUtils.isNotEmpty(s_limit)) {
+		limit = new Integer(s_limit);
+	}
+	System.out.println("start" + start + "limit=" + limit);
+	int  count=0;//查询记录的总数
+	List<Equipment> list= new ArrayList<Equipment>();
+		//查询总数
+		System.out.println("==---if  ----- 查询所有====");
+		list =ulEmployeeService.listEquipment(start, limit, suoshuhang, branchId, operatorId);
+		count=ulEmployeeService.listEquipmentCount(suoshuhang, branchId, operatorId);
+		System.out.println("=======count"+count);
+		StringBuffer buff = new StringBuffer("{success:true,'totalCounts':")
+		.append(count).append(",result:[");
+         for (int i = 0; i < list.size(); i++) {
+	       if(list.get(i).getEId()!=null && !"".equals(list.get(i).getEId())){
+	    	   buff.append("[").append( "" + list.get(i).getEId()+",") ;
+	       }else{
+	    	   buff.append("[").append( "" + ",");//是为了防止数据库中取出来的值为null
+	       }
+	       if(list.get(i).getBankTypeId()!=null && !"".equals(list.get(i).getBankTypeId())){
+	    	   buff.append(list.get(i).getBankTypeId()+",") ;
+	       }else{
+	    	   buff.append(",") ;//是为了防止数据库中取出来的值为null
+	       }
+	       if(list.get(i).getParentId()!=null && !"".equals(list.get(i).getParentId())){
+	    	   buff.append(list.get(i).getParentId()+",'") ;
+	       }else{
+	    	   buff.append(""+ ",'") ;//是为了防止数据库中取出来的值为null
+	       }
+	       if(list.get(i).getEquipmentId()!=null && !"".equals(list.get(i).getEquipmentId())){
+	    	   buff.append(list.get(i).getEquipmentId()+"','") ;
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getBranchId()!=null && !"".equals(list.get(i).getBranchId())){
+	    	   buff.append(list.get(i).getBranchId() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getEquipmentName()!=null && !"".equals(list.get(i).getEquipmentName())){
+	    	   buff.append(list.get(i).getEquipmentName() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       
+	       if(list.get(i).getBankname()!=null && !"".equals(list.get(i).getBankname())){
+	    	   buff.append(list.get(i).getBankname() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getParentName()!=null && !"".equals(list.get(i).getParentName())){
+	    	   buff.append(list.get(i).getParentName() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getOperatorId()!=null && !"".equals(list.get(i).getOperatorId())){
+	    	   buff.append(list.get(i).getOperatorId() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getCurdate()!=null && !"".equals(list.get(i).getCurdate())){
+	    	   buff.append(list.get(i).getCurdate() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getIpAddress()!=null && !"".equals(list.get(i).getIpAddress())){
+	    	   buff.append(list.get(i).getIpAddress() + "','");
+	       }else{
+	    	   buff.append(""+ "','") ;
+	       }
+	       if(list.get(i).getAddress()!=null && !"".equals(list.get(i).getAddress())){
+	    	   buff.append(list.get(i).getAddress() + "'],");
+	       }else{
+	    	   buff.append(""+ "'],") ;
+	       }
+	     
+         }
+
+          if (list.size() > 0) {
+	        buff.deleteCharAt(buff.length() - 1);
+          }
+            buff.append("]}");
+			System.out.println("buff----" + buff);
+			setJsonString(buff.toString());
+			System.out.println("list=" + list.size());
+	       this.pagingBean = new PagingBean(start, limit);
+	return SUCCESS;
+}
+
+	/**
+	 * 添加及保存操作
+	 */
+	public String addlistEquipment() {
+		// 添加设备的时候，网点名称不能重复，机具号也不能呢过重复
+		// 1 根据Eid查询出网点名称和机具号，与添加的进行比较，如果重复，就不让添加
+		String equipmentId = getRequest().getParameter("equipmentId");
+		String operatorId = getRequest().getParameter("operatorId");
+		String equipmentName = getRequest().getParameter("equipmentName");
+		String branchId = getRequest().getParameter("branchId");
+		String curdate = getRequest().getParameter("curdate");
+		String bankTypeId = getRequest().getParameter("bankTypeId");
+		String bankTypeName = getRequest().getParameter("bankTypeName");
+		String parentName = getRequest().getParameter("parentName");
+		String ip = getRequest().getParameter("ip");
+		String parentId = getRequest().getParameter("parentId");
+		String address = getRequest().getParameter("address");
+		System.out.println("------address"+address);
+		 List<Equipment> list=ulEmployeeService.getShowEquipment();
+		 int equipmentIdflag=0;
+		 int operatorIdFlag=1;
+		 int ipFlag=2;
+		 for(int i=0;i<list.size();i++){
+			 if(equipmentId.equals("") || equipmentId.equals(list.get(i).getEquipmentId())){
+				 System.err.println("您添加机具号重复，请重新输入");
+				 equipmentIdflag=equipmentIdflag+1;
+				 System.out.println("equipmentId="+equipmentIdflag);
+				 //("{success:false}");
+			 }
+			 if(operatorId.equals("") || operatorId.equals(list.get(i).getOperatorId())){
+				 System.err.println("您添加柜员号重复，请重新输入");
+				 operatorIdFlag=operatorIdFlag+1;
+				 System.out.println("operatorId="+operatorId);
+			 }
+			 if(ip.equals("") || ip.equals(list.get(i).getIpAddress())){
+				 System.err.println("您添加ip重复，请重新输入");
+				 ipFlag=ipFlag+1;
+				 System.out.println("ip="+ipFlag);
+			 }
+			 
+		 }
+			
+		 if(equipmentId != "" && equipmentName != ""&& equipmentIdflag==0 && operatorIdFlag==1 && ipFlag==2){
+		     // ulEmployeeService.addEquipment(newname, newId);
+			// ulEmployeeService.addlistEquipment(equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId,address);
+			 ulEmployeeService.addlistEquipment(equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId, address, parentName)	;
+			 
+	      }
+		 
+		 
+		 
+		 System.out.println("=================" + bankTypeName + bankTypeId
+				+ curdate + branchId + equipmentName + operatorId + equipmentId + ip+parentId);
+		 
+		 if(equipmentId != "" && operatorId!="" && ip!=""){//都不为null
+			 //不为空之后，进行判断数据库是否存在当前字段值
+			 //总共俩中情况：1 (都不重复)->成功     2(有任意一个重复)失败
+			 //再判断具体的哪一个重复，用变量标记重复的属性，传给前台， 前台再进行判断输出相应内容
+			System.out.println("======equipmentIdflag======"+equipmentIdflag+"   branchIdFlag="+operatorIdFlag + "   ipFlag="+ipFlag);
+		 	String str1 = "";
+		 	String str2 = "";
+		 	String str3 = "";
+		 	String str="";
+		 	//String str1="";
+		 	if(equipmentIdflag == 0 && operatorIdFlag == 1 && ipFlag == 2){//三个都重复-----反例：三个都不重复
+		 		System.out.println("11111111" );
+		 		jsonString = "{success:true}";
+		 	} else{//任意一个重复
+		 		System.out.println("22222222" );// 
+		 		
+			 	if(equipmentIdflag!=0){
+			 		System.out.println("equipmentIdflag" );
+			 		str="0";
+					jsonString = "{success:"+str+"}";
+				}else if(operatorIdFlag!=1){
+					str="8";
+					jsonString = "{success:"+str+"}";
+				}else if(ipFlag!=2){
+					str="2";
+					jsonString = "{success:"+str+"}";
+			    }else if(ipFlag!=2 && operatorIdFlag!=1 && equipmentIdflag!=0){
+					str="4";
+					jsonString = "{success:"+str+"}";
+				}else if(ipFlag!=2&& equipmentIdflag!=0){//ip 机具号
+					str="5";
+					jsonString = "{success:"+str+"}";
+				}else if(operatorIdFlag!=1 && equipmentIdflag!=0){//网点号 机具号
+					str="6";
+					jsonString = "{success:"+str+"}";
+				}else if(ipFlag!=2 && operatorIdFlag!=1){//ip 网点号 
+					str="7";
+					jsonString = "{success:"+str+"}";
+				}
+				
+				
+				
+				//jsonString = "{success:"+str1+str2+str3+"}";
+		 	}
+		 }else {//为null
+			 //如果有任意一个为空值，就统一告诉坐席，哪3项不能为空
+			 System.out.println("33333333");
+			 System.out.println("给予前台提示信息：带*机具号、网点号、IP地址均不能为空，请确认！");
+//			 if (equipmentIdflag==0 && branchIdFlag==1 && ipFlag==2) {
+//				 System.out.println("444444444");
+//				   jsonString = "{success:true}";
+//			 } else {
+//				 System.out.println("55555555555");
+//				  jsonString = "{success:false}";
+//			 }
+			
+			 jsonString = "{success:false}";  //表示为空
+		 }
+		return SUCCESS;
+	}
+
+	public String isRepeat() {
+		String equipmentId = getRequest().getParameter("deviceId");
+		if (StringUtils.isNotBlank(equipmentId)) {
+			 List<Equipment> list=ulEmployeeService.getShowEquipment();
+			 int flag=0;
+			 
+			 for(int i=0;i<list.size();i++){
+				 if(equipmentId.equals("") || equipmentId.equals(list.get(i).getEquipmentId())){
+					 System.err.println("您添加机具号重复，请重新输入");
+					 flag=flag+1;
+				 }
+			 }
+			if (list.size() > 0 && flag==0) {
+				setJsonString("{success:true}");
+				return SUCCESS;
+			}
+		}
+		setJsonString("{success:false}");
+		return SUCCESS;
+	}
+
+
+	
+	
+
+	/**
+	 * 批量删除 和单条记录的删除
+	 * @return
+	 */
+public String multiDelEquipment() {
+        
+		String[] Ids = getRequest().getParameterValues("ids");
+		System.out.println("=============ids"+Ids.toString());
+		 Equipment eq=new Equipment();
+		if (Ids != null) {
+			for (String id : Ids) {
+				//String EId = null;
+				System.out.println("==================Eid"+id);
+				
+				ulEmployeeService.getDelEquipement(new Long(id));
+			
+				System.out.println("<<<<OK");
+			}
+		}
+        
+		jsonString = "{success:true}";
+
+		return SUCCESS;
+	}
+
+	
+/*
+ * 2014-4-11修改设备管理*/
+public String updatelistEquipment(){
+	Long EId=Long.parseLong(getRequest().getParameter("EId"));
+	String equipmentId = getRequest().getParameter("equipmentId");
+	String operatorId = getRequest().getParameter("operatorId");
+	String equipmentName = getRequest().getParameter("equipmentName");
+	String branchId = getRequest().getParameter("branchId");
+	String curdate = getRequest().getParameter("curdate");
+	Long bankTypeId = Long.parseLong(getRequest().getParameter("bankTypeId"));
+	//String bankTypeId = getRequest().getParameter("bankTypeId");
+	String bankTypeName = getRequest().getParameter("bankTypeName");
+	String parentName = getRequest().getParameter("parentName");
+	String ip = getRequest().getParameter("ip");
+	Long parentId = Long.parseLong(getRequest().getParameter("parentId"));
+	String address = getRequest().getParameter("address");
+	System.out.println("=================" + bankTypeName + bankTypeId
+			+ curdate + branchId + equipmentName + operatorId + equipmentId + ip+parentId);
+	//ulEmployeeService.updatelistEquipment(EId, equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId,address);
+	ulEmployeeService.updatelistEquipment(EId, equipmentId, operatorId, equipmentName, branchId, curdate, bankTypeId, bankTypeName, ip, parentId, address, parentName);
+		if(equipmentId!="" && equipmentName!=""){
+			jsonString = "{success:true}";
+		} else {
+			jsonString = "{success:false}";
+		}
+		
+	return SUCCESS;
+}
+
+	
+/********************************************************************************************************/
+
+
+
+	
+	
+	
+
+}

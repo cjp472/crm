@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.comtech.CtScrChapcter"
+        table="CT_SCR_CHAPCTER"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="queCatId"
+            column="QUE_CAT_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_CT_SCR_CHAPCTER_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="queCatName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="QUE_CAT_NAME"
+            length="256"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="disorder"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="DISORDER"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="staId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to CtScrTemplate -->
+		<many-to-one
+			name="ctScrTemplate"
+			class="com.ulane.running.model.comtech.CtScrTemplate"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="SCR_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to CtScrTemQue -->
+	<set name="ctScrTemQues"
+	     table="ct_scr_tem_que"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="QUE_CAT_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.comtech.CtScrTemQue"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

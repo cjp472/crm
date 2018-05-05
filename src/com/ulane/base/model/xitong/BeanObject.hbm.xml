@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.base.model.xitong.BeanObject"
+        table="BEAN_OBJECT"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="beanObjectId"
+            column="BEAN_OBJECT_ID"
+            type="java.lang.Long"
+            length="38"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_BEAN_OBJECT_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="beanObjectName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BEAN_OBJECT_NAME"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="beanObjectName2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BEAN_OBJECT_NAME2"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="beanObjectTname"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="BEAN_OBJECT_TNAME"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="comment"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="COMMENTS"
+            length="255"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createBy"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_BY"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateBy"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_BY"
+            length="38"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_DATE"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_DATE"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to BeanObjectColumns -->
+	<set name="beanObjectColumnss" table="bean_object_columns" lazy="true"
+	inverse="true" cascade="all" sort="unsorted">
+		<key>
+			<column name="BEAN_OBJECT_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.base.model.xitong.BeanObjectColumns"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

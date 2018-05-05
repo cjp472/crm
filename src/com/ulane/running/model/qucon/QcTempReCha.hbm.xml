@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ulane.running.model.qucon.QcTempReCha"
+        table="QC_TEMP_RE_CHA"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version">
+		<id name="tempReChaId"
+            column="TEMP_RE_CHA_ID"
+            type="java.lang.Long"
+            length="18">
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_QC_TEMP_RE_CHA_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="chaId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CHA_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to QcTempRelease -->
+		<many-to-one
+			name="qcTempRelease"
+			class="com.ulane.running.model.qucon.QcTempRelease"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="TEMP_RELE_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+
+
+<!-- start:  Generated for ShBugRepaire From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBugRepaireDao" class="com.ulane.shsh.dao.shhq.impl.ShBugRepaireDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBugRepaire From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBugReport From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBugReportDao" class="com.ulane.shsh.dao.shhq.impl.ShBugReportDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBugReport From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBugRepStuff From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBugRepStuffDao" class="com.ulane.shsh.dao.shhq.impl.ShBugRepStuffDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBugRepStuff From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderAccept From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBuilderAcceptDao" class="com.ulane.shsh.dao.shhq.impl.ShBuilderAcceptDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBuilderAccept From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderApply From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBuilderApplyDao" class="com.ulane.shsh.dao.shhq.impl.ShBuilderApplyDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBuilderApply From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderControl From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBuilderControlDao" class="com.ulane.shsh.dao.shhq.impl.ShBuilderControlDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBuilderControl From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderMethod From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBuilderMethodDao" class="com.ulane.shsh.dao.shhq.impl.ShBuilderMethodDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBuilderMethod From Template: app-shsh-dao.xml.beansvm  -->
+<!-- start:  Generated for ShBuilderTime From Template: app-shsh-dao.xml.beansvm  -->
+	<bean id="shBuilderTimeDao" class="com.ulane.shsh.dao.shhq.impl.ShBuilderTimeDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for ShBuilderTime From Template: app-shsh-dao.xml.beansvm  -->
+</beans>

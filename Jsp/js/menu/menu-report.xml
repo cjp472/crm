@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Menus id="Mod_Report" text="报表统计" iconCls="mod-hr">
+  <Items id="reports" text="座席报表"  iconCls="menu-task" isPublic="false"> 
+	<Item id="EveryDayReport" text="系统每日报表"/>
+	<Item id="AgentReport" text="座席运营报表"/>
+  </Items>
+</Menus>
+
+ <!--  mod-hr.png
+<Menus id="Mod_4" text="联络历史" iconCls="mod-lianluo">
+  <Items id="customer" text="联络历史" iconCls="menu-customer" isPublic="false"> 
+	<Item id="ConHisView" text="联络记录"/>
+	<Item id="ConHushouView" text="放弃的请求"/>
+	<Item id="ConWeichuliView" text="未处理请求"/>
+	<Item id="ConLanjieView" text="拦截记录"/>
+	<Item id="ConLaJiXiangView" text="垃圾箱"/>
+	<Items id="blacklist" text="联络管理">
+		 <Item id="ConBwlistApproveView" text="黑名单审批"></Item> 
+		<Item id="ConBwListDaishenpiView" text="黑名单审核"></Item>
+		<Item id="ConBwListView" text="黑名单"></Item>
+		<Item id="ConWwListView" text="白名单"></Item>
+	</Items>
+  </Items>
+</Menus>
+ -->

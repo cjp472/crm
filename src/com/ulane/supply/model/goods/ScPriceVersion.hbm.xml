@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.supply.model.goods.ScPriceVersion"
+        table="SC_PRICE_VERSION"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="versionId"
+            column="VERSION_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SC_PRICE_VERSION_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="versionType"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="VERSION_TYPE"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="versionNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="VERSION_NUM"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="versionName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="VERSION_NAME"
+            length="50"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="effectTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="EFFECT_TIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createUserId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_USER_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_TIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateUserId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_USER_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateTime2"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_TIME2"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="desc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESC"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+  <!-- exported bi-directional one-to-many association to ScGoodsPriceRule -->
+	<set name="scGoodsPriceRules"
+	     table="sc_goods_price_rule"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="VERSION_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.supply.model.goods.ScGoodsPriceRule"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ScGoodsPriceVersion -->
+	<set name="scGoodsPriceVersions"
+	     table="sc_goods_price_version"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="VERSION_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.supply.model.goods.ScGoodsPriceVersion"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ScPurpriceVersion -->
+	<set name="scPurpriceVersions"
+	     table="sc_purprice_version"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="VERSION_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.supply.model.goods.ScPurpriceVersion"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

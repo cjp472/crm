@@ -1,0 +1,245 @@
+
+.OraInstructionText,.x0,.OraMessageBoxText,.x6d,.OraProcessingStatusFixed,.x6f {font-weight:normal;font-size:x-small;color:#000000}
+.OraInstructionTextStrong,.x1,.OraDataText,.x2 {font-size:x-small;font-weight:bold;color:#000000}
+.OraDataNumber,.x3 {font-size:x-small;font-weight:bold;color:#000000;text-align:right}
+.OraFieldText,.x4,.OraFieldTextLTR,.x2y,.OraPhoneFieldText,.x30,.OraPostalCodeFieldText,.x32,.OraAddressFieldText,.x34 {font-weight:normal;color:#000000;font-size:100%}
+.OraFieldTextDisabled,.x5,.OraFieldTextLTRDisabled,.x2z,.OraPhoneFieldTextDisabled,.x31,.OraPostalCodeFieldTextDisabled,.x33,.OraAddressFieldTextDisabled,.x35 {font-weight:normal;color:#999999;font-size:100%}
+.OraFieldNumber,.x6,.OraPromptText,.x8 {font-weight:normal;font-size:x-small;text-align:right;color:#000000}
+.OraFieldNumberDisabled,.x7 {font-weight:normal;font-size:x-small;text-align:right;color:#999999}
+.OraRequiredIcon,.xc {color:#336699;font-family:Courier,sans-serif}
+.OraLink:link,.xd:link,.OraBreadCrumbs,.xh,.OraBulletedList A,.xj A,.OraLinkText,.x2v,.OraHGridNavRowActiveLink,.x3u,.OraNavBarActiveLink,.x41 {font-weight:normal;font-size:x-small;color:#663300}
+.OraLink:active,.xd:active,.OraALinkText,.x2x {font-weight:normal;font-size:x-small;color:#ff6600}
+.OraLink:visited,.xd:visited,.OraVLinkText,.x2w {font-weight:normal;font-size:x-small;color:#996633}
+.OraLinkDisabled,.xe,button,.OraContentContainerContentTransparent,.xr,.OraContentContainerContentLight,.xs,.OraContentContainerContentMedium,.xt,.OraContentContainerContentDark,.xu,.OraTabBar,.x1c,.p_OraDisabled,.x36 {font-weight:normal;font-size:x-small}
+.OraApplicationSwitcherText,.xf {font-weight:normal;font-size:67%}
+.OraBody,.xg,.p_OraColorPaletteEmptyCell,.x3b {background-color:#ffffff}
+.OraBreadCrumbs A,.xh A {color:#663300;font-size:90%}
+.OraBreadCrumbsSelected A,.xi A,TD.p_OraSideBar A:link,TD.x6j A:link {color:#000000}
+.OraBulletedList UL,.xj UL {margin-top:4px;margin-bottom:4px}
+.OraColorFieldSwatchOverlayIcon,.xk {position:relative;left:-7px;top:5px}
+.OraContentContainerHeader,.xp {background-color:#6699cc;color:#ffffff;width:100%;background-repeat:repeat-x}
+.OraContentContainerLight .OraContentContainerBody,.xm .xq,.OraContentContainerContentLight .OraContentContainerBody,.xs .xq,.OraBGAccentLight,.x2k,.OraMessageBoxBody,.x5h,.OraSideBarBody,.x5i {background-color:#f7f7e7}
+.OraContentContainerMedium .OraContentContainerBody,.xn .xq,.OraContentContainerContentMedium .OraContentContainerBody,.xt .xq,.OraBGAccentMedium,.x2j {background-color:#ffffe3}
+.OraContentContainerDark .OraContentContainerBody,.xo .xq,.OraContentContainerContentDark .OraContentContainerBody,.xu .xq,.OraBGAccentDark,.x2i {background-color:#d2d8b0}
+.OraCopyright,.xv,.OraAbout,.xx {font-weight:normal;font-size:67%;color:#000000;white-space:nowrap}
+.OraCopyright A,.xv A,.OraPrivacy A,.xw A,.OraAbout A,.xx A,.OraTrainVisited A,.x26 A,.OraSubTab A,.x4h A,.p_OraTreeRow A:link,.x5c A:link,.p_OraTreeRow A:active,.x5c A:active,.p_OraTreeRow A:visited,.x5c A:visited,SPAN.p_OraTreeRow A:link,SPAN.x5c A:link,SPAN.p_OraTreeRow A:active,SPAN.x5c A:active,SPAN.p_OraTreeRow A:visited,SPAN.x5c A:visited {color:#663300}
+.OraPrivacy,.xw {font-weight:normal;font-size:67%;color:#000000;white-space:nowrap;text-align:right}
+.OraGlobalButtonText,.xy {color:#663300;font-weight:normal;font-size:67%}
+.OraGlobalButtonTextSelected,.xz,.OraInlineInfoText,.x2o {color:#336699;font-weight:normal;font-size:67%}
+.OraGlobalButtonTextDisabled,.x10 {color:#9fa57d;font-weight:normal;font-size:67%}
+.OraGlobalHeaderSeparator,.x14 {font-size:x-small;color:#99ccff;font-weight:bold;margin:0px 8px}
+.OraHGridExpansionIcon,.x15 {color:#336699;position:absolute;top:0px;left:-16px}
+.OraSideBar,.x1a,.p_OraTreeRow,.x5c {font-weight:normal;font-size:x-small;color:#003366}
+.OraTabBarEnabled,.x1d {background-color:#f7f7e7;white-space:nowrap}
+.OraTabBarSelected,.x1e {background-color:#336699;white-space:nowrap}
+.OraTabBarDisabled,.x1f {background-color:#f7f7e7;color:#9fa57d;white-space:nowrap}
+.OraTabBarEnabled A,.x1d A {color:#003366}
+.OraTabBarSelected A,.x1e A {color:#99ccff}
+.OraTabBarSeparator,.x1g {width:0px}
+.OraTableContent,.x1h {border-collapse:collapse;border-color:#9fa57d;border-style:solid;border-width:1px}
+.OraTableControlBarTop,.x1i {background-color:#f7f7e7;border-color:#d2d8b0;border-style:solid;border-width:1px 1px 0px;padding:1px 2px}
+.OraTableControlBarBottom,.x1j {background-color:#f7f7e7;border-color:#d2d8b0;border-style:solid;border-width:0px 1px 1px;padding:1px 2px}
+.OraTableSubControlBar,.x1k {border-color:#d2d8b0;border-style:solid;border-width:1px 1px 0px;padding:1px 2px}
+.OraTableCellText,.x1l {font-weight:normal;font-size:12px;color:#000000;vertical-align:baseline;background-color:#f7f7e7;border-color:#d2d8b0}
+.OraTableCellTextBand,.x1m,.OraHGridNavCell,.x5s {font-weight:normal;font-size:12px;color:#000000;vertical-align:baseline;background-color:#ffffff;border-color:#d2d8b0}
+.OraTableCellNumber,.x1n {font-weight:normal;font-size:x-small;color:#000000;vertical-align:baseline;background-color:#f7f7e7;border-color:#d2d8b0;text-align:right;padding-right:2px}
+.OraTableCellNumberBand,.x1o {font-weight:normal;font-size:x-small;color:#000000;vertical-align:baseline;background-color:#ffffff;border-color:#d2d8b0;text-align:right;padding-right:2px}
+.OraTableCellIconButton,.x1p,.OraTableCellSelect,.x52 {font-weight:normal;font-size:x-small;color:#000000;vertical-align:baseline;background-color:#f7f7e7;border-color:#d2d8b0;text-align:center}
+.OraTableCellIconButtonBand,.x1q,.OraTableCellSelectBand,.x53 {font-weight:normal;font-size:x-small;color:#000000;vertical-align:baseline;background-color:#ffffff;border-color:#d2d8b0;text-align:center}
+.OraTableColumnHeader,.x1r {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:left;background-color:#d2d8b0;color:#336699;vertical-align:bottom}
+.OraTableColumnHeaderNumber,.x1s {border-color:#f7f7e7;font-size:x-small;font-weight:bold;background-color:#d2d8b0;color:#336699;vertical-align:bottom;text-align:right}
+.OraTableColumnHeaderIconButton,.x1t {border-color:#f7f7e7;font-size:x-small;font-weight:bold;background-color:#d2d8b0;color:#336699;vertical-align:bottom;text-align:center}
+.OraTableRowHeader,.x1u {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:right;background-color:#d2d8b0;color:#336699}
+.OraTableDetail,.x1v {font-weight:normal;font-size:x-small;color:#000000;border-color:#d2d8b0;background-color:#ffffff}
+.OraTableColumnFooter,.x1w,.OraTableColumnFooter .OraPromptText,.x1w .x8 {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:left;background-color:#d2d8b0;color:#336699}
+.OraTableTotal,.x1x {font-size:x-small;font-weight:bold;text-align:right;background-color:#d2d8b0;color:#336699}
+.OraTableTotalNumber,.x1y {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:right;background-color:#d2d8b0;color:#000000;vertical-align:baseline}
+.OraTableTotalText,.x1z {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:left;background-color:#d2d8b0;color:#000000;vertical-align:baseline}
+.OraTableSortableColumnHeader,.x20 {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:center;background-color:#d2d8b0;color:#336699;vertical-align:bottom;cursor:hand}
+.OraTableSortableColumnHeaderNumber,.x21 {border-color:#f7f7e7;font-size:x-small;font-weight:bold;background-color:#d2d8b0;color:#336699;vertical-align:bottom;cursor:hand;text-align:right}
+.OraTableSortableColumnHeaderIconButton,.x22 {border-color:#f7f7e7;font-size:x-small;font-weight:bold;background-color:#d2d8b0;color:#336699;vertical-align:bottom;cursor:hand;text-align:center}
+.OraTableSortableHeaderLink,.x23 {font-size:x-small;font-weight:bold;background-color:#d2d8b0;color:#336699;text-decoration:none;vertical-align:bottom}
+.OraTableHeaderLink,.x24 {font-size:x-small;font-weight:bold;background-color:#d2d8b0;color:#336699;text-decoration:none}
+.OraTrainActive,.x25 {font-size:75%;text-align:center;border-color:#336699;color:#336699;font-weight:bold}
+.OraTrainVisited,.x26 {font-weight:normal;font-size:75%;text-align:center;border-color:#999999;color:#d2d8b0}
+.OraTrainDisabled,.x27 {font-weight:normal;font-size:75%;text-align:center;color:#999999;border-color:#cccccc}
+.OraTrainUnvisited,.x28 {font-weight:normal;font-size:75%;text-align:center;border-color:#336699;color:#336699}
+.OraTrainUnvisited A,.x28 A,TD.p_OraSideBar A:visited,TD.x6j A:visited {color:#336699}
+.OraBGColorVeryDark,.x29 {background-color:#003366}
+.OraBGColorDark,.x2a,.OraGlobalHeaderBody,.x5e,.OraGlobalHeaderTitle,.x5f,.OraGlobalHeaderEmpty,.x5g {background-color:#336699}
+.OraBGColorMedium,.x2b {background-color:#6699cc}
+.OraBGColorLight,.x2c {background-color:#99ccff}
+.OraBGGrayVeryDark,.x2d {background-color:#333333}
+.OraBGGrayDark,.x2e {background-color:#666666}
+.OraBGGrayMedium,.x2f {background-color:#999999}
+.OraBGGrayLight,.x2g {background-color:#cccccc}
+.OraBGAccentVeryDark,.x2h,.OraTable,.x50 {background-color:#9fa57d}
+.p_InContextBrandingText,.x2l,.OraHGridNavRowInactiveLink,.x3v,.OraNavBarInactiveLink,.x42 {font-weight:normal;font-size:x-small;color:#9fa57d}
+.OraPageStampText,.x2m,.OraNavBarViewOnly,.x43,.OraTipText,.x56 {font-weight:normal;font-size:x-small;color:#336699}
+.OraPageStampLabel,.x2n,.OraTableControlBarText,.x4y,.OraTipLabel,.x55,.OraMessageBoxLink,.x68,.OraProcessingStatusVariable,.x6e {font-size:x-small;font-weight:bold;color:#336699}
+.OraTextInline,.x2p {font-weight:normal;font-size:67%;color:#6699cc}
+.OraErrorText,.x2q {font-weight:normal;font-size:x-small;color:#cc0000}
+.OraErrorNameText,.x2s,.OraMessageBoxErrorLink,.x6b {font-size:x-small;font-weight:bold;color:#cc0000}
+.OraInlineErrorText,.x2t {font-weight:normal;font-size:67%;color:#cc0000}
+.OraGlobalPageTitle,.x2u {color:#ffffff;font-weight:normal;font-size:92%}
+.p_OraSelected,.x37 {font-size:x-small;font-weight:bold;background-color:#336699;color:#ffffff;text-decoration:none}
+.p_OraHiddenLabel,.x38 {position:absolute;top:-999px;left:0px}
+.p_OraColorFieldSwatch,.x39 {border-color:#000000;border-style:solid;border-width:1px}
+.p_OraColorPalette,.x3a {background-color:#000000}
+.OraCalendarNav A,.x3c A,.OraInlineCalendarNav A,.x3h A {color:#663300;text-decoration:none}
+.OraCalendarTitle,.x3d {font-weight:normal;font-size:small;text-align:center;background-color:#ffffff;color:#336699;padding:2px}
+.OraCalendarHeader,.x3e {font-size:x-small;font-weight:bold;text-align:center;color:#336699;padding:2px;background-color:#d2d8b0}
+.OraCalendarContent,.x3f {font-weight:normal;font-size:x-small;text-align:center;color:#999999;border-color:#d2d8b0;text-decoration:none;border-width:1px;border-style:solid;padding:2px;background-color:#f7f7e7;line-height:1.5}
+.OraCalendarSelected,.x3g {font-weight:bold;text-decoration:none;background-color:#9fa57d;color:#ffffff;padding:2px}
+.OraCalendarContent A,.x3f A {font-weight:normal;font-size:x-small;text-align:center;color:#336699;text-decoration:none}
+.OraInlineCalendarTitle,.x3i {text-align:center;background-color:#ffffff;color:#336699;padding:2px;font-size:92%;font-weight:bold}
+.OraInlineCalendarHeader,.x3j {text-align:center;color:#336699;padding:2px;font-size:75%;background-color:#d2d8b0}
+.OraInlineCalendarContent,.x3k {text-align:center;color:#999999;border-color:#d2d8b0;text-decoration:none;border-width:1px;border-style:solid;padding:2px;font-weight:normal;font-size:75%;background-color:#f7f7e7;line-height:1.5}
+.OraInlineCalendarSelected,.x3l {font-weight:bold;text-decoration:none}
+.OraInlineCalendarContent A,.x3k A {text-align:center;font-weight:normal;font-size:75%;color:#336699;text-decoration:none}
+.p_OraHeaderNest,.x3s {float:right;margin:5px 0px 0px 0px;width:97%;clear:both}
+.OraHGridLocatorHeader,.x3t,.OraContentContainerBackgroundLight,.x5l {background-color:#f7f7e7;border-color:#d2d8b0}
+.OraHeaderSub,.x3w {color:#336699;margin-bottom:0px;font-weight:normal;font-size:92%}
+.OraHeaderSubSub,.x3x {color:#336699;margin-bottom:0px;font-weight:normal;font-size:75%}
+.OraMessageBoxList,.x3z {margin-left:25px;font-weight:normal;font-size:x-small;color:#336699;margin-bottom:0px;margin-top:5px;text-indent:-15px}
+.p_OraQuickSearchBox,.x44 {background-color:#f7f7e7;border-color:#d2d8b0;border-style:solid;padding:2pt 5pt;border-width:0px 1px 1px 1px}
+.p_OraProductBrandingText,.x47 {color:#336699;position:relative;font-family:Garamond, Times, Times New Roman, Serif;font-weight:normal;font-size:24pt;line-height:28.8pt;top:-4.8pt}
+.p_OraProductBrandingCompactText,.x48,.OraHeader,.x18 {color:#336699;font-size:small;margin-bottom:0px;font-weight:bold}
+.OraShuttleHeader,.x49 {color:#336699;padding:0px 0px 0px 18px;font-weight:normal;font-size:92%}
+.OraShuttleLinkText,.x4a {font-weight:normal;font-size:90%;color:#663300}
+.p_OraSideBarMinWidth,.x4b {width:140px}
+.OraSubTab,.x4h {font-weight:normal;font-size:x-small;padding:0px 8px;background-color:#f7f7e7;padding-bottom:1pt}
+.OraSubTab .p_OraDisabled,.x4h .x36 {color:#9fa57d}
+.OraSubTabSelected,.x4i {font-size:x-small;font-weight:bold;padding:0px 8px}
+.OraSubTabSelected A,.x4i A,.p_OraTreeDisclosedSymbol A:link,.x59 A:link,.p_OraTreeDisclosedSymbol A:active,.x59 A:active,.p_OraTreeDisclosedSymbol A:visited,.x59 A:visited {color:#336699;text-decoration:none}
+.OraTableBorder0001,.x4j {border-style:solid;border-width:0px 0px 0px 1px}
+.OraTableBorder0010,.x4k {border-style:solid;border-width:0px 0px 1px}
+.OraTableBorder0011,.x4l {border-style:solid;border-width:0px 0px 1px 1px}
+.OraTableBorder0100,.x4m {border-style:solid;border-width:0px 1px 0px 0px}
+.OraTableBorder0101,.x4n {border-style:solid;border-width:0px 1px}
+.OraTableBorder0110,.x4o {border-style:solid;border-width:0px 1px 1px 0px}
+.OraTableBorder0111,.x4p {border-style:solid;border-width:0px 1px 1px}
+.OraTableBorder1000,.x4q {border-style:solid;border-width:1px 0px 0px}
+.OraTableBorder1001,.x4r {border-style:solid;border-width:1px 0px 0px 1px}
+.OraTableBorder1010,.x4s {border-style:solid;border-width:1px 0px}
+.OraTableBorder1011,.x4t {border-style:solid;border-width:1px 0px 1px 1px}
+.OraTableBorder1100,.x4u {border-style:solid;border-width:1px 1px 0px 0px}
+.OraTableBorder1101,.x4v {border-style:solid;border-width:1px 1px 0px}
+.OraTableBorder1110,.x4w {border-style:solid;border-width:1px 1px 1px 0px}
+.OraTableBorder1111,.x4x {border-style:solid;border-width:1px}
+.OraTableTitle,.x4z {font-weight:normal;font-size:small;background-color:#ffffff;color:#336699}
+.OraTableAddTotal,.x51 {font-size:x-small;font-weight:bold;text-align:left;background-color:#d2d8b0;color:#336699}
+.OraSortableHeaderBorder,.x54 {border-width:2px;border-style:outset}
+.p_OraTreeIcon,.x5a {vertical-align:top}
+.p_OraTreeNodeAdjust,.x5b {padding-bottom:2px}
+.p_OraTreeRowSelected,.x5d {font-size:x-small;font-weight:bold;background-color:#336699;color:#ffffff}
+.p_OraTreeRowSelected A:link,.x5d A:link,.p_OraTreeRowSelected A:active,.x5d A:active,.p_OraTreeRowSelected A:visited,.x5d A:visited,.OraNav2Selected A,.x5p A,.OraNav2Enabled A,.x5q A,TD.p_OraSideBar TD.p_OraSelected  A:link,TD.x6j TD.x37  A:link,TD.p_OraSideBar TD.p_OraSelected  A:active,TD.x6j TD.x37  A:active,TD.p_OraSideBar TD.p_OraSelected  A:visited,TD.x6j TD.x37  A:visited,TD SPAN.p_OraTreeRowSelected A:link,TD SPAN.x5d A:link,TD SPAN.p_OraTreeRowSelected A:active,TD SPAN.x5d A:active,TD SPAN.p_OraTreeRowSelected A:visited,TD SPAN.x5d A:visited {color:#ffffff;text-decoration:none}
+.p_OraRequired,.x5j {font-weight:normal;font-size:x-small;font-family:Courier,sans-serif;color:#3366cc}
+.OraContentContainerBackgroundTransparent,.x5k {border-color:#336699}
+.OraContentContainerBackgroundMedium,.x5m {background-color:#ffffe3;border-color:#d2d8b0}
+.OraContentContainerBackgroundDark,.x5n {border-color:#336699;background-color:#6699cc}
+.OraInlineCalendarDisabled,.x5o {font-weight:normal;font-size:75%}
+.OraNav2Selected,.x5p {font-size:x-small;font-weight:bold;color:#ffffff;text-decoration:none}
+.OraNav2Enabled,.x5q {font-weight:normal;font-size:x-small;color:#ffffff;text-decoration:none}
+.OraNav2Disabled,.x5r {font-weight:normal;font-size:x-small;color:#6699cc;text-decoration:none}
+.OraErrorHeader,.x5t {font-size:small;margin-bottom:0px;font-weight:bold;color:#cc0000}
+.OraDarkHeader,.x5u {font-size:small;margin-bottom:0px;font-weight:bold;color:#003366}
+.OraDarkHeaderSub,.x5v {margin-bottom:0px;color:#003366;font-weight:normal;font-size:92%}
+.OraDarkHeaderSubSub,.x5w {margin-bottom:0px;color:#003366;font-weight:normal;font-size:75%}
+.OraLightHeader,.x5x {font-size:small;margin-bottom:0px;font-weight:bold;color:#6699cc}
+.OraLightHeaderSub,.x5y {margin-bottom:0px;color:#6699cc;font-weight:normal;font-size:92%}
+.OraLightHeaderSubSub,.x5z {margin-bottom:0px;color:#6699cc;font-weight:normal;font-size:75%}
+.OraColorHeader,.x60 {font-size:small;margin-bottom:0px;font-weight:bold;color:#ffffe3}
+.OraColorHeaderSub,.x61 {margin-bottom:0px;color:#ffffe3;font-weight:normal;font-size:92%}
+.OraColorHeaderSubSub,.x62 {margin-bottom:0px;color:#ffffe3;font-weight:normal;font-size:75%}
+.OraPortletHeader,.x63 {margin-bottom:0px;font-size:x-small;font-weight:bold;color:#000000}
+.OraDarkPortletHeader,.x64 {margin-bottom:0px;font-weight:normal;font-size:x-small;color:#000000}
+.p_OraSpacingHeader,.x65 {margin:4px 0px 2px 0px}
+.p_OraSpacingHeaderSub,.x66 {margin:10px 0px 2px 0px}
+.p_OraSpacingHeaderLarge,.x67 {margin:20px 0px 2px 0px}
+.OraMessageBoxParagraph,.x69 {font-weight:normal;font-size:x-small;color:#336699;margin-top:5px}
+.OraMessageBoxErrorList,.x6a {font-weight:normal;font-size:x-small;color:#cc0000;margin-bottom:0px;text-indent:-15px}
+.OraMessageBoxErrorParagraph,.x6c {font-weight:normal;font-size:x-small;color:#cc0000;margin-top:5px}
+.OraRichTextEditorButtonBar,.x6g {width:22px;height:22px;text-align:center;padding:2px;cursor:default}
+.OraRichTextEditorSpace,.x6h {background-color:buttonface;width:0px;height:24px}
+.OraRichTextEditorDivider,.x6i {background-color:buttonface;border-left:buttonshadow solid 1px;border-top:buttonshadow solid 1px;border-right:buttonhighlight solid 1px;border-bottom:buttonhighlight solid 1px;width:2px;height:24px}
+.p_OraSideBar,.x6j {font-weight:normal;font-size:x-small;background-color:#d2d8b0;color:#000000}
+TD.p_OraSideBar A:active,TD.x6j A:active {color:#003399}
+TD.p_OraSideBar SPAN.p_OraDisabled,TD.x6j SPAN.x36 {color:#ffffcc}
+.OraSubTabLayoutBody,.x6k {padding-top:10px;padding-bottom:10px}
+.OraNav1Selected,.x6l {font-size:92%;background-color:#336699;color:#ffffff;font-weight:bold;text-decoration:none}
+.OraNav1Enabled,.x6m {font-weight:normal;font-size:92%;background-color:#d2d8b0;color:#000000;text-decoration:none}
+.OraNav1Disabled,.x6n {font-weight:normal;font-size:92%;background-color:#d2d8b0;color:#ffffe3;text-decoration:none}
+.p_OraTableFooterTotal,.x6o {text-align:right;padding:0px 0px 0px 30px}
+body {margin-top:8px}
+.p_OraNav2,.x6p {border-color:#6699cc}
+
+
+.af-outputText
+{
+	font-family : "Arial";
+	font-size : 12px;
+	text-decoration : none;
+}
+
+.af-outputTextTitle
+{
+	font-family : "Arial";
+	font-size : 15px;
+	text-decoration : none;
+}
+
+.button {border-color:#f7f7e7;font-size:12px;text-align:center;background-color:#77bfec;color:#ffffff;vertical-align:bottom;cursor:hand}
+.buttonSelected1 {font-weight:10px;font-size:62%}
+.buttonSelected {border-color:#f7f7e7;font-size:12px;font-weight:bold;text-align:center;background-color:#77bfec;color:#ffffff;vertical-align:bottom;cursor:hand}
+
+.inputform {background-color:#f6faf8;border-color:#CDCDCD;border-style:solid;border-width:1px 1px 1px;padding:1px 2px}
+.formTableTdTitle {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:right;color:#336699;vertical-align:middle;}
+.formTableTdContent {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:left;background-color:#f6faf8;color:#336699;vertical-align:middle}
+.formTableTdTitleDemand {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:right;color:#DD0220;vertical-align:middle;}
+.formTableTdTitleDemand2 {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:right;background-color:#f6faf8;color:#DD0220;vertical-align:middle;}
+.formTableTdContentHead {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:left;background-color:#f6faf8;color:#336699;vertical-align:middle}
+.formTableTdTitleHead {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:right;background-color:#f6faf8;color:#336699;vertical-align:middle}
+
+.pageBody,.xg {background-color:#ffffff}
+.tableControlBarTop,.x1i {background-color:#F0F0F0;border-color:#CDCDCD;border-style:solid;border-width:1px 1px 0px;padding:1px 1px}
+.tableControlBarBottom,.x1j {background-color:#F0F0F0;border-color:#CDCDCD;border-style:solid;border-width:0px 1px 1px;padding:1px 1px}
+
+.tableControlBar-odd{font-weight:normal;font-size:x-small;color:#000000;background-color:#f7f7e7;border-color:#d2d8b0;text-align:center;border-style:solid;border-width:1px}
+.tableControlBar-even{font-weight:normal;font-size:x-small;color:#000000;background-color:#ffffff;border-color:#d2d8b0;text-align:center;border-style:solid;border-width:1px}
+
+.tableControlBarText,.x4y {font-size:12px;font-weight:bold;color:#336699}
+.tableContent,x1h {border-collapse:collapse;border-color:#CDCDCD;border-style:solid;border-width:1px}
+
+.tableColumnHeaderCheckbox,.x1t {border-color:#CDCDCD;background-color:#77bfec;color:#444444;}
+.tableCellIconCheckbox-odd,.x1p {font-weight:normal;font-size:x-small;color:#000000;vertical-align:middle;background-color:#ffffff;border-color:#CDCDCD;text-align:center;border-style:solid;border-width:1px}
+.tableCellIconCheckbox-even,.x1q {font-weight:normal;font-size:x-small;color:#000000;vertical-align:middle;background-color:#ffffff;border-color:#CDCDCD;text-align:center;border-style:solid;border-width:1px}
+
+.tableCellText-odd,.x1l {font-weight:normal;font-size:12px;color:#000000;vertical-align:bottom;background-color:#ffffff;border-color:#CDCDCD;border-style:solid;border-width:1px}
+.tableCellText-even,.x1m {font-weight:normal;font-size:12px;color:#000000;vertical-align:bottom;background-color:#ffffff;border-color:#CDCDCD;border-style:solid;border-width:1px}
+
+.tableSortableColumnHeader,.x20 {border-color:#CDCDCD;font-size:x-small;font-weight:bold;text-align:center;background-color:#77bfec;color:#ffffff;vertical-align:bottom;cursor:hand;border-width:1px;border-style:outset}
+.tableColumnHeader,.x20 {border-color:#f7f7e7;font-size:x-small;font-weight:bold;text-align:center;background-color:#77bfec;color:#ffffff;vertical-align:bottom;border-width:1px;border-style:outset}
+
+.divCellText {font-weight:normal;font-size:12px;color:#000000;vertical-align:bottom;background-color:#f7f7e7;border-color:#d2d8b0;border-style:solid;border-width:0px}
+
+.errorMessage {
+	border-top: 5px solid #900;
+	border-left: 1px solid #900;
+	background-image: url(../images/icon/icon_error_lrg.gif);
+	background-repeat: no-repeat;
+	background-position: 5px 1.33em;
+	margin: .67em 0;
+	padding: .33em 0 .67em 42px;
+	min-height: 32px;
+}
+.tableCellText-dial{font-weight:normal;
+font-size:12px;
+color:#000000;
+vertical-align:bottom;
+background-color:#f7f7e7;
+border-color:#d2d8b0;
+border-style:solid;
+border-width:1px;
+ryo:expression(onmouseover=function(){this.style.backgroundColor='#aDBF75'},onmouseout=function(){this.style.backgroundColor='#f7f7e7'})
+}

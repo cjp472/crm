@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.base.model.xitong.UlDepEmployee"
+        table="UL_DEP_EMPLOYEE"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="depuserid"
+            column="DEPUSERID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_UL_DEP_EMPLOYEE_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="ismain"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ISMAIN"
+            length="22"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="sn"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="SN"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to UlDepartment -->
+		<many-to-one
+			name="ulDepartment"
+			class="com.ulane.base.model.xitong.UlDepartment"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="DEPID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to UlEmployee -->
+		<many-to-one
+			name="ulEmployee"
+			class="com.ulane.base.model.xitong.UlEmployee"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="USERID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

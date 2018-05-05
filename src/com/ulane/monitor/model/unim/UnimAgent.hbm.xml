@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimAgent" table="UNIM_AGENT"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="agentId" column="AGENT_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					S_UNIM_AGENT
+            	</param>
+			</generator>
+		</id>
+
+		<property name="userId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USERID" length="18" not-null="false"
+			unique="false" />
+		<property name="aid" type="java.lang.String" update="true"
+			insert="true" access="property" column="AID" length="15" not-null="false"
+			unique="false" />
+		<property name="agentName" type="java.lang.String" update="true"
+			insert="true" access="property" column="AGENT_NAME" length="128"
+			not-null="false" unique="false" />
+		<property name="agentPass" type="java.lang.String" update="true"
+			insert="true" access="property" column="AGENT_PASS" length="256"
+			not-null="false" unique="false" />
+		<property name="agentCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="AGENT_CODE" length="128"
+			not-null="false" unique="false" />
+		<property name="ismonitor" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ISMONITOR" length="18"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="4000"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS" length="5" not-null="false"
+			unique="false" />
+		<property name="jobType" type="java.lang.String" update="true"
+			insert="true" access="property" column="JOB_TYPE" length="20"
+			not-null="false" unique="false" />
+		<property name="jobClass" type="java.lang.String" update="true"
+			insert="true" access="property" column="JOB_CLASS" length="20"
+			not-null="false" unique="false" />
+
+		<!--
+			imported bi-directional many-to-one association to UnimServerConfig
+		-->
+		<many-to-one name="unimServerConfig"
+			class="com.ulane.monitor.model.unim.UnimServerConfig" not-null="false"
+			fetch="select">
+			<column name="SERVER_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to
+			UnimAgentSkillgroup
+		-->
+		<set name="unimAgentSkillgroups" table="unim_agent_skillgroup"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="AGENT_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimAgentSkillgroup" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UnimMapAgent -->
+		<set name="unimMapAgents" table="unim_map_agent" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="AGENT_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimMapAgent" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UnimMonitorAgent
+		-->
+		<set name="unimMonitorAgents" table="unim_monitor_agent" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="AGENT_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimMonitorAgent" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UnimThrlevl -->
+  <!--  		
+		<set name="unimThrlevls" table="unim_thrlevl" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="MONITOR_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimThrlevl" />
+		</set>
+-->   		
+		<set name="unimChannels" table="UNIM_CHAL_MAP_MON" inverse="true" lazy="true" cascade="save-update">
+			<key column="AGENT_ID"></key>
+			<many-to-many column="CHANNEL_ID" fetch="join" class="com.ulane.monitor.model.unim.UnimChannel"></many-to-many>
+		</set>
+		<set name="unimMapChannels" table="UNIM_CHANNEL_MAP_MONITOR" inverse="true" lazy="true" cascade="save-update">
+			<key column="AGENT_ID"></key>
+			<many-to-many column="MAP_ID" fetch="join" class="com.ulane.monitor.model.unim.UnimChannelMap"></many-to-many>
+		</set>		
+		<set name="unimAssetss" table="UNIM_ASSETS_MAP_MON" inverse="true" lazy="true" cascade="save-update">
+			<key column="AGENT_ID"></key>
+			<many-to-many column="ASSETS_ID" fetch="join" class="com.ulane.monitor.model.unim.UnimAssets"></many-to-many>
+		</set>
+		<set name="unimMapAssetss" table="UNIM_ASSETS_MAP_MONITOR" inverse="true" lazy="true" cascade="save-update">
+			<key column="AGENT_ID"></key>
+			<many-to-many column="MAP_ID" fetch="join" class="com.ulane.monitor.model.unim.UnimAssetsMap"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

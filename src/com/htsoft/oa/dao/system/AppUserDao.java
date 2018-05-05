@@ -1,0 +1,133 @@
+package com.htsoft.oa.dao.system;
+
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2009 Beijing Ulane Technology Co., LTD
+ */
+import java.util.List;
+import java.util.Set;
+
+import com.htsoft.core.dao.BaseDao;
+import com.htsoft.core.web.paging.PagingBean;
+import com.htsoft.oa.model.system.AppRole;
+import com.htsoft.oa.model.system.AppUser;
+import com.htsoft.oa.model.system.Department;
+import com.ulane.base.model.xitong.UlEmployee;
+import com.ulane.customer.model.customer.ConHis;
+
+/**
+ * @description 用户操作
+ * @class AppUserDao
+ * @author 优创融联科技
+ * @updater YHZ
+ * @company www.ulane.cn
+ * @data 2010-12-27AM
+ */
+public interface AppUserDao extends BaseDao<AppUser> {
+	public AppUser findByUserName(String username);
+
+	public List<AppUser> findByDepartment(String path, PagingBean pb);
+	
+	/**
+	 * @description 根据userIds查询不对应的数据
+	 * @param path
+	 *            路径
+	 * @param userIds
+	 *            userId组成的字符串
+	 * @param pb
+	 *            PagingBean
+	 * @return List<AppUser>
+	 */
+	List<AppUser> findByDepartment(String path, String userIds, PagingBean pb);
+
+	public List<AppUser> findByDepartment(String path);
+
+	public List<AppUser> findByDepartment(Department department);
+
+	public List<AppUser> findByRole(Long roleId);
+
+	public List<AppUser> findByRole(Long roleId, PagingBean pb);
+
+	public List<AppUser> findByRoleId(Long roleId);
+	
+	public List<AppUser> getAllUsers(Long flag);
+
+	/**
+	 * 根据部门查找不是上属的用户
+	 */
+	public List<AppUser> findSubAppUser(String path, Set<Long> userIds,
+			PagingBean pb);
+
+	/**
+	 * 根据角色查找不是上属的用户
+	 */
+	public List<AppUser> findSubAppUserByRole(Long roleId, Set<Long> userIds,
+			PagingBean pb);
+
+	/**
+	 * 查找某个部门下的所有用户
+	 * 
+	 * @param depId
+	 * @return
+	 */
+	public List<AppUser> findByDepId(Long depId);
+
+	/**
+	 * 查找某组角色列表下所有的用户
+	 * 
+	 * @param roleIds
+	 * @return
+	 */
+	public List<AppUser> findUsersByRoleIds(String roleIds);
+
+	/**
+	 * @description 根据用户userId查询对应用户的上下级信息
+	 * @author YHZ
+	 * @data 2010-12-23PM
+	 * @param userId
+	 *            用户id
+	 * @param level
+	 *            0.下级,1.上级,2.同级
+	 * @return List<AppUser>
+	 */
+	List<AppUser> findRelativeUsersByUserId(Long userId, Short level);
+	
+	/**
+	 * 按角色取得用户列表
+	 * @param roleId
+	 * @return
+	 */
+	public List<AppUser> getUsersByRoleId(Long roleId);
+
+	public List<AppUser> findByUlUsergroup(Long pkUsergroupId, PagingBean pb);
+	
+	// 根据状态查询
+	public List<AppUser> getselectSatus();
+	
+	/**
+	 * 根据用户组查询用户
+	 * @param groupIds
+	 * @return
+	 */	
+	public List<AppUser> listUsersByGroupIds(String type,String groupIds);
+	
+	
+	/**
+	 *======================================================== 用户删除
+	 * @param groupIds
+	 * @return
+	 */	
+	
+	
+	public void getDelUser(Long EId);
+	public List<AppRole> selectRoleName(Long userId);
+
+	public List<AppUser> SelectUserList(Integer start1, Integer limit1,
+			String username, String fullname, String userNo, String status);
+
+	public int SelectUserListCount(String username, String fullname,
+			String userNo, String status);
+
+	public List<AppRole> selectRole();
+
+}

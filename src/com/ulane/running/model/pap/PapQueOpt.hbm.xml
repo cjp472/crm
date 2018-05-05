@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.pap.PapQueOpt"
+        table="PAP_QUE_OPT"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="optId"
+            column="OPT_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_PAP_QUE_OPT_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="optContent"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="OPT_CONTENT"
+            length="2048"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="disorder"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="DISORDER"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="isDefault"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="IS_DEFAULT"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="staId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to PapQue -->
+		<many-to-one
+			name="papQue"
+			class="com.ulane.running.model.pap.PapQue"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="QUE_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to PapAnsDetail -->
+	<set name="papAnsDetails"
+	     table="pap_ans_detail"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="OPT_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.pap.PapAnsDetail"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

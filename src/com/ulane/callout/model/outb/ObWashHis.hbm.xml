@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObWashHis" table="OB_WASH_HIS"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="washHisId" column="WASH_HIS_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_WASH_HIS_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="projId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PROJ_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="comId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="COM_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="calllistId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CALLLIST_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="callbatchId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CALLBATCH_ID" length="18"
+			not-null="false" unique="false" />	
+		<property name="clearnTyp" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CLEARN_TYP" length="5"
+			not-null="false" unique="false" />			
+		<property name="clearnDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CLEARN_DAT" length="7" not-null="false"
+			unique="false" />	
+		<property name="clearnOpt" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CLEARN_OPT" length="18"
+			not-null="false" unique="false" />	
+		<property name="clearnCounts" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="CLEARN_COUNTS" length="10"
+			not-null="false" unique="false" />
+		<property name="clearnRual" type="java.lang.String" update="true"
+			insert="true" access="property" column="CLEARN_RUAL" length="4000"
+			not-null="false" unique="false" />			
+						
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowDianping" table="UK_KNOW_DIANPING"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="dianpingId" column="DIANPING_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_KNOW_DIANPING_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="dianpingValue" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="DIANPING_VALUE"
+			length="10" not-null="false" unique="false" />
+		<property name="dianpingTime" type="java.sql.Timestamp"
+			update="true" insert="true" access="property" column="DIANPING_TIME"
+			length="11" not-null="false" unique="false" />
+		<property name="dianpingComment" type="java.lang.String"
+			update="true" insert="true" access="property" column="DIANPING_COMMENT"
+			length="500" not-null="false" unique="false" />
+		<property name="userid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USERID" length="38" not-null="false"
+			unique="false" />
+		<property name="knowStatus" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="KNOW_STATUS" length="10"
+			not-null="false" unique="false" />
+		<property name="title" type="java.lang.String"
+			update="true" insert="true" access="property" column="DIANPING_TITLE"
+			length="500" not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UkSysKnow -->
+		<many-to-one name="ukSysKnow" class="com.ulane.know.model.know.UkSysKnow"
+			not-null="false" fetch="select" cascade="all">
+			<column name="KNOW_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

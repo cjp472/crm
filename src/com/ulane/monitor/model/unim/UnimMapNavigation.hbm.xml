@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimMapNavigation"
+		table="UNIM_MAP_NAVIGATION" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="mapNavId" column="MAP_NAV_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					S_UNIM_MAP_NAVIGATION
+            	</param>
+			</generator>
+		</id>
+		<property name="navName" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAV_NAME" length="64"
+			not-null="false" unique="false" />
+		<property name="parentid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENTID" length="18"
+			not-null="false" unique="false" />
+		<property name="orderno" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ORDERNO" length="18"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="5"
+			not-null="false" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="256"
+			not-null="false" unique="false" />
+		<property name="mapId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="MAP_ID" length="18"
+			not-null="false" unique="false" />
+		<!-- exported bi-directional one-to-many association to UnimAgentMap
+		<set name="unimAgentMaps" table="unim_agent_map" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="NAVIGATION_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimAgentMap" />
+		</set>
+		 -->  
+		 
+		<!--many-to-one name="parent" class="com.ulane.monitor.model.unim.UnimMapNavigation" column="PARENTID"
+			update="false" insert="false" ></many-to-one-->
+        <bag cascade="all" lazy="false" name="children" order-by="orderno">
+       		<key column="PARENTID"></key>
+   			<one-to-many class="com.ulane.monitor.model.unim.UnimMapNavigation"/>
+		</bag>
+	</class>
+</hibernate-mapping>

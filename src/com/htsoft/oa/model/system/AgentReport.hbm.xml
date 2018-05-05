@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.htsoft.oa.model.system.AgentReport" table="cti_agent_info"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		
+		<!--<id name="ID" type="int">
+			<column name="ID" length="10"></column>
+			<generator class="increment"></generator>
+		</id>
+		
+		-->
+		
+		<id name="ID" column="ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CON_HIS_ID
+            	</param>
+			</generator>
+		</id>
+		
+		<property name="agentuid" type="java.lang.String" update="true"
+			insert="true" access="property" column="AGENTUID" length="128"
+			not-null="true" unique="false" />
+			
+		<property name="username" type="java.lang.String" update="true"
+			insert="true" access="property" column="USERNAME" length="128"
+			not-null="false" unique="false" />
+			
+		<property name="node" type="java.lang.String" update="true"
+			insert="true" access="property" column="NODE" length="128"
+			not-null="false" unique="false" />
+			
+		<property name="dates" type="java.lang.String" update="true"
+			insert="true" access="property" column="DATES" length="128" not-null="false"
+			unique="false" />
+		
+		<property name="logincount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="LOGINCOUNT" length="19"
+			not-null="true" unique="false" />
+		
+		<property name="logintime" type="java.lang.Long" update="true"
+			insert="true" access="property" column="LOGINTIME" length="19"
+			not-null="true" unique="false" />
+			
+		<property name="logindate" type="java.lang.String" update="true"
+			insert="true" access="property" column="LOGINDATE" length="128"
+			not-null="true" unique="false" />
+			
+		<property name="endinboundcount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ENDINBOUNDCOUNT" length="19"
+			not-null="true" unique="false" />
+			
+		<property name="inboundtime" type="java.lang.Long" update="true"
+			insert="true" access="property" column="INBOUNDTIME" length="19"
+			not-null="true" unique="false" />
+			
+		<property name="endoutboundcount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ENDOUTBOUNDCOUNT" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="outboundtime" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OUTBOUNDTIME" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="restcount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RESTCOUNT" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="resttime" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RESTTIME" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="unansweredcount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UNANSWEREDCOUNT" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="meetingcount" type="java.lang.Long" update="true"
+			insert="true" access="property" column="MEETINGCOUNT" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="meetingtime" type="java.lang.Long" update="true"
+			insert="true" access="property" column="MEETINGTIME" length="19"
+			not-null="false" unique="false" />
+			
+		<property name="loginname" type="java.lang.String" update="true"
+			insert="true" access="property" column="LOGINNAME" length="128"
+			not-null="true" unique="false" />
+			
+	</class>
+</hibernate-mapping>

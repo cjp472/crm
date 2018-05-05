@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.monitor.model.unim.UnimAssCategory" table="UNIM_ASS_CATEGORY"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="catId" column="CAT_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UNIM_ASS_CATEGORY_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="catName" type="java.lang.String" update="true"
+			insert="true" access="property" column="CAT_NAME" length="128"
+			not-null="true" unique="false" />
+		<property name="catCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="CAT_CODE" length="128"
+			not-null="true" unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="4000"
+			not-null="false" unique="false" />
+		<property name="orderno" type="java.lang.Long" update="true"
+			insert="true" access="property" column="ORDERNO" length="18"
+			not-null="true" unique="false" />
+		<property name="status" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STATUS" length="5" not-null="true"
+			unique="false" />
+		<!-- exported bi-directional one-to-many association to UnimAssets -->
+		<set name="unimAssetss" table="unim_assets" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CAT_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimAssets" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to UnimAssStatus
+		-->
+		<set name="unimAssStatuss" table="unim_ass_status" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CAT_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimAssStatus" />
+		</set>
+		<!-- exported bi-directional one-to-many association to UnimAssType -->
+		<set name="unimAssTypes" table="unim_ass_type" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="CAT_ID" />
+			</key>
+			<one-to-many class="com.ulane.monitor.model.unim.UnimAssType" />
+		</set>
+	</class>
+</hibernate-mapping>

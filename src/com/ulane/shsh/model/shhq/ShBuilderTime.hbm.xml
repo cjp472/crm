@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.shsh.model.shhq.ShBuilderTime"
+        table="SH_BUILDER_TIME"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="timeId"
+            column="TIME_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SH_BUILDER_TIME_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="开始日期"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="开始日期"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="结束日期"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="结束日期"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="开始时间"
+            type="java.sql.Timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="开始时间"
+            length="11"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="结束时间"
+            type="java.sql.Timestamp"
+            update="true"
+            insert="true"
+            access="property"
+            column="结束时间"
+            length="11"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to ShBuilderApply -->
+		<many-to-one
+			name="shBuilderApply"
+			class="com.ulane.shsh.model.shhq.ShBuilderApply"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="APPLY_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

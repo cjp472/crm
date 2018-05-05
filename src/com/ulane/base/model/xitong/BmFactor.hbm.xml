@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.BmFactor" table="BM_FACTOR"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="factorId" column="FACTOR_ID" type="java.lang.Long"
+			length="22">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_BM_FACTOR
+            	</param>
+			</generator>
+		</id>
+		<property name="factorName" type="java.lang.String" update="true"
+			insert="true" access="property" column="FACTOR_NAME" length="50"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="classObj" type="java.lang.String" update="true"
+			insert="true" access="property" column="CLASS_OBJ" length="250"
+			not-null="false" unique="false" />
+		<property name="classValue" type="java.lang.String" update="true"
+			insert="true" access="property" column="CLASS_VALUE" length="250"
+			not-null="false" unique="false" />
+		<property name="className" type="java.lang.String" update="true"
+			insert="true" access="property" column="CLASS_NAME" length="250"
+			not-null="false" unique="false" />
+		<property name="condition" type="java.lang.String" update="true"
+			insert="true" access="property" column="CONDITION" length="250"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="7"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="30"
+			not-null="false" unique="false" />
+		<property name="comments" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMMENTS" length="255"
+			not-null="false" unique="false" />
+		<!--
+			exported bi-directional one-to-many association to BmInSubjFactor
+		-->
+		<set name="bmBillNums1" table="bm_bill_num" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="FACTOR_ID" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.BmBillNum" />
+		</set>
+		<set name="bmBillNums2" table="bm_bill_num" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="FACTOR_ID" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.BmBillNum" />
+		</set>
+		<set name="bmFactorValues" table="bm_factor_value" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="FACTOR_ID" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.BmFactorValue" />
+		</set>
+	</class>
+</hibernate-mapping>

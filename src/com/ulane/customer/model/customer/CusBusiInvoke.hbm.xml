@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CusBusiInvoke"
+		table="CUS_BUSI_INVOKE" select-before-update="false" dynamic-update="false"
+		dynamic-insert="false" optimistic-lock="version">
+		<id name="busiHisId" column="BUSI_HIS_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CUS_BUSI_INVOKE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="chanTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CHAN_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="ownerId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OWNER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="busiTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUSI_TYPE_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="staTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_TIME" length="7"
+			not-null="true" unique="false" />
+		<property name="endTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="busiCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="BUSI_CODE" length="256"
+			not-null="false" unique="false" />
+		<property name="busiResId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="BUSI_RES_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="cusCardNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="CUS_CARD_NO" length="128"
+			not-null="false" unique="false" />
+		<property name="remarks" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARKS" length="2000"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer" class="com.htsoft.oa.model.customer.Customer"
+			not-null="false" fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

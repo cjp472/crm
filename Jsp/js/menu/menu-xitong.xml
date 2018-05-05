@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_xitong" text="基础版本" iconCls="mod-xitong">
+	<Items id="yonghuquanxian" text="用户权限" iconCls="menu-ent">
+		<!--
+			start: Generated for UlUgroupRole From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlUgroupRoleView" text="UlUgroupRole" />
+		<!--
+			end: Generated for UlUgroupRole From Template: menu-xitong.xml.vm
+		-->
+		<!--
+			start: Generated for UlUgroupUser From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlUgroupUserView" text="UlUgroupUser" />
+		<!--
+			end: Generated for UlUgroupUser From Template: menu-xitong.xml.vm
+		-->
+		<!--
+			start: Generated for UlUsergroup From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlUsergroupView" text="用户组" />
+		<!--
+			end: Generated for UlUsergroup From Template: menu-xitong.xml.vm
+		-->
+	</Items>
+	<Items id="jiaoliu" text="在线交流" iconCls="menu-ent">
+
+		<!--
+			start: Generated for UlBbsHuati From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlBbsHuatiView" text="在线交流" />
+		<!--
+			end: Generated for UlBbsHuati From Template: menu-xitong.xml.vm
+		-->
+		<!--
+			start: Generated for UlBbsJieshou From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlBbsJieshouView" text="UlBbsJieshou" />
+		<!--
+			end: Generated for UlBbsJieshou From Template: menu-xitong.xml.vm
+		-->
+		<!--
+			start: Generated for UlBbsHuifu From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlBbsHuifuView" text="回复信息"/>
+
+	
+		<!--
+			end: Generated for UlBbsHuifu From Template: menu-xitong.xml.vm
+		-->
+	</Items>
+	<Items id="jigouyuangong" text="机构员工" iconCls="menu-ent">
+		<!--
+			start: Generated for UlDepartment From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlDepartmentView" text="组织机构" />
+		<!--
+			end: Generated for UlDepartment From Template: menu-xitong.xml.vm
+		-->
+		<!--
+			start: Generated for UlDepEmployee From Template: menu-xitong.xml.vm
+		-->
+		<!-- 
+		<Item id="UlDepEmployeeView" text="" />
+		-->
+		<!--
+			end: Generated for UlDepEmployee From Template: menu-xitong.xml.vm
+		-->
+		<!--
+			start: Generated for UlEmployee From Template: menu-xitong.xml.vm
+		-->
+		<Item id="UlEmployeeView" text="员工" />
+		<!--
+			end: Generated for UlEmployee From Template: menu-xitong.xml.vm
+		-->
+	<!-- start:  Generated for UlNewsReceive From Template: menu-xitong.xml.vm  -->
+<Item id="UlNewsReceiveView" text="UlNewsReceive"/> 
+<!-- end:  Generated for UlNewsReceive From Template: menu-xitong.xml.vm  -->
+</Items>
+</Menus>

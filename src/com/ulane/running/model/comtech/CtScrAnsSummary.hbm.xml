@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.running.model.comtech.CtScrAnsSummary"
+        table="CT_SCR_ANS_SUMMARY"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="scrAnsId"
+            column="SCR_ANS_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_CT_SCR_ANS_SUMMARY_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="ansUseId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_USE_ID"
+            length="18"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="ansTimeSta"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_TIME_STA"
+            length="7"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="ansTimeEnd"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_TIME_END"
+            length="7"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="ansRemark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="ANS_REMARK"
+            length="2048"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to CtScrRelease -->
+		<many-to-one
+			name="ctScrRelease"
+			class="com.ulane.running.model.comtech.CtScrRelease"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="SCR_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to CtScrAnsDetail -->
+	<set name="ctScrAnsDetails"
+	     table="ct_scr_ans_detail"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="SCR_ANS_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.running.model.comtech.CtScrAnsDetail"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

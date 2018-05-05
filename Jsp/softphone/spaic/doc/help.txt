@@ -1,0 +1,28 @@
+Avaya坐席客户端配置
+一、	硬件部分
+1.	安装Avaya话机并调试可用。
+
+二、	软件部分
+1.	安装JDK1.6及以上版本到Windows。
+默认安装即可。如：C:\Program Files\Java\jdk1.6.0_10\
+    
+2.	将.java.policy放到登录用户的根目录下。
+一般为：C:\Documents and Settings\<Administrator>\
+比如用user1登录，则放置到：C:\Documents and Settings\user1\目录。
+
+3.	创建软电话配置文件。
+文件路径为：C:\ulinksoftphone\aicenv.properties
+内容为：
+#SDK Agent Properties
+#Sun Sep 9 19:34:10 UTC+0800 2012
+avaya.ic.sdk.appserver.uri=http://srv-cc-aic.jiayougo.com:9700/icsdk
+avaya.ic.sdk.user.name=工号
+avaya.ic.sdk.user.password=密码
+avaya.ic.sdk.user.stationid=分机号
+
+4.	IE浏览器版本升级及安全设置：
+1)	升级IE浏览器到7.0及以上版本；
+2)	关闭“阻止弹出窗口”功能； 
+3)	将外呼系统地址加入“可信站点”：如：http://192.168.222.67:8090/jiayouob/ 
+4)	设置“可信站点”的“自定义级别中”ActiveX控件-“对未标记为可安全执行的ActiveX控件初始化并执行”设置为：启用。
+5)	设置“可信站点”的“自定义级别中”脚本-Java小程序脚本为：“启用”。   

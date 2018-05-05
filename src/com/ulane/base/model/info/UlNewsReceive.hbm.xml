@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.info.UlNewsReceive" table="UL_NEWS_RECEIVE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="receiveId" column="RECEIVE_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UL_NEWS_RECEIVE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="receivetime" type="java.sql.Timestamp"
+			update="true" insert="true" access="property" column="RECEIVETIME"
+			length="11" not-null="false" unique="false" />
+		<property name="readtime" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="READTIME" length="11"
+			not-null="false" unique="false" />
+		<property name="readstatus" type="java.lang.Long" update="true"
+			insert="true" access="property" column="READSTATUS" length="38"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to News -->
+		<many-to-one name="news" class="com.htsoft.oa.model.info.News"
+			not-null="false" fetch="select">
+			<column name="NEWS_ID" />
+		</many-to-one>
+
+		<many-to-one name="appUser" class="com.htsoft.oa.model.system.AppUser">
+			<column name="receiver" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

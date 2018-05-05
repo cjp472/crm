@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CusDelivery"
+		table="CUS_DELIVERY" select-before-update="false" dynamic-update="false"
+		dynamic-insert="false" optimistic-lock="version">
+		<id name="deliveryId" column="DELIVERY_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CUS_DELIVERY_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="deliveryAddress" type="java.lang.String"
+			update="true" insert="true" access="property" column="DELIVERY_ADDRESS"
+			length="255" not-null="false" unique="false" />
+		<property name="addrSeq" type="java.lang.Long"
+			update="true" insert="true" access="property" column="DLV_ADDR_SEQ"
+			length="18" not-null="false" unique="false" />
+		<property name="cusId" type="java.lang.Long"
+			update="false" insert="false" access="property" column="CUSTOMERID"
+			length="255" not-null="false" unique="false" />
+		<property name="deliveryName" type="java.lang.String" update="true"
+			insert="true" access="property" column="DELIVERY_NAME" length="50"
+			not-null="false" unique="false" />
+		<property name="deliveryPhone" type="java.lang.String"
+			update="true" insert="true" access="property" column="DELIVERY_PHONE"
+			length="50" not-null="false" unique="false" />
+		<property name="deliveryPost" type="java.lang.String"
+			update="true" insert="true" access="property" column="DELIVERY_POST"
+			length="10" not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="18"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="note" type="java.lang.String" update="true"
+			insert="true" access="property" column="NOTE" length="128" not-null="false"
+			unique="false" />
+		<property name="tel" type="java.lang.String" update="true"
+			insert="true" access="property" column="DELIVERY_TEL" length="128" not-null="false"
+			unique="false" />
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false"
+			fetch="select">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to Region -->
+		<many-to-one name="regionGuojia" class="com.htsoft.oa.model.system.Region"
+			not-null="false" fetch="select">
+			<column name="REGIONID_GUOJIA" />
+		</many-to-one>
+		<many-to-one name="regionSheng" class="com.htsoft.oa.model.system.Region"
+			not-null="false" fetch="select">
+			<column name="REGIONID_SHENG" />
+		</many-to-one>
+		<many-to-one name="regionShi" class="com.htsoft.oa.model.system.Region"
+			not-null="false" fetch="select">
+			<column name="REGIONID_SHI" />
+		</many-to-one>
+		<many-to-one name="regionQu" class="com.htsoft.oa.model.system.Region"
+			not-null="false" fetch="select">
+			<column name="REGIONID_QU" />
+		</many-to-one>
+		<many-to-one name="regionJiedao" class="com.htsoft.oa.model.system.RegionDetail"
+			not-null="false" fetch="select" not-found="ignore">
+			<column name="REGIONID_JIEDAO" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

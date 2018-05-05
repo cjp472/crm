@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowApprove" table="UK_KNOW_APPROVE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="knowApproveId" column="KNOW_APPROVE_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_KNOW_APPROVE_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="approveTitle" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPROVE_TITLE" length="255"
+			not-null="false" unique="false" />
+		<property name="approveComment" type="java.lang.String"
+			update="true" insert="true" access="property" column="APPROVE_COMMENT"
+			length="1000" not-null="false" unique="false" />
+		<property name="knowStatus" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="KNOW_STATUS" length="10"
+			not-null="false" unique="false" />
+		<property name="runid" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="RUNID" length="10" not-null="false"
+			unique="false" />
+		<property name="isDelete" type="java.lang.Long" update="true"
+			insert="true" access="property" column="IS_DELETE" length="10"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.String" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="userid" type="java.lang.Long" update="true"
+			insert="true" access="property" column="USERID" length="38" not-null="false"
+			unique="false" />
+		<!-- 工作流字段 -->
+		<property name="nodeName" type="java.lang.String" update="true"
+			insert="true" access="property" column="NODE_NAME" length="30"
+			not-null="false" unique="false" />	
+		<property name="approvalStatus" type="java.lang.String" update="true"
+			insert="true" access="property" column="APPROVAL_STATUS" length="30"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to UkKnowApply -->
+		<many-to-one name="ukKnowApply" class="com.ulane.know.model.know.UkKnowApply"
+			not-null="false" fetch="select">
+			<column name="APPLY_ID" />
+		</many-to-one>
+		<!-- exported bi-directional one-to-many association to UkSysKnow -->
+		<set name="ukSysKnows" table="uk_sys_know" lazy="false" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KNOW_APPROVE_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkSysKnow" />
+		</set>
+	</class>
+</hibernate-mapping>

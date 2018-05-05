@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObComScr" table="ob_com_scr"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="comScrId" column="COM_SCR_ID" type="java.lang.Long" length="18">
+		   <generator class="sequence">
+				<param name="sequence">
+					SEQ_SCR_OB_COM_SCR_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="comId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="COM_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="tmpId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TMP_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="18"
+			not-null="false" unique="false" />
+	    
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,230 @@
+package com.ulane.customer.service.customer.impl;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   --  http://www.ulane.cn
+ *  Copyright (C) 2008-2010 Beijing Ulane Technology Co., LTD
+*/
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.Region;
+
+import com.htsoft.core.jbpm.pv.TaskInfo;
+import com.htsoft.core.service.impl.BaseServiceImpl;
+import com.htsoft.core.util.ContextUtil;
+import com.htsoft.core.web.paging.PagingBean;
+import com.ulane.base.model.xitong.Equipment;
+import com.ulane.core.plugin.soap.impl.ConHisSoapServerImpl;
+import com.ulane.customer.dao.customer.ConHisDao;
+import com.ulane.customer.model.customer.CallIdOrAgentInfo;
+import com.ulane.customer.model.customer.ConHis;
+import com.ulane.customer.model.customer.EveryDayReport;
+import com.ulane.customer.model.customer.EveryDayReportId;
+import com.ulane.customer.model.customer.Examine;
+import com.ulane.customer.model.customer.SysWorkattendance;
+import com.ulane.customer.model.customer.MachineSelf;
+import com.ulane.customer.model.customer.MachineSelfAttach;
+import com.ulane.customer.model.customer.OperationData;
+import com.ulane.customer.service.customer.ConHisService;
+/**
+ * 
+ * @author cf0666@gmail.com
+ *
+ */
+
+public class ConHisServiceImpl extends BaseServiceImpl<ConHis> implements ConHisService{
+	@SuppressWarnings("unused")
+	private ConHisDao dao;
+	
+	public ConHisServiceImpl(ConHisDao dao) {
+		super(dao);
+		this.dao=dao;
+	}
+
+	@Override
+	public String updateConHis(Map<String, String> param) {
+		//从弹屏页面获得交易类型（联络事项）、处理结果（对应联络记录的处理状态）、联络结果、备注（对应联络历史中的联络内容）
+ 		ConHisSoapServerImpl chssi = new ConHisSoapServerImpl();
+		String conhisId = param.get("conhisId");
+		String conResId = param.get("conResId");//联络结果
+		String dealResult = param.get("dealResult");//处理结果
+		String busiType_formx = param.get("busiType_form");//联络事项
+		String callContent = param.get("callContent");//联络内容
+		String statusId = param.get("statusId");	//营销状态
+		String serviceId = param.get("serviceId");	//来源id
+		
+		StringBuffer str = new StringBuffer("{'statusId':"+statusId+",'dirId': "+ConHis.DIR_OUT+",'class':'com.ulane.customer.model.customer.ConHis','contactTypeId':"+ConHis.CON_TYPE_PHONE+",'ownerId':"+ContextUtil.getCurrentUserId());
+		str.append(",'conHisId':");
+		str.append(conhisId + ",'busTypId':" + busiType_formx);
+		str.append(",'conResId':" + conResId + ",'dealResult':" + dealResult);
+		if (!callContent.equals(""))
+		{
+			str.append(",'content':'" + callContent+"'");
+		}else {
+			str.append(",'content':" + null);
+		}
+		
+		str.append("}");
+		//更新的字符串
+//		System.out.println(str.toString() + "更新的字符串 conHisId=" + conhisId);
+		String msg = chssi.updateConHis(str.toString());
+		return msg;
+	}
+	
+	public Long getMaxConHis(){
+		return dao.getMaxConHis();
+	}
+
+	@Override
+	public void saveCallIdOrAgentId(String callid,String agentid,String machineid) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - saveCallIdOrAgentId()");
+		dao.saveCallIdOrAgentId(callid,agentid,machineid);
+	}
+
+	@Override
+	public void updateDealNum(String conhisid, String cusName, String dealno) {
+		System.out.println("[ConHisServiceImpl.java] - updateDealNum()");
+		dao.updateDealNum(conhisid, cusName, dealno);
+		
+	}
+
+	@Override
+	public Equipment selectEquiName(String eId) {
+		//System.out.println("[ConHisServiceImpl.java] - selectEquiName()");
+		return dao.selectEquiName(eId);
+	}
+
+	/***
+	 * 2014/07/29
+	 * 身份核查补录，后台记录数据，提供报表基础
+	 * @param callIdOrAgentInfo
+	 */
+	@Override
+	public void insertExamineInfo(Examine examine) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - insertExamineInfo()");
+		dao.insertExamineInfo(examine);
+	}
+
+	/**
+	 * 2014/11/7
+	 * 补录报表的查询
+	 * （带分页）
+	 * nk
+	 */
+	@Override
+	public List<Examine> ExamineReport(Integer start, Integer limit, String dealNum,
+			String cusName, String transactP, String examineP, String examineD,
+			String examineR) {
+		System.out.println("[ConHisServiceImpl.java] - ExamineReport()");
+		return dao.ExamineReport(start, limit, dealNum, cusName, transactP, examineP, examineD, examineR);
+	}
+	// 查询补录报表的总条数
+	@Override
+	public Integer ExamineReportCount(String dealNum, String cusName,
+			String transactP, String examineP, String examineD, String examineR) {
+		System.out.println("[ConHisServiceImpl.java] - ExamineReportCount()");
+		return dao.ExamineReportCount(dealNum, cusName, transactP, examineP, examineD, examineR);
+	}
+	
+	@Override
+	public List<SysWorkattendance> SysWorkattendance(
+			Integer start, Integer limit, String loginTime, String logoutTime) {
+		System.out.println("===service =====SysWorkattendance");
+		return dao.SysWorkattendance(start, limit, loginTime, logoutTime);
+	}
+
+	@Override
+	public Integer SysWorkattendanceCount(String loginTime, String logoutTime) {
+		System.out.println("===service =====SysWorkattendanceCount");
+		return dao.SysWorkattendanceCount(loginTime, logoutTime);
+	}
+	
+
+	/***
+	 * 2014/12/18
+	 * Hyman   
+	 * 存储后台OperationData数据
+	 * @param 
+	 */
+	@Override
+	public void insertOperationData(Long BS_num, String agentid,
+			String insertTime, String Stype) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - insertOperationData()");
+		dao.insertOperationData(BS_num, agentid, insertTime, Stype);
+	}
+
+	@Override
+	public OperationData selectMaxOpera() {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - selectMaxOpera()");
+		return dao.selectMaxOpera();
+	}
+
+	
+	@Override
+	public void insertWorkAttendance(Long BS_num, String agentid,
+			String loginsystime, String loginctitime, String logoutsystime,
+			String status, String reason,String remarks) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - insertWorkAttendance()");
+		dao.insertWorkAttendance(BS_num, agentid, loginsystime, loginctitime, logoutsystime, status, reason, remarks);
+	}
+	
+	/**
+	 * 20150208
+	 * 自主终端资料查询
+	 * Fernando 
+	 */
+	@Override
+	public List<MachineSelf> machineSelfList(Integer start, Integer limit,
+			String wdNum, String cusName, String tellernum, String tradedateStart,String tradedateEnd,String traderesult) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - machineSelfList()");
+		return dao.machineSelfList(start, limit, wdNum, cusName, tellernum, tradedateStart,tradedateEnd,traderesult);
+	}
+
+	@Override
+	public Integer machineSelfCount(String wdNum, String cusName,
+			String tellernum, String tradedateStart,String tradedateEnd,String traderesult) {
+		System.out.println("[ConHisServiceImpl.java] - machineSelfCount()");
+		return dao.machineSelfCount(wdNum, cusName, tellernum, tradedateStart,tradedateEnd,traderesult);
+	}
+
+	@Override
+	public List<MachineSelfAttach> machSelfAttachList(String msid) {
+		// TODO Auto-generated method stub
+		System.out.println("[ConHisServiceImpl.java] - machSelfAttachList()");
+		return dao.machSelfAttachList(msid);
+	}
+	
+//	/**
+//	 * 插入高清录音文件路径
+//	 * Fernando
+//	 * 2015/3/4
+//	 */
+//	@Override
+//	public void saveWavAttach(String conhisid, String filepath, Date creatDate,
+//			String agentId, Long fileType, Long fileSource) {
+//		// TODO Auto-generated method stub
+//		System.out.println("[ConHisServiceImpl.java] - saveWavAttach()");
+//		dao.saveWavAttach(conhisid, filepath, creatDate, agentId, fileType, fileSource);
+//	}
+	
+	
+
+}

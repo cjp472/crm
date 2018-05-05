@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.CusPurchaseCompany"
+		table="CUS_PURCHASE_COMPANY" select-before-update="false"
+		dynamic-update="false" dynamic-insert="false" optimistic-lock="version">
+		<id name="customerid" column="CUSTOMERID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_CUS_PURCHASE_COMPANY_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="busiCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="BUSI_CODE" length="128"
+			not-null="false" unique="false" />
+		<property name="cusCatId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="CUS_CAT_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="nameCn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_CN" length="128"
+			not-null="true" unique="false" />
+		<property name="nameEn" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_EN" length="128"
+			not-null="false" unique="false" />
+		<property name="nameAli" type="java.lang.String" update="true"
+			insert="true" access="property" column="NAME_ALI" length="128"
+			not-null="false" unique="false" />
+		<property name="simpleCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="SIMPLE_CODE" length="512"
+			not-null="false" unique="false" />
+		<property name="enrollCode" type="java.lang.String" update="true"
+			insert="true" access="property" column="ENROLL_CODE" length="100"
+			not-null="false" unique="false" />
+		<property name="taxnumber" type="java.lang.String" update="true"
+			insert="true" access="property" column="TAXNUMBER" length="50"
+			not-null="false" unique="false" />
+		<property name="occupationId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="OCCUPATION_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="companyCharacterId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="COMPANY_CHARACTER_ID"
+			length="5" not-null="false" unique="false" />
+		<property name="companyTypeId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="COMPANY_TYPE_ID" length="5"
+			not-null="false" unique="false" />
+		<property name="companyCreditId" type="java.lang.Short"
+			update="true" insert="true" access="property" column="COMPANY_CREDIT_ID"
+			length="5" not-null="false" unique="false" />
+		<property name="regionId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="REGION_ID" length="10"
+			not-null="false" unique="false" />
+		<property name="tradeAddress" type="java.lang.String" update="true"
+			insert="true" access="property" column="TRADE_ADDRESS" length="2048"
+			not-null="false" unique="false" />
+		<property name="tradeZipcode" type="java.lang.String" update="true"
+			insert="true" access="property" column="TRADE_ZIPCODE" length="6"
+			not-null="false" unique="false" />
+		<property name="tradeScope" type="java.lang.String" update="true"
+			insert="true" access="property" column="TRADE_SCOPE" length="4000"
+			not-null="false" unique="false" />
+		<property name="registerAddress" type="java.lang.String"
+			update="true" insert="true" access="property" column="REGISTER_ADDRESS"
+			length="2048" not-null="false" unique="false" />
+		<property name="registerZipcode" type="java.lang.String"
+			update="true" insert="true" access="property" column="REGISTER_ZIPCODE"
+			length="6" not-null="false" unique="false" />
+		<property name="legalName" type="java.lang.String" update="true"
+			insert="true" access="property" column="LEGAL_NAME" length="100"
+			not-null="false" unique="false" />
+		<property name="registerMoney" type="java.lang.String"
+			update="true" insert="true" access="property" column="REGISTER_MONEY"
+			length="20" not-null="false" unique="false" />
+		<property name="regTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="REG_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="companyUrl" type="java.lang.String" update="true"
+			insert="true" access="property" column="COMPANY_URL" length="100"
+			not-null="false" unique="false" />
+		<property name="companyRemark" type="java.lang.String"
+			update="true" insert="true" access="property" column="COMPANY_REMARK"
+			length="2048" not-null="false" unique="false" />
+		<property name="hasChecked" type="java.lang.Short" update="true"
+			insert="true" access="property" column="HAS_CHECKED" length="5"
+			not-null="true" unique="false" />
+		<property name="staId" type="java.lang.Short" update="true"
+			insert="true" access="property" column="STA_ID" length="5" not-null="true"
+			unique="false" />
+		<property name="remark" type="java.lang.String" update="true"
+			insert="true" access="property" column="REMARK" length="2048"
+			not-null="false" unique="false" />
+		<property name="creUseId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="CRE_USE_ID" length="10"
+			not-null="true" unique="false" />
+		<property name="creDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="CRE_DAT" length="7" not-null="true"
+			unique="false" />
+		<property name="updUseId" type="java.lang.Integer" update="true"
+			insert="true" access="property" column="UPD_USE_ID" length="10"
+			not-null="false" unique="false" />
+		<property name="updDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPD_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="ext1" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT1" length="256" not-null="false"
+			unique="false" />
+		<property name="ext2" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT2" length="256" not-null="false"
+			unique="false" />
+		<property name="ext3" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT3" length="256" not-null="false"
+			unique="false" />
+		<property name="ext4" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT4" length="256" not-null="false"
+			unique="false" />
+		<property name="ext5" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT5" length="256" not-null="false"
+			unique="false" />
+		<property name="ext6" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT6" length="256" not-null="false"
+			unique="false" />
+		<property name="ext8" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT8" length="256" not-null="false"
+			unique="false" />
+		<property name="ext7" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT7" length="256" not-null="false"
+			unique="false" />
+		<property name="ext9" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT9" length="256" not-null="false"
+			unique="false" />
+		<property name="ext10" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT10" length="256" not-null="false"
+			unique="false" />
+		<property name="ext11" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT11" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext12" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT12" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext13" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT13" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext14" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT14" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext15" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT15" length="1024"
+			not-null="false" unique="false" />
+		<property name="ext16" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT16" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext17" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT17" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext18" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT18" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext19" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT19" length="2048"
+			not-null="false" unique="false" />
+		<property name="ext20" type="java.lang.String" update="true"
+			insert="true" access="property" column="EXT20" length="2048"
+			not-null="false" unique="false" />
+		<!-- imported bi-directional many-to-one association to Customer -->
+		<many-to-one name="customer"
+			class="com.htsoft.oa.model.customer.Customer" not-null="false"
+			update="false" insert="false">
+			<column name="CUSTOMERID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

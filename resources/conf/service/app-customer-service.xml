@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">      
+	<bean id="BaseAction" class="com.htsoft.core.web.action.BaseAction"/>
+
+
+<!-- start:  Generated for CusPersonal From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusPersonalService" class="com.ulane.customer.service.customer.impl.CusPersonalServiceImpl">
+   	 	<constructor-arg index="0" ref="cusPersonalDao"/>
+   	 </bean>
+<!-- end:  Generated for CusPersonal From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusCompany From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusCompanyService" class="com.ulane.customer.service.customer.impl.CusCompanyServiceImpl">
+   	 	<constructor-arg index="0" ref="cusCompanyDao"/>
+   	 </bean>
+<!-- end:  Generated for CusCompany From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusPurchaseCompany From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="cusPurchaseCompanyService" class="com.ulane.customer.service.customer.impl.CusPurchaseCompanyServiceImpl">
+   	 	<constructor-arg index="0" ref="cusPurchaseCompanyDao"/>
+   	 </bean>
+<!-- end:  Generated for CusPurchaseCompany From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for CusContact From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusContactService" class="com.ulane.customer.service.customer.impl.CusContactServiceImpl">
+   	 	<constructor-arg index="0" ref="cusContactDao"/>
+   	 </bean>
+<!-- end:  Generated for CusContact From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusHis From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusHisService" class="com.ulane.customer.service.customer.impl.CusHisServiceImpl">
+   	 	<constructor-arg index="0" ref="cusHisDao"/>
+   	 </bean>
+<!-- end:  Generated for CusHis From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConHis From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="conHisService" class="com.ulane.customer.service.customer.impl.ConHisServiceImpl">
+   	 	<constructor-arg index="0" ref="conHisDao"/>
+   	 </bean>
+   	 
+   	 <!-- 
+   	  <bean id="cusReportService" class="com.ulane.customer.service.customer.impl.CusReportServiceImpl">
+   	 	<constructor-arg index="0" ref="cusReportDao"/>
+   	 </bean>
+   	  -->
+   	 
+<!-- end:  Generated for ConHis From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConHis From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="conAttachService" class="com.ulane.customer.service.customer.impl.ConAttachServiceImpl">
+   	 	<constructor-arg index="0" ref="conAttachDao"/>
+   	 </bean>
+<!-- end:  Generated for ConHis From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConHushou From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="conHushouService" class="com.ulane.customer.service.customer.impl.ConHushouServiceImpl">
+   	 	<constructor-arg index="0" ref="conHushouDao"/>
+   	 </bean>
+<!-- end:  Generated for ConHushou From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConWeichuli From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="conWeichuliService" class="com.ulane.customer.service.customer.impl.ConWeichuliServiceImpl">
+   	 	<constructor-arg index="0" ref="conWeichuliDao"/>
+   	 </bean>
+<!-- end:  Generated for ConWeichuli From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConLanjie From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="conLanjieService" class="com.ulane.customer.service.customer.impl.ConLanjieServiceImpl">
+   	 	<constructor-arg index="0" ref="conLanjieDao"/>
+   	 </bean>
+<!-- end:  Generated for ConLanjie From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusBusiInvoke From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusBusiInvokeService" class="com.ulane.customer.service.customer.impl.CusBusiInvokeServiceImpl">
+   	 	<constructor-arg index="0" ref="cusBusiInvokeDao"/>
+   	 </bean>
+<!-- end:  Generated for CusBusiInvoke From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusSpeEve From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusSpeEveService" class="com.ulane.customer.service.customer.impl.CusSpeEveServiceImpl">
+   	 	<constructor-arg index="0" ref="cusSpeEveDao"/>
+   	 </bean>
+<!-- end:  Generated for CusSpeEve From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConBwListTimeRul From Template: app-running-service.xml.beansvm  -->
+	 <bean id="conBwListTimeRulService" class="com.ulane.customer.service.customer.impl.ConBwListTimeRulServiceImpl">
+   	 	<constructor-arg index="0" ref="conBwListTimeRulDao"/>
+   	 </bean>
+<!-- end:  Generated for ConBwListTimeRul From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for ConBwListBusRul From Template: app-running-service.xml.beansvm  -->
+	 <bean id="conBwListBusRulService" class="com.ulane.customer.service.customer.impl.ConBwListBusRulServiceImpl">
+   	 	<constructor-arg index="0" ref="conBwListBusRulDao"/>
+   	 </bean>
+<!-- end:  Generated for ConBwListBusRul From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for ConBwList From Template: app-running-service.xml.beansvm  -->
+	 <bean id="conBwListService" class="com.ulane.customer.service.customer.impl.ConBwListServiceImpl">
+   	 	<constructor-arg index="0" ref="conBwListDao"/>
+   	 </bean>
+<!-- end:  Generated for ConBwList From Template: app-running-service.xml.beansvm  -->
+<!-- start:  Generated for ConServiceRequest From Template: app-supply-service.xml.beansvm  -->
+	 <bean id="conServiceRequestService" class="com.ulane.customer.service.customer.impl.ConServiceRequestServiceImpl">
+   	 	<constructor-arg index="0" ref="conServiceRequestDao"/>
+   	 </bean>
+<!-- end:  Generated for ConServiceRequest From Template: app-supply-service.xml.beansvm  -->
+<!-- start:  Generated for ObFee From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="obFeeService" class="com.ulane.customer.service.fee.impl.ObFeeServiceImpl">
+   	 	<constructor-arg index="0" ref="obFeeDao"/>
+   	 </bean>
+<!-- end:  Generated for ObFee From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for sysEmpPerformance From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="sysEmpPerformanceService" class="com.ulane.customer.service.fee.impl.SysEmpPerformanceServiceImpl">
+   	 	<constructor-arg index="0" ref="sysEmpPerformanceDao"/>
+   	 </bean>
+<!-- end:  Generated for sysEmpPerformance From Template: app-customer-service.xml.beansvm  -->
+
+<!-- start:  Generated for ObFeeIndex From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="obFeeIndexService" class="com.ulane.customer.service.fee.impl.ObFeeIndexServiceImpl">
+   	 	<constructor-arg index="0" ref="obFeeIndexDao"/>
+   	 </bean>
+<!-- end:  Generated for ObFeeIndex From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndexLevel From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="obFeeIndexLevelService" class="com.ulane.customer.service.fee.impl.ObFeeIndexLevelServiceImpl">
+   	 	<constructor-arg index="0" ref="obFeeIndexLevelDao"/>
+   	 </bean>
+<!-- end:  Generated for ObFeeIndexLevel From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ObFeeIndexProject From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="obFeeIndexProjectService" class="com.ulane.customer.service.fee.impl.ObFeeIndexProjectServiceImpl">
+   	 	<constructor-arg index="0" ref="obFeeIndexProjectDao"/>
+   	 </bean>
+<!-- end:  Generated for ObFeeIndexProject From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ObFeeRule From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="obFeeRuleService" class="com.ulane.customer.service.fee.impl.ObFeeRuleServiceImpl">
+   	 	<constructor-arg index="0" ref="obFeeRuleDao"/>
+   	 </bean>
+<!-- end:  Generated for ObFeeRule From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ObFeeRuleValue From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="obFeeRuleValueService" class="com.ulane.customer.service.fee.impl.ObFeeRuleValueServiceImpl">
+   	 	<constructor-arg index="0" ref="obFeeRuleValueDao"/>
+   	 </bean>
+<!-- end:  Generated for ObFeeRuleValue From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for ConBwlistApprove From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="conBwlistApproveService" class="com.ulane.customer.service.customer.impl.ConBwlistApproveServiceImpl">
+   	 	<constructor-arg index="0" ref="conBwlistApproveDao"/>
+   	 </bean>
+<!-- end:  Generated for ConBwlistApprove From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusRelationship From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusRelationshipService" class="com.ulane.customer.service.customer.impl.CusRelationshipServiceImpl">
+   	 	<constructor-arg index="0" ref="cusRelationshipDao"/>
+   	 </bean>
+<!-- end:  Generated for CusRelationship From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CsOrder From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="csOrderService" class="com.ulane.customer.service.customer.impl.CsOrderServiceImpl">
+   	 	<constructor-arg index="0" ref="csOrderDao"/>
+   	 </bean>
+<!-- end:  Generated for CsOrder From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CusDelivery From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="cusDeliveryService" class="com.ulane.customer.service.customer.impl.CusDeliveryServiceImpl">
+   	 	<constructor-arg index="0" ref="cusDeliveryDao"/>
+   	 </bean>
+<!-- end:  Generated for CusDelivery From Template: app-customer-service.xml.beansvm  -->
+<!-- start:  Generated for CsOrderTime From Template: app-customer-service.xml.beansvm  -->
+	 <bean id="csOrderTimeService" class="com.ulane.customer.service.customer.impl.CsOrderTimeServiceImpl">
+   	 	<constructor-arg index="0" ref="csOrderTimeDao"/>
+   	 </bean>
+<!-- end:  Generated for CsOrderTime From Template: app-customer-service.xml.beansvm  -->
+</beans>

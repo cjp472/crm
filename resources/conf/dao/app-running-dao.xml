@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	
+<!-- start:  Generated for QcCheck From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcCheckDao" class="com.ulane.running.dao.qucon.impl.QcCheckDaoImpl" parent="baseDao"/>
+	<bean id="qcRandomExtractDao" class="com.ulane.running.dao.qucon.impl.QcRandomExtractDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcCheck From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcCheckDetail From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcCheckDetailDao" class="com.ulane.running.dao.qucon.impl.QcCheckDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcCheckDetail From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcChkBasis From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcChkBasisDao" class="com.ulane.running.dao.qucon.impl.QcChkBasisDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcChkBasis From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcScoreOpt From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcScoreOptDao" class="com.ulane.running.dao.qucon.impl.QcScoreOptDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcScoreOpt From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTarCat From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTarCatDao" class="com.ulane.running.dao.qucon.impl.QcTarCatDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTarCat From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTemplate From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTemplateDao" class="com.ulane.running.dao.qucon.impl.QcTemplateDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTemplate From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTempChapcter From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTempChapcterDao" class="com.ulane.running.dao.qucon.impl.QcTempChapcterDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTempChapcter From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTarget From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTargetDao" class="com.ulane.running.dao.qucon.impl.QcTargetDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTarget From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTempRelease From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTempReleaseDao" class="com.ulane.running.dao.qucon.impl.QcTempReleaseDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTempRelease From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTempReObj From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTempReObjDao" class="com.ulane.running.dao.qucon.impl.QcTempReObjDaoImpl" parent="baseDao"/>
+	<bean id="qcTempReChaDao" class="com.ulane.running.dao.qucon.impl.QcTempReChaDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTempReObj From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcTempTar From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcTempTarDao" class="com.ulane.running.dao.qucon.impl.QcTempTarDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcTempTar From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrAnsDetail From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrAnsDetailDao" class="com.ulane.running.dao.comtech.impl.CtScrAnsDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrAnsDetail From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrAnsSummary From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrAnsSummaryDao" class="com.ulane.running.dao.comtech.impl.CtScrAnsSummaryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrAnsSummary From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrCat From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrCatDao" class="com.ulane.running.dao.comtech.impl.CtScrCatDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrCat From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrChapcter From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrChapcterDao" class="com.ulane.running.dao.comtech.impl.CtScrChapcterDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrChapcter From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrQue From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrQueDao" class="com.ulane.running.dao.comtech.impl.CtScrQueDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrQue From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrQueOpt From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrQueOptDao" class="com.ulane.running.dao.comtech.impl.CtScrQueOptDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrQueOpt From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrRelease From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrReleaseDao" class="com.ulane.running.dao.comtech.impl.CtScrReleaseDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrRelease From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrReleaseObj From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrReleaseObjDao" class="com.ulane.running.dao.comtech.impl.CtScrReleaseObjDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrReleaseObj From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemplate From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrTemplateDao" class="com.ulane.running.dao.comtech.impl.CtScrTemplateDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrTemplate From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemGotoRule From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrTemGotoRuleDao" class="com.ulane.running.dao.comtech.impl.CtScrTemGotoRuleDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrTemGotoRule From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for CtScrTemQue From Template: app-running-dao.xml.beansvm  -->
+	<bean id="ctScrTemQueDao" class="com.ulane.running.dao.comtech.impl.CtScrTemQueDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for CtScrTemQue From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapAnsDetail From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papAnsDetailDao" class="com.ulane.running.dao.pap.impl.PapAnsDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapAnsDetail From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapAnsSummary From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papAnsSummaryDao" class="com.ulane.running.dao.pap.impl.PapAnsSummaryDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapAnsSummary From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapCat From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papCatDao" class="com.ulane.running.dao.pap.impl.PapCatDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapCat From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapChapcter From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papChapcterDao" class="com.ulane.running.dao.pap.impl.PapChapcterDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapChapcter From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapQue From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papQueDao" class="com.ulane.running.dao.pap.impl.PapQueDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapQue From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapQueOpt From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papQueOptDao" class="com.ulane.running.dao.pap.impl.PapQueOptDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapQueOpt From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapRelease From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papReleaseDao" class="com.ulane.running.dao.pap.impl.PapReleaseDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapRelease From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapReleaseObj From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papReleaseObjDao" class="com.ulane.running.dao.pap.impl.PapReleaseObjDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapReleaseObj From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapTemplate From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papTemplateDao" class="com.ulane.running.dao.pap.impl.PapTemplateDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapTemplate From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapTemGotoRule From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papTemGotoRuleDao" class="com.ulane.running.dao.pap.impl.PapTemGotoRuleDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapTemGotoRule From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for PapTemQue From Template: app-running-dao.xml.beansvm  -->
+	<bean id="papTemQueDao" class="com.ulane.running.dao.pap.impl.PapTemQueDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for PapTemQue From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcChkList From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcChkListDao" class="com.ulane.running.dao.qucon.impl.QcChkListDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcChkList From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcChkRul From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcChkRulDao" class="com.ulane.running.dao.qucon.impl.QcChkRulDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcChkRul From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcChkRulDetail From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcChkRulDetailDao" class="com.ulane.running.dao.qucon.impl.QcChkRulDetailDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcChkRulDetail From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcChkGuid From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcChkGuidDao" class="com.ulane.running.dao.qucon.impl.QcChkGuidDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcChkGuid From Template: app-running-dao.xml.beansvm  -->
+<!-- start:  Generated for QcChkGuidFile From Template: app-running-dao.xml.beansvm  -->
+	<bean id="qcChkGuidFileDao" class="com.ulane.running.dao.qucon.impl.QcChkGuidFileDaoImpl" parent="baseDao"/>
+<!-- end:  Generated for QcChkGuidFile From Template: app-running-dao.xml.beansvm  -->
+</beans>

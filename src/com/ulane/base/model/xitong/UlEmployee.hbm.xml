@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.base.model.xitong.UlEmployee" table="UL_EMPLOYEE"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="useid" column="USEID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UL_EMPLOYEE_ID
+				</param>
+			</generator>
+		</id>
+		<property name="fullname" type="java.lang.String" update="true"
+			insert="true" access="property" column="FULLNAME" length="50"
+			not-null="true" unique="false" />
+		<property name="alias" type="java.lang.String" update="true"
+			insert="true" access="property" column="ALIAS" length="50" not-null="false"
+			unique="false" />
+		<property name="sex" type="java.lang.Long" update="true"
+			insert="true" access="property" column="SEX" length="22" not-null="true"
+			unique="false" />
+		<property name="birthday" type="java.util.Date" update="true"
+			insert="true" access="property" column="BIRTHDAY" length="7"
+			not-null="false" unique="false" />
+		<property name="type" type="java.lang.Long" update="true"
+			insert="true" access="property" column="TYPE" length="22" not-null="false"
+			unique="false" />
+		<property name="hujiGuojia" type="java.lang.Long" update="true"
+			insert="true" access="property" column="HUJI_GUOJIA" length="22"
+			not-null="false" unique="false" />
+		<property name="hujiSheng" type="java.lang.Long" update="true"
+			insert="true" access="property" column="HUJI_SHENG" length="22"
+			not-null="false" unique="false" />
+		<property name="hujiShi" type="java.lang.Long" update="true"
+			insert="true" access="property" column="HUJI_SHI" length="22"
+			not-null="false" unique="false" />
+		<property name="hujiDiqu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="HUJI_DIQU" length="22"
+			not-null="false" unique="false" />
+		<property name="education" type="java.lang.Long" update="true"
+			insert="true" access="property" column="EDUCATION" length="22"
+			not-null="false" unique="false" />
+		<property name="biyeyuanxiao" type="java.lang.String" update="true"
+			insert="true" access="property" column="BIYEYUANXIAO" length="30"
+			not-null="false" unique="false" />
+		<property name="ruzhifangshi" type="java.lang.Long" update="true"
+			insert="true" access="property" column="RUZHIFANGSHI" length="22"
+			not-null="false" unique="false" />
+		<property name="zhiwei" type="java.lang.String" update="true"
+			insert="true" access="property" column="ZHIWEI" length="20" not-null="false"
+			unique="false" />
+		<property name="zhiji" type="java.lang.String" update="true"
+			insert="true" access="property" column="ZHIJI" length="20" not-null="false"
+			unique="false" />
+		<property name="status" type="java.lang.Long" update="true"
+			insert="true" access="property" column="STATUS" length="22" not-null="true"
+			unique="false" />
+		<property name="zhuanzhengshijian" type="java.util.Date"
+			update="true" insert="true" access="property" column="ZHUANZHENGSHIJIAN"
+			length="7" not-null="false" unique="false" />
+		<property name="hetongdaoqishijian" type="java.util.Date"
+			update="true" insert="true" access="property" column="HETONGDAOQISHIJIAN"
+			length="7" not-null="false" unique="false" />
+		<property name="gongzuodiGuojia" type="java.lang.Long"
+			update="true" insert="true" access="property" column="GONGZUODI_GUOJIA"
+			length="22" not-null="false" unique="false" />
+		<property name="gongzuodiSheng" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GONGZUODI_SHENG" length="22"
+			not-null="false" unique="false" />
+		<property name="gongzuodiShi" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GONGZUODI_SHI" length="22"
+			not-null="false" unique="false" />
+		<property name="gongzuodiDiqu" type="java.lang.Long" update="true"
+			insert="true" access="property" column="GONGZUODI_DIQU" length="22"
+			not-null="false" unique="false" />
+		<property name="note" type="java.lang.String" update="true"
+			insert="true" access="property" column="NOTE" length="500" not-null="false"
+			unique="false" />
+		<property name="parent" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PARENT" length="18" not-null="false"
+			unique="false" />
+		<property name="ruzhishijian" type="java.util.Date" update="true"
+			insert="true" access="property" column="RUZHISHIJIAN" length="7"
+			not-null="false" unique="false" />
+		<property name="userNo" type="java.lang.String" update="true"
+			insert="true" access="property" column="USERNO" length="20" not-null="true"
+			unique="false" />
+			<property name="bankTypeId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BANK_TYPE_ID" length="18" not-null="false"
+			unique="false" />
+	  <property name="bankname" type="java.lang.String" update="true"
+			insert="true" access="property" column="BANK_NAME" length="30" not-null="false"
+			unique="false" />
+			<property name="idcard" type="java.lang.String" update="true"
+			insert="true" access="property" column="ID_CARD" length="30" not-null="false"
+			unique="false" />
+			<property name="phone" type="java.lang.String" update="true"
+			insert="true" access="property" column="PHONE" length="30" not-null="false"
+			unique="false" />
+			
+		<many-to-one name="ulDepartment"
+			class="com.ulane.base.model.xitong.UlDepartment" not-found="ignore">
+			<column name="depid" />
+		</many-to-one>
+
+		<set name="contacts" table="UL_CONTACT_EMPL" lazy="true" inverse="false"
+			cascade="all-delete-orphan">
+			<key>
+				<column name="useid" />
+			</key>
+			<one-to-many class="com.ulane.base.model.xitong.UlContactEmpl" />
+		</set>
+
+		<!--
+			<many-to-one name="parentEmp"
+			class="com.ulane.base.model.xitong.UlEmployee" > <column
+			name="parent" /> </many-to-one>
+		-->
+
+		<set name="phoneGroups" table="phone_group_employee" inverse="false"
+			lazy="true" cascade="all">
+			<key column="useid"></key>
+			<many-to-many column="groupId" fetch="join"
+				class="com.htsoft.oa.model.communicate.PhoneGroup"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

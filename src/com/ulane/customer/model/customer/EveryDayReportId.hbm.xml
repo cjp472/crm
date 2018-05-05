@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.customer.model.customer.EveryDayReport" table="v_5" select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		
+		<composite-id name="id" class="com.ulane.customer.model.customer.EveryDayReportId">
+		   <key-property name="bothtime" type="java.lang.String">
+		    <column name="bothtime" length="128" />
+		   </key-property>
+		   <key-property name="datetimeType" type="java.lang.Long">
+		    <column name="datetimeType" length="19" />
+		   </key-property>
+		   <key-property name="logincount" type="java.lang.Long">
+		    <column name="logincount" length="19" />
+		   </key-property>
+		   <key-property name="dates" type="java.lang.String">
+		    <column name="dates" length="128" />
+		   </key-property>
+		   <key-property name="endinboundcount" type="java.lang.Long">
+		    <column name="endinboundcount" length="19" />
+		   </key-property>
+		    <key-property name="fwshuiping" type="java.lang.String">
+		    <column name="fwshuiping" length="128" />
+		   </key-property>
+		   <key-property name="queueendcallcount" type="java.lang.Long">
+		    <column name="queueendcallcount" length="19" />
+		   </key-property>
+		   <key-property name="avaafterworktime" type="java.lang.Long">
+		    <column name="avaafterworktime" length="19" />
+		   </key-property>
+		   <key-property name="succendinbountcall" type="java.lang.String">
+		    <column name="succendinbountcall" length="128" />
+		   </key-property>
+		   <key-property name="averagecalltime" type="java.lang.String">
+		    <column name="averagecalltime" length="128" />
+		   </key-property>
+		   <key-property name="liyonglv" type="java.lang.String">
+		    <column name="liyonglv" length="128" />
+		   </key-property>
+		   <key-property name="keyonglv" type="java.lang.String">
+		    <column name="keyonglv" length="128" />
+		   </key-property>
+		   <!-- <key-property name="averageafterworktime" type="java.lang.Long">
+		    <column name="averageafterworktime" length="19" />
+		   </key-property> -->
+		    <key-property name="avaqueuetime" type="java.lang.Long">  
+		    <column name="avaqueuetime" length="19" />
+		   </key-property>
+		    <key-property name="maxqueuetime" type="java.lang.Long">  
+		    <column name="maxqueuetime" length="19" />
+		   </key-property>
+		    <key-property name="sixtyreturn" type="java.lang.Long">  
+		    <column name="sixtyreturn" length="19" />
+		   </key-property>
+		 </composite-id>
+		</class>
+		
+</hibernate-mapping>

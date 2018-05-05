@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.callout.model.outb.ObCallbatch"
+        table="OB_CALLBATCH"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="callbatchId"
+            column="CALLBATCH_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_OB_CALLBATCH_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="callbatchNam"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CALLBATCH_NAM"
+            length="512"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="callbatchDes"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CALLBATCH_DES"
+            length="4000"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="callbatchTypId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CALLBATCH_TYP_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="callbatchSrcId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CALLBATCH_SRC_ID"
+            length="5"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="callbatchRegion"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="CALLBATCH_REGION"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="numberSta"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="NUMBER_STA"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="numberEnd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="NUMBER_END"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="staDat"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="STA_DAT"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="endDat"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="END_DAT"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="impDur"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="IMP_DUR"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="totalCount"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="TOTAL_COUNT"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="avlidCount"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="AVLID_COUNT"
+            length="10"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="inavlidCount"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="INAVLID_COUNT"
+            length="10"
+            not-null="true"
+            unique="false"
+        />
+        <property
+            name="holdCount"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="HOLD_COUNT"
+            length="10"
+            not-null="true"
+            unique="false"
+        />
+<!--    <property
+            name="useId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="USE_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        /> -->
+        <property
+            name="creDat"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CRE_DAT"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="callbatchStaId"
+            type="java.lang.Short"
+            update="true"
+            insert="true"
+            access="property"
+            column="CALLBATCH_STA_ID"
+            length="5"
+            not-null="true"
+            unique="false"
+        />
+        
+     <!-- imported bi-directional many-to-one association to ObCalllist -->
+		<many-to-one
+			name="obCalllist"
+			class="com.ulane.callout.model.outb.ObCalllist"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="CALLLIST_ID" />
+		</many-to-one>
+     <!-- imported bi-directional many-to-one association to AppUser -->
+		<many-to-one
+			name="useId"
+			class="com.htsoft.oa.model.system.AppUser"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="USE_ID" />
+		</many-to-one>
+ <!-- exported bi-directional one-to-many association to ObCallbatchAss -->
+	<set name="obCallbatchAsss"
+	     table="ob_callbatch_ass"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CALLBATCH_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.callout.model.outb.ObCallbatchAss"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObCallbatchCus -->
+	<set name="obCallbatchCuss"
+	     table="ob_callbatch_cus"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CALLBATCH_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.callout.model.outb.ObCallbatchCus"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObCallbatchHis -->
+	<set name="obCallbatchHiss"
+	     table="ob_callbatch_his"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CALLBATCH_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.callout.model.outb.ObCallbatchHis"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObCallbatchImpTmp -->
+	<set name="obCallbatchImpTmps"
+	     table="ob_callbatch_imp_tmp"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CALLBATCH_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.callout.model.outb.ObCallbatchImpTmp"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObConCalllist -->
+	<set name="obConCalllists"
+	     table="ob_con_calllist"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CALLBATCH_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.callout.model.outb.ObConCalllist"
+		/>
+	</set>     
+ <!-- exported bi-directional one-to-many association to ObSaletask -->
+	<set name="obSaletasks"
+	     table="ob_saletask"
+	     lazy="true"
+	     inverse="true"
+	     cascade="save-update"
+	     sort="unsorted"
+	>
+		<key>
+			<column name="CALLBATCH_ID"/>
+		</key>
+		<one-to-many
+			class="com.ulane.callout.model.outb.ObSaletask"
+		/>
+	</set>     
+    </class>
+</hibernate-mapping>

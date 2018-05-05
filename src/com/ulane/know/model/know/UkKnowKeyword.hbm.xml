@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.know.model.know.UkKnowKeyword" table="UK_KNOW_KEYWORD"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="keywordId" column="KEYWORD_ID" type="java.lang.Long"
+			length="38">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_UK_KNOW_KEYWORD_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="keyWord" type="java.lang.String" update="true"
+			insert="true" access="property" column="KEY_WORD" length="100"
+			not-null="false" unique="false" />
+		<property name="comMent" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_MENT" length="500"
+			not-null="false" unique="false" />
+		<property name="knowStatus" type="java.lang.Long" update="true"
+			insert="true" access="property" column="KNOW_STATUS" length="38"
+			not-null="false" unique="false" />
+		<property name="createBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="updateBy" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_BY" length="38"
+			not-null="false" unique="false" />
+		<property name="createDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="CREATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<property name="updateDate" type="java.sql.Timestamp" update="true"
+			insert="true" access="property" column="UPDATE_DATE" length="11"
+			not-null="false" unique="false" />
+		<many-to-one name="type" class="com.ulane.know.model.know.UkKnowKeywordType" lazy="false">
+			<column name="KEYWORD_TYPE_ID" />
+		</many-to-one>
+			
+		<!--
+			exported bi-directional one-to-many association to UkKnowKeywordKnow
+		
+		<set name="ukKnowKeywordKnows" table="uk_know_keyword_know" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="KEYWORD_ID" />
+			</key>
+			<one-to-many class="com.ulane.know.model.know.UkKnowKeywordKnow" />
+		</set>-->
+		<set name="ukSysKnows" table="UK_KNOW_KEYWORD_KNOW" inverse="false" lazy="true" cascade="all">
+			<key column="KEYWORD_ID"></key>
+			<many-to-many column="knowId" fetch="join" class="com.ulane.know.model.know.UkSysKnow"></many-to-many>
+		</set>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.supply.model.stock.ScThresholdLevel"
+        table="SC_THRESHOLD_LEVEL"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="threshLevelId"
+            column="THRESH_LEVEL_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SC_THRESHOLD_LEVEL_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="upLevel"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            access="property"
+            column="UP_LEVEL"
+            precision="15"
+            scale="2"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="downLevel"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            access="property"
+            column="DOWN_LEVEL"
+            precision="15"
+            scale="2"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createUserId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_USER_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="createTime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="CREATE_TIME"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateUserId"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_USER_ID"
+            length="18"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="updateTime2"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            access="property"
+            column="UPDATE_TIME2"
+            length="7"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="desc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="DESC"
+            length="500"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to ScGoods -->
+		<many-to-one
+			name="scGoods"
+			class="com.ulane.supply.model.goods.ScGoods"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="GOODS_ID" />
+		</many-to-one>
+    <!-- imported bi-directional many-to-one association to ScWarehouse -->
+		<many-to-one
+			name="scWarehouse"
+			class="com.ulane.supply.model.stock.ScWarehouse"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="WAREHOUSE_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

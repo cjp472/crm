@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.ulane.shsh.model.shhq.ShBugRepStuff"
+        table="SH_BUG_REP_STUFF"
+        select-before-update="false"
+        dynamic-update="false"
+        dynamic-insert="false"
+        optimistic-lock="version"
+    >
+		<id
+            name="stuffId"
+            column="STUFF_ID"
+            type="java.lang.Long"
+            length="18"
+        >
+             <generator class="sequence">
+            	<param name="sequence">
+			SEQ_SH_BUG_REP_STUFF_ID
+            	</param>
+            </generator>
+        </id>
+         <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="NAME"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="stuffSpec"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="STUFF_SPEC"
+            length="128"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="num"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            access="property"
+            column="NUM"
+            length="10"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="price"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            access="property"
+            column="PRICE"
+            precision="10"
+            scale="2"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="totalCash"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            access="property"
+            column="TOTAL_CASH"
+            precision="10"
+            scale="2"
+            not-null="false"
+            unique="false"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            access="property"
+            column="REMARK"
+            length="300"
+            not-null="false"
+            unique="false"
+        />
+     <!-- imported bi-directional many-to-one association to ShBugRepaire -->
+		<many-to-one
+			name="shBugRepaire"
+			class="com.ulane.shsh.model.shhq.ShBugRepaire"
+            not-null="false"
+			fetch="select"
+		>	
+			<column name="REP_ID" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>

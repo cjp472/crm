@@ -1,0 +1,462 @@
+package com.htsoft.core.web.servlet;
+/*
+ *  北京优创融联科技有限公司 综合客服管理系统   -- http://www.ulane.cn
+ *  Copyright (C) 2008-2009 Beijing Ulane Technology Co., LTD
+*/
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.htsoft.core.util.AppUtil;
+import com.htsoft.core.util.ContextUtil;
+import com.htsoft.core.util.FileUtil;
+import com.htsoft.oa.model.system.AppUser;
+import com.htsoft.oa.model.system.FileAttach;
+import com.htsoft.oa.service.system.AppUserService;
+import com.htsoft.oa.service.system.FileAttachService;
+import com.ibm.icu.text.SimpleDateFormat;
+import com.raq.expression.function.New;
+
+
+import java.io.FileReader; 
+import java.io.Reader; 
+import org.apache.lucene.analysis.Analyzer; 
+import org.apache.lucene.analysis.standard.StandardAnalyzer; 
+import org.apache.lucene.document.Document; 
+import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexWriter; 
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.Version; 
+/**
+ * 文件上传类
+ * @author 优创融联科技
+ *
+ */
+@SuppressWarnings("serial")
+public class FileUploadServlet extends HttpServlet{
+	
+	private Log logger=LogFactory.getLog(FileUploadServlet.class);
+	
+	private ServletConfig servletConfig=null;
+	
+	private FileAttachService fileAttachService=(FileAttachService)AppUtil.getBean("fileAttachService");
+	private AppUserService appUserService=(AppUserService)AppUtil.getBean("appUserService");
+	
+	private String uploadPath=""; // 上传文件的目录   
+	private String tempPath=""; // 临时文件目录 
+	
+	private String fileCat="others";
+
+	@SuppressWarnings("unchecked")
+    @Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		
+		//指定保存至某个目录,若提交时，指定了该参数值，则表示保存的操作　
+		String filePath="";
+		String fileId="";
+		
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		try {
+			
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			// 缓存大小
+			factory.setSizeThreshold(4096);
+			factory.setRepository(new File(tempPath));
+			ServletFileUpload fu=new ServletFileUpload(factory);
+			  System.out.println("fu"+fu);
+	        List<FileItem> fileItems = fu.parseRequest(req); 
+	        System.out.println("fileItems"+fileItems);
+	       
+	        //取得相关参数值
+	        for(FileItem fi:fileItems){
+	        	if("file_cat".equals(fi.getFieldName())){
+	        		fileCat=fi.getString();
+	        		//System.out.println("fileCat"+fileCat);
+	        		//break;
+	        	}
+	        	if("file_path".equals(fi.getFieldName())){
+	        		filePath=fi.getString();
+	        		//System.out.println("file_path"+fileCat);
+	        	}
+	        	if("fileId".equals(fi.getFieldName())){
+	        		fileId=fi.getString();
+	        	}
+	        }
+	        logger.info("fileId:" + fileId);
+	        Iterator i = fileItems.iterator();
+	        //目前处理每次只上传一个文件
+	        while(i.hasNext()) {
+	            
+	        	FileItem fi = (FileItem)i.next();
+	             //System.out.println("fi"+fi.);
+	            if(fi.getContentType()==null){
+	            	continue;
+	            }
+	            
+	            //返回文件名及路径及fileId.
+	            String path = fi.getName();
+	            
+		        int start=path.lastIndexOf("\\");
+		        
+		        //原文件名
+		        String fileName=path.substring(start+1);
+		        System.out.println("fileName:"+fileName);
+		        String relativeFullPath=null;
+		        
+		        if(!"".equals(filePath)){
+		        	relativeFullPath=filePath;
+		        }else if(!"".equals(fileId)){
+		          FileAttach fileAttach=fileAttachService.get(new Long(fileId));
+		          relativeFullPath=fileAttach.getFilePath();
+		          logger.info("exist filePath:" + relativeFullPath);
+		        }else{
+		        	relativeFullPath=fileCat+"/" + FileUtil.generateFilename(fileName);
+		        }
+		        
+		        
+		        ///////////////测试上传文件
+		        System.out.println("FullPath:"+relativeFullPath);
+		        if(relativeFullPath.indexOf(".jpg") >= 0 && relativeFullPath.indexOf("/")>=0){
+		        	String str[] = relativeFullPath.split("/");
+		        	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+		        	System.out.println(df.format(new Date()));
+		        	relativeFullPath = str[0]+"/"+str[1]+"/"+df.format(new Date()).toString()+".jpg";
+		        }
+		        
+		        
+		        
+		        
+		        int index=relativeFullPath.lastIndexOf("/");
+
+		        File dirPath=new File(uploadPath+"/" + relativeFullPath.substring(0,index+1));
+		        System.out.println("=dirPath="+dirPath);
+		        if(!dirPath.exists()){
+		        	dirPath.mkdirs();
+		        }
+		        if(fileName.endsWith(".jpg")){
+		        	System.out.println("后缀为.jpg");
+		        	 BufferedImage sourceImg =ImageIO.read(new FileInputStream(fileItems.get(0).getName()));    
+		             System.out.println("sourceImg.getWidth()"+sourceImg.getWidth());  
+		             System.out.println("sourceImg.getHeight()"+sourceImg.getHeight());
+		             System.out.println("sourceImg.getHeight()"+sourceImg.getHeight());
+		             System.out.println("sourceImg.getHeight()/sourceImg.getWidth()"+sourceImg.getHeight()/sourceImg.getWidth());
+		             System.out.println("sourceImg.getHeight()"+fi.getSize());
+		             int x=10/13;
+		             int y=14/13;
+		             //int d =sourceImg.getHeight()
+		             //获取照片的长度判断照片是大小
+		            // if(sourceImg.getWidth()<=132 && sourceImg.getHeight()<=120 && fi.getSize()<=50000){ //上传成功
+		             if(sourceImg.getHeight()/sourceImg.getWidth()<=y && sourceImg.getHeight()/sourceImg.getWidth()>=x && fi.getSize()<=50000){ //上传成功
+		            	 System.out.println("上传成功");  
+		            	fi.write(new File(uploadPath+"/" + relativeFullPath));//将文件一同写到服务器上去
+		 		        FileAttach file=null;
+		 		        System.err.println("write : " + fi.getSize());
+		 		        if(!"".equals(filePath)){
+		 		        	file=fileAttachService.getByPath(filePath);
+		 		        	file.setTotalBytes(fi.getSize());
+		 		        	file.setNote(getStrFileSize(fi.getSize()));
+		 		        	fileAttachService.save(file);
+		 		        }
+		 		        if(!"".equals(fileId)){
+		 		        	file=fileAttachService.get(new Long(fileId));
+		 		        	file.setTotalBytes(fi.getSize());
+		 		        	file.setNote(getStrFileSize(fi.getSize()));
+		 		        	fileAttachService.save(file);
+		 		        }
+		 		        if(file==null)
+		 		        {
+		 		        	file=new FileAttach();
+		 			        file.setCreatetime(new Date());
+		 			        AppUser curUser=ContextUtil.getCurrentUser();
+		 			        if(curUser!=null){
+		 			        	file.setCreator(curUser.getFullname());
+		 			        	file.setCreatorId(curUser.getUserId());
+		 			        	
+		 			        }else{
+		 			        	file.setCreator("UNKown");
+		 			        }
+		 			        int dotIndex=fileName.lastIndexOf(".");
+		 			        file.setExt(fileName.substring(dotIndex+1));
+		 			        file.setFileName(fileName);
+		 			        file.setFilePath(relativeFullPath);
+		 			        if(fileCat.equals("")){
+		 			        	file.setFileType("Other");
+		 			        }else{
+		 			        	file.setFileType(fileCat);
+		 			        }
+		 			        
+		 			        file.setTotalBytes(fi.getSize());
+		 			        file.setNote(getStrFileSize(fi.getSize()));
+		 			        file.setCreatorId(ContextUtil.getCurrentUserId());
+		 			        file.setDelFlag(FileAttach.FLAG_NOT_DEL);
+		 			        file.setAppUser(ContextUtil.getCurrentUser());				//保存上传人			
+		 			        fileAttachService.save(file);
+		 			        
+		 		        }
+		 		        
+		 		        // 搜索源文件  
+		 		        String INDEX_DIR = uploadPath+"/" + relativeFullPath; 
+		 		        System.out.println("INDEX_DIR="+INDEX_DIR);
+		 		        // 建立生成索引文件夹  
+		 		        String DATA_DIR = uploadPath+"/indexDir"; 
+		 		        System.out.println("DATA_DIR="+DATA_DIR);
+		 		        indexFile(INDEX_DIR,DATA_DIR);
+		 		        
+		 		        StringBuffer sb=new StringBuffer("{success:true");
+		 		        sb.append(",fileId:").append(file.getFileId())
+		 		        .append(",fileName:'").append(file.getFileName())
+//		 		        .append("',filePath:'").append(file.getFilePath()).append("',message:'upload file success.("+ fi.getSize()+" bytes)'");  //原文
+		 		        .append("',filePath:'").append(file.getFilePath()).append("',message:'上传成功s!("+ fi.getSize()+" bytes)'");  //汉译
+		 		        sb.append("}");
+		 		        resp.setContentType("text/html;charset=UTF-8");
+		 				PrintWriter writer = resp.getWriter();
+		 				
+		 				writer.println(sb.toString());
+		             }else{//上传不成功
+		            	 System.out.println("上传失败");  
+		            	 resp.getWriter().write("{'success':false,'message':'error."+"上传照片长120宽132 大小50KB"+"'}");
+		             }
+		             
+		        }else{//除了.jpg文件之外的所有的文件
+		        	    System.out.println("除了.jpg文件之外的所有的文件");
+		        	    FileAttach file=null;
+		 		        System.err.println("write : " + fi.getSize());
+		 		        if(!"".equals(filePath)){
+		 		        	file=fileAttachService.getByPath(filePath);
+		 		        	file.setTotalBytes(fi.getSize());
+		 		        	file.setNote(getStrFileSize(fi.getSize()));
+		 		        	fileAttachService.save(file);
+		 		        }
+		 		        if(!"".equals(fileId)){
+		 		        	file=fileAttachService.get(new Long(fileId));
+		 		        	file.setTotalBytes(fi.getSize());
+		 		        	file.setNote(getStrFileSize(fi.getSize()));
+		 		        	fileAttachService.save(file);
+		 		        }
+		 		        if(file==null)
+		 		        {
+		 		        	file=new FileAttach();
+		 			        file.setCreatetime(new Date());
+		 			        AppUser curUser=ContextUtil.getCurrentUser();
+		 			        if(curUser!=null){
+		 			        	file.setCreator(curUser.getFullname());
+		 			        	file.setCreatorId(curUser.getUserId());
+		 			        	
+		 			        }else{
+		 			        	file.setCreator("UNKown");
+		 			        }
+		 			        int dotIndex=fileName.lastIndexOf(".");
+		 			        file.setExt(fileName.substring(dotIndex+1));
+		 			        file.setFileName(fileName);
+		 			        file.setFilePath(relativeFullPath);
+		 			        if(fileCat.equals("")){
+		 			        	file.setFileType("Other");
+		 			        }else{
+		 			        	file.setFileType(fileCat);
+		 			        }
+		 			        
+		 			        file.setTotalBytes(fi.getSize());
+		 			        file.setNote(getStrFileSize(fi.getSize()));
+		 			        file.setCreatorId(ContextUtil.getCurrentUserId());
+		 			        file.setDelFlag(FileAttach.FLAG_NOT_DEL);
+		 			        file.setAppUser(ContextUtil.getCurrentUser());				//保存上传人			
+		 			        fileAttachService.save(file);
+		 			        
+		 		        }
+		 		        
+		 		        // 搜索源文件  
+		 		        String INDEX_DIR = uploadPath+"/" + relativeFullPath; 
+		 		        System.out.println("INDEX_DIR="+INDEX_DIR);
+		 		        // 建立生成索引文件夹  
+		 		        String DATA_DIR = uploadPath+"/indexDir"; 
+		 		        System.out.println("DATA_DIR="+DATA_DIR);
+		 		        indexFile(INDEX_DIR,DATA_DIR);
+		 		        
+		 		        StringBuffer sb=new StringBuffer("{success:true");
+		 		        sb.append(",fileId:").append(file.getFileId())
+		 		        .append(",fileName:'").append(file.getFileName())
+//		 		        .append("',filePath:'").append(file.getFilePath()).append("',message:'upload file success.("+ fi.getSize()+" bytes)'");  //原文
+		 		        .append("',filePath:'").append(file.getFilePath()).append("',message:'上传成功s!("+ fi.getSize()+" bytes)'");  //汉译
+		 		        sb.append("}");
+		 		        resp.setContentType("text/html;charset=UTF-8");
+		 				PrintWriter writer = resp.getWriter();
+		 				
+		 				writer.println(sb.toString());
+		        	
+		        	
+		        }
+		       
+	        }
+	        
+	    }    
+	    catch(Exception e) {    
+	    	resp.getWriter().write("{'success':false,'message':'error..."+e.getMessage()+"'}");
+	    }    
+	}
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		this.servletConfig=config;
+	}
+	
+	public void init() throws ServletException {
+	   
+		//初始化上传的路径及临时文件路径
+		
+		uploadPath=getServletContext().getRealPath("/attachFiles/");
+		
+	    File uploadPathFile=new File(uploadPath);
+	    if(!uploadPathFile.exists()){
+	    	uploadPathFile.mkdirs();
+	    }
+	    tempPath=uploadPath+"/temp";
+	    
+	    File tempPathFile=new File(tempPath); 
+	    if(!tempPathFile.exists()){
+	    	tempPathFile.mkdirs();
+	    }
+	}
+	
+	
+	/*------------------------------------------------------------
+	保存文档到服务器磁盘，返回值true，保存成功，返回值为false时，保存失败。
+	--------------------------------------------------------------*/
+	public boolean saveFileToDisk(String officefileNameDisk)
+	{
+		File officeFileUpload = null;
+		FileItem officeFileItem =null ;
+		
+		boolean result=true ;
+		try
+		{
+			if(!"".equalsIgnoreCase(officefileNameDisk)&&officeFileItem!=null)
+			{
+				officeFileUpload =  new File(uploadPath+officefileNameDisk);
+				officeFileItem.write(officeFileUpload);
+			}
+		}catch(FileNotFoundException e){
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			result=false;
+		}
+		return result;	
+	}
+	
+	private String getStrFileSize(double size){
+		System.out.println("getStrFileSize"+size);
+	    DecimalFormat df=new DecimalFormat("0.00");
+		if(size>1024*1024){
+			System.out.println(" if 1024*1024="+size);
+			 double ss=size/(1024*1024);
+			 System.out.println("ss="+ss);
+			 System.out.println("df.format(ss)+"+df.format(ss)+"M");
+		 	 return df.format(ss)+" M";
+		 	 
+		}else if(size>1024){
+			System.out.println("else if 1024"+size);
+			double ss=size/1024;
+			System.out.println("1024"+df.format(ss)+" KB");
+			return df.format(ss)+" KB";
+			
+		}else{
+			System.out.println("else"+size+" bytes");
+			return size+" bytes";
+		}
+    }
+/**
+ * 建立文件索引	lucene
+ * @param index_dir 需要建立索引的文件
+ * @param data_dir 索引的位置
+ */
+	@SuppressWarnings("deprecation")
+    private void indexFile(String index_dir,String data_dir) {
+        File indexDir = new File(index_dir); 
+        File dataDir  = new File(data_dir); 
+        
+        Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_36);
+        try{
+            FSDirectory directory = FSDirectory.open(dataDir); 
+            IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_36,  analyzer); 
+            IndexWriter indexWriter = new IndexWriter(directory, conf); 
+            if(indexDir.isFile() && indexDir.getName().endsWith(".txt")){
+                 Document document = new Document(); 
+                 String temp  =  FileReaderAll(indexDir.getCanonicalPath(), "GB2312" );  
+                 document.add(new Field("contents", temp, Field.Store.YES,  Field.Index.ANALYZED));  
+                 document.add(new Field("path", indexDir.getCanonicalPath(), Field.Store.YES,  Field.Index.ANALYZED));  
+                 indexWriter.addDocument(document); 
+            } 
+            if(indexDir.isFile() && indexDir.getName().endsWith(".doc")){
+                Document document = new Document(); 
+                String temp  =  FileReaderAll(indexDir.getCanonicalPath(), "GB2312" );  
+                document.add(new Field("contents", temp, Field.Store.YES,  Field.Index.ANALYZED));  
+                document.add(new Field("path", indexDir.getCanonicalPath(), Field.Store.YES,  Field.Index.ANALYZED));  
+                indexWriter.addDocument(document); 
+           } 
+           if(indexDir.isFile() && indexDir.getName().endsWith(".ppt")){
+                Document document = new Document(); 
+                String temp  =  FileReaderAll(indexDir.getCanonicalPath(), "GB2312" );  
+                document.add(new Field("contents", temp, Field.Store.YES,  Field.Index.ANALYZED));  
+                document.add(new Field("path", indexDir.getCanonicalPath(), Field.Store.YES,  Field.Index.ANALYZED));  
+                indexWriter.addDocument(document); 
+           } 
+           if(indexDir.isFile() && indexDir.getName().endsWith(".xls")){
+               Document document = new Document(); 
+               String temp  =  FileReaderAll(indexDir.getCanonicalPath(), "GB2312" );  
+               document.add(new Field("contents", temp, Field.Store.YES,  Field.Index.ANALYZED));  
+               document.add(new Field("path", indexDir.getCanonicalPath(), Field.Store.YES,  Field.Index.ANALYZED));  
+               indexWriter.addDocument(document); 
+          }
+          if(indexDir.isFile() && indexDir.getName().endsWith(".pdf")){
+               Document document = new Document(); 
+               String temp  =  FileReaderAll(indexDir.getCanonicalPath(), "GB2312" );  
+               document.add(new Field("contents", temp, Field.Store.YES,  Field.Index.ANALYZED));  
+               document.add(new Field("path", indexDir.getCanonicalPath(), Field.Store.YES,  Field.Index.ANALYZED));  
+               indexWriter.addDocument(document); 
+          }
+          indexWriter.optimize();  
+          System.out.println(indexWriter.maxDoc());
+          indexWriter.close(); 
+        }
+        catch(Exception e){System.out.println(e.toString());}
+	}
+	public   static  String FileReaderAll(String FileName, String charset)  throws  IOException  {   
+        BufferedReader reader  =   new  BufferedReader( new  InputStreamReader( new  FileInputStream(FileName), charset));   
+        String line  =   new  String();   
+        String temp  =   new  String();   
+         
+        while  ((line  =  reader.readLine())  !=   null )  {   
+          temp  +=  line;   
+        }    
+        reader.close();   
+        return  temp;   
+    }    
+
+}

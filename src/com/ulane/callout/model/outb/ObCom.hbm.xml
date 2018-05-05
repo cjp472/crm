@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.callout.model.outb.ObCom" table="OB_COM"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="comId" column="COM_ID" type="java.lang.Long" length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_OB_COM_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="obComNam" type="java.lang.String" update="true"
+			insert="true" access="property" column="OB_COM_NAM" length="1024"
+			not-null="true" unique="false" />
+		<property name="comCod" type="java.lang.String" update="true"
+			insert="true" access="property" column="COM_COD" length="50"
+			not-null="false" unique="false" />
+		<property name="obComDes" type="java.lang.String" update="true"
+			insert="true" access="property" column="OB_COM_DES" length="4000"
+			not-null="false" unique="false" />
+		<property name="ownerTeam" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OWNER_TEAM" length="18"
+			not-null="false" unique="false" />
+		<property name="perIncharge" type="java.lang.Long" update="true"
+			insert="true" access="property" column="PER_INCHARGE" length="18"
+			not-null="false" unique="false" />
+		<property name="staDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="STA_DAT" length="7" not-null="false"
+			unique="false" />
+		<property name="endDat" type="java.util.Date" update="true"
+			insert="true" access="property" column="END_DAT" length="7" not-null="false"
+			unique="false" />
+	   	<property name="busiTypId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="BUSI_TYP_ID" length="5"
+			not-null="false" unique="false" />
+			 
+		<property name="execTypId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="EXEC_TYP_ID" length="5"
+			not-null="true" unique="false" />
+		<property name="obComStaId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="OB_COM_STA_ID" length="5"
+			not-null="true" unique="false" />
+			 
+		<property name="assCount" type="java.lang.Integer"
+			update="true" insert="true" access="property" column="ASS_COUNT"
+			length="10" not-null="false" unique="false" />			
+
+		<!-- imported bi-directional many-to-one association to ObProject 
+		<many-to-one name="obComBizTypeTree" class="com.ulane.callout.model.outb.ObComBizTypeTree"
+			not-null="false" fetch="select">
+			<column name="BUSI_TYP_ID" />
+		</many-to-one>
+		-->
+		<many-to-one name="obProject" class="com.ulane.callout.model.outb.ObProject"
+			not-null="false" fetch="select">
+			<column name="PROJ_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchAss
+		-->
+		<set name="obCallbatchAsss" table="ob_callbatch_ass" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchAss" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObCallbatchHis
+		-->
+		<set name="obCallbatchHiss" table="ob_callbatch_his" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObCallbatchHis" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObComCalllist
+		-->
+		<set name="obCalllists" table="ob_com_calllist" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<many-to-many class="com.ulane.callout.model.outb.ObCalllist"
+				fetch="select" column="CALLLIST_ID" />
+		</set>
+
+		<!-- <set name="products" table="ob_com_product" lazy="true" inverse="false"
+			 sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<many-to-many class="com.htsoft.oa.model.customer.Product"
+				fetch="select" column="GOODS_ID" />
+		</set>
+		 -->
+		<!-- exported bi-directional话术 one-to-many association to ObComScr -->
+		<set name="obComScr" table="ob_com_scr" lazy="true" inverse="false"
+			 sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComScr" />
+		</set>
+		<!--
+			exported bi-directional one-to-many association to ObComModel <set
+			name="obComModels" table="ob_com_model" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted"> <key> <column name="COM_ID" />
+			</key> <one-to-many class="com.ulane.callout.model.outb.ObComModel"
+			/> </set>
+		-->
+		<!-- exported bi-directional one-to-many association to ObComPap -->
+		<!-- 问卷 
+		<set name="papReleases" table="ob_com_pap" lazy="true" inverse="false"
+			cascade="save-update">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<many-to-many class="com.ulane.running.model.pap.PapRelease"
+				fetch="join" column="PAP_ID" />
+		</set>
+		-->
+		  <set name="obComPap" table="ob_com_pap" lazy="true" inverse="true">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComPap"/>
+			</set>
+
+		<set name="obComProduct" table="ob_com_product" lazy="true" inverse="true" >
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComProduct" />
+		</set> 
+		<!--
+			exported bi-directional one-to-many association to ObComProduct <set
+			name="obComProducts" table="ob_com_product" lazy="true"
+			inverse="true" cascade="save-update" sort="unsorted"> <key> <column
+			name="COM_ID" /> </key> <one-to-many
+			class="com.ulane.callout.model.outb.ObComProduct" /> </set>
+		-->
+		<!-- exported bi-directional one-to-many association to ObComSalerul -->
+		<set name="obComSalerul" table="ob_com_salerul" lazy="true"
+			inverse="true"  sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObComSalerul" />
+		</set>
+
+		<!--
+			exported bi-directional one-to-many association to ObComUsergroup
+		-->
+		<set name="ulUsergroups" table="ob_com_usergroup" lazy="true"
+			inverse="false" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<many-to-many class="com.ulane.base.model.xitong.UlUsergroup"
+				fetch="join" column="USERGRP_ID" />
+		</set>
+		<!-- exported bi-directional one-to-many association to ObSaletask -->
+		<set name="obSaletasks" table="ob_saletask" lazy="true" inverse="true"
+			cascade="save-update" sort="unsorted">
+			<key>
+				<column name="COM_ID" />
+			</key>
+			<one-to-many class="com.ulane.callout.model.outb.ObSaletask" />
+		</set>
+	</class>
+</hibernate-mapping>

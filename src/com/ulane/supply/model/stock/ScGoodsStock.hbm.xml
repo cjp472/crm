@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ulane.supply.model.stock.ScGoodsStock" table="SC_GOODS_STOCK"
+		select-before-update="false" dynamic-update="false" dynamic-insert="false"
+		optimistic-lock="version">
+		<id name="goodsStockId" column="GOODS_STOCK_ID" type="java.lang.Long"
+			length="18">
+			<generator class="sequence">
+				<param name="sequence">
+					SEQ_SC_GOODS_STOCK_ID
+            	</param>
+			</generator>
+		</id>
+		<property name="goodsCount" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="GOODS_COUNT"
+			precision="15" scale="2" not-null="true" unique="false" />
+		<property name="lockCount" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="LOCK_COUNT"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="averagePrice" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="AVERAGE_PRICE"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="stockTotal" type="java.math.BigDecimal"
+			update="true" insert="true" access="property" column="STOCK_TOTAL"
+			precision="15" scale="2" not-null="false" unique="false" />
+		<property name="createUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="CREATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="createTime" type="java.util.Date" update="true"
+			insert="true" access="property" column="CREATE_TIME" length="7"
+			not-null="false" unique="false" />
+		<property name="updateUserId" type="java.lang.Long" update="true"
+			insert="true" access="property" column="UPDATE_USER_ID" length="18"
+			not-null="false" unique="false" />
+		<property name="updateTime2" type="java.util.Date" update="true"
+			insert="true" access="property" column="UPDATE_TIME2" length="7"
+			not-null="false" unique="false" />
+		<property name="desc" type="java.lang.String" update="true"
+			insert="true" access="property" column="DESC" length="500" not-null="false"
+			unique="false" />
+		<!-- imported bi-directional many-to-one association to ScGoods -->
+		<many-to-one name="scGoods" class="com.ulane.supply.model.goods.ScGoods"
+			not-null="false" fetch="select">
+			<column name="GOODS_ID" />
+		</many-to-one>
+		<!-- imported bi-directional many-to-one association to ScWarehouse -->
+		<many-to-one name="scWarehouse"
+			class="com.ulane.supply.model.stock.ScWarehouse" not-null="false"
+			fetch="select">
+			<column name="WAREHOUSE_ID" />
+		</many-to-one>
+		<!--
+			exported bi-directional one-to-many association to
+			ScGoodsStockProductInst
+		-->
+		<set name="scGoodsStockProductInsts" table="sc_goods_stock_product_inst"
+			lazy="true" inverse="true" cascade="save-update" sort="unsorted">
+			<key>
+				<column name="GOODS_STOCK_ID" />
+			</key>
+			<many-to-many class="com.ulane.supply.model.goods.ScProductInst"
+			column="PRODUCT_INST_ID" fetch="join"  />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_10" text="商品管理" iconCls="mod-chanpin">
+	<Items id="ProductManage" text="产品管理" iconCls="menu-product"
+		isPublic="false">
+		<Items id="ChanPin" text="产品管理" iconCls="menu-product" isPublic="false">
+			<Item id="ProductView" iconCls="menu-ulusergroup" text="产品管理">
+			</Item>
+			<Item id="UlDepartmentView" text="产品属性" /> 
+			<Item id="UlEmployeeView" text="产品元素" /> 
+			<Item id="AppUserView" iconCls="menu-appuser" text="价格规则">
+				<Function id="_AppUserQuery" text="查看用户" iconCls="menu-list">
+					<url>/system/listAppUser.do</url>
+				</Function>
+				<Function id="_AppProductAdd" text="添加用户" iconCls="menu-add">
+					<url>/system/listAppUser.do</url>
+					<url>/system/chooseRolesAppUser.do</url>
+					<url>/system/selectedRolesAppUser.do</url>
+					<url>/system/listDepartment.do</url>
+				</Function>
+				<Function id="_AppUserEdit" text="编辑用户" iconCls="btn-edit">
+					<url>/system/listAppUser.do</url>
+					<url>/system/chooseRolesAppUser.do</url>
+					<url>/system/selectedRolesAppUser.do</url>
+					<url>/system/listDepartment.do</url>
+				</Function>
+				<Function id="_AppUserDel" text="删除用户" iconCls="menu-del">
+					<url>/system/listAppUser.do</url>
+					<url>/system/multiDelAppUser.do</url>
+				</Function>
+				<Function id="_AppUserReset" text="重置密码" iconCls="btn-password">
+					<url>/system/listAppUser.do</url>
+					<url>/system/chooseRolesAppUser.do</url>
+					<url>/system/selectedRolesAppUser.do</url>
+					<url>/system/createPasswordAppUser.do</url>
+				</Function>
+			</Item>
+			<Item id="AppRoleView" iconCls="menu-role" text="告知事项">
+				<Function id="_AppRoleList" text="查看角色" iconCls="menu-list">
+					<url>/system/listAppRole.do</url>
+				</Function>
+				<Function id="_AppRoleAdd" text="添加角色" iconCls="menu-add">
+					<url>/system/listAppRole.do</url>
+					<url>/system/saveAppRole.do</url>
+				</Function>
+				<Function id="_AppRoleEdit" text="编辑角色" iconCls="btn-edit">
+					<url>/system/listAppRole.do</url>
+					<url>/system/saveAppRole.do</url>
+					<url>/system/getAppRole.do</url>
+				</Function>
+				<Function id="_AppRoleDel" text="删除角色" iconCls="menu-del">
+					<url>/system/listAppRole.do</url>
+					<url>/system/mulDelAppRole.do</url>
+				</Function>
+				<Function id="_AppRoleGrant" text="授权角色" iconCls="btn-grant">
+					<url>/system/listAppRole.do</url>
+					<url>/system/grantXmlAppRole.do</url>
+					<url>/system/getAppRole.do</url>
+					<url>/system/grantAppRole.do</url>
+				</Function>
+			</Item>
+		</Items>
+   </Items>
+		<Items id="1" text="商品赠品管理" iconCls="menu-ent">
+			<Item id="ScProductClassifyView" text="分类管理"/> 
+			<Item id="ScProductAttrView" text="属性管理"/>
+			<Item id="ScProductView" text="商品管理"/> 
+			<Item id="ScProductSearchView" text="商品查询"/>
+			<Item id="ScPriceVersionView" text="价格版本管理"/>
+			<Item id="ScGoodsPriceVersionView" text="销售价格管理"/>
+			<Item id="ScGoodsPriceRuleView" text="销售定价规则"/>  
+			<Item id="ScPurpriceVersionView" text="采购价格管理"/>  
+			<Item id="ScComboProductView" text="商品打包管理"/> 
+		</Items>
+		<Items id="2" text="营销管理" iconCls="menu-ent">			
+			<Item id="21" text="营销策略管理"/>
+			<Item id="22" text="营销策略查询"/>
+			<Item id="23" text="营销策略审核"/>
+		</Items>
+		<Items id="3" text="库存管理" iconCls="menu-ent">
+			<Item id="31" text="仓库管理"/> 
+			<Item id="32" text="仓库配送范围"/>
+			<Item id="33" text="预警规则设置"/> 
+			<Item id="34" text="库存预警"/>
+			<Item id="35" text="库存查询"/>
+			<Items id="36" text="入库管理">
+				<Items id="361" text="采购入库">
+						<Item id="3611" text="入库申请单查询"/>
+						<Item id="3612" text="入库申请审批"/>
+						<Item id="3613" text="入库单查询"/>
+						<Item id="3614" text="入库管理"/>
+				</Items>
+				<Items id="362" text="调拨入库">
+					  <Item id="3621" text="调拨申请单查询"/>
+					  <Item id="3622" text="调拨申请审批"/>
+					  <Item id="3623" text="调拨单查询"/>
+					  <Item id="3624" text="入库管理"/>
+				</Items>
+				<Items id="363" text="售后入库">
+						<Item id="3631" text="入库申请单查询"/>
+						<Item id="3632" text="入库申请审批"/>
+						<Item id="3633" text="入库单查询"/>
+						<Item id="3634" text="入库管理"/>
+				</Items>
+				<Items id="364" text="借用入库">
+						<Item id="3641" text="入库申请单查询"/>
+						<Item id="3642" text="入库申请审批"/>
+						<Item id="3643" text="入库单查询"/>
+						<Item id="3644" text="入库管理"/>
+				</Items>
+			</Items>
+			<Items id="37" text="出库管理">	
+				<Items id="371" text="采购退货出库">
+						<Item id="3711" text="出库申请单查询"/>
+						<Item id="3712" text="出库申请审批"/>
+						<Item id="3713" text="出库单查询"/>
+						<Item id="3714" text="出库管理"/>
+				</Items>
+				<Items id="372" text="销售出库">					  
+					  <Item id="3721" text="出库单查询"/>
+					  <Item id="3722" text="出库管理"/>
+				</Items>
+				<Items id="373" text="调拨出库">
+						<Item id="3731" text="调拨申请单查询"/>
+						<Item id="3732" text="调拨申请审批"/>
+						<Item id="3733" text="调拨单查询"/>
+						<Item id="3734" text="出库管理"/>
+				</Items>
+				<Items id="374" text="借用出库">
+						<Item id="3741" text="借用申请单查询"/>
+						<Item id="3742" text="借用申请审批"/>
+						<Item id="3743" text="借用单查询"/>
+						<Item id="3744" text="出库管理"/>
+				</Items>				
+			</Items>
+			<Items id="38" text="库存盘点">	
+				<Item id="381" text="库存盘点"/>
+				<Item id="382" text="损耗出库申请"/>
+				<Item id="383" text="损耗出库审批"/>
+				<Item id="384" text="损耗出库查询"/>
+		  </Items>
+		</Items>  
+		<Items id="4" text="采购管理" iconCls="menu-ent">
+			<Items id="41" text="采购申请">	
+				<Item id="411" text="采购申请审批"/>
+				<Item id="412" text="采购申请单查询"/>
+		  </Items>
+		  <Items id="42" text="商品采购">	
+				<Item id="421" text="商品采购预测"/>				
+				<Item id="422" text="采购订单管理"/>
+		  </Items>
+		  <Items id="43" text="采购退货">	
+				<Item id="431" text="商品退货申请"/>
+				<Item id="432" text="商品退货审核"/>
+				<Item id="433" text="退货单管理"/>
+		  </Items>
+		  <Items id="44" text="采购结算">	
+				<Item id="441" text="采购单结算申请"/>
+				<Item id="442" text="账期结算申请"/>
+				<Item id="443" text="结算申请审批"/>
+				<Item id="444" text="采购结算查询"/>
+		  </Items>
+		</Items>  
+		<Items id="5" text="调拨管理" iconCls="menu-ent">
+			  <Item id="51" text="库存监控"/>
+				<Item id="52" text="调拨单管理"/>
+				<Item id="53" text="调拨单申请"/>
+				<Item id="54" text="调拨单审核"/>
+		</Items>		
+</Menus>

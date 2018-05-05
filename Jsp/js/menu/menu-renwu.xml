@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menus id="Mod_7" text="任务事件" iconCls="mod-renwu">
+  <Items id="Task" text="任务管理" iconCls="menu-task" isPublic="false"> 
+    <Item id="CalendarPlanView" text="所有任务" iconCls="menu-cal-plan-view"/>       
+    <Item id="ToDoPlanView" text="待办任务" iconCls="menu-diary"/>
+    <!--<Item id="MyPlanTaskView" text="日程管理" iconCls="menu-diary"/>  
+     
+		<Item id="" text="新建日程"></Item>
+		 -->  
+	<!-- <Item id="ExpiredPlanView" text="过期任务" iconCls="menu-cal-plan"/> 
+     <Item id="AppointmentView" text="预约任务" iconCls="menu-appointment"/> -->
+    <!--Items id="Plan" text="任务计划" iconCls="menu-workPlan"--> 
+      <!--<Item id="WorkPlanView" text="计划管理" iconCls="menu-planmanage">
+			</Item>
+			<Item id="NewWorkPlanForm" text="新建任务计划" iconCls="menu-newplan">
+			</Item>-->  
+      <!--Item id="PersonalWorkPlanView" text="我的计划" iconCls="menu-myplan"/>  
+      <Item id="DepWorkPlanView" text="部门计划" iconCls="menu-depplan"/> 
+    </Items--> 
+    <!--Item id="DiaryView" text="工作日志" iconCls="menu-diary"/--> 
+  </Items>  	
+</Menus>
